@@ -4,13 +4,8 @@
 	"description":"Teaches how to create a class with variables and methods, then describes when to use a class.",
 	"syllabus":"Module 1: Variables, Module 2: Methods, Module: When to Use Classes",
 	"author": 2,
-	"modules":[
-		{Variables,
-		Methods,
-		When to Use Classes
-		}
-	],
-	"language": "PYTHON",
+	"modules":["Variables","Methods","When to Use Classes"],
+	"language":"PYTHON",
 	"rating":4.76,
 	"comments":["This was a really helpful introduction to classes!", "This was very challenging."],
 	"students":[{"id": 1, "grades":[100,50,60,90,70]}]
