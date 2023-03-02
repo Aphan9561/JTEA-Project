@@ -1,0 +1,10 @@
+[{
+	"question":"What would be a variable for a Cat class be?",
+	"answers":[
+		name,
+		street,
+		price,
+		buildTime
+	]
+}
+]
