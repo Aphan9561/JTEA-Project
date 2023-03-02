@@ -1,24 +1,19 @@
 [{
+	"id":1,
 	"firstName":"Sam",
 	"lastName":"Johsnon",
 	"email":"samj123@gmail.com",
 	"birthday":"01/21/2002",
 	"username":"samjohnsonnnn",
-	"coursesEnrolled":[
-		{"enrolled":true,
-		"progress":IN_PROGRESS,
-		"progressPercentage":55,
-		"currentModule":3,
-		"currentLesson":1,
-		"grade": B
-		}
-		{"enrolled":true,
-		"progress":NOT_STARTED,
-		"progressPercentage":0,
-		"currentModule":5,
-		"currentLesson":1,
-		"grade": A
-		}
-	]
+	"type":"student"
+},
+{
+	"id":2,
+	"firstName":"Connor",
+	"lastName":"Hoskins",
+	"email":"choskins@email.sc.edu",
+	"birthday":"10/02/1983",
+	"username":"connorh",
+	"type":"author"
 }
 ]
