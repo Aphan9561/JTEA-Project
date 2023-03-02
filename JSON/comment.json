@@ -1,27 +1,4 @@
 [{
 	"comment":"This was a really helpful introduction to classes!",
-	"user": {
-		"firstName":"Sam",
-		"lastName":"Johsnon",
-		"email":"samj123@gmail.com",
-		"birthday":"01/21/2002",
-		"username":"samjohnsonnnn",
-		"coursesEnrolled":[
-			{"enrolled":true,
-			"progress":IN_PROGRESS,
-			"progressPercentage":55,
-			"currentModule":3,
-			"currentLesson":1,
-			"grade": B
-			}
-			{"enrolled":true,
-			"progress":NOT_STARTED,
-			"progressPercentage":0,
-			"currentModule":5,
-			"currentLesson":1,
-			"grade": A
-			}
-		]
-	}
-}
-]
+	"user": id
+}]
