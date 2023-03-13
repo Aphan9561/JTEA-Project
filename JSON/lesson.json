@@ -1,4 +1,0 @@
-[{
-	"content":"A class is used when you have an object that has several traits. For example, if you were making a program for a dog shelter, a Dog would be a good class to make so that someone can log the dog into the shelter's system. The class would contain the dog's name, breed, and age. These would be established as variables. So when you create an instance of a dog, or in other words want to add a dog, you will need to enter a name, breed, and age. Since the class is created, you can make instances of as many dogs as you need to.",
-	"title":"When to Use Classes: Variables"}
-]
