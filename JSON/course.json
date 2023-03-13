@@ -4,7 +4,17 @@
 	"description":"Teaches how to create a class with variables and methods, then describes when to use a class.",
 	"syllabus":"Module 1: Variables, Module 2: Methods, Module: When to Use Classes",
 	"author": 2,
-	"modules":["Variables","Methods","When to Use Classes"],
+	"modules":[{"quiz": [{"question":"What would be a variable for a Cat class?",
+				"answers":[
+					"name",
+					"street",
+					"price",
+					"buildTime"]},
+				{"question":"Which is false about classes?",
+				"answers":[
+					"Classes are helpful when you have an object with traits.",
+					"After you establish a class, multiple instrances of that class can be created.",
+					"You can only create 1 class ever."]}]}],
 	"language":"PYTHON",
 	"rating":4.76,
 	"comments":["This was a really helpful introduction to classes!", "This was very challenging."],
