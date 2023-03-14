@@ -6,16 +6,19 @@ import java.util.Date;
  * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class LMSApplication {
-    private User user;
+    private User user = ; //Figure this out.
     private CourseList courseList;
     private static LMSApplication lmsApplication;
     
     private LMSApplication(){
-    
+    this.courseList = new CourseList();
     }
 
     public LMSApplication getInstance() {
-
+    if(lmsApplication == null){
+        lmsApplication = new LMSApplication();
+    }
+    return lmsApplication;
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password){
@@ -44,7 +47,7 @@ public class LMSApplication {
     }
 
     public void courseReview(double rating, String comment, User user){
-        
+
     }
 
     public void enterCourse(String name){
