@@ -79,10 +79,10 @@ public class Course {
     }
 
     public Module getCurrentModule(){
-        
+        return null;
     }
 
     public Module addModule(String title, ArrayList<Lesson> lessons){
-
+        return null;
     }
 }
