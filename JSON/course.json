@@ -4,7 +4,7 @@
 	"name":"Classes for Beginners",
 	"description":"Teaches how to create a class with variables and methods, then describes when to use a class.",
 	"syllabus":"Module 1: Variables, Module 2: Methods, Module: When to Use Classes",
-	"author": 2,
+	"author": "a99d0e66-3539-43bf-a30c-7c11d8e6ef93",
 	"modules":[{"quiz": [{"question":"What would be a variable for a Cat class?",
 				"answers":[
 					"name",
@@ -21,14 +21,14 @@
 						"title":"When to Use Classes: Variables",
 						"content":"A class is used when you have an object that has several traits. For example, if you were making a program for a dog shelter, a Dog would be a good class to make so that someone can log the dog into the shelter's system. The class would contain the dog's name, breed, and age. These would be established as variables. So when you create an instance of a dog, or in other words want to add a dog, you will need to enter a name, breed, and age. Since the class is created, you can make instances of as many dogs as you need to."
 				}],
-				"comments" :[{"user":1,
+				"comments" :[{"user":"99fe4f2b-4832-40c4-a040-223286ee3cb5",
 				"comment":"This was a really helpful introduction to classes!",
 				"replies":[]}]
 				}],
 	"language":"PYTHON",
 	"rating":4.76,
-	"students":[{"id": 1, "grades":[100,50,60,90,70]}],
-	"comments" :[{"user":1,
+	"students":[{"id": "a3d4c812-17bc-4e1d-bcae-442b556e63f5", "grades":[100,50,60,90,70]}],
+	"comments" :[{"user":"05691ad3-8131-4ace-83cb-479cb636bcf9",
 				"comment":"This was a really helpful introduction to classes!",
 				"replies":[]}]
 }
