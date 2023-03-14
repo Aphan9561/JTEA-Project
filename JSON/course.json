@@ -22,6 +22,8 @@
 	"language":"PYTHON",
 	"rating":4.76,
 	"comments":["This was a really helpful introduction to classes!", "This was very challenging."],
-	"students":[{"id": 1, "grades":[100,50,60,90,70]}]
+	"students":[{"id": 1, "grades":[100,50,60,90,70]}],
+	"comment" :[{"user":1,
+				"comment":"This was a really helpful introduction to classes!"}]
 }
 ]
