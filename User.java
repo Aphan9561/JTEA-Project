@@ -11,7 +11,7 @@ public class User {
     protected String username;
     protected ArrayList<EnrolledCourse> enrolledCourse;
 
-    public User(String firstName, String lastName, String email, String birthday, String username) {
+    public User(UUID id, String firstName, String lastName, String email, String birthday, String username) {
 
     }
 
