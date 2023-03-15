@@ -6,12 +6,14 @@ import java.util.Date;
  * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class LMSApplication {
-    private User user = ; //Figure this out.
+    private User user; 
     private CourseList courseList;
     private static LMSApplication lmsApplication;
+    private UserList userList;
     
     private LMSApplication(){
-    this.courseList = new CourseList();
+    this.courseList.getInstance();
+    this.userList.getInstance();
     }
 
     public LMSApplication getInstance() {
@@ -22,16 +24,19 @@ public class LMSApplication {
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password){
-        User user = new User(firstName, lastName, email, password, username);
-        return user;
+        //Create jason thing.
+        //Use to create a new user.
+        this.user = user;
+        return this.user;
     }
     
     public User login(String usernmame, String password){
+        //How to make sure user password and user is valid. Is check done here? 
         return this.user;
     }
 
     public ArrayList<Course> findCourse(String keyword){
-        return this.courseList.getCourse(keyword);
+        ArrayList<Course> searched = new ArrayList<>() this.courseList.getAllCourses(keyword);
     }
 
     public ArrayList<Course> findCourse() {
@@ -73,4 +78,3 @@ public class LMSApplication {
     public void addLesson(Lesson lesson){
 
     }
-}

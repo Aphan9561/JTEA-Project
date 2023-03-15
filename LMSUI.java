@@ -15,7 +15,7 @@ public class LMSUI {
 
     public void run(){
         keyboard = new Scanner(System.in);
-        application = new LMSApplication();
+        application.getInstance();
         keyboard.close();
     }
 
