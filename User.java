@@ -15,6 +15,9 @@ public class User {
 
     }
 
+    public String toString(){
+        return null;
+    }
     public void registerCourse(Course course){
 
     }
