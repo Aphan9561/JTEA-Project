@@ -21,7 +21,12 @@ public class User {
     }
 
     public String toString(){
-        return null;
+        return "id: " +id+ 
+                "\nFirst Name: "+firstName+
+                "\nLast Name: "+lastName+
+                "\nEmail: "+email+
+                "\nBirthday: "+birthday+
+                "\nUsername: "+username;
     }
 
     public void registerCourse(Course course){
