@@ -11,13 +11,19 @@ public class User {
     protected String username;
     protected ArrayList<EnrolledCourse> enrolledCourse;
 
-    public User(UUID id, String firstName, String lastName, String email, String birthday, String username) {
-
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthday = birthday;
+        this.username = username;
     }
 
     public String toString(){
         return null;
     }
+
     public void registerCourse(Course course){
 
     }
