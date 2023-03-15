@@ -9,7 +9,11 @@ import org.json.simple.parser.JSONParser;
 public class DataLoader extends DataConstants{
     
     public ArrayList<User> getUsers() {
+<<<<<<< HEAD
         ArrayList<User> users = new ArrayList<User>();
+=======
+        return null;
+>>>>>>> b7834d0 (Updating Dataloader)
 
         try {
             FileReader reader = new FileReader(./JSON/course.json);
@@ -27,10 +31,15 @@ public class DataLoader extends DataConstants{
     }
 
     public ArrayList<Course> getCourses() {
+        return null;
 
     }
 
     public ArrayList<FAQ> getFAQs() {
+<<<<<<< HEAD
 
+=======
+        return null;
+>>>>>>> b7834d0 (Updating Dataloader)
     }
 }
