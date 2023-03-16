@@ -42,11 +42,62 @@ public class DataLoader extends DataConstants{
     }
 
     public static ArrayList<Course> getCourses() {
-        return null;
+        ArrayList<Course> coursess = new ArrayList<Course>();
 
+        try {
+            FileReader reader = new FileReader(FAQ_FILE_NAME);
+            JSONParser parser = new JSONParser();
+            JSONArray FAQS_JSON = (JSONArray)new JSONParser().parse(reader);
+
+            for(int i=0; i < FAQS_JSON.size(); i++) {
+                JSONObject FAQ_JSON = (JSONObject)FAQS_JSON.get(i);
+                String question = (String)FAQ_JSON.get(FAQ_QUESTION);
+                
+                JSONArray answersJSON = (JSONArray)FAQ_JSON.get(FAQ_ANSWERS);
+                ArrayList<String> answers = new ArrayList<String>();
+                for(int j=0; i < answersJSON.size(); j++) {
+                    answers.add((String)answersJSON.get(j));
+                }
+
+                //FAQs.add(new FAQ(question, answers));
+            }
+
+            //return FAQs;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 
     public static ArrayList<FAQ> getFAQs() {
+        ArrayList<FAQ> FAQs = new ArrayList<FAQ>();
+
+        try {
+            FileReader reader = new FileReader(FAQ_FILE_NAME);
+            JSONParser parser = new JSONParser();
+            JSONArray FAQS_JSON = (JSONArray)new JSONParser().parse(reader);
+
+            for(int i=0; i < FAQS_JSON.size(); i++) {
+                JSONObject FAQ_JSON = (JSONObject)FAQS_JSON.get(i);
+                String question = (String)FAQ_JSON.get(FAQ_QUESTION);
+                
+                JSONArray answersJSON = (JSONArray)FAQ_JSON.get(FAQ_ANSWERS);
+                ArrayList<String> answers = new ArrayList<String>();
+                for(int j=0; i < answersJSON.size(); j++) {
+                    answers.add((String)answersJSON.get(j));
+                }
+
+                FAQs.add(new FAQ(question, answers));
+            }
+
+            return FAQs;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }

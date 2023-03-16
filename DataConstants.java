@@ -13,5 +13,7 @@
    protected static final String USER_USERNAME = "username";
    protected static final String USER_TYPE = "type";
 
+   protected static final String FAQ_FILE_NAME = "./JSON/FAQ.json";
    protected static final String FAQ_QUESTION = "question";
+   protected static final String FAQ_ANSWERS = "answers";
  }
