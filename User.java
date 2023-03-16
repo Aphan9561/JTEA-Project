@@ -10,9 +10,9 @@ public class User {
     protected Date birthday;
     protected String username;
     //protected ArrayList<EnrolledCourse> enrolledCourse;
-    protected String type;
+    protected AccountType type;
 
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String type) {
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +22,7 @@ public class User {
         this.type = type;
     }
 
-    public User(String firstName, String lastName, String email, Date birthday, String username, String type) {
+    public User(String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
         UUID id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -79,6 +79,14 @@ public class User {
 
     public void setBirthday(Date birthday){
         this.birthday = birthday;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
     }
     /*
      * public ArrayList<EnrolledCourse> getCourse()

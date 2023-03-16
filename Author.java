@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Author extends User{
     private ArrayList<Course> myCourses;
 
-    public Author(UUID id,String firstName, String lastName, String email, Date birthday,String username, String type)
+    public Author(UUID id,String firstName, String lastName, String email, Date birthday,String username, AccountType type)
     {
         super(id, firstName, lastName, email, birthday, username, type);
     }
@@ -21,7 +21,7 @@ public class Author extends User{
                 "\nAccount type: "+type;
     }
     public void addCourse(String title, String decription, String syllabus, Difficulty difficult, Language language){
-        
+        Course newCourse = new Course(title, decription, difficult, language);
     }
     
 }

@@ -15,9 +15,8 @@ public class Course {
     private ArrayList<Review> reviews;
     private ArrayList<Comment> comments;
 
-    public Course(String name, Author author, String description, Difficulty difficulty, Language language){
+    public Course(String name, String description, Difficulty difficulty, Language language){
         setTitle(name);
-        this.author = author;
         setDecription(description);
         setDifficulty(difficulty);
         this.language =language;

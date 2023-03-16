@@ -1,16 +1,19 @@
 import java.util.ArrayList;
 
 public class CourseList {
-    private ArrayList<Course> courses;
-    private CourseList courseList;
+    private static ArrayList<Course> courses;
+    private static CourseList courseList;
 
     private CourseList()
     {
 
     }
 
-    public CourseList getInstance()
+    public static CourseList getInstance()
     {
+        if(courseList == null){
+            courseList = new CourseList();
+        }
         return courseList;
 
     }
