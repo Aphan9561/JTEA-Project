@@ -45,18 +45,25 @@ public class DataLoader extends DataConstants{
         ArrayList<Course> courses = new ArrayList<Course>();
 
         try {
-            FileReader reader = new FileReader(FAQ_FILE_NAME);
+            FileReader reader = new FileReader(COURSE_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray coursesJSON = (JSONArray)new JSONParser().parse(reader);
 
             for(int i=0; i < coursesJSON.size(); i++) {
-                JSONObject FAQ_JSON = (JSONObject)coursesJSON.get(i);
-                UUID id = UUID.fromString((String)FAQ_JSON.get(FAQ_QUESTION));
-                
-                JSONArray answersJSON = (JSONArray)FAQ_JSON.get(FAQ_ANSWERS);
-                ArrayList<String> answers = new ArrayList<String>();
-                for(int j=0; i < answersJSON.size(); j++) {
-                    answers.add((String)answersJSON.get(j));
+                JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
+                UUID id = UUID.fromString((String)courseJSON.get(COURSE_ID));
+                Difficulty difficulty = makeDifficultyEnum((String)courseJSON.get(COURSE_DIFFICULTY));
+                String name = (String)courseJSON.get(COURSE_NAME);
+                String description = (String)courseJSON.get(COURSE_DESCRIPTION);
+                String syllabus = (String)courseJSON.get(COURSE_SYLLABUS);
+                UUID author = UUID.fromString((String)courseJSON.get(COURSE_AUTHOR));
+
+                JSONArray modulesJSON = (JSONArray)courseJSON.get(COURSE_MODULES);
+                ArrayList<Module> modules = new ArrayList<Module>();
+                for(int j=0; j < modulesJSON.size(); j++) {
+                    JSONObject moduleJSON = (JSONObject)modulesJSON.get(i);
+                    String moduleName = (String)moduleJSON.get(COURSE_MODULES_NAME);
+                    
                 }
 
                 //FAQs.add(new FAQ(question, answers));
@@ -101,6 +108,10 @@ public class DataLoader extends DataConstants{
         return null;
     }
 
-    
+    public static Difficulty makeDifficultyEnum(String difficulty) {
+        difficulty = difficulty.toUpperCase();
+        Difficulty enumDifficulty = Difficulty.valueOf(difficulty);
+        return enumDifficulty;
+    }
 }
 
