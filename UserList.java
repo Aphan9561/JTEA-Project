@@ -22,10 +22,6 @@ public class UserList {
         user.add(new User(firstName, lastName,email, birthday, username, type));
     }
 
-    public ArrayList<User> getUser(String UserName){
-        return user;
-    }
-
     public ArrayList<User> getUser(UUID id){
         return user;
     } 
