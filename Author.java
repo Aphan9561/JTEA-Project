@@ -10,6 +10,16 @@ public class Author extends User{
         super(id, firstName, lastName, email, birthday, username, type);
     }
 
+    public String toString()
+    {
+        return "id: " +id+ 
+                "\nFirst Name: "+firstName+
+                "\nLast Name: "+lastName+
+                "\nEmail: "+email+
+                "\nBirthday: "+birthday+
+                "\nUsername: "+username+
+                "\nAccount type: "+type;
+    }
     public void addCourse(String title, String decription, String syllabus, Difficulty difficult, Language language){
         
     }
