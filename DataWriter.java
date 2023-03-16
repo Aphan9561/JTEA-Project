@@ -14,6 +14,14 @@ public class DataWriter extends DataConstants{
         for(int i=0; i< users.size(); i++) {
 			jsonUsers.add(getUserJSON(users.get(i)));
 		}
+        try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
+ 
+            file.write(jsonUsers.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static JSONObject getUserJSON(User user) {
