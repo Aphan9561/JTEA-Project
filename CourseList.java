@@ -6,7 +6,7 @@ public class CourseList {
 
     private CourseList()
     {
-
+        courses = DataLoader.getCourses();
     }
 
     public static CourseList getInstance()
@@ -15,19 +15,17 @@ public class CourseList {
             courseList = new CourseList();
         }
         return courseList;
-
     }
 
     public void addCourse(String name, Author author, String description, Difficulty difficulty, Language language){
-
+        courses.add(new Course(name, description, difficulty, language));
     }
 
-    public Course getCourse(String keyword){
-        return null;
-
+    public ArrayList<Course> getCourse(String keyword){
+        return courses;
     }
     
-    public void getAllCourses(){
-        
+    public ArrayList<Course> getAllCourses(){
+        return courses;
     }
 }
