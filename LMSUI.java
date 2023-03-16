@@ -43,7 +43,8 @@ public class LMSUI {
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         boolean haveUser = false;
-        while(haveUser == false){
+        while(haveUser == false)
+        {
             if(choice == 1)
             {
                 System.out.println("Please give your first name below.\n"); 
@@ -69,23 +70,24 @@ public class LMSUI {
                 haveUser = true;
             }
         
-        if(choice == 2)
-        {  
-            boolean loginedIn = false;
-            while(loginedIn == false)
-            {
-                System.out.println("\nPlease enter your username below.\n"); 
-                String username = keyboard.nextLine();
-                System.out.println("\nPlease enter your password] below.\n");
-                String password = keyboard.nextLine();
-                User user = application.login(username, password);
-                if(user != null)
+            if(choice == 2)
+            {  
+                boolean loginedIn = false;
+                while(loginedIn == false)
                 {
-                    loginedIn = true;
-                    haveUser = true;
+                    System.out.println("\nPlease enter your username below.\n"); 
+                    String username = keyboard.nextLine();
+                    System.out.println("\nPlease enter your password] below.\n");
+                    String password = keyboard.nextLine();
+                    User user = application.login(username, password);
+                    if(user != null)
+                    {
+                        loginedIn = true;
+                        haveUser = true;
+                    }
                 }
+            //If choice was not 1 or 2. It will continue to loop.
             }
-         //If choice was not 1 or 2. It will continue to loop.
         }
     }
 
