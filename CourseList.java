@@ -26,10 +26,7 @@ public class CourseList {
         return null;
 
     }
-    public void editCourse(String title, String description){
-
-    }
-
+    
     public void getAllCourses(){
         
     }
