@@ -20,10 +20,12 @@ public class Course {
         setDecription(description);
         setDifficulty(difficulty);
         this.language =language;
+        reviews = new ArrayList<>();
+        modules = new ArrayList<>();
     } 
 
     public String getTitle(){
-        return "";
+        return name;
     }
 
     public void setTitle(String name){
@@ -50,12 +52,12 @@ public class Course {
         this.difficulty = difficulty;
     }
 
-    public void getSyllabus(){
-        
+    public String getSyllabus(){
+        return syllabus;
     }
 
-    public String addSyllabus(){
-        return "";
+    public void addSyllabus(String syllabus){
+        this.syllabus = syllabus;
     } 
 
     public double getRating(){
@@ -71,18 +73,20 @@ public class Course {
     }
 
     public void addReview(User user, int rating, String comment){
-
+        Review review = new Review(rating, comment, user);
+        reviews.add(review);
     }
 
     public int getNumberOfModules(){
-        return 1;
+        return modules.size();
     }
 
-    public Module getCurrentModule(){
-        return null;
+    public Module getModule(int moduleNum){
+        return modules.get(moduleNum);
     }
 
-    public Module addModule(String title, ArrayList<Lesson> lessons){
-        return null;
+    public void addModule(String title, ArrayList<Lesson> lessons){
+        Module module = new Module(title, lessons);
+        modules.add(module);
     }
 }
