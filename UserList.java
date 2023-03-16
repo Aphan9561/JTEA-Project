@@ -1,40 +1,36 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 public class UserList {
-    private static User user = null;
-    private static ArrayList<User> userList;
+    private static ArrayList<User> user;
+    private static UserList userList = null;
 
     private UserList()
     {
-        userList = DataLoader.getUsers();
+        user = DataLoader.getUsers();
     }
     public static UserList getInstance(){
-        if(user == null){
-            user = new User(null, null, null, null, null, null);
+        if(userList == null){
+            userList = new UserList();
         }
-
-        return user;
+        return userList;
     }
 
-    public void addUser(User user)
+    public void addUser(String firstName, String lastName, String email, Date birthday, String username, String type)
     {
-
+        user.add(new User(firstName, lastName,email, birthday, username, type));
     }
 
     public ArrayList<User> getUser(String UserName){
-        return null;
+        return user;
     }
 
-    public UUID getUser(UUID id){
-        return id;
-    }
+    public ArrayList<User> getUser(UUID id){
+        return user;
+    } 
 
-    public void editUser(String firstName, String lastName, String username){
-
-    }
-
-    public void saveUser(){
-        
+    public void logout(){
+        DataWriter.saveUsers();
     }
 }
