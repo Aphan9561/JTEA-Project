@@ -4,11 +4,13 @@ public class Quiz {
     private int[] grades = new int[quizSize];
 
     public Quiz(Question[] questions) {
-
+        this.questions = questions;
     }
 
     public void addQuestion(Question question) {
-
+        for(int i=0; i<10; i++){
+            if(questions[])
+        }
     }
 
     public double calculateScore() {
