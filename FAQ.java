@@ -1,13 +1,21 @@
+import java.util.ArrayList;
+
 public class FAQ {
     
-    private Question question;
+    private String question;
+    private ArrayList<String> answers = new ArrayList<String>();
 
-    public FAQ(String question) {
-
+    public FAQ(String question, ArrayList<String> answers) {
+        this.question = question;
+        this.answers.addAll(answers);
     }
 
-    public FAQ(Question question) {
+    public FAQ(String question, String answer) {
+        
+    }
 
+    public FAQ(String question, String[] answer) {
+        
     }
 
     public void answerQuestion(String answer) {
