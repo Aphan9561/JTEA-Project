@@ -42,16 +42,16 @@ public class DataLoader extends DataConstants{
     }
 
     public static ArrayList<Course> getCourses() {
-        ArrayList<Course> coursess = new ArrayList<Course>();
+        ArrayList<Course> courses = new ArrayList<Course>();
 
         try {
             FileReader reader = new FileReader(FAQ_FILE_NAME);
             JSONParser parser = new JSONParser();
-            JSONArray FAQS_JSON = (JSONArray)new JSONParser().parse(reader);
+            JSONArray coursesJSON = (JSONArray)new JSONParser().parse(reader);
 
-            for(int i=0; i < FAQS_JSON.size(); i++) {
-                JSONObject FAQ_JSON = (JSONObject)FAQS_JSON.get(i);
-                String question = (String)FAQ_JSON.get(FAQ_QUESTION);
+            for(int i=0; i < coursesJSON.size(); i++) {
+                JSONObject FAQ_JSON = (JSONObject)coursesJSON.get(i);
+                UUID id = UUID.fromString((String)FAQ_JSON.get(FAQ_QUESTION));
                 
                 JSONArray answersJSON = (JSONArray)FAQ_JSON.get(FAQ_ANSWERS);
                 ArrayList<String> answers = new ArrayList<String>();
@@ -62,7 +62,7 @@ public class DataLoader extends DataConstants{
                 //FAQs.add(new FAQ(question, answers));
             }
 
-            //return FAQs;
+            return courses;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,5 +100,7 @@ public class DataLoader extends DataConstants{
 
         return null;
     }
+
+    
 }
 

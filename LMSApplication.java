@@ -12,11 +12,11 @@ public class LMSApplication {
     private UserList userList;
     
     private LMSApplication(){
-    this.courseList.getInstance();
-    this.userList.getInstance();
+    this.courseList = CourseList.getInstance();
+    this.userList = UserList.getInstance();
     }
 
-    public LMSApplication getInstance() {
+    public static LMSApplication getInstance() {
     if(lmsApplication == null){
         lmsApplication = new LMSApplication();
     }

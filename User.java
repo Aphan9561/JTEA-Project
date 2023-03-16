@@ -43,15 +43,11 @@ public class User {
     }
 
     public void registerCourse(Course course) {
-        
+        EnrolledCourse NewCourse = new EnrolledCourse(course, true, null);
     }
 
     public void unregisterCourse(Course course) {
-
-    }
-
-    public void addReview(Course course, double rating, String comment) {
-
+        EnrolledCourse RemoveCourse = new EnrolledCourse(course, false, null);
     }
 
     /*
