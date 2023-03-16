@@ -12,4 +12,10 @@ public class Certification {
         this.courseName = courseName;
         this.dateCompleted = dateCompleted;
     }
+
+    public String toString(){
+        return "Name: "+firstName+ " "+lastName+
+                "\nCourse taken: "+courseName+
+                "\nDate Completed: "+dateCompleted;
+    }
 }
