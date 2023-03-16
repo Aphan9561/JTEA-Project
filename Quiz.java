@@ -9,7 +9,7 @@ public class Quiz {
 
     public void addQuestion(Question question) {
         for(int i=0; i<10; i++){
-            if(questions[])
+            if(questions[i] == )
         }
     }
 

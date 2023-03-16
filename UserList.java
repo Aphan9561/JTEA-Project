@@ -17,7 +17,7 @@ public class UserList {
         return userList;
     }
 
-    public void addUser(String firstName, String lastName, String email, Date birthday, String username, String type)
+    public void addUser(String firstName, String lastName, String email, Date birthday, String username, AccountType type)
     {
         user.add(new User(firstName, lastName,email, birthday, username, type));
     }
