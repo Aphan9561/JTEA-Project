@@ -63,7 +63,23 @@ public class User {
 	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+    }
 
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public Date getBirthday(){
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday){
+        this.birthday = birthday;
+    }
     /*
      * public ArrayList<EnrolledCourse> getCourse()
      * {
