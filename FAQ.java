@@ -21,4 +21,13 @@ public class FAQ {
     public void answerQuestion(String answer) {
         
     }
+
+    public String getQuestion(){
+        return question;
+    }
+    
+    public ArrayList<String> getAnswers(){
+        return answers;
+    }
+
 }
