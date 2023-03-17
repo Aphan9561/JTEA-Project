@@ -20,6 +20,7 @@ public class UserList {
     public void addUser(String firstName, String lastName, String email, Date birthday, String username, AccountType type)
     {
         user.add(new User(firstName, lastName,email, birthday, username, type));
+        DataWriter.saveUsers();
     }
 
     public ArrayList<User> getUser(UUID id){
