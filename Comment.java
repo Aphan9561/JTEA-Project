@@ -6,4 +6,12 @@ public class Comment {
         this.comment = comment;
         this.user = user;
     }
+
+    public String getComment(){
+        return comment;
+    }
+
+    public User getUser(){
+        return user;
+    }
 }

@@ -57,6 +57,39 @@ public class DataWriter extends DataConstants{
 
     public static JSONObject getCourseJSON(Course course) {
 		JSONObject courseDetails = new JSONObject();
+        courseDetails.put(COURSE_ID, course.getId().toString());
+        courseDetails.put(COURSE_NAME, course.getTitle());
+        courseDetails.put(COURSE_DIFFICULTY, course.getDifficulty());
+        courseDetails.put(COURSE_AUTHOR, course.getAuthor().toString());
+        courseDetails.put(COURSE_LANGUAGE, course.getLanguage());
+        courseDetails.put(COURSE_DESCRIPTION, course.getDesciption());
+        courseDetails.put(COURSE_SYLLABUS,course.getSyllabus());
+
+        courseDetails.put(COURSE_MODULES,course.getModule(0));
+        courseDetails.put(COURSE_MODULES_NAME, course.getModule(0).getTitle());
+        courseDetails.put(COURSE_MODULES_LESSON, course.getModule(0).getCurrentLesson(0));
+        courseDetails.put(COURSE_MODULES_LESSON_TITLE, course.getModule(0).getCurrentLesson(0).getTitle());
+        courseDetails.put(COURSE_MODULES_LESSON_CONTENT, course.getModule(0).getCurrentLesson(0).getContent());
+        courseDetails.put(COURSE_MODULES_QUIZ, course.getModule(0).getQuiz(0));
+        courseDetails.put(COURSE_MODULES_QUIZ_QUESTION, course.getModule(0).getQuiz(0).getQuestion().getQuestion());
+        courseDetails.put(COURSE_MODULES_QUIZ_ANSWERS, course.getModule(0).getQuiz(0).getQuestion().getAnswers());
+        courseDetails.put(COURSE_MODULES_QUIZ_CORRECT_ANS, course.getModule(0).getQuiz(0).getQuestion().getCorrectAnswer());
+        courseDetails.put(COURSE_MODULES_COMMENTS, course.getModule(0).getComment(0));
+        courseDetails.put(COURSE_MODULES_COMMENTS_USER, course.getModule(0).getComment(0).getUser().getId().toString());
+        courseDetails.put(COURSE_MODULES_COMMENTS_COMMENT, course.getModule(0).getComment(0).getComment());
+        courseDetails.put(COURSE_MODULES_COMMENTS_REPLIES, );
+
+        courseDetails.put(COURSE_RATING,course.getRating());
+        courseDetails.put(COURSE_REVIEWS, course.getReview());
+        courseDetails.put(COURSE_REVIEWS_RATING, course.getReview().getRating());
+        courseDetails.put(COURSE_REVIEWS_COMMENT, course.getReview().getComment());
+        courseDetails.put(COURSE_REVIEWS_USER, course.getReview().getUser().getId().toString());
+
+        courseDetails.put(COURSE_COMMENTS, course.getComment(0));
+        courseDetails.put(COURSE_COMMENTS_USER, course.getComment(0).getUser()) ;
+        courseDetails.put(COURSE_COMMENTS_COMMENT, course.getComment(0).getComment());
+        courseDetails.put(COURSE_COMMENTS_REPLIES);
+
 
         return courseDetails;
     }

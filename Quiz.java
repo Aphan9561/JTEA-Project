@@ -20,4 +20,8 @@ public class Quiz {
     public void giveStars() {
 
     }
+
+    public Question[] getQuestion(){
+        return questions;
+    }
 }

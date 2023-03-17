@@ -10,4 +10,16 @@ public class Question {
         this.answers = answers;
         this.correctAnswer = correctAnswer;
     }
+
+    public String getQuestion(){
+        return question;
+    }
+
+    public String[] getString(){
+        return answers;
+    }
+
+    public int getCorrectAnswer(){
+        return correctAnswer;
+    }
 }

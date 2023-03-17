@@ -12,24 +12,27 @@ public class Course {
     private Language language;
     private Student student;
     private double rating;
-    private ArrayList<Review> reviews;
+    //private ArrayList<Review> reviews;
+    private Review reviews;
     private ArrayList<Comment> comments;
 
     public Course(String name, String description, Difficulty difficulty, Language language){
-        setTitle(name);
-        setDecription(description);
-        setDifficulty(difficulty);
+        this.name = name;
+        this.description = description;
+        this.difficulty = difficulty;
         this.language =language;
-        reviews = new ArrayList<>();
+        this.reviews = reviews;
+        //reviews = new ArrayList<>();
         modules = new ArrayList<>();
+
     } 
+
+    public UUID getId(){
+        return id;
+    }
 
     public String getTitle(){
         return name;
-    }
-
-    public void setTitle(String name){
-        this.name = name;
     }
 
     public Author getAuthor(){
@@ -40,16 +43,12 @@ public class Course {
         return description;
     }
 
-    public void setDecription(String description){
-        this.description = description;
-    }
-    
     public Difficulty getDifficulty(){
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty){
-        this.difficulty = difficulty;
+    public Language getLanguage(){
+        return language;
     }
 
     public String getSyllabus(){
@@ -68,14 +67,16 @@ public class Course {
         this.rating = rating;
     }
 
-    public ArrayList<Review> getReview(){
+    public Review getReview(){
         return reviews;
     }
 
+    /* 
     public void addReview(User user, int rating, String comment){
         Review review = new Review(rating, comment, user);
         reviews.add(review);
     }
+    */
 
     public int getNumberOfModules(){
         return modules.size();
@@ -88,5 +89,9 @@ public class Course {
     public void addModule(String title, ArrayList<Lesson> lessons){
         Module module = new Module(title, lessons);
         modules.add(module);
+    }
+
+    public Comment getComment(int index){
+        return comments.get(index);
     }
 }

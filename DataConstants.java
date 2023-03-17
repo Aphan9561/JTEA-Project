@@ -49,6 +49,6 @@
    protected static final String COURSE_COMMENTS_REPLIES = "replies";
    protected static final String COURSE_REVIEWS = "reviews";
    protected static final String COURSE_REVIEWS_RATING = "rating";
-   protected static final String COURSE_REVEWS_COMMENT = "comment";
+   protected static final String COURSE_REVIEWS_COMMENT = "comment";
    protected static final String COURSE_REVIEWS_USER = "user";
  }
