@@ -3,12 +3,12 @@ import java.util.Date;
 import java.util.UUID;
 
 public class UserList {
-    private static ArrayList<User> user;
-    private static UserList userList = null;
+    private static ArrayList<User> users;
+    private static UserList userList;
 
     private UserList()
     {
-        user = DataLoader.getUsers();
+        users = DataLoader.getUsers();
     }
     public static UserList getInstance(){
         if(userList == null){
@@ -19,15 +19,25 @@ public class UserList {
 
     public void addUser(String firstName, String lastName, String email, Date birthday, String username, AccountType type)
     {
-        user.add(new User(firstName, lastName,email, birthday, username, type));
+        users.add(new User(firstName, lastName,email, birthday, username, type));
         DataWriter.saveUsers();
     }
 
-    public ArrayList<User> getUser(UUID id){
-        return user;
+    public User getUser(UUID id) {
+		for(User user : users) {
+			if(user.getId().equals(id)) {
+				return user;
+			}
+		}
+		
+		return null;
+	}
+
+    public ArrayList<User> getUser(){
+        return users;
     } 
 
-    public void logout(){
+    public void saveUsers(){
         DataWriter.saveUsers();
     }
 }
