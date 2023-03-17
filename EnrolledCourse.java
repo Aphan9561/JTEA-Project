@@ -9,8 +9,8 @@ public class EnrolledCourse {
     private Grade grade;
     private ArrayList<Grade> gradePerModule;
 
-    public EnrolledCourse(String courseName, boolean enrolled, Progress progress){
-
+    public EnrolledCourse(Course course, boolean enrolled, Progress progress){
+        
     }
 
     public void setEnrolled(boolean enrolled) {

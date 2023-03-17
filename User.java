@@ -10,9 +10,9 @@ public class User {
     protected Date birthday;
     protected String username;
     //protected ArrayList<EnrolledCourse> enrolledCourse;
-    protected String type;
+    protected AccountType type;
 
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String type) {
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +22,7 @@ public class User {
         this.type = type;
     }
 
-    public User(String firstName, String lastName, String email, Date birthday, String username, String type) {
+    public User(String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
         UUID id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,6 +48,34 @@ public class User {
 
     public void unregisterCourse(Course course) {
         EnrolledCourse RemoveCourse = new EnrolledCourse(course, false, null);
+    }
+
+    public UUID getId() {
+		return id;
+	}
+
+    public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+
+    public String getEmail(){
+        return email;
+    }
+
+    public Date getBirthday(){
+        return birthday;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public AccountType getType(){
+        return type;
     }
 
     /*
