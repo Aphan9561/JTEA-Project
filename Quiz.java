@@ -22,6 +22,6 @@ public class Quiz {
     }
 
     public Question[] getQuestion(){
-        return questions;
+        return Question.getQuestion();
     }
 }
