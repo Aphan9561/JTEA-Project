@@ -12,19 +12,22 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
 
-    public LMSUI() {
+    public LMSUI() 
+    {
         keyboard = new Scanner(System.in);
         application = LMSApplication.getInstance();
     }
 
-    public void run(){
+    public void run()
+    {
         loginIn();
        while(true)
        {
         displayMainMenu(); //Library example
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-        switch (choice) {
+        switch (choice) 
+        {
             case 1: 
                 break;
             case 2:
@@ -89,10 +92,12 @@ public class LMSUI {
         }
     }
 
-    public void displayMainMenu() {
+    public void displayMainMenu() 
+    {
 
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         LMSUI lmsui = new LMSUI();
         lmsui.run();
     }
