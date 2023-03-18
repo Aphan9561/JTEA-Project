@@ -71,9 +71,9 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_MODULES_LESSON_TITLE, course.getModule(0).getCurrentLesson(0).getTitle());
         courseDetails.put(COURSE_MODULES_LESSON_CONTENT, course.getModule(0).getCurrentLesson(0).getContent());
         courseDetails.put(COURSE_MODULES_QUIZ, course.getModule(0).getQuiz(0));
-        courseDetails.put(COURSE_MODULES_QUIZ_QUESTION, course.getModule(0).getQuiz(0).getQuestion().getQuestion());
-        courseDetails.put(COURSE_MODULES_QUIZ_ANSWERS, course.getModule(0).getQuiz(0).getQuestion().getAnswers());
-        courseDetails.put(COURSE_MODULES_QUIZ_CORRECT_ANS, course.getModule(0).getQuiz(0).getQuestion().getCorrectAnswer());
+        courseDetails.put(COURSE_MODULES_QUIZ_QUESTION, course.getModule(0).getQuiz(0).getQuestion(0).getQuestion());
+        courseDetails.put(COURSE_MODULES_QUIZ_ANSWERS, course.getModule(0).getQuiz(0).getQuestion(0).getAnswers());
+        courseDetails.put(COURSE_MODULES_QUIZ_CORRECT_ANS, course.getModule(0).getQuiz(0).getQuestion(0).getCorrectAnswer());
         courseDetails.put(COURSE_MODULES_COMMENTS, course.getModule(0).getComment(0));
         courseDetails.put(COURSE_MODULES_COMMENTS_USER, course.getModule(0).getComment(0).getUser().getId().toString());
         courseDetails.put(COURSE_MODULES_COMMENTS_COMMENT, course.getModule(0).getComment(0).getComment());

@@ -15,7 +15,7 @@ public class Question {
         return question;
     }
 
-    public String[] getString(){
+    public String[] getAnswers(){
         return answers;
     }
 
