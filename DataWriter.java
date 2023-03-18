@@ -88,7 +88,7 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_COMMENTS, course.getComment(0));
         courseDetails.put(COURSE_COMMENTS_USER, course.getComment(0).getUser()) ;
         courseDetails.put(COURSE_COMMENTS_COMMENT, course.getComment(0).getComment());
-        courseDetails.put(COURSE_COMMENTS_REPLIES);
+        courseDetails.put(COURSE_COMMENTS_REPLIES, );
 
 
         return courseDetails;
