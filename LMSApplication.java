@@ -29,7 +29,7 @@ public class LMSApplication {
         this.user = user;
         return this.user;
     }
-    
+
     public User login(String usernmame, String password){
         //How to make sure user password and user is valid. Is check done here? 
         return this.user;
