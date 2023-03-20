@@ -1,3 +1,4 @@
+import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,15 +24,24 @@ public class LMSApplication {
     return lmsApplication;
     }
 
-    public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password){
-        //Create jason thing.
-        //Use to create a new user.
-        this.user = user;
+    public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
+        this.user = new User(firstName, lastName, email, birthday, username, Type);
         return this.user;
     }
 
     public User login(String usernmame, String password){
-        //How to make sure user password and user is valid. Is check done here? 
+        int i = 0;
+        while (userList.getUser() != null) {
+            if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
+            {
+                //Figure out password sitution
+                {
+                    //if password is true
+                    this.user = userList.getUser().get(i);
+                }
+            }
+            i++;
+        }
         return this.user;
     }
 
@@ -52,12 +62,13 @@ public class LMSApplication {
     }
 
     public void courseReview(double rating, String comment, User user){
-
+        Review review = new Review(rating, comment, user);
+        //Put review onto course
     }
 
     public void enterCourse(String name){
-
-    }
+        
+    } 
 
     public void nextLesson(){
 
@@ -68,7 +79,7 @@ public class LMSApplication {
     }
 
     public void getQuiz(Quiz quiz){
-
+        
     }
 
     public void addModule(Module Module){
@@ -76,5 +87,6 @@ public class LMSApplication {
     }
 
     public void addLesson(Lesson lesson){
-
+        
     }
+}
