@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class Comment {
     private String comment;
-    private User user;
+    private UUID user;
+    private ArrayList<Reply> replies;
 
-    public Comment(String comment, User user){
+    public Comment(String comment, UUID user){
         this.comment = comment;
         this.user = user;
     }
@@ -11,7 +15,7 @@ public class Comment {
         return comment;
     }
 
-    public User getUser(){
+    public UUID getUser(){
         return user;
     }
 }

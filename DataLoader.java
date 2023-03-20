@@ -63,6 +63,46 @@ public class DataLoader extends DataConstants{
                 for(int j=0; j < modulesJSON.size(); j++) {
                     JSONObject moduleJSON = (JSONObject)modulesJSON.get(j);
                     String moduleName = (String)moduleJSON.get(COURSE_MODULES_NAME);
+
+                    JSONArray quizQuestionsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_QUIZ_QUIZQUESTION_QUESTION);
+                    ArrayList<Question> quizQuestions = new ArrayList<Question>();
+                    for(int k=0; k < quizQuestionsJSON.size(); k++) {
+                        JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(k);
+                        String question = (String)quizQuestion.get(COURSE_MODULES_QUIZQUESTION);
+
+                        JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTION_ANSWERS);
+                        ArrayList<String> answers = new ArrayList<String>();
+                        for(int l=0; l < answersJSON.size(); l++) {
+                            answers.add((String)answersJSON.get(l));
+                        }
+
+                        int correctAnswer = Integer.parseInt((String)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTION_CORRECTANS));
+                        Question aQuestion = new Question(question, answers, correctAnswer);
+                        quizQuestions.add(aQuestion);
+                    }
+                    Quiz quiz = new Quiz(quizQuestions);
+
+                    JSONArray lessonsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_LESSON);
+                    Lesson[] lessons = new Lesson[lessonsJSON.size()];
+                    for(int k=0; k < lessonsJSON.size(); k++) {
+                        JSONObject lessonJSON = (JSONObject)lessonsJSON.get(k);
+                        String title = (String)lessonJSON.get(COURSE_MODULES_LESSON_TITLE);
+                        String content = (String)lessonJSON.get(COURSE_MODULES_LESSON_CONTENT);
+                        Lesson lesson = new Lesson(content, title);
+                        lessons[i] = lesson;
+                    }
+
+                    JSONArray commentsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_COMMENTS);
+                    ArrayList<Comment> comments = new ArrayList<Comment>();
+                    for(int k=0; k < commentsJSON.size(); k++) {
+                        JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
+                        UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
+                        String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
+                        
+                        JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
+                        R
+                    }
+
                     //need to load in quizzes
                     //need to load in lessons
                 }

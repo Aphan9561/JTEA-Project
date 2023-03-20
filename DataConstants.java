@@ -27,9 +27,10 @@
    protected static final String COURSE_MODULES = "modules";
    protected static final String COURSE_MODULES_NAME = "name";
    protected static final String COURSE_MODULES_QUIZ = "quiz";
-   protected static final String COURSE_MODULES_QUIZ_QUESTION = "question";
-   protected static final String COURSE_MODULES_QUIZ_ANSWERS = "answers";
-   protected static final String COURSE_MODULES_QUIZ_CORRECT_ANS = "correctAnswer";
+   protected static final String COURSE_MODULES_QUIZQUESTION = "quizQuestion";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTION_QUESTION = "question";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTION_ANSWERS = "answers";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTION_CORRECTANS = "correctAnswer";
    protected static final String COURSE_MODULES_QUIZ_GRADES = "grades";
    protected static final String COURSE_MODULES_LESSON = "lesson";
    protected static final String COURSE_MODULES_LESSON_TITLE = "title";
@@ -38,6 +39,8 @@
    protected static final String COURSE_MODULES_COMMENTS_USER = "user";
    protected static final String COURSE_MODULES_COMMENTS_COMMENT = "comment";
    protected static final String COURSE_MODULES_COMMENTS_REPLIES = "replies";
+   protected static final String COURSE_MODULES_COMMENTS_REPLIES_COMMENT = "comment";
+   protected static final String COURSE_MODULES_COMMENTS_REPLIES_USER = "user";
    protected static final String COURSE_LANGUAGE = "language";
    protected static final String COURSE_RATING = "rating";
    protected static final String COURSE_STUDENTS = "students";

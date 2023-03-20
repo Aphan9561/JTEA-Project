@@ -1,10 +1,19 @@
+import java.util.ArrayList;
+
 public class Quiz {
     public static final int quizSize = 10;
+    public static final int maxAnswers = 4;
     private Question[] questions = new Question[quizSize];
-    private int[] grades = new int[quizSize];
+    private ArrayList<Question> tempQuestions = new ArrayList<Question>();
+    //private int[] grades = new int[quizSize];
+    //private String[] answers = new String[maxAnswers];
 
     public Quiz(Question[] questions) {
         this.questions = questions;
+    }
+
+    public Quiz(ArrayList<Question> questions) {
+        tempQuestions.addAll(questions);
     }
 
     public void addQuestion(Question question) {
