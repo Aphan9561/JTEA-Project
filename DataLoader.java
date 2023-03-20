@@ -61,8 +61,20 @@ public class DataLoader extends DataConstants{
                 JSONArray modulesJSON = (JSONArray)courseJSON.get(COURSE_MODULES);
                 ArrayList<Module> modules = new ArrayList<Module>();
                 for(int j=0; j < modulesJSON.size(); j++) {
-                    JSONObject moduleJSON = (JSONObject)modulesJSON.get(i);
+                    JSONObject moduleJSON = (JSONObject)modulesJSON.get(j);
                     String moduleName = (String)moduleJSON.get(COURSE_MODULES_NAME);
+                    //need to load in quizzes
+                    //need to load in lessons
+                }
+
+                Language language = makeLanguageEnum((String)courseJSON.get(COURSE_LANGUAGE));
+
+                JSONArray studentsJSON = (JSONArray)courseJSON.get(COURSE_STUDENTS);
+                ArrayList<Student> students = new ArrayList<Student>();
+                for(int j=0; j < studentsJSON.size(); j++) {
+                    JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
+                    UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENTS_ID));
+                    //need to load grades
                     
                 }
 
@@ -112,6 +124,12 @@ public class DataLoader extends DataConstants{
         difficulty = difficulty.toUpperCase();
         Difficulty enumDifficulty = Difficulty.valueOf(difficulty);
         return enumDifficulty;
+    }
+
+    public static Language makeLanguageEnum(String language) {
+        language = language.toUpperCase();
+        Language enumLanguage = Language.valueOf(language);
+        return enumLanguage;
     }
 }
 

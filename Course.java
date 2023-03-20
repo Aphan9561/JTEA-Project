@@ -10,7 +10,7 @@ public class Course {
     private Author author;
     private ArrayList<Module> modules;
     private Language language;
-    private Student student;
+    private ArrayList<Student> students;
     private double rating;
     private ArrayList<Review> reviews;
     private ArrayList<Comment> comments;
