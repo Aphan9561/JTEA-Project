@@ -27,7 +27,7 @@ public class DataLoader extends DataConstants{
                 String email = (String)personJSON.get(USER_EMAIL);
                 Date birthday = formatter.parse((String)personJSON.get(USER_BIRTHDAY));
                 String username = (String)personJSON.get(USER_USERNAME);
-                AccountType type = (AccountType)personJSON.get(USER_TYPE);
+                AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));
 
                 users.add(new User(id, firstName, lastName, email, birthday, username, type));
             }
@@ -126,7 +126,8 @@ public class DataLoader extends DataConstants{
                     JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENTS_GRADES);
                     int[] grades = new int[gradesJSON.size()];
                     for(int k=0; k < gradesJSON.size(); k++) {
-                        
+                        int grade = Integer.parseInt((String)gradesJSON.get(k));
+                        grades[k] = grade;
                     }
                     
                 }
@@ -203,6 +204,19 @@ public class DataLoader extends DataConstants{
         language = language.toUpperCase();
         Language enumLanguage = Language.valueOf(language);
         return enumLanguage;
+    }
+
+    public static AccountType makeAccountTypeEnum(String accountType) {
+        accountType = accountType.toUpperCase();
+        AccountType enumAccountType = AccountType.valueOf(accountType);
+        return enumAccountType;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<User> testUsers = getUsers();
+        for(User user: testUsers) {
+            System.out.println(user);
+        }
     }
 }
 
