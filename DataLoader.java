@@ -83,13 +83,13 @@ public class DataLoader extends DataConstants{
                     Quiz quiz = new Quiz(quizQuestions);
 
                     JSONArray lessonsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_LESSON);
-                    Lesson[] lessons = new Lesson[lessonsJSON.size()];
+                    ArrayList<Lesson> lessons = new ArrayList<Lesson>();
                     for(int k=0; k < lessonsJSON.size(); k++) {
                         JSONObject lessonJSON = (JSONObject)lessonsJSON.get(k);
                         String title = (String)lessonJSON.get(COURSE_MODULES_LESSON_TITLE);
                         String content = (String)lessonJSON.get(COURSE_MODULES_LESSON_CONTENT);
                         Lesson lesson = new Lesson(content, title);
-                        lessons[i] = lesson;
+                        lessons.add(lesson);
                     }
 
                     JSONArray commentsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_COMMENTS);
@@ -100,11 +100,19 @@ public class DataLoader extends DataConstants{
                         String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
                         
                         JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
-                        R
+                        ArrayList<Reply> replies = new ArrayList<Reply>();
+                        for(int l=0; l < repliesJSON.size(); l++) {
+                            JSONObject replyJSON = (JSONObject)repliesJSON.get(l);
+                            String replyComment = (String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_COMMENT);
+                            UUID replyUser = UUID.fromString((String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_USER));
+                            Reply reply = new Reply(replyComment, replyUser);
+                            replies.add(reply);
+                        }
+
+
                     }
 
-                    //need to load in quizzes
-                    //need to load in lessons
+                    Module module = new Module(moduleName, quiz, lessons, comments);
                 }
 
                 Language language = makeLanguageEnum((String)courseJSON.get(COURSE_LANGUAGE));
@@ -114,9 +122,34 @@ public class DataLoader extends DataConstants{
                 for(int j=0; j < studentsJSON.size(); j++) {
                     JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
                     UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENTS_ID));
-                    //need to load grades
+                    
+                    JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENTS_GRADES);
+                    int[] grades = new int[gradesJSON.size()];
+                    for(int k=0; k < gradesJSON.size(); k++) {
+                        
+                    }
                     
                 }
+
+                JSONArray commentsJSON = (JSONArray)courseJSON.get(COURSE_COMMENTS);
+                    ArrayList<Comment> comments = new ArrayList<Comment>();
+                    for(int k=0; k < commentsJSON.size(); k++) {
+                        JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
+                        UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
+                        String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
+                        
+                        JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
+                        ArrayList<Reply> replies = new ArrayList<Reply>();
+                        for(int l=0; l < repliesJSON.size(); l++) {
+                            JSONObject replyJSON = (JSONObject)repliesJSON.get(l);
+                            String replyComment = (String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_COMMENT);
+                            UUID replyUser = UUID.fromString((String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_USER));
+                            Reply reply = new Reply(replyComment, replyUser);
+                            replies.add(reply);
+                        }
+
+
+                    }
 
                 //FAQs.add(new FAQ(question, answers));
             }
