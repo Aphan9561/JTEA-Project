@@ -69,6 +69,7 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_DESCRIPTION, course.getDesciption());
         courseDetails.put(COURSE_SYLLABUS,course.getSyllabus());
 
+        //make method
         courseDetails.put(COURSE_MODULES,course.getModule(0));
         courseDetails.put(COURSE_MODULES_NAME, course.getModule(0).getTitle());
         courseDetails.put(COURSE_MODULES_LESSON, course.getModule(0).getCurrentLesson(0));
@@ -96,6 +97,10 @@ public class DataWriter extends DataConstants{
 
 
         return courseDetails;
+    }
+
+    public static void getModuleJSON(){
+
     }
 
     public static void saveFAQs() {
