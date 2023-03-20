@@ -13,4 +13,16 @@ public class Review {
         this.comment = comment;
         this.user = user;
     }
+
+    public double getRating(){
+        return rating;
+    }
+
+    public String getComment(){
+        return comment;
+    }
+
+    public User getUser(){
+        return user;
+    }
 }

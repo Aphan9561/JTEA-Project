@@ -12,6 +12,14 @@ public class Lesson {
         this.title = title;
     }
 
+    public String getTitle(){
+        return title;
+    }
+
+    public String getContent(){
+        return content;
+    }
+
     public String toString() {
         return this.title+"\n "+this.content;
     }
