@@ -11,20 +11,19 @@ public class EnrolledCourse {
 
     public EnrolledCourse(Course course, boolean enrolled, Progress progress){
         setEnrolled(enrolled);
+        setProgress(progress);
     }
-    
 
     public void setEnrolled(boolean enrolled) {
         this.enrolled = enrolled;
     }
 
     public void setProgress(Progress progress) {
-
+        this.progress = progress;
     }
 
     public int getProgressPercentage(){
-        return 0;
-
+        return progressPercentage;
     }
 
     public Progress getProgress(){
