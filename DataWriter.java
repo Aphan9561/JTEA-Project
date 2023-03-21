@@ -85,39 +85,39 @@ public class DataWriter extends DataConstants{
 
             moduleObject.put(COURSE_MODULES_NAME, module.getTitle());
 
-            ArrayList<Quiz> quizzes = module.getQuiz();
-            JSONArray quizArray = new JSONArray();
-            for(Quiz quiz: quizzes){
-                JSONObject quizObject = new JSONObject();
-
-                ArrayList<Question> questions = quiz.getQuestion();
-                JSONArray questionArray = new JSONArray();
-                for(Question question: questions){
-                    JSONObject questionObject = new JSONObject();
-                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTIONS_QUESTION, question.getQuestion());
-
-                    ArrayList<String> answers = question.getAnswers();
-                    JSONArray answerArray = new JSONArray();
-                    for(String answer: answers){
-                        JSONObject answerObject = new JSONObject();
-
-                        answerArray.add(answerObject);
-                    }
-                    
-                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
-
-                    questionArray.add(questionObject);
-                }
-    
-                quizArray.add(quizObject);
-            }
-
             ArrayList<Lesson> lessons = module.getCurrentLesson();
             JSONArray lessonArray = new JSONArray();
             for (Lesson lesson: lessons){
                 JSONObject lessonObject = new JSONObject();
                 lessonObject.put(COURSE_MODULES_LESSON_TITLE, lesson.getTitle());
                 lessonObject.put(COURSE_MODULES_LESSON_CONTENT, lesson.getContent());
+
+                ArrayList<Quiz> quizzes = lesson.getQuiz();
+                JSONArray quizArray = new JSONArray();
+                for(Quiz quiz: quizzes){
+                    JSONObject quizObject = new JSONObject();
+
+                    ArrayList<Question> questions = quiz.getQuestion();
+                    JSONArray questionArray = new JSONArray();
+                    for(Question question: questions){
+                        JSONObject questionObject = new JSONObject();
+                        questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, question.getQuestion());
+
+                        ArrayList<String> answers = question.getAnswers();
+                        JSONArray answerArray = new JSONArray();
+                        for(String answer: answers){
+                            JSONObject answerObject = new JSONObject();
+
+                            answerArray.add(answerObject);
+                        }
+                        
+                        questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
+
+                        questionArray.add(questionObject);
+                    }
+        
+                quizArray.add(quizObject);
+            }
 
                 lessonArray.add(lessonObject);
             }

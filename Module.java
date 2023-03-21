@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
  public class Module{
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-    private Quiz quiz;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private String title;
 
@@ -23,9 +22,8 @@ import java.util.ArrayList;
         this.comments.addAll(comments);
     }*/
 
-    public Module(String name, Quiz quiz, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
+    public Module(String name, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
         title = name;
-        this.quiz = quiz;
         this.lessons.addAll(lessons);
         this.comments.addAll(comments);
     }
@@ -36,13 +34,6 @@ import java.util.ArrayList;
 
     public ArrayList<Lesson> getCurrentLesson() {
         return lessons; 
-    }
-
-    /*public ArrayList<Quiz> getQuiz(){
-        return quiz;
-    }*/
-    public Quiz getQuiz() {
-        return quiz;
     }
 
     public ArrayList<Comment> getComment(){
