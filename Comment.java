@@ -20,6 +20,10 @@ public class Comment {
         return user;
     }
 
+    public ArrayList<Reply> getReply(){
+        return replies;
+    }
+
     public String toString(){
         return "Comment: "+comment+ " "+
                 "\nUser: "+user+

@@ -16,6 +16,13 @@ import java.util.ArrayList;
         this.lessons.addAll(lessons);
     }
 
+    /*public Module(String name, ArrayList<Quiz> quizzes, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
+        title = name;
+        this.quiz = quiz;
+        this.lessons.addAll(lessons);
+        this.comments.addAll(comments);
+    }*/
+
     public Module(String name, Quiz quiz, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
         title = name;
         this.quiz = quiz;
@@ -31,7 +38,10 @@ import java.util.ArrayList;
         return lessons; 
     }
 
-    public Quiz getQuiz(){
+    /*public ArrayList<Quiz> getQuiz(){
+        return quiz;
+    }*/
+    public Quiz getQuiz() {
         return quiz;
     }
 

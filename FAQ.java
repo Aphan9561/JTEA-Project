@@ -11,11 +11,15 @@ public class FAQ {
     }
 
     public FAQ(String question, String answer) {
-        
+        this.question = question;
+        this.answers.add(answer);
     }
 
     public FAQ(String question, String[] answer) {
-        
+        this.question = question;
+        for (int i = 0; i< answers.size(); i++){
+            answers.add(new String(answer[i]));
+        }
     }
 
     public void answerQuestion(String answer) {

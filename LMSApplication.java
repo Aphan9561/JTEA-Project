@@ -25,12 +25,18 @@ public class LMSApplication {
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
-        this.user = new User(firstName, lastName, email, birthday, username, Type);
-        return this.user;
+        User user1 = new User(firstName, lastName, email, birthday, username, Type); //Add password
+        if(user1!= null)
+        {
+            this.user = user1;
+            userList.addUser(firstName, lastName, email, birthday, username, Type);
+        }
+        return user1;
     }
 
     public User login(String usernmame, String password){
         int i = 0;
+        this.user = null;
         while (userList.getUser() != null) {
             if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
             {
@@ -46,19 +52,31 @@ public class LMSApplication {
     }
 
     public ArrayList<Course> findCourse(String keyword){
-        ArrayList<Course> searched = new ArrayList<>() this.courseList.getAllCourses(keyword);
+        ArrayList<Course> resultList = new ArrayList<>();
+        for(courseList.)
+        {
+            this.courseList.getCourse(keyword);
+        }
+        return resultList;
     }
 
     public ArrayList<Course> findCourse() {
-        return this.courseList.getAllCourses();
+        ArrayList<Course> resultList = new ArrayList<>();
+        for(courseList.)
+        {
+            this.courseList.getCourse(keyword);
+        }
+        return resultList;
     }
 
     public ArrayList<EnrolledCourse> getCurrentCourse() {
-        return this.user.enrolledCourse;
+        return this.user.getEnrolledCourse;
     }
 
     public boolean addCourse(String name, String description, Difficulty difficulty, Language language) {
-        return true;
+        boolean created = true;
+        Course course = new Course(name, description, difficulty, language);
+        return created;
     }
 
     public void courseReview(double rating, String comment, User user){
