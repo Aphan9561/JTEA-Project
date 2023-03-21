@@ -146,10 +146,18 @@ public class DataLoader extends DataConstants{
                         replies.add(reply);
                     }
 
+                }
 
-                    }
+                JSONArray reviewsJSON = (JSONArray)courseJSON.get(COURSE_REVIEWS);
+                ArrayList<Review> reviews = new ArrayList<Review>();
+                for(int k=0; k < reviewsJSON.size(); k++) {
+                    JSONObject reviewJSON = (JSONObject)reviewsJSON.get(k);
+                    double rating = Double.parseDouble((String)reviewJSON.get(COURSE_REVIEWS_RATING));
+                    String reviewComment = (String)reviewJSON.get(COURSE_REVIEWS_COMMENT);
+                    UUID reviewUSer = UUID.fromString((String)reviewJSON.get(COURSE_REVIEWS_USER));
+                }
 
-                //FAQs.add(new FAQ(question, answers));
+                courses.add(new Course())
             }
 
             return courses;
@@ -211,17 +219,24 @@ public class DataLoader extends DataConstants{
 
     public static void main(String[] args) {
         /*ArrayList<User> testUsers = getUsers();
-        for(User user: testUsers) {
+        for(User user : testUsers) {
             System.out.println(user);
             System.out.println();
         }
 
-        System.out.println("\n************************\n");*/
+        System.out.println("\n************************\n");
 
         ArrayList<FAQ> testFAQs = getFAQs();
-        for(FAQ faq: testFAQs) {
+        for(FAQ faq : testFAQs) {
             System.out.println(faq);
         }
+
+        System.out.println("\n************************\n");*/
+
+        ArrayList<Course> testCourses = getCourses();
+        for(Course course : testCourses) {
+            System.out.println(course);
+        }        
     }
 }
 

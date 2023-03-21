@@ -22,8 +22,23 @@ public class Course {
         this.language =language;
         reviews = new ArrayList<>();
         modules = new ArrayList<>();
+        comments = new ArrayList<>();
+    }
 
-    } 
+    public Course(UUID id, Difficulty difficulty, String name, String description, String syllabus, Author author, ArrayList<Module> modules, Language language, ArrayList<Student> students, double rating, ArrayList<Review> reviews, ArrayList<Comment> comments) {
+        this.id = id;
+        this.difficulty = difficulty;
+        this.name = name;
+        this.description = description;
+        this.syllabus = syllabus;
+        this.author = author;
+        this.modules.addAll(modules);
+        this.language = language;
+        this.students.addAll(students);
+        this.rating = rating;
+        this.reviews.addAll(reviews);
+        this.comments.addAll(comments);
+    }
 
     public UUID getId(){
         return id;
@@ -89,20 +104,7 @@ public class Course {
         modules.add(module);
     }
 
-    public ArrayList<Comment>  getComment(){
+    public ArrayList<Comment> getComment(){
         return comments;
-    }
-
-    public String toString(){
-        return "UUID: "+id+"\nDifficulty: "+difficulty
-                +"\nName: "+name+
-                "\nDescription: "+description+
-                "\nSyllabus: "+syllabus+
-                "\nAuthor: "+author+
-                "\nModules: "+modules+
-                "\nLanguage: "+language+
-                "\nRating: "+rating+
-                "\nReviews: "+reviews+
-                "\nComments: "+comments;
     }
 }
