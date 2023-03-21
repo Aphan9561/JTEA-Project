@@ -133,7 +133,6 @@ public class LMSUI {
 
     public void displayMainMenu() 
     {
-        // Try to make a for loop here instead of strings
         String n = "\n"; //New line
         //Make options more description??
         String greeting = "Hello! Welcome to J Tea's system. Please press the number one the side to do that";
