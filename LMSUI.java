@@ -14,7 +14,7 @@ public class LMSUI {
     private LMSApplication application;
     private User user;
     private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Enter a course", "5: Go to author menu","6: Quit"};
-    private String[] authorMenu = {"1: ","2: ","3: ","4: ","5: ", "6: ", "7: ","8: ", "9: ", "10: ","11: ","12: Go to user menu","13: Quit"}; 
+    private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","4: Go to user menu","5: Quit"}; 
 
     public LMSUI() 
     {
@@ -151,7 +151,7 @@ public class LMSUI {
         System.out.println("Hello to the author side. Only use this side to make and edit course. Not able to do course in this mode");
         for(int i = 0; i < authorMenu.length; i++)
         {
-            System.out.println(menu[i]);
+            System.out.println(authorMenu[i]);
         }
     }
 
@@ -171,25 +171,9 @@ public class LMSUI {
              case 3:
                  break;
              case 4:
+                 run();
                  break;
-             case 5: 
-                 break;
-             case 6:
-                 break;
-             case 7:
-                 break;
-             case 8:
-                 break;
-             case 9: 
-                 break;
-             case 10:
-                 break;
-             case 11:
-                 break;
-             case 12:
-                 displayAuthorMenu();
-                 break;
-             case 13:
+             case 5:
                  break;
              default:
                  break;
