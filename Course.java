@@ -12,8 +12,7 @@ public class Course {
     private Language language;
     private ArrayList<Student> students;
     private double rating;
-    //private ArrayList<Review> reviews;
-    private Review reviews;
+    private ArrayList<Review> reviews;
     private ArrayList<Comment> comments;
 
     public Course(String name, String description, Difficulty difficulty, Language language){
@@ -21,8 +20,7 @@ public class Course {
         this.description = description;
         this.difficulty = difficulty;
         this.language =language;
-        this.reviews = reviews;
-        //reviews = new ArrayList<>();
+        reviews = new ArrayList<>();
         modules = new ArrayList<>();
 
     } 
@@ -67,7 +65,7 @@ public class Course {
         this.rating = rating;
     }
 
-    public Review getReview(){
+    public ArrayList<Review> getReview(){
         return reviews;
     }
 
@@ -82,8 +80,8 @@ public class Course {
         return modules.size();
     }
 
-    public Module getModule(int moduleNum){
-        return modules.get(moduleNum);
+    public ArrayList<Module> getModule(){
+        return modules;
     }
 
     public void addModule(String title, ArrayList<Lesson> lessons){
@@ -91,8 +89,8 @@ public class Course {
         modules.add(module);
     }
 
-    public Comment getComment(int index){
-        return comments.get(index);
+    public ArrayList<Comment>  getComment(){
+        return comments;
     }
 
     public String toString(){

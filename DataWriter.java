@@ -1,5 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,7 +36,12 @@ public class DataWriter extends DataConstants{
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
-        userDetails.put(USER_BIRTHDAY, user.getBirthday().toString());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            userDetails.put(USER_BIRTHDAY, formatter.parse(user.getBirthday().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         userDetails.put(USER_USERNAME, user.getUsername());
         userDetails.put(USER_TYPE, user.getType().toString());
 
@@ -116,7 +123,7 @@ public class DataWriter extends DataConstants{
         for(int i =0; i<FAQs.size(); i++){
             jsonFAQs.add(getFAQJSON(FAQs.get(i)));
         }
-        try (FileWriter file = new FileWriter(COURSE_FILE_NAME)) {
+        try (FileWriter file = new FileWriter(FAQ_FILE_NAME)) {
  
             file.write(jsonFAQs.toJSONString());
             file.flush();
@@ -134,7 +141,7 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
     public static void main(String[] args){
-        saveCourses();
-        
+        saveUsers();
+ 
     }
 }

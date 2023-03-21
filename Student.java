@@ -14,4 +14,9 @@ public class Student {
         this.id = id;
         this.grades.addAll(grade);
     }
+
+    public String toString(){
+        return "Student id: "+id+
+            "Student grades: "+grades;
+    }
 }

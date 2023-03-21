@@ -25,4 +25,10 @@ public class Review {
     public User getUser(){
         return user;
     }
+
+    public String toString(){
+        return "User: "+user+
+            "Rating: "+rating+
+            "Comment: "+comment;
+    }
 }
