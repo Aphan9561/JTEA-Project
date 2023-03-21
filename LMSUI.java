@@ -129,6 +129,7 @@ public class LMSUI {
 
     public void displayMainMenu() 
     {
+        //Make an array here for all the options so it is not. Then run though it. 
         String n = "\n"; //New line
         //Make options more description??
         String greeting = "Hello! Welcome to J Tea's system. Please press the number one the side to do that";
