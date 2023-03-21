@@ -5,10 +5,10 @@
 	"description":"Teaches how to create a class with variables and methods, then describes when to use a class.",
 	"syllabus":"Module 1: Variables, Module 2: Methods, Module: When to Use Classes",
 	"author": "a99d0e66-3539-43bf-a30c-7c11d8e6ef93",
-	"modules":{
+	"modules":[{
 		"name":"Variables",
 		"quiz":{
-			"quizQuestions": [{
+			"quizQuestions":[{
 				"question":"What would be a variable for a Cat class?",
 				"answers":[
 				"name",
@@ -32,7 +32,7 @@
 			"user":"99fe4f2b-4832-40c4-a040-223286ee3cb5",
 			"comment":"This was a really helpful introduction to classes!",
 			"replies":[]}]
-	},
+	}],
 	"language":"PYTHON",
 	"students":[{"id": "a3d4c812-17bc-4e1d-bcae-442b556e63f5", "grades":[100,50,60,90,70]}],
 	"rating":4.33,

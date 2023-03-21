@@ -27,10 +27,10 @@
    protected static final String COURSE_MODULES = "modules";
    protected static final String COURSE_MODULES_NAME = "name";
    protected static final String COURSE_MODULES_QUIZ = "quiz";
-   protected static final String COURSE_MODULES_QUIZQUESTION = "quizQuestion";
-   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTION_QUESTION = "question";
-   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTION_ANSWERS = "answers";
-   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTION_CORRECTANS = "correctAnswer";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTIONS = "quizQuestions";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTIONS_QUESTION = "question";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTIONS_ANSWERS = "answers";
+   protected static final String COURSE_MODULES_QUIZ_QUIZQUESTIONS_CORRECTANS = "correctAnswer";
    protected static final String COURSE_MODULES_QUIZ_GRADES = "grades";
    protected static final String COURSE_MODULES_LESSON = "lesson";
    protected static final String COURSE_MODULES_LESSON_TITLE = "title";

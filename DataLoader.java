@@ -64,19 +64,21 @@ public class DataLoader extends DataConstants{
                     JSONObject moduleJSON = (JSONObject)modulesJSON.get(j);
                     String moduleName = (String)moduleJSON.get(COURSE_MODULES_NAME);
 
-                    JSONArray quizQuestionsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_QUIZ_QUIZQUESTION_QUESTION);
+                    JSONObject quizJSON = (JSONObject)moduleJSON.get(COURSE_MODULES_QUIZ);
+
+                    JSONArray quizQuestionsJSON = (JSONArray)quizJSON.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS);
                     ArrayList<Question> quizQuestions = new ArrayList<Question>();
                     for(int k=0; k < quizQuestionsJSON.size(); k++) {
                         JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(k);
-                        String question = (String)quizQuestion.get(COURSE_MODULES_QUIZQUESTION);
+                        String question = (String)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS_QUESTION);
 
-                        JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTION_ANSWERS);
+                        JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS_ANSWERS);
                         ArrayList<String> answers = new ArrayList<String>();
                         for(int l=0; l < answersJSON.size(); l++) {
                             answers.add((String)answersJSON.get(l));
                         }
 
-                        int correctAnswer = Integer.parseInt((String)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTION_CORRECTANS));
+                        int correctAnswer = (int)(long)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS_CORRECTANS);
                         Question aQuestion = new Question(question, answers, correctAnswer);
                         quizQuestions.add(aQuestion);
                     }
@@ -96,7 +98,7 @@ public class DataLoader extends DataConstants{
                     ArrayList<Comment> comments = new ArrayList<Comment>();
                     for(int k=0; k < commentsJSON.size(); k++) {
                         JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
-                        UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
+                        UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_COMMENTS_USER));
                         String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
                         
                         JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
@@ -108,9 +110,12 @@ public class DataLoader extends DataConstants{
                             Reply reply = new Reply(replyComment, replyUser);
                             replies.add(reply);
                         }
+
+                        comments.add(new Comment(comment, user, replies));
                     }
 
                     Module module = new Module(moduleName, quiz, lessons, comments);
+                    modules.add(module);
                 }
 
                 Language language = makeLanguageEnum((String)courseJSON.get(COURSE_LANGUAGE));
@@ -122,11 +127,13 @@ public class DataLoader extends DataConstants{
                     UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENTS_ID));
                     
                     JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENTS_GRADES);
-                    int[] grades = new int[gradesJSON.size()];
+                    ArrayList<Integer> grades = new ArrayList<Integer>();
                     for(int k=0; k < gradesJSON.size(); k++) {
-                        int grade = Integer.parseInt((String)gradesJSON.get(k));
-                        grades[k] = grade;
+                        int grade = (int)(long)gradesJSON.get(k);
+                        grades.add(grade);
                     }
+
+                    students.add(new Student(studentID, grades));
                 }
 
                 double rating = Double.parseDouble((String)courseJSON.get(COURSE_RATING));
@@ -221,7 +228,7 @@ public class DataLoader extends DataConstants{
     }
 
     public static void main(String[] args) {
-        /*ArrayList<User> testUsers = getUsers();
+        ArrayList<User> testUsers = getUsers();
         for(User user : testUsers) {
             System.out.println(user);
             System.out.println();
@@ -234,7 +241,7 @@ public class DataLoader extends DataConstants{
             System.out.println(faq);
         }
 
-        System.out.println("\n************************\n");*/
+        System.out.println("\n************************\n");
 
         ArrayList<Course> testCourses = getCourses();
         for(Course course : testCourses) {

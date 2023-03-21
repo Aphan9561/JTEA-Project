@@ -6,21 +6,21 @@ import java.util.ArrayList;
  */
 
  public class Module{
-    private ArrayList<Lesson> lesson;
+    private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Quiz quiz;
-    private ArrayList<Comment> comment;
+    private ArrayList<Comment> comments = new ArrayList<Comment>();
     private String title;
 
-    public Module(String title, ArrayList<Lesson> lesson) {
+    public Module(String title, ArrayList<Lesson> lessons) {
         this.title = title;
-        this.lesson.addAll(lesson);
+        this.lessons.addAll(lessons);
     }
 
     public Module(String name, Quiz quiz, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
         title = name;
         this.quiz = quiz;
-        lesson.addAll(lessons);
-        comment.addAll(comments);
+        this.lessons.addAll(lessons);
+        this.comments.addAll(comments);
     }
 
     public String getTitle(){
@@ -28,7 +28,7 @@ import java.util.ArrayList;
     }
 
     public ArrayList<Lesson> getCurrentLesson() {
-        return lesson; 
+        return lessons; 
     }
 
     public Quiz getQuiz(){
@@ -36,6 +36,6 @@ import java.util.ArrayList;
     }
 
     public ArrayList<Comment> getComment(){
-        return comment;
+        return comments;
     }
  }
