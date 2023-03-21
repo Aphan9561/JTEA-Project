@@ -9,6 +9,7 @@ import java.util.zip.DataFormatException;
  */
 
 public class LMSUI {
+    // more constants
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
@@ -63,6 +64,7 @@ public class LMSUI {
        keyboard.close();
     }
 
+    // return a user here instead of void
     private void loginIn()
     {
         System.out.println("To create an user account please type 1. To create an author account please type 2. \nTo login please type 3");
@@ -112,6 +114,7 @@ public class LMSUI {
         String email = keyboard.nextLine();
         System.out.println("Please give your birthday date below");
         String birthdayDate= keyboard.nextLine();
+        // private helper method here
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
         try 
@@ -122,6 +125,7 @@ public class LMSUI {
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
+        // create the account and then return login to check if it worked 
         application.createAccount(firstName, lastName, email, date, username, password, accountType);
         application.login(username, password);
         return true;
@@ -129,6 +133,7 @@ public class LMSUI {
 
     public void displayMainMenu() 
     {
+        // Try to make a for loop here instead of strings
         String n = "\n"; //New line
         //Make options more description??
         String greeting = "Hello! Welcome to J Tea's system. Please press the number one the side to do that";
@@ -151,6 +156,7 @@ public class LMSUI {
         System.out.println(menu);
     }
 
+    // make name more action orentied
     private void authorMode()
     {
         if(this.user.getType == AccountType.AUTHOR)
