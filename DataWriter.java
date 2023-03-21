@@ -37,8 +37,8 @@ public class DataWriter extends DataConstants{
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
-        userDetails.put(USER_BIRTHDAY, user.getBirthday().toString());
-        userDetails.put(USER_USERNAME, StringtoDate(user.getUsername().toString()));
+        userDetails.put(USER_BIRTHDAY, StringtoDate(user.getBirthday().toString()));
+        userDetails.put(USER_USERNAME, user.getUsername().toString());
         userDetails.put(USER_TYPE, user.getType().toString());
 
         return userDetails;
@@ -94,7 +94,7 @@ public class DataWriter extends DataConstants{
                 JSONArray questionArray = new JSONArray();
                 for(Question question: questions){
                     JSONObject questionObject = new JSONObject();
-                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTION_QUESTION, question.getQuestion());
+                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTIONS_QUESTION, question.getQuestion());
 
                     ArrayList<String> answers = question.getAnswers();
                     JSONArray answerArray = new JSONArray();
@@ -104,7 +104,7 @@ public class DataWriter extends DataConstants{
                         answerArray.add(answerObject);
                     }
                     
-                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTION_CORRECTANS, question.getCorrectAnswer());
+                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
 
                     questionArray.add(questionObject);
                 }
