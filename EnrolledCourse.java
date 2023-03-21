@@ -10,7 +10,8 @@ public class EnrolledCourse {
     private ArrayList<Grade> gradePerModule;
 
     public EnrolledCourse(Course course, boolean enrolled, Progress progress){
-        
+        setEnrolled(enrolled);
+        setProgress(progress);
     }
 
     public void setEnrolled(boolean enrolled) {
@@ -18,12 +19,11 @@ public class EnrolledCourse {
     }
 
     public void setProgress(Progress progress) {
-
+        this.progress = progress;
     }
 
     public int getProgressPercentage(){
-        return 0;
-
+        return progressPercentage;
     }
 
     public Progress getProgress(){
