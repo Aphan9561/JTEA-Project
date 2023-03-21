@@ -13,6 +13,8 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
+    private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Enter a course", "5: Go to author menu","6: Quit"};
+    private String[] authorMenu = {"1: ","2: ","3: ","4: ","5: ", "6: ", "7: ","8: ", "9: ", "10: ","11: ","12: Go to user menu","13: Quit"}; 
 
     public LMSUI() 
     {
@@ -23,7 +25,8 @@ public class LMSUI {
     public void run()
     {
         loginIn();
-       while(true)
+        boolean running = true;
+       while(running == true)
        {
         displayMainMenu(); //Library example
         int choice = keyboard.nextInt();
@@ -38,23 +41,11 @@ public class LMSUI {
                 break;
             case 4:
                 break;
-            case 5: 
+            case 5:
+                runAuthor();
                 break;
             case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9: 
-                break;
-            case 10:
-                break;
-            case 11:
-                break;
-            case 12:
-                break;
-            case 13:
+                running = false;
                 break;
             default:
                 break;
@@ -77,18 +68,27 @@ public class LMSUI {
             {
                 case 1:
                     //Sign up as user
-                    haveUser = signUp(AccountType.STUDENT);
+                    this.user = signUp(AccountType.STUDENT);
+                    if(this.user != null)
+                    {
+                        haveUser = true;
+                    }
                     break;
                 case 2:
                     //Sign up as author
-                    haveUser = signUp(AccountType.AUTHOR); 
+                    this.user = signUp(AccountType.AUTHOR); 
+                    if(this.user != null)
+                    {
+                        haveUser = true;
+                    }
+                    break;
                 case 3:
                     boolean loginedIn = false;
                     while(loginedIn == false)
                      {
                         System.out.println("Please enter your username below.\n"); 
                         String username = keyboard.nextLine();
-                        System.out.println("Please enter your password] below.");
+                        System.out.println("Please enter your password below.");
                         String password = keyboard.nextLine();
                         User user = application.login(username, password);
                         if(user != null)
@@ -104,7 +104,7 @@ public class LMSUI {
         }
     }
 
-    private boolean signUp(AccountType accountType)
+    private User signUp(AccountType accountType)
     {
         System.out.println("Please give your first name below."); 
         String firstName = keyboard.nextLine();
@@ -114,82 +114,89 @@ public class LMSUI {
         String email = keyboard.nextLine();
         System.out.println("Please give your birthday date below");
         String birthdayDate= keyboard.nextLine();
-        // private helper method here
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-        try 
-            {  
-                date = formatter.parse(birthdayDate);  
-            }   catch (ParseException e) {e.printStackTrace();}  
+        Date date = convertDate(birthdayDate); 
         System.out.println("Please enter your username below."); 
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
-        // create the account and then return login to check if it worked 
-        application.createAccount(firstName, lastName, email, date, username, password, accountType);
-        application.login(username, password);
-        return true;
+        this. user = application.createAccount(firstName, lastName, email, date, username, password, accountType);
+        return this.user;
+    }
+
+    private Date convertDate(String birthdayDate)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
+        Date date = new Date();
+        try
+            {  
+                date = formatter.parse(birthdayDate);  
+            }   catch (ParseException e) {e.printStackTrace();}  
+            return date;
     }
 
     public void displayMainMenu() 
     {
-        String n = "\n"; //New line
+        //Make an array here for all the options so it is not. Then run though it. 
         //Make options more description??
-        String greeting = "Hello! Welcome to J Tea's system. Please press the number one the side to do that";
-        String one = "1: Find Course by keyword";
-        String two = "2: " ;
-        String three = "3: ";
-        String four = "4: " ;
-        String five = "5: ";
-        String six = "6: " ;
-        String seven = "7 : ";
-        String eight = "8: " ;
-        String nine = "9: " ;
-        String ten = "10 : ";
-        String eleven = "11: " ;
-        String twelve = "12: Go to author menu";
-        String thirteen = "13: Quit";
-        
-
-        String menu = greeting + n + one + n + two + n + three + n + four + n + five + n + six + n + seven + n+ eight + n + nine + n + ten + n + eleven + n + twelve+ n + thirteen;
-        System.out.println(menu);
-    }
-
-    // make name more action orentied
-    private void authorMode()
-    {
-        if(this.user.getType == AccountType.AUTHOR)
+        System.out.println("Hello! Welcome to J Tea's system. Please press the number one the side to do that");
+        for(int i = 0; i < menu.length; i++)
         {
-
+            System.out.println(menu[i]);
         }
-        displayAuthorMenu();
     }
-
     private void displayAuthorMenu()
     {
         //Check if author done in switch in run
-        String n = "\n"; //New line
         //Make options more description??
-        String greeting = "Hello to the author side. Only use this side to make and edit course. Not able to do course in this mode";
-        String one = "1: Find Course by keyword";
-        String two = "2: " ;
-        String three = "3: ";
-        String four = "4: " ;
-        String five = "5: ";
-        String six = "6: " ;
-        String seven = "7 : ";
-        String eight = "8: " ;
-        String nine = "9: " ;
-        String ten = "10 : ";
-        String eleven = "11: " ;
-        String twelve = "12: Go to user menu";
-        String thirteen = "13: Quit";
-        
-
-        String menu = greeting + n + one + n + two + n + three + n + four + n + five + n + six + n + seven + n+ eight + n + nine + n + ten + n + eleven + n + twelve+ n + thirteen;
-        System.out.println(menu);
+        System.out.println("Hello to the author side. Only use this side to make and edit course. Not able to do course in this mode");
+        for(int i = 0; i < authorMenu.length; i++)
+        {
+            System.out.println(menu[i]);
+        }
     }
 
+    private void runAuthor()
+    {
+        while(true)
+        {
+         displayAuthorMenu(); 
+         int choice = keyboard.nextInt();
+         keyboard.nextLine();
+         switch (choice) 
+         {
+             case 1: 
+                 break;
+             case 2:
+                 break;
+             case 3:
+                 break;
+             case 4:
+                 break;
+             case 5: 
+                 break;
+             case 6:
+                 break;
+             case 7:
+                 break;
+             case 8:
+                 break;
+             case 9: 
+                 break;
+             case 10:
+                 break;
+             case 11:
+                 break;
+             case 12:
+                 displayAuthorMenu();
+                 break;
+             case 13:
+                 break;
+             default:
+                 break;
+         }
+         break;
+        }
+    }
     public static void main(String[] args) 
     {
         LMSUI lmsui = new LMSUI();
