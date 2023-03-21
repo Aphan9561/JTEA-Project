@@ -32,22 +32,24 @@ public class DataWriter extends DataConstants{
 
     public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         userDetails.put(USER_ID, user.getId().toString());
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            userDetails.put(USER_BIRTHDAY, formatter.parse(user.getBirthday().toString()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        userDetails.put(USER_USERNAME, user.getUsername());
+        userDetails.put(USER_BIRTHDAY, user.getBirthday().toString());
+        userDetails.put(USER_USERNAME, StringtoDate(user.getUsername().toString()));
         userDetails.put(USER_TYPE, user.getType().toString());
 
         return userDetails;
     }
     
+    public static Date StringtoDate(String input) throws ParseException{
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = formatter.parse(input);
+        return date;
+    }
+
     public static void saveCourses() {
         CourseList course = CourseList.getInstance();
         ArrayList<Course> courses = course.getAllCourses();
@@ -81,7 +83,18 @@ public class DataWriter extends DataConstants{
 
         for(Module module: modules){
             JSONObject moduleObject = new JSONObject();
-            moduleObject.put(COURSE_MODULES, module);
+
+            moduleObject.put(COURSE_MODULES_NAME, module.getTitle());
+
+            ArrayList<Quiz> quizzes = module.getQuiz();
+            JSONArray quizArray = new JSONArray();
+            for(Quiz quiz: quizzes){
+                JSONObject quizObject = new JSONObject();
+                quizObject.put(COURSE_REVIEWS, quiz);
+    
+                quizArray.add(quizObject);
+            }
+
 
             moduleArray.add(moduleObject);
 
@@ -113,7 +126,6 @@ public class DataWriter extends DataConstants{
         
         return courseDetails;
     }
-
 
     public static void saveFAQs() {
         FAQList faq = FAQList.getInstance();
