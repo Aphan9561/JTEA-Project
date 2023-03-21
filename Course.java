@@ -107,5 +107,18 @@ public class Course {
     public ArrayList<Comment> getComment(){
         return comments;
     }
-    
+
+    public String toString(){
+        return "UUID: "+id+"\nDifficulty: "+difficulty
+                +"\nName: "+name+
+                "\nDescription: "+description+
+                "\nSyllabus: "+syllabus+
+                "\nAuthor: "+author+
+                "\nModules: "+modules+
+                "\nLanguage: "+language+
+                "\nRating: "+rating+
+                "\nReviews: "+reviews+
+                "\nComments: "+comments;
+    }
+
 }
