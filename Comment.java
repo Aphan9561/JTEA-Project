@@ -18,4 +18,11 @@ public class Comment {
     public UUID getUser(){
         return user;
     }
+
+    public String toString(){
+        return "Comment: "+comment+ " "+
+                "\nUser: "+user+
+                "\nReplies: "+replies;
+    }
+
 }
