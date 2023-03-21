@@ -3,14 +3,14 @@ import java.util.UUID;
 
 public class Student {
     UUID id;
-    private ArrayList<Grade> grades;
+    private ArrayList<Integer> grades;
 
     public Student(UUID id){
         this.id = id;
         grades = new ArrayList<>();
     }
 
-    public Student(UUID id, ArrayList<Grade> grade){
+    public Student(UUID id, ArrayList<Integer> grade){
         this.id = id;
         this.grades.addAll(grade);
     }

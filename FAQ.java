@@ -30,4 +30,13 @@ public class FAQ {
         return answers;
     }
 
+    public String toString() {
+        String result = "Question: " + question + "\nAnswers: \n";
+        for(String answer: answers) {
+            result += answer;
+            result += "\n";
+        }
+        return result;
+    }
+
 }

@@ -27,7 +27,7 @@ public class DataLoader extends DataConstants{
                 String email = (String)personJSON.get(USER_EMAIL);
                 Date birthday = formatter.parse((String)personJSON.get(USER_BIRTHDAY));
                 String username = (String)personJSON.get(USER_USERNAME);
-                AccountType type = (AccountType)personJSON.get(USER_TYPE);
+                AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));
 
                 users.add(new User(id, firstName, lastName, email, birthday, username, type));
             }
@@ -108,8 +108,6 @@ public class DataLoader extends DataConstants{
                             Reply reply = new Reply(replyComment, replyUser);
                             replies.add(reply);
                         }
-
-
                     }
 
                     Module module = new Module(moduleName, quiz, lessons, comments);
@@ -126,27 +124,27 @@ public class DataLoader extends DataConstants{
                     JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENTS_GRADES);
                     int[] grades = new int[gradesJSON.size()];
                     for(int k=0; k < gradesJSON.size(); k++) {
-                        
+                        int grade = Integer.parseInt((String)gradesJSON.get(k));
+                        grades[k] = grade;
                     }
-                    
                 }
 
                 JSONArray commentsJSON = (JSONArray)courseJSON.get(COURSE_COMMENTS);
-                    ArrayList<Comment> comments = new ArrayList<Comment>();
-                    for(int k=0; k < commentsJSON.size(); k++) {
-                        JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
-                        UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
-                        String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
+                ArrayList<Comment> comments = new ArrayList<Comment>();
+                for(int k=0; k < commentsJSON.size(); k++) {
+                    JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
+                    UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
+                    String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
                         
-                        JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
-                        ArrayList<Reply> replies = new ArrayList<Reply>();
-                        for(int l=0; l < repliesJSON.size(); l++) {
-                            JSONObject replyJSON = (JSONObject)repliesJSON.get(l);
-                            String replyComment = (String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_COMMENT);
-                            UUID replyUser = UUID.fromString((String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_USER));
-                            Reply reply = new Reply(replyComment, replyUser);
-                            replies.add(reply);
-                        }
+                    JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
+                    ArrayList<Reply> replies = new ArrayList<Reply>();
+                    for(int l=0; l < repliesJSON.size(); l++) {
+                        JSONObject replyJSON = (JSONObject)repliesJSON.get(l);
+                        String replyComment = (String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_COMMENT);
+                        UUID replyUser = UUID.fromString((String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_USER));
+                        Reply reply = new Reply(replyComment, replyUser);
+                        replies.add(reply);
+                    }
 
 
                     }
@@ -177,7 +175,7 @@ public class DataLoader extends DataConstants{
                 
                 JSONArray answersJSON = (JSONArray)FAQ_JSON.get(FAQ_ANSWERS);
                 ArrayList<String> answers = new ArrayList<String>();
-                for(int j=0; i < answersJSON.size(); j++) {
+                for(int j=0; j < answersJSON.size(); j++) {
                     answers.add((String)answersJSON.get(j));
                 }
 
@@ -203,6 +201,27 @@ public class DataLoader extends DataConstants{
         language = language.toUpperCase();
         Language enumLanguage = Language.valueOf(language);
         return enumLanguage;
+    }
+
+    public static AccountType makeAccountTypeEnum(String accountType) {
+        accountType = accountType.toUpperCase();
+        AccountType enumAccountType = AccountType.valueOf(accountType);
+        return enumAccountType;
+    }
+
+    public static void main(String[] args) {
+        /*ArrayList<User> testUsers = getUsers();
+        for(User user: testUsers) {
+            System.out.println(user);
+            System.out.println();
+        }
+
+        System.out.println("\n************************\n");*/
+
+        ArrayList<FAQ> testFAQs = getFAQs();
+        for(FAQ faq: testFAQs) {
+            System.out.println(faq);
+        }
     }
 }
 

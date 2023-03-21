@@ -12,8 +12,8 @@ public class User {
     //protected ArrayList<EnrolledCourse> enrolledCourse;
     protected AccountType type;
 
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
+        this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -22,8 +22,8 @@ public class User {
         this.type = type;
     }
 
-    public User(String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
-        UUID id = UUID.randomUUID();
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -84,4 +84,11 @@ public class User {
      * return enrolledCourse;
      * }
      */
+
+     public static void main(String[] args){
+        User user = new User("Anne", "Smith", "ASmith@gmail.com", new Date(), "ASmith", AccountType.STUDENT);
+        System.out.println(user.getId());
+     }
+
+     
 }
