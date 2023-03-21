@@ -39,9 +39,6 @@ public class Quiz {
         return (counter/quizSize)*100;
     }
 
-    public void giveStars() {
-        // I am unsure how to do this one :|
-    }
 
     public Question getQuestion(int num){
         return questions[num];
