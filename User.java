@@ -85,6 +85,15 @@ public class User {
      * }
      */
 
+     public void giveStars() {
+        
+     }
+
+     // update grade method
+     public void updateGrade(Course course, int moduleNum, double grade){
+        //this.course = course;
+     }
+
      public static void main(String[] args){
         User user = new User("Anne", "Smith", "ASmith@gmail.com", new Date(), "ASmith", AccountType.STUDENT);
         System.out.println(user.getId());

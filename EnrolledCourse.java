@@ -23,6 +23,10 @@ public class EnrolledCourse {
     }
 
     public void resumeLesson(){
-        
+        getCurrentModule();
+    }
+
+    private int getCurrentModule() {
+        return currentModule;
     }
 }
