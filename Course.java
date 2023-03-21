@@ -107,4 +107,5 @@ public class Course {
     public ArrayList<Comment> getComment(){
         return comments;
     }
+    
 }

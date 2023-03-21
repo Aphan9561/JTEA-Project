@@ -10,8 +10,9 @@ public class EnrolledCourse {
     private ArrayList<Grade> gradePerModule;
 
     public EnrolledCourse(Course course, boolean enrolled, Progress progress){
-        
+        setEnrolled(enrolled);
     }
+    
 
     public void setEnrolled(boolean enrolled) {
         this.enrolled = enrolled;
