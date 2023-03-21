@@ -108,8 +108,6 @@ public class DataLoader extends DataConstants{
                             Reply reply = new Reply(replyComment, replyUser);
                             replies.add(reply);
                         }
-
-
                     }
 
                     Module module = new Module(moduleName, quiz, lessons, comments);
@@ -129,25 +127,24 @@ public class DataLoader extends DataConstants{
                         int grade = Integer.parseInt((String)gradesJSON.get(k));
                         grades[k] = grade;
                     }
-                    
                 }
 
                 JSONArray commentsJSON = (JSONArray)courseJSON.get(COURSE_COMMENTS);
-                    ArrayList<Comment> comments = new ArrayList<Comment>();
-                    for(int k=0; k < commentsJSON.size(); k++) {
-                        JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
-                        UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
-                        String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
+                ArrayList<Comment> comments = new ArrayList<Comment>();
+                for(int k=0; k < commentsJSON.size(); k++) {
+                    JSONObject commentJSON = (JSONObject)commentsJSON.get(k);
+                    UUID user = UUID.fromString((String)commentJSON.get(COURSE_MODULES_LESSON_TITLE));
+                    String comment = (String)commentJSON.get(COURSE_MODULES_COMMENTS_COMMENT);
                         
-                        JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
-                        ArrayList<Reply> replies = new ArrayList<Reply>();
-                        for(int l=0; l < repliesJSON.size(); l++) {
-                            JSONObject replyJSON = (JSONObject)repliesJSON.get(l);
-                            String replyComment = (String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_COMMENT);
-                            UUID replyUser = UUID.fromString((String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_USER));
-                            Reply reply = new Reply(replyComment, replyUser);
-                            replies.add(reply);
-                        }
+                    JSONArray repliesJSON = (JSONArray)commentJSON.get(COURSE_MODULES_COMMENTS_REPLIES);
+                    ArrayList<Reply> replies = new ArrayList<Reply>();
+                    for(int l=0; l < repliesJSON.size(); l++) {
+                        JSONObject replyJSON = (JSONObject)repliesJSON.get(l);
+                        String replyComment = (String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_COMMENT);
+                        UUID replyUser = UUID.fromString((String)replyJSON.get(COURSE_MODULES_COMMENTS_REPLIES_USER));
+                        Reply reply = new Reply(replyComment, replyUser);
+                        replies.add(reply);
+                    }
 
 
                     }
@@ -216,6 +213,14 @@ public class DataLoader extends DataConstants{
         ArrayList<User> testUsers = getUsers();
         for(User user: testUsers) {
             System.out.println(user);
+            System.out.println();
+        }
+
+        System.out.println("\n************************\n");
+
+        ArrayList<FAQ> testFAQs = getFAQs();
+        for(FAQ faq: testFAQs) {
+            System.out.println(faq);
         }
     }
 }

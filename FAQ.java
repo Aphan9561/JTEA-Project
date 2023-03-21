@@ -30,4 +30,9 @@ public class FAQ {
         return answers;
     }
 
+    public String toString() {
+        return "Question: " + question +
+                "Answers: \n" + answers;
+    }
+
 }
