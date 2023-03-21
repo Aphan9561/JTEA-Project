@@ -8,4 +8,12 @@ public class Reply {
         this.comment = comment;
         this.user = user;
     }
+
+    public String getComment(){
+        return comment;
+    }
+
+    public UUID getUser(){
+        return user;
+    }
 }

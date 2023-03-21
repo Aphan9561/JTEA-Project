@@ -73,14 +73,13 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_ID, course.getId().toString());
         courseDetails.put(COURSE_NAME, course.getTitle());
         courseDetails.put(COURSE_DIFFICULTY, course.getDifficulty().toString());
-        courseDetails.put(COURSE_AUTHOR, course.getAuthor().getId().toString());
+        courseDetails.put(COURSE_AUTHOR, course.getAuthor().toString());
         courseDetails.put(COURSE_LANGUAGE, course.getLanguage());
         courseDetails.put(COURSE_DESCRIPTION, course.getDesciption());
         courseDetails.put(COURSE_SYLLABUS,course.getSyllabus());
 
         ArrayList<Module> modules = course.getModule();
         JSONArray moduleArray = new JSONArray();
-
         for(Module module: modules){
             JSONObject moduleObject = new JSONObject();
 
@@ -90,11 +89,59 @@ public class DataWriter extends DataConstants{
             JSONArray quizArray = new JSONArray();
             for(Quiz quiz: quizzes){
                 JSONObject quizObject = new JSONObject();
-                quizObject.put(COURSE_REVIEWS, quiz);
+
+                ArrayList<Question> questions = quiz.getQuestion();
+                JSONArray questionArray = new JSONArray();
+                for(Question question: questions){
+                    JSONObject questionObject = new JSONObject();
+                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTION_QUESTION, question.getQuestion());
+
+                    ArrayList<String> answers = question.getAnswers();
+                    JSONArray answerArray = new JSONArray();
+                    for(String answer: answers){
+                        JSONObject answerObject = new JSONObject();
+
+                        answerArray.add(answerObject);
+                    }
+                    
+                    questionObject.put(COURSE_MODULES_QUIZ_QUIZQUESTION_CORRECTANS, question.getCorrectAnswer());
+
+                    questionArray.add(questionObject);
+                }
     
                 quizArray.add(quizObject);
             }
 
+            ArrayList<Lesson> lessons = module.getCurrentLesson();
+            JSONArray lessonArray = new JSONArray();
+            for (Lesson lesson: lessons){
+                JSONObject lessonObject = new JSONObject();
+                lessonObject.put(COURSE_MODULES_LESSON_TITLE, lesson.getTitle());
+                lessonObject.put(COURSE_MODULES_LESSON_CONTENT, lesson.getContent());
+
+                lessonArray.add(lessonObject);
+            }
+
+            ArrayList<Comment> comments = module.getComment();
+            JSONArray commentArray = new JSONArray();
+            for(Comment comment: comments){
+                JSONObject commentObject = new JSONObject();
+                commentObject.put(COURSE_MODULES_COMMENTS_USER, comment.getUser().toString());
+                commentObject.put(COURSE_MODULES_COMMENTS_COMMENT, comment.getComment());
+
+                ArrayList<Reply> replies = comment.getReply();
+                JSONArray repliesArray = new JSONArray();
+                for(Reply reply: replies){
+                    JSONObject replyObject = new JSONObject();
+                    replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_USER, reply.getUser());
+                    replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_COMMENT, reply.getComment());
+
+                    repliesArray.add(replyObject);
+                }
+
+                commentArray.add(commentObject);
+
+            }
 
             moduleArray.add(moduleObject);
 
@@ -107,8 +154,10 @@ public class DataWriter extends DataConstants{
 
         for(Review review: reviews){
             JSONObject reviewObject = new JSONObject();
-            reviewObject.put(COURSE_REVIEWS, review);
-
+            reviewObject.put(COURSE_REVIEWS_USER, review.getUser().toString());
+            reviewObject.put(COURSE_REVIEWS_RATING, review.getRating());
+            reviewObject.put(COURSE_REVIEWS_COMMENT, review.getComment());
+            
             reviewArray.add(reviewObject);
 
         }
@@ -118,7 +167,18 @@ public class DataWriter extends DataConstants{
 
         for(Comment comment: comments){
             JSONObject commentObject = new JSONObject();
-            commentObject.put(COURSE_COMMENTS, comment);
+            commentObject.put(COURSE_COMMENTS_USER, comment.getUser().toString());
+            commentObject.put(COURSE_COMMENTS_COMMENT, comment.getComment());
+            ArrayList<Reply> replies = comment.getReply();
+                JSONArray repliesArray = new JSONArray();
+                for(Reply reply: replies){
+                    JSONObject replyObject = new JSONObject();
+                    replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser());
+                    replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
+
+                    repliesArray.add(replyObject);
+                }
+
 
             commentArray.add(commentObject);
 

@@ -50,6 +50,8 @@
    protected static final String COURSE_COMMENTS_USER = "user";
    protected static final String COURSE_COMMENTS_COMMENT = "comment";
    protected static final String COURSE_COMMENTS_REPLIES = "replies";
+   protected static final String COURSE_COMMENTS_REPLIES_COMMENT = "comment";
+   protected static final String COURSE_COMMENTS_REPLIES_USER = "user";
    protected static final String COURSE_REVIEWS = "reviews";
    protected static final String COURSE_REVIEWS_RATING = "rating";
    protected static final String COURSE_REVIEWS_COMMENT = "comment";
