@@ -129,6 +129,8 @@ public class DataLoader extends DataConstants{
                     }
                 }
 
+                double rating = Double.parseDouble((String)courseJSON.get(COURSE_RATING));
+
                 JSONArray commentsJSON = (JSONArray)courseJSON.get(COURSE_COMMENTS);
                 ArrayList<Comment> comments = new ArrayList<Comment>();
                 for(int k=0; k < commentsJSON.size(); k++) {
@@ -145,19 +147,20 @@ public class DataLoader extends DataConstants{
                         Reply reply = new Reply(replyComment, replyUser);
                         replies.add(reply);
                     }
-
+                    comments.add(new Comment(comment, user, replies));
                 }
 
                 JSONArray reviewsJSON = (JSONArray)courseJSON.get(COURSE_REVIEWS);
                 ArrayList<Review> reviews = new ArrayList<Review>();
                 for(int k=0; k < reviewsJSON.size(); k++) {
                     JSONObject reviewJSON = (JSONObject)reviewsJSON.get(k);
-                    double rating = Double.parseDouble((String)reviewJSON.get(COURSE_REVIEWS_RATING));
+                    double reviewRating = Double.parseDouble((String)reviewJSON.get(COURSE_REVIEWS_RATING));
                     String reviewComment = (String)reviewJSON.get(COURSE_REVIEWS_COMMENT);
-                    UUID reviewUSer = UUID.fromString((String)reviewJSON.get(COURSE_REVIEWS_USER));
+                    UUID reviewUser = UUID.fromString((String)reviewJSON.get(COURSE_REVIEWS_USER));
+                    reviews.add(new Review(reviewRating, reviewComment, reviewUser));
                 }
 
-                courses.add(new Course())
+                courses.add(new Course(id, difficulty, name, description, syllabus, author, modules, language, students, rating, reviews, comments));
             }
 
             return courses;

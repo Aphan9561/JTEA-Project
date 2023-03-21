@@ -6,9 +6,10 @@ public class Comment {
     private UUID user;
     private ArrayList<Reply> replies;
 
-    public Comment(String comment, UUID user){
+    public Comment(String comment, UUID user, ArrayList<Reply> replies){
         this.comment = comment;
         this.user = user;
+        this.replies.addAll(replies);
     }
 
     public String getComment(){

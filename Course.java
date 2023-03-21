@@ -7,7 +7,7 @@ public class Course {
     private String name;
     private String description;
     private String syllabus;
-    private Author author;
+    private UUID author;
     private ArrayList<Module> modules;
     private Language language;
     private ArrayList<Student> students;
@@ -25,7 +25,7 @@ public class Course {
         comments = new ArrayList<>();
     }
 
-    public Course(UUID id, Difficulty difficulty, String name, String description, String syllabus, Author author, ArrayList<Module> modules, Language language, ArrayList<Student> students, double rating, ArrayList<Review> reviews, ArrayList<Comment> comments) {
+    public Course(UUID id, Difficulty difficulty, String name, String description, String syllabus, UUID author, ArrayList<Module> modules, Language language, ArrayList<Student> students, double rating, ArrayList<Review> reviews, ArrayList<Comment> comments) {
         this.id = id;
         this.difficulty = difficulty;
         this.name = name;
@@ -48,7 +48,7 @@ public class Course {
         return name;
     }
 
-    public Author getAuthor(){
+    public UUID getAuthor(){
         return author;
     }
 
