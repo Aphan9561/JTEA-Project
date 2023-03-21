@@ -175,7 +175,7 @@ public class DataLoader extends DataConstants{
                 
                 JSONArray answersJSON = (JSONArray)FAQ_JSON.get(FAQ_ANSWERS);
                 ArrayList<String> answers = new ArrayList<String>();
-                for(int j=0; i < answersJSON.size(); j++) {
+                for(int j=0; j < answersJSON.size(); j++) {
                     answers.add((String)answersJSON.get(j));
                 }
 
@@ -210,13 +210,13 @@ public class DataLoader extends DataConstants{
     }
 
     public static void main(String[] args) {
-        ArrayList<User> testUsers = getUsers();
+        /*ArrayList<User> testUsers = getUsers();
         for(User user: testUsers) {
             System.out.println(user);
             System.out.println();
         }
 
-        System.out.println("\n************************\n");
+        System.out.println("\n************************\n");*/
 
         ArrayList<FAQ> testFAQs = getFAQs();
         for(FAQ faq: testFAQs) {
