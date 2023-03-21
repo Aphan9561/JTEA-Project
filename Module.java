@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
  public class Module{
     private ArrayList<Lesson> lesson;
-    private Quiz quiz;
+    private ArrayList<Quiz> quiz;
     private ArrayList<Comment> comment;
     private String title;
 
@@ -16,9 +16,9 @@ import java.util.ArrayList;
         this.lesson.addAll(lesson);
     }
 
-    public Module(String name, Quiz quiz, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
+    public Module(String name, ArrayList<Quiz> quizzes, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
         title = name;
-        this.quiz = quiz;
+        quiz.addAll(quizzes);
         lesson.addAll(lessons);
         comment.addAll(comments);
     }
@@ -31,7 +31,7 @@ import java.util.ArrayList;
         return lesson; 
     }
 
-    public Quiz getQuiz(){
+    public ArrayList<Quiz> getQuiz(){
         return quiz;
     }
 
