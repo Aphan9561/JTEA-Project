@@ -39,6 +39,7 @@ public class DataWriter extends DataConstants{
         userDetails.put(USER_BIRTHDAY, formattingDate(user.getBirthday()));
         userDetails.put(USER_USERNAME, user.getUsername().toString());
         userDetails.put(USER_TYPE, user.getType().toString());
+        userDetails.put(USER_PASSWORD, user.getPassword());
 
         return userDetails;
     }
@@ -73,9 +74,10 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_NAME, course.getTitle());
         courseDetails.put(COURSE_DIFFICULTY, course.getDifficulty().toString());
         courseDetails.put(COURSE_AUTHOR, course.getAuthor().toString());
-        courseDetails.put(COURSE_LANGUAGE, course.getLanguage());
+        courseDetails.put(COURSE_LANGUAGE, course.getLanguage().toString());
         courseDetails.put(COURSE_DESCRIPTION, course.getDesciption());
         courseDetails.put(COURSE_SYLLABUS,course.getSyllabus());
+        courseDetails.put(COURSE_MODULES, course.getModule().toString());
 
         ArrayList<Module> modules = course.getModule();
         JSONArray moduleArray = new JSONArray();
@@ -148,6 +150,7 @@ public class DataWriter extends DataConstants{
         }
 
         courseDetails.put(COURSE_RATING,course.getRating());
+        courseDetails.put(COURSE_REVIEWS, course.getReview());
 
         ArrayList<Review> reviews = course.getReview();
         JSONArray reviewArray = new JSONArray();
@@ -161,6 +164,8 @@ public class DataWriter extends DataConstants{
             reviewArray.add(reviewObject);
 
         }
+
+        courseDetails.put(COURSE_STUDENTS, course.getStudent().toString());
 
         ArrayList<Student> students = course.getStudent();
         JSONArray studentArray = new JSONArray();
@@ -183,29 +188,49 @@ public class DataWriter extends DataConstants{
 
         }
 
+        courseDetails.put(COURSE_COMMENTS, course.getComment());
+
         ArrayList<Comment> comments = course.getComment();
         JSONArray commentArray = new JSONArray();
 
-        for(Comment comment: comments){
-            JSONObject commentObject = new JSONObject();
-            commentObject.put(COURSE_COMMENTS_USER, comment.getUser().toString());
-            commentObject.put(COURSE_COMMENTS_COMMENT, comment.getComment());
-            ArrayList<Reply> replies = comment.getReply();
-            JSONArray repliesArray = new JSONArray();
-            for(Reply reply: replies){
-                JSONObject replyObject = new JSONObject();
-                replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser());
-                replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
+        for(int i =0; i<comments.size(); i++){
+            commentArray.add(getCommentJSON(comments.get(i)));
+        }
 
-                repliesArray.add(replyObject);
-            }
-
-
-            commentArray.add(commentObject);
-
+        try (FileWriter file = new FileWriter(COURSE_FILE_NAME)) {
+ 
+            file.write(commentArray.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         
         return courseDetails;
+    }
+
+    public static JSONObject getCommentJSON(Comment comment){
+        JSONObject commentDetails = new JSONObject();
+        commentDetails.put(COURSE_COMMENTS_USER, comment.getUser().toString());
+        commentDetails.put(COURSE_COMMENTS_COMMENT, comment.getComment());
+        commentDetails.put(COURSE_COMMENTS_REPLIES, comment.getReply());
+
+        ArrayList<Reply> replies = comment.getReply();
+        JSONArray repliesArray = new JSONArray();
+
+        for(int i = 0;i<replies.size();i++){
+            repliesArray.add(getReplyJSON(replies.get(i)));
+        }
+        
+        return commentDetails;
+    }
+
+    public static JSONObject getReplyJSON(Reply reply){
+        JSONObject replyObject = new JSONObject();
+        replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser().toString());
+        replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
+
+        return replyObject;
     }
 
     public static void saveFAQs() {
@@ -216,6 +241,7 @@ public class DataWriter extends DataConstants{
         for(int i =0; i<FAQs.size(); i++){
             jsonFAQs.add(getFAQJSON(FAQs.get(i)));
         }
+
         try (FileWriter file = new FileWriter(FAQ_FILE_NAME)) {
  
             file.write(jsonFAQs.toJSONString());
