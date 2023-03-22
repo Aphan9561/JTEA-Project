@@ -15,6 +15,14 @@ public class Student {
         this.grades.addAll(grade);
     }
 
+    public UUID getId(){
+        return id;
+    }
+
+    public ArrayList<Integer> getGrades(){
+        return grades;
+    }
+
     public String toString(){
         return "Student id: "+id+
             "Student grades: "+grades;

@@ -44,10 +44,17 @@ public class DataWriter extends DataConstants{
         return userDetails;
     }
     
-    public static Date StringtoDate(String input) throws ParseException{
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = formatter.parse(input);
-        return date;
+    public static Date StringtoDate(String input){
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        Date date;
+        try {
+            date = formatter.parse(input);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void saveCourses() {
@@ -107,6 +114,7 @@ public class DataWriter extends DataConstants{
                         JSONArray answerArray = new JSONArray();
                         for(String answer: answers){
                             JSONObject answerObject = new JSONObject();
+                            answerObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS,answer);
 
                             answerArray.add(answerObject);
                         }
@@ -162,6 +170,27 @@ public class DataWriter extends DataConstants{
 
         }
 
+        ArrayList<Student> students = course.getStudent();
+        JSONArray studentArray = new JSONArray();
+
+        for(Student student: students){
+            JSONObject studentObject = new JSONObject();
+            studentObject.put(COURSE_STUDENTS_ID, student.getId().toString());
+
+            ArrayList<Integer> grades = student.getGrades();
+            JSONArray gradeArray = new JSONArray();
+
+            for(Integer grade: grades){
+                JSONObject gradeObject = new JSONObject();
+                gradeObject.put(COURSE_STUDENTS_GRADES, grade);
+
+                gradeArray.add(gradeObject);
+            }
+            
+            studentArray.add(studentObject);
+
+        }
+
         ArrayList<Comment> comments = course.getComment();
         JSONArray commentArray = new JSONArray();
 
@@ -170,14 +199,14 @@ public class DataWriter extends DataConstants{
             commentObject.put(COURSE_COMMENTS_USER, comment.getUser().toString());
             commentObject.put(COURSE_COMMENTS_COMMENT, comment.getComment());
             ArrayList<Reply> replies = comment.getReply();
-                JSONArray repliesArray = new JSONArray();
-                for(Reply reply: replies){
-                    JSONObject replyObject = new JSONObject();
-                    replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser());
-                    replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
+            JSONArray repliesArray = new JSONArray();
+            for(Reply reply: replies){
+                JSONObject replyObject = new JSONObject();
+                replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser());
+                replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
 
-                    repliesArray.add(replyObject);
-                }
+                repliesArray.add(replyObject);
+            }
 
 
             commentArray.add(commentObject);

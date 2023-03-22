@@ -91,6 +91,10 @@ public class Course {
     }
     */
 
+    public ArrayList<Student> getStudent(){
+        return students;
+    }
+
     public int getNumberOfModules(){
         return modules.size();
     }
