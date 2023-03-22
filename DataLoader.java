@@ -17,7 +17,7 @@ public class DataLoader extends DataConstants{
             FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray)new JSONParser().parse(reader);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 
             for(int i=0; i < peopleJSON.size(); i++) {
                 JSONObject personJSON = (JSONObject)peopleJSON.get(i);

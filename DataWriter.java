@@ -32,29 +32,21 @@ public class DataWriter extends DataConstants{
 
     public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         userDetails.put(USER_ID, user.getId().toString());
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
-        userDetails.put(USER_BIRTHDAY, StringtoDate(user.getBirthday().toString()));
+        userDetails.put(USER_BIRTHDAY, StringtoDate(user.getBirthday()));
         userDetails.put(USER_USERNAME, user.getUsername().toString());
         userDetails.put(USER_TYPE, user.getType().toString());
 
         return userDetails;
     }
     
-    public static Date StringtoDate(String input){
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-        Date date;
-        try {
-            date = formatter.parse(input);
-            return date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static String StringtoDate(Date input){
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+        String date = formatter.format(input);;
+        return date;
     }
 
     public static void saveCourses() {
