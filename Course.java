@@ -8,21 +8,21 @@ public class Course {
     private String description;
     private String syllabus;
     private UUID author;
-    private ArrayList<Module> modules;
+    private ArrayList<Module> modules = new ArrayList<Module>();
     private Language language;
-    private ArrayList<Student> students;
+    private ArrayList<Student> students = new ArrayList<Student>();
     private double rating;
-    private ArrayList<Review> reviews;
-    private ArrayList<Comment> comments;
+    private ArrayList<Review> reviews = new ArrayList<Review>();
+    private ArrayList<Comment> comments = new ArrayList<Comment>();
 
     public Course(String name, String description, Difficulty difficulty, Language language){
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
         this.language =language;
-        reviews = new ArrayList<>();
+        /*reviews = new ArrayList<>();
         modules = new ArrayList<>();
-        comments = new ArrayList<>();
+        comments = new ArrayList<>();*/
     }
 
     public Course(UUID id, Difficulty difficulty, String name, String description, String syllabus, UUID author, ArrayList<Module> modules, Language language, ArrayList<Student> students, double rating, ArrayList<Review> reviews, ArrayList<Comment> comments) {
