@@ -114,16 +114,12 @@ public class Course {
     }
 
     public String toString(){
-        return "UUID: "+id+"\nDifficulty: "+difficulty
-                +"\nName: "+name+
-                "\nDescription: "+description+
-                "\nSyllabus: "+syllabus+
-                "\nAuthor: "+author+
-                "\nModules: "+modules+
+        String result = "Course ID: " + id + "\nDifficulty: " + difficulty + "\nName: " + name + "\nDescription: " + description + "\nSyllabus: " + syllabus + "\nAuthor ID: " + author + "\nModules: " + modules + 
                 "\nLanguage: "+language+
                 "\nRating: "+rating+
                 "\nReviews: "+reviews+
                 "\nComments: "+comments;
+        return result;
     }
 
 }

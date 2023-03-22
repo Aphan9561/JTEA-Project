@@ -9,27 +9,30 @@ public class User {
     protected String email;
     protected Date birthday;
     protected String username;
+    protected String password;
     //protected ArrayList<EnrolledCourse> enrolledCourse;
     //Eve Blom - I would recommand adding protected password to making login in easier. Password needs to be stored somewhere. If not here, where? Also add a getPassword method
     protected AccountType type;
 
-    public User(String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
+    public User(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.birthday = birthday;
+        this.password = password;
         this.username = username;
         this.type = type;
     }
 
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, AccountType type) {
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.birthday = birthday;
         this.username = username;
+        this.password = password;
         this.type = type;
     }
 
@@ -40,6 +43,7 @@ public class User {
                 "\nEmail: " + email +
                 "\nBirthday: " + birthday +
                 "\nUsername: " + username +
+                "\nPassword: " + password +
                 "\nAccount type: " + type;
     }
 
@@ -75,6 +79,10 @@ public class User {
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public AccountType getType(){
         return type;
     }
@@ -95,10 +103,10 @@ public class User {
         //this.course = course;
      }
 
-     public static void main(String[] args){
+     /*public static void main(String[] args){
         User user = new User("Anne", "Smith", "ASmith@gmail.com", new Date(), "ASmith", AccountType.STUDENT);
         System.out.println(user.getId());
-     }
+     }*/
 
      
 }

@@ -27,9 +27,10 @@ public class DataLoader extends DataConstants{
                 String email = (String)personJSON.get(USER_EMAIL);
                 Date birthday = formatter.parse((String)personJSON.get(USER_BIRTHDAY));
                 String username = (String)personJSON.get(USER_USERNAME);
+                String password = (String)personJSON.get(USER_PASSWORD);
                 AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));
 
-                users.add(new User(id, firstName, lastName, email, birthday, username, type));
+                users.add(new User(id, firstName, lastName, email, birthday, username, password, type));
             }
 
             return users;

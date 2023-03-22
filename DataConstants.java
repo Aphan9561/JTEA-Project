@@ -11,6 +11,7 @@
    protected static final String USER_EMAIL = "email";
    protected static final String USER_BIRTHDAY = "birthday";
    protected static final String USER_USERNAME = "username";
+   protected static final String USER_PASSWORD = "password";
    protected static final String USER_TYPE = "type";
 
    protected static final String FAQ_FILE_NAME = "JSON/FAQ.json";
