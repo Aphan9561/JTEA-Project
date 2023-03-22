@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Lesson {
     private String content;
     private String title;
-    private ArrayList<Quiz> quiz;
+    private ArrayList<Quiz> quiz = new ArrayList<Quiz>();
 
     public Lesson(String content, String title, ArrayList<Quiz> quizzes) {
         this.content = content;

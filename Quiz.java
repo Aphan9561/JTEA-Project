@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Quiz {
     public static final int quizSize = 10;
     public static final int maxAnswers = 4;
-    private ArrayList<Question> questions;
+    private ArrayList<Question> questions = new ArrayList<Question>();
     private ArrayList<Question> tempQuestions = new ArrayList<Question>();
     //private int[] grades = new int[quizSize];
     //private String[] answers = new String[maxAnswers];

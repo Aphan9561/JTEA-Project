@@ -17,7 +17,7 @@ public class DataLoader extends DataConstants{
             FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray)new JSONParser().parse(reader);
-            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
             for(int i=0; i < peopleJSON.size(); i++) {
                 JSONObject personJSON = (JSONObject)peopleJSON.get(i);
@@ -64,33 +64,38 @@ public class DataLoader extends DataConstants{
                     JSONObject moduleJSON = (JSONObject)modulesJSON.get(j);
                     String moduleName = (String)moduleJSON.get(COURSE_MODULES_NAME);
 
-                    JSONObject quizJSON = (JSONObject)moduleJSON.get(COURSE_MODULES_QUIZ);
-
-                    JSONArray quizQuestionsJSON = (JSONArray)quizJSON.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS);
-                    ArrayList<Question> quizQuestions = new ArrayList<Question>();
-                    for(int k=0; k < quizQuestionsJSON.size(); k++) {
-                        JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(k);
-                        String question = (String)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS_QUESTION);
-
-                        JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS_ANSWERS);
-                        ArrayList<String> answers = new ArrayList<String>();
-                        for(int l=0; l < answersJSON.size(); l++) {
-                            answers.add((String)answersJSON.get(l));
-                        }
-
-                        int correctAnswer = (int)(long)quizQuestion.get(COURSE_MODULES_QUIZ_QUIZQUESTIONS_CORRECTANS);
-                        Question aQuestion = new Question(question, answers, correctAnswer);
-                        quizQuestions.add(aQuestion);
-                    }
-                    Quiz quiz = new Quiz(quizQuestions);
-
                     JSONArray lessonsJSON = (JSONArray)moduleJSON.get(COURSE_MODULES_LESSON);
                     ArrayList<Lesson> lessons = new ArrayList<Lesson>();
                     for(int k=0; k < lessonsJSON.size(); k++) {
                         JSONObject lessonJSON = (JSONObject)lessonsJSON.get(k);
                         String title = (String)lessonJSON.get(COURSE_MODULES_LESSON_TITLE);
                         String content = (String)lessonJSON.get(COURSE_MODULES_LESSON_CONTENT);
-                        Lesson lesson = new Lesson(content, title);
+
+                        JSONArray quizzesJSON = (JSONArray)lessonJSON.get(COURSE_MODULES_LESSON_QUIZ);
+                        ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
+                        for(int l=0; l < quizzesJSON.size(); l++) {
+                            JSONObject quizJSON = (JSONObject)quizzesJSON.get(l);
+                            JSONArray quizQuestionsJSON = (JSONArray)quizJSON.get(COURSE_MODULES_LESSON_QUIZ_QUIZQUESTIONS);
+                            ArrayList<Question> quizQuestions = new ArrayList<Question>();
+                            for(int m=0; m < quizQuestionsJSON.size(); m++) {
+                                JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(k);
+                                String question = (String)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION);
+
+                                JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS);
+                                ArrayList<String> answers = new ArrayList<String>();
+                                for(int n=0; n < answersJSON.size(); n++) {
+                                    answers.add((String)answersJSON.get(l));
+                                }
+
+                                int correctAnswer = (int)(long)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS);
+                                Question aQuestion = new Question(question, answers, correctAnswer);
+                                quizQuestions.add(aQuestion);
+                            }
+                            Quiz quiz = new Quiz(quizQuestions);
+                            quizzes.add(quiz);
+                        }
+
+                        Lesson lesson = new Lesson(content, title, quizzes);
                         lessons.add(lesson);
                     }
 
@@ -114,7 +119,7 @@ public class DataLoader extends DataConstants{
                         comments.add(new Comment(comment, user, replies));
                     }
 
-                    Module module = new Module(moduleName, quiz, lessons, comments);
+                    Module module = new Module(moduleName, lessons, comments);
                     modules.add(module);
                 }
 

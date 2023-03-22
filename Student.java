@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public class Student {
     UUID id;
-    private ArrayList<Integer> grades;
+    private ArrayList<Integer> grades = new ArrayList<Integer>();
 
     public Student(UUID id){
         this.id = id;

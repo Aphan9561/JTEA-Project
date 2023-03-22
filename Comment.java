@@ -4,7 +4,7 @@ import java.util.UUID;
 public class Comment {
     private String comment;
     private UUID user;
-    private ArrayList<Reply> replies;
+    private ArrayList<Reply> replies = new ArrayList<Reply>();
 
     public Comment(String comment, UUID user, ArrayList<Reply> replies){
         this.comment = comment;
