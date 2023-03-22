@@ -36,14 +36,14 @@ public class DataWriter extends DataConstants{
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
-        userDetails.put(USER_BIRTHDAY, StringtoDate(user.getBirthday()));
+        userDetails.put(USER_BIRTHDAY, formattingDate(user.getBirthday()));
         userDetails.put(USER_USERNAME, user.getUsername().toString());
         userDetails.put(USER_TYPE, user.getType().toString());
 
         return userDetails;
     }
     
-    public static String StringtoDate(Date input){
+    public static String formattingDate(Date input){
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         String date = formatter.format(input);;
         return date;
