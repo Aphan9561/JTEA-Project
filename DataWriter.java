@@ -234,7 +234,7 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
     public static void main(String[] args){
-        saveUsers();
+        saveCourses();
  
     }
 }
