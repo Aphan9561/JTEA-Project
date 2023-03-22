@@ -16,6 +16,7 @@ public class Course {
     private ArrayList<Comment> comments;
 
     public Course(String name, String description, Difficulty difficulty, Language language){
+        this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
