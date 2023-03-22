@@ -40,10 +40,11 @@ public class LMSApplication {
         while (userList.getUser() != null) {
             if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
             {
-                //Figure out password sitution
                 {
-                    //if password is true
+                    if(userList.getUser().get(i).getPassword().equalsIgnoreCase(usernmame)) 
+                    {
                     this.user = userList.getUser().get(i);
+                    }
                 }
             }
             i++;

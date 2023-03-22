@@ -33,13 +33,20 @@ public class LMSUI {
         keyboard.nextLine();
         switch (choice) 
         {
-            case 1: 
+            case 1:
+                System.out.println("What would would like to search for? Suggested terms to get the best result:/nFor lanuages: Python, Java/nDiffeculty: Easy, Medium, Hard");
+                String keyword = keyboard.nextLine();
+                keyword.toUpperCase();
+                application.findCourse(keyword);
                 break;
             case 2:
+                application.findCourse();
                 break;
             case 3:
+                application.getCurrentCourse();
                 break;
             case 4:
+                
                 break;
             case 5:
                 runAuthor();
@@ -56,6 +63,7 @@ public class LMSUI {
     }
 
     // return a user here instead of void
+    // Why? I have it set this.user equal to something valid every time. It is in a while until something valid happens- Eve
     private void loginIn()
     {
         System.out.println("To create an user account please type 1. To create an author account please type 2. \nTo login please type 3");
@@ -136,8 +144,6 @@ public class LMSUI {
 
     public void displayMainMenu() 
     {
-        //Make an array here for all the options so it is not. Then run though it. 
-        //Make options more description??
         System.out.println("Hello! Welcome to J Tea's system. Please press the number one the side to do that");
         for(int i = 0; i < menu.length; i++)
         {
@@ -146,8 +152,6 @@ public class LMSUI {
     }
     private void displayAuthorMenu()
     {
-        //Check if author done in switch in run
-        //Make options more description??
         System.out.println("Hello to the author side. Only use this side to make and edit course. Not able to do course in this mode");
         for(int i = 0; i < authorMenu.length; i++)
         {
