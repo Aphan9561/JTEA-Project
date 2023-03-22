@@ -13,7 +13,7 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
-    private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Enter a course", "5: Go to author menu","6: Quit"};
+    private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Go to author menu","5: Quit"};
     private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","4: Go to user menu","5: Quit"}; 
 
     public LMSUI() 
@@ -40,18 +40,15 @@ public class LMSUI {
                 application.findCourse(keyword);
                 break;
             case 2:
-                application.findCourse();
+                application.findCourse(); 
                 break;
             case 3:
                 application.getCurrentCourse();
                 break;
             case 4:
-                
-                break;
-            case 5:
                 runAuthor();
                 break;
-            case 6:
+            case 5:
                 running = false;
                 break;
             default:
@@ -63,7 +60,7 @@ public class LMSUI {
     }
 
     // return a user here instead of void
-    // Why? I have it set this.user equal to something valid every time. It is in a while until something valid happens- Eve
+    // Why? Trying to understand why? How does this help? I have it set this.user equal to something valid every time. It is in a while until something valid happens- Eve
     private void loginIn()
     {
         System.out.println("To create an user account please type 1. To create an author account please type 2. \nTo login please type 3");
@@ -131,7 +128,7 @@ public class LMSUI {
         return this.user;
     }
 
-    private Date convertDate(String birthdayDate)
+    private Date convertDate(String birthdayDate) //This does not seem to work. Why?
     {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
         Date date = new Date();

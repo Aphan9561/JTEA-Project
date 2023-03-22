@@ -1,6 +1,7 @@
 import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 /*
  *  This is the facade that is used by the main menu
@@ -53,20 +54,12 @@ public class LMSApplication {
     }
 
     public ArrayList<Course> findCourse(String keyword){
-        ArrayList<Course> resultList = new ArrayList<>();
-        for(courseList.)
-        {
-            this.courseList.getCourse(keyword);
-        }
+        ArrayList<Course> resultList = courseList.getCourse(keyword);
         return resultList;
     }
 
-    public ArrayList<Course> findCourse() {
-        ArrayList<Course> resultList = new ArrayList<>();
-        for(courseList.)
-        {
-            this.courseList.getCourse(keyword);
-        }
+    public ArrayList<Course> findCourse() { //What does this do again?
+        ArrayList<Course> resultList = courseList.getAllCourses();
         return resultList;
     }
 
@@ -77,10 +70,11 @@ public class LMSApplication {
     public boolean addCourse(String name, String description, Difficulty difficulty, Language language) {
         boolean created = true;
         Course course = new Course(name, description, difficulty, language);
+        //Use author
         return created;
     }
 
-    public void courseReview(double rating, String comment, User user){
+    public void courseReview(double rating, String comment, UUID user){
         Review review = new Review(rating, comment, user);
         //Put review onto course
     }
