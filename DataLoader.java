@@ -72,29 +72,27 @@ public class DataLoader extends DataConstants{
                         String title = (String)lessonJSON.get(COURSE_MODULES_LESSON_TITLE);
                         String content = (String)lessonJSON.get(COURSE_MODULES_LESSON_CONTENT);
 
-                        JSONArray quizzesJSON = (JSONArray)lessonJSON.get(COURSE_MODULES_LESSON_QUIZ);
+                        JSONObject quizJSON = (JSONObject)lessonJSON.get(COURSE_MODULES_LESSON_QUIZ);
                         //ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
-                        for(int l=0; l < quizzesJSON.size(); l++) {
-                            JSONObject quizJSON = (JSONObject)quizzesJSON.get(l);
-                            JSONArray quizQuestionsJSON = (JSONArray)quizJSON.get(COURSE_MODULES_LESSON_QUIZ_QUIZQUESTIONS);
-                            ArrayList<Question> quizQuestions = new ArrayList<Question>();
-                            for(int m=0; m < quizQuestionsJSON.size(); m++) {
-                                JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(m);
-                                String question = (String)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION);
+                        JSONArray quizQuestionsJSON = (JSONArray)quizJSON.get(COURSE_MODULES_LESSON_QUIZ_QUIZQUESTIONS);
+                        ArrayList<Question> quizQuestions = new ArrayList<Question>();
+                        for(int l=0; l < quizQuestionsJSON.size(); l++) {
+                            JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(l);
+                            String question = (String)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION);
 
-                                JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS);
-                                ArrayList<String> answers = new ArrayList<String>();
-                                for(int n=0; n < answersJSON.size(); n++) {
-                                    answers.add((String)answersJSON.get(n));
-                                }
+                            JSONArray answersJSON = (JSONArray)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS);
+                            ArrayList<String> answers = new ArrayList<String>();
+                            for(int n=0; n < answersJSON.size(); n++) {
+                                answers.add((String)answersJSON.get(n));
+                            }
 
-                                int correctAnswer = ((Long)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS)).intValue();
-                                Question aQuestion = new Question(question, answers, correctAnswer);
-                                quizQuestions.add(aQuestion);
+                            int correctAnswer = ((Long)quizQuestion.get(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS)).intValue();
+                            Question aQuestion = new Question(question, answers, correctAnswer);
+                            quizQuestions.add(aQuestion);
                             }
                             Quiz quiz = new Quiz(quizQuestions);
                             //quizzes.add(quiz);
-                        }
+                        
 
                         Lesson lesson = new Lesson(content, title, quiz);
                         lessons.add(lesson);
