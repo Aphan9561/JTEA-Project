@@ -35,20 +35,27 @@ public class LMSApplication {
         return user1;
     }
 
-    public User login(String usernmame, String password){
-        int i = 0;
+    public User login(String username, String password){
+        /*int i = 0;
         this.user = null;
         while (userList.getUser() != null) {
             if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
             {
-                {
                     if(userList.getUser().get(i).getPassword().equalsIgnoreCase(password)) 
                     {
                         this.user = userList.getUser().get(i);
                     }
-                }
             }
             i++;
+        }
+        return this.user;*/
+        this.user = null;
+        for(int i=0; i < userList.size(); i++) {
+            if(userList.getUser().get(i).getUsername().equals(username)) {
+                if(userList.getUser().get(i).getPassword().equals(password)) {
+                    this.user = userList.getUser().get(i);
+                }
+            }
         }
         return this.user;
     }

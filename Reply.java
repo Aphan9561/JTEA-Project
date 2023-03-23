@@ -18,7 +18,7 @@ public class Reply {
     }
 
     public String toString() {
-        String result = "\n --> " + user + ": " + comment + "\n";
+        String result = "\nUser: " + user + "\nComment: " + comment + "\n";
         return result;
     }
 }

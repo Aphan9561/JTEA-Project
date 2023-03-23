@@ -29,11 +29,9 @@ public class Question {
 
     public String toString() {
         String result = "\n" + question;
-        for(int i=0; i < answers.size(); i++) {
-            result += (i+1);
-            result += ". ";
-            result += answers.get(i);
-            result += "\n";
+        for(String answer: answers) {
+            result += answer;
+            System.out.println("Added answer");
         }
         result += "\n";
         return result;

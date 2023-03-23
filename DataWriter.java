@@ -79,7 +79,6 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_LANGUAGE, course.getLanguage().toString());
         courseDetails.put(COURSE_DESCRIPTION, course.getDesciption());
         courseDetails.put(COURSE_SYLLABUS,course.getSyllabus());
-        courseDetails.put(COURSE_MODULES, course.getModule());
 
         ArrayList<Module> modules = course.getModule();
         JSONArray moduleArray = new JSONArray();
@@ -88,8 +87,9 @@ public class DataWriter extends DataConstants{
 
         }
 
+        courseDetails.put(COURSE_MODULES, moduleArray);
+
         courseDetails.put(COURSE_RATING,course.getRating());
-        courseDetails.put(COURSE_REVIEWS, course.getReview());
 
         ArrayList<Review> reviews = course.getReview();
         JSONArray reviewArray = new JSONArray();
@@ -104,7 +104,7 @@ public class DataWriter extends DataConstants{
 
         }
 
-        courseDetails.put(COURSE_STUDENTS, course.getStudent());
+        courseDetails.put(COURSE_REVIEWS, reviewArray);
 
         ArrayList<Student> students = course.getStudent();
         JSONArray studentArray = new JSONArray();
@@ -112,7 +112,6 @@ public class DataWriter extends DataConstants{
         for(Student student: students){
             JSONObject studentObject = new JSONObject();
             studentObject.put(COURSE_STUDENTS_ID, student.getId().toString());
-            studentObject.put(COURSE_STUDENTS_GRADES, student.getGrades());
     
             ArrayList<Integer> grades = student.getGrades();
             JSONArray gradeArray = new JSONArray();     
@@ -123,11 +122,11 @@ public class DataWriter extends DataConstants{
     
                 gradeArray.add(gradeObject);
             }
-    
+            studentObject.put(COURSE_STUDENTS_GRADES, gradeArray);
             studentArray.add(studentObject);
         }
 
-        courseDetails.put(COURSE_COMMENTS, course.getComment());
+        courseDetails.put(COURSE_STUDENTS, studentArray);
 
         ArrayList<Comment> comments = course.getComment();
         JSONArray commentArray = new JSONArray();
@@ -135,9 +134,8 @@ public class DataWriter extends DataConstants{
         for(Comment comment: comments){
             JSONObject commentDetails = new JSONObject();
             commentDetails.put(COURSE_COMMENTS_USER, comment.getUser().toString());
-            commentDetails.put(COURSE_COMMENTS_COMMENT, comment.getComment().toString());
-            commentDetails.put(COURSE_COMMENTS_REPLIES, comment.getReply());
-
+            commentDetails.put(COURSE_COMMENTS_COMMENT, comment.getComment());
+            
             ArrayList<Reply> replies = comment.getReply();
             JSONArray repliesArray = new JSONArray();
 
@@ -148,9 +146,10 @@ public class DataWriter extends DataConstants{
 
                 repliesArray.add(replyObject);
             }
-
+            commentDetails.put(COURSE_COMMENTS_REPLIES, repliesArray);
             commentArray.add(commentDetails);
         }
+        courseDetails.put(COURSE_COMMENTS, commentArray);
         
         return courseDetails;
     }
@@ -159,7 +158,6 @@ public class DataWriter extends DataConstants{
         JSONObject moduleObject = new JSONObject();
 
         moduleObject.put(COURSE_MODULES_NAME, module.getTitle());
-        moduleObject.put(COURSE_MODULES_LESSON, module.getLesson());
 
         ArrayList<Lesson> lessons = module.getLesson();
         JSONArray lessonArray = new JSONArray();
@@ -167,13 +165,15 @@ public class DataWriter extends DataConstants{
             lessonArray.add(getLessonJSON(lessons.get(i)));
         }
 
-        moduleObject.put(COURSE_MODULES_COMMENTS, module.getComment());
+        moduleObject.put(COURSE_MODULES_LESSON, lessonArray);
 
         ArrayList<Comment> comments = module.getComment();
         JSONArray commentArray = new JSONArray();
         for(int i =0; i<comments.size(); i++){
             commentArray.add(getModuleCommentJSON(comments.get(i)));
         }
+
+        moduleObject.put(COURSE_MODULES_COMMENTS, commentArray);
 
         return moduleObject;
     }
@@ -182,20 +182,17 @@ public class DataWriter extends DataConstants{
         JSONObject lessonObject = new JSONObject();
         lessonObject.put(COURSE_MODULES_LESSON_TITLE, lesson.getTitle());
         lessonObject.put(COURSE_MODULES_LESSON_CONTENT, lesson.getContent());
-        lessonObject.put(COURSE_MODULES_LESSON_QUIZ, lesson.getQuiz());
 
         ArrayList<Quiz> quizzes = lesson.getQuiz();
         JSONArray quizArray = new JSONArray();
         for(Quiz quiz: quizzes){
             JSONObject quizObject = new JSONObject();
-            quizObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, quiz.getQuestion());
-    
+
             ArrayList<Question> questions = quiz.getQuestion();
             JSONArray questionArray = new JSONArray();
             for(Question question: questions){
                 JSONObject questionObject = new JSONObject();
                 questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, question.getQuestion());
-                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, question.getAnswers());
     
                 ArrayList<String> answers = question.getAnswers();
                 JSONArray answerArray = new JSONArray();
@@ -205,14 +202,17 @@ public class DataWriter extends DataConstants{
     
                     answerArray.add(answerObject);
                 }
-                
+
+                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, answerArray);
                 questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
     
                 questionArray.add(questionObject);
             }    
 
+            quizObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, questionArray);
             quizArray.add(quizObject);
         }
+        lessonObject.put(COURSE_MODULES_LESSON_QUIZ, quizArray);
 
         return lessonObject;
     }
@@ -221,18 +221,18 @@ public class DataWriter extends DataConstants{
         JSONObject commentObject = new JSONObject();
         commentObject.put(COURSE_MODULES_COMMENTS_USER, comment.getUser().toString());
         commentObject.put(COURSE_MODULES_COMMENTS_COMMENT, comment.getComment());
-        commentObject.put(COURSE_MODULES_COMMENTS_REPLIES, comment.getReply());
 
         ArrayList<Reply> replies = comment.getReply();
         JSONArray repliesArray = new JSONArray();
         for(Reply reply: replies){
             JSONObject replyObject = new JSONObject();
-            replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_USER, reply.getUser());
+            replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_USER, reply.getUser().toString());
             replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_COMMENT, reply.getComment());
 
             repliesArray.add(replyObject);
         }
 
+        commentObject.put(COURSE_MODULES_COMMENTS_REPLIES, repliesArray);
         return commentObject;
     }
 
@@ -263,7 +263,6 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
     public static void main(String[] args){
-        //saveUsers();
-        saveCourses();
+        saveUsers();
     }
 }

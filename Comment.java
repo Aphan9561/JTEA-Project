@@ -25,7 +25,7 @@ public class Comment {
     }
 
     public String toString(){
-        String result = user + ": " + comment + "\n";
+        String result = "User: "+ user + "\nComment: " + comment + "\n";
         result += "Replies: \n";
         for(Reply reply : replies) {
             result += reply;
