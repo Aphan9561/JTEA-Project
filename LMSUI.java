@@ -26,6 +26,7 @@ public class LMSUI {
 
     public void run()
     {
+        System.out.println("Welcome to Our program. Please choose one of the following.\n");
         login();
         boolean running = true;
         while(running == true)
@@ -43,7 +44,7 @@ public class LMSUI {
                 printCourses(resultList);
                 break;
             case 2:
-            System.out.println("Printing all courses:");
+                System.out.println("Printing all courses:");
                 ArrayList<Course> allCourses = application.findCourse();
                 printCourses(allCourses);
                 break;

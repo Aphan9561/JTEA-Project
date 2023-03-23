@@ -14,8 +14,8 @@ public class LMSApplication {
     private UserList userList;
     
     private LMSApplication(){
-    this.courseList = CourseList.getInstance();
-    this.userList = UserList.getInstance();
+        this.courseList = CourseList.getInstance();
+        this.userList = UserList.getInstance();
     }
 
     public static LMSApplication getInstance() {
@@ -48,7 +48,7 @@ public class LMSApplication {
             }
             i++;
         }
-        return this.user;*/
+        return this.user;
         this.user = null;
         for(int i=0; i < userList.size(); i++) {
             if(userList.getUser().get(i).getUsername().equals(username)) {
@@ -56,8 +56,8 @@ public class LMSApplication {
                     this.user = userList.getUser().get(i);
                 }
             }
-        }
-        return this.user;
+        }*/
+        return user;
     }
 
     public ArrayList<Course> findCourse(String keyword){
