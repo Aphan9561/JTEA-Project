@@ -92,9 +92,9 @@ public class LMSApplication {
         return this.user.enrolledCourse;
     }
 
-    public boolean addCourse(String name, String description, String syllabus, Difficulty difficulty, Language language) {
+    public boolean addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language) {
         boolean created = true;
-        Course course = new Course(name, description, syllabus, difficulty, language);
+        Course course = new Course(author, name, description, syllabus, difficulty, language);
         return created;
     }
 
@@ -103,12 +103,12 @@ public class LMSApplication {
         //Put review onto course
     }
 
-    public Course createCourse(String name, String description, String syllabus, Difficulty difficulty, Language language){
-        Course course1 = new Course(name, description, syllabus, difficulty, language);
+    public Course createCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language){
+        Course course1 = new Course(author, name, description, syllabus, difficulty, language);
         if(course1!= null)
         {
             this.course = course1;
-            courseList.addCourse(name, description, syllabus, difficulty, language);
+            courseList.addCourse(author, name, description, syllabus, difficulty, language);
         }
         return course1;
     } 

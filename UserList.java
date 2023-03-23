@@ -45,9 +45,9 @@ public class UserList {
 		return null;
 	}
 
-    public User getUser(String userName, String password) {
+    public User getUser(String userName) {
 		for(User user : users) {
-			if(user.getUsername().equals(userName) && user.getPassword().equals(password)) {
+			if(user.getUsername().equals(userName)) {
 				return user;
 			}
 		}

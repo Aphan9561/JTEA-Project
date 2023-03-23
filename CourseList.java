@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseList {
     private static ArrayList<Course> courses;
@@ -17,8 +18,12 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(String name, Author author, String description, String syllabus, Difficulty difficulty, Language language){
-        courses.add(new Course(name, description, syllabus, difficulty, language));
+    public void addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language){
+        courses.add(new Course(author, name, description, syllabus, difficulty, language));
+    }
+
+    public void addModule(){
+
     }
 
     public ArrayList<Course> getCourse(String keyword){

@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 import java.util.zip.DataFormatException;
 /*
  * This is a UI that allows the user to give input
@@ -208,6 +209,12 @@ public class LMSUI {
 
     private Course createCourse()
     {
+        System.out.println("Author's username: ");
+        String author = keyboard.nextLine();
+        UUID authorId = 0;
+        if(application.findAuthorForCourse(author)){
+            authorId = application.getAuthor();
+        }
         System.out.println("Name:");
         String name = keyboard.nextLine();
         System.out.println("Difficulty (Options: Easy, Medium, or Hard): ");
@@ -246,7 +253,7 @@ public class LMSUI {
         String decription = keyboard.nextLine();
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
-        this.course = application.createCourse(name, decription, syallbus, difficulty2, language2);
+        this.course = application.createCourse(authorId, name, decription, syallbus, difficulty2, language2);
         return this.course;
     }
 
