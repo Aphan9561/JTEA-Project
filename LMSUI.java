@@ -52,7 +52,13 @@ public class LMSUI {
                 printEnrolledCoures(enrolledCourse);
                 break;
             case 4:
-                runAuthor();
+                if(this.user.getType().equals(AccountType.AUTHOR) )
+                {
+                    runAuthor();
+                }
+                else{
+                    System.out.println("Access denied. You are not an author!");
+                }
                 break;
             case 5:
                 running = false;
@@ -65,8 +71,6 @@ public class LMSUI {
        keyboard.close();
     }
 
-    // return a user here instead of void
-    // Why? Trying to understand why? How does this help? I have it set this.user equal to something valid every time. It is in a while until something valid happens- Eve
     private boolean login()
     {
         boolean loop = true;
@@ -137,7 +141,7 @@ public class LMSUI {
         return this.user;
     }
 
-    private Date convertDate(String birthdayDate) //This does not seem to work. Why?
+    private Date convertDate(String birthdayDate) 
     {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
         Date date = new Date();
@@ -204,7 +208,7 @@ public class LMSUI {
 
     private void editCourse()
     {
-        
+
     }
 
     private void printCourses(ArrayList<Course> courses)
