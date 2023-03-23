@@ -104,6 +104,10 @@ public class Course {
         return modules;
     }
 
+    public Module getModule(int num){
+        return modules.get(num);
+    }
+
     public void addModule(String title, ArrayList<Lesson> lessons){
         Module module = new Module(title, lessons);
         modules.add(module);

@@ -10,6 +10,7 @@ public class EnrolledCourse {
     private ArrayList<Grade> gradePerModule;
 
     public EnrolledCourse(Course course, boolean enrolled, Progress progress){
+        
         this.enrolled = enrolled;
         this.progress = progress;
     }
@@ -26,7 +27,7 @@ public class EnrolledCourse {
         getCurrentModule();
     }
 
-    private int getCurrentModule() {
+    public int getCurrentModule() {
         return currentModule;
     }
 }
