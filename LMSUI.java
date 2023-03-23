@@ -206,17 +206,67 @@ public class LMSUI {
     {
         System.out.println("Name:");
         String name = keyboard.nextLine();
+        System.out.println("Description:");
+        String description = keyboard.nextLine();
         System.out.println("Difficulty:");
-        String difficulty = keyboard.nextLine();
-        String language = keyboard.nextLine();
-        Course course = new Course(name, language, null, null);
+        String difficultyString = keyboard.nextLine();
+        Difficulty diffieculty = Difficulty.valueOf(difficultyString);
+        String languageString = keyboard.nextLine();
+        Language language = Language.valueOf(languageString);
+        Course course = new Course(name, description, diffieculty, language);
+        System.out.println("Add modules. How many");
+        int moduleNumber = keyboard.nextInt();
+        for(int i = 0; i < moduleNumber; i++)
+        {
+            addModule();
+        }
     }
 
     private void editCourse()
     {
+        System.out.println("What course would you like to edit?");
+        //get the courses of the author and print them
+        int choice = keyboard.nextInt();
+        //Enter the course
+        //Ask whether you would like add modules or add lesson
+        boolean run = true;
+        while(run == true)
+        {
+            choice = keyboard.nextInt();
+            switch(choice)
+            case 1:
+                System.out.println("Add modules. How many");
+                int moduleNumber = keyboard.nextInt();
+                for(int i = 0; i < moduleNumber; i++)
+                {
+                    addModule();
+                }
+            break;
+            case 2:
+                System.out.println("Add lesson. How many");
+                int lessonNumber = keyboard.nextInt();
+                for(int i = 0; i < lessonNumber; i++)
+                {
+                    addLesson();
+                }
+            break;
+            case 3:
+                run =false;
+            break;
+            default:
+            break;
+        }
+    }
+
+    private void addModule()
+    {
         System.out.println();
-        // switch(choice)
-        // case
+
+    }
+
+    private void addLesson()
+    {
+        
     }
 
     private void printCourses(ArrayList<Course> courses)
