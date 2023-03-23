@@ -10,7 +10,7 @@ import java.util.UUID;
 public class LMSApplication {
     private User user; 
     private Course course;
-    private User currentUser;
+    private User author;
     private CourseList courseList;
     private static LMSApplication lmsApplication;
     private UserList userList;
@@ -58,8 +58,14 @@ public class LMSApplication {
         return this.user;
     }
 
-    public User getCurrentUser() {
-		return currentUser;
+    public boolean findAuthorForCourse(String username){
+        if(!userList.haveUser(username)) return false;
+        author = userList.getUser(username);
+        return true;
+    }
+
+    public UUID getAuthor() {
+		return author.getId();
 	}
 
     public Course findCourse(String keyword){
