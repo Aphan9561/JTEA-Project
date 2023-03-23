@@ -197,7 +197,15 @@ public class LMSUI {
         }
     }
 
-    private void createCourse
+    private void createCourse()
+    {
+
+    }
+
+    private void editCourse()
+    {
+        
+    }
 
     private void printCourses(ArrayList<Course> courses)
     {

@@ -41,12 +41,10 @@ public class LMSApplication {
         while (userList.getUser() != null) {
             if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
             {
-                {
                     if(userList.getUser().get(i).getPassword().equalsIgnoreCase(password)) 
                     {
                         this.user = userList.getUser().get(i);
                     }
-                }
             }
             i++;
         }
