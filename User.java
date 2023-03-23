@@ -11,7 +11,6 @@ public class User {
     protected String username;
     protected String password;
     //protected ArrayList<EnrolledCourse> enrolledCourse;
-    //Eve Blom - I would recommand adding protected password to making login in easier. Password needs to be stored somewhere. If not here, where? Also add a getPassword method
     protected AccountType type;
 
     public User(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {

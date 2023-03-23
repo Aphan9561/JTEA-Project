@@ -26,11 +26,11 @@ public class LMSApplication {
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
-        User user1 = new User(firstName, lastName, email, birthday, username, password, Type); //Add password
+        User user1 = new User(firstName, lastName, email, birthday, username, password, Type); 
         if(user1!= null)
         {
             this.user = user1;
-            userList.addUser(firstName, lastName, email, birthday, username, Type);
+            userList.addUser(firstName, lastName, email, birthday, username, password, Type);
         }
         return user1;
     }
