@@ -159,9 +159,9 @@ public class DataWriter extends DataConstants{
         JSONObject moduleObject = new JSONObject();
 
         moduleObject.put(COURSE_MODULES_NAME, module.getTitle());
-        moduleObject.put(COURSE_MODULES_LESSON, module.getCurrentLesson());
+        moduleObject.put(COURSE_MODULES_LESSON, module.getLesson());
 
-        ArrayList<Lesson> lessons = module.getCurrentLesson();
+        ArrayList<Lesson> lessons = module.getLesson();
         JSONArray lessonArray = new JSONArray();
         for (int i =0; i<lessons.size(); i++){
             lessonArray.add(getLessonJSON(lessons.get(i)));
@@ -263,7 +263,7 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
     public static void main(String[] args){
-        saveUsers();
-        //saveCourses();
+        //saveUsers();
+        saveCourses();
     }
 }

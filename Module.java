@@ -32,7 +32,7 @@ import java.util.ArrayList;
         return title;
     }
 
-    public ArrayList<Lesson> getCurrentLesson() {
+    public ArrayList<Lesson> getLesson() {
         return lessons; 
     }
 
