@@ -35,7 +35,7 @@
                 "user":"05691ad3-8131-4ace-83cb-479cb636bcf9",
                 "comment":"I agree with your comment!"
             }]}]
-	}],
+	}]}],
 	"language":"PYTHON",
 	"students":[{"id": "a3d4c812-17bc-4e1d-bcae-442b556e63f5", "grades":[100,50,60,90,70]}],
 	"rating":4.33,
@@ -53,4 +53,4 @@
 	}]
 }
 ]
-}]
+

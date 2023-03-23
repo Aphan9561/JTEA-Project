@@ -122,7 +122,12 @@ public class DataLoader extends DataConstants{
                     modules.add(module);
                 }
 
+                //System.out.println(modules);
+
+                /*String temp = (String)courseJSON.get(COURSE_LANGUAGE);
+                System.out.println(temp);*/
                 Language language = makeLanguageEnum((String)courseJSON.get(COURSE_LANGUAGE));
+                //Language language = makeLanguageEnum("PYTHON");
 
                 JSONArray studentsJSON = (JSONArray)courseJSON.get(COURSE_STUDENTS);
                 ArrayList<Student> students = new ArrayList<Student>();
