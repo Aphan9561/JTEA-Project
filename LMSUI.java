@@ -233,8 +233,8 @@ public class LMSUI {
         while(run == true)
         {
             choice = keyboard.nextInt();
-            switch(choice)
-            case 1:
+            switch(choice){
+                case 1:
                 System.out.println("Add modules. How many");
                 int moduleNumber = keyboard.nextInt();
                 for(int i = 0; i < moduleNumber; i++)
@@ -255,6 +255,7 @@ public class LMSUI {
             break;
             default:
             break;
+            } 
         }
     }
 
