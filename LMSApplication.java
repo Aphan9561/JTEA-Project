@@ -26,7 +26,7 @@ public class LMSApplication {
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
-        User user1 = new User(firstName, lastName, email, birthday, username, Type); //Add password
+        User user1 = new User(firstName, lastName, email, birthday, username, password, Type); //Add password
         if(user1!= null)
         {
             this.user = user1;
@@ -42,9 +42,9 @@ public class LMSApplication {
             if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
             {
                 {
-                    if(userList.getUser().get(i).getPassword().equalsIgnoreCase(usernmame)) 
+                    if(userList.getUser().get(i).getPassword().equalsIgnoreCase(password)) 
                     {
-                    this.user = userList.getUser().get(i);
+                        this.user = userList.getUser().get(i);
                     }
                 }
             }
