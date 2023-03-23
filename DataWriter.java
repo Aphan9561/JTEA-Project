@@ -20,6 +20,7 @@ public class DataWriter extends DataConstants{
         for(int i=0; i< users.size(); i++) {
 			jsonUsers.add(getUserJSON(users.get(i)));
 		}
+
         try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
  
             file.write(jsonUsers.toJSONString());
@@ -45,7 +46,7 @@ public class DataWriter extends DataConstants{
     }
     
     public static String formattingDate(Date input){
-        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String date = formatter.format(input);;
         return date;
     }
@@ -58,6 +59,7 @@ public class DataWriter extends DataConstants{
         for(int i =0; i<courses.size(); i++){
             jsonCourses.add(getCourseJSON(courses.get(i)));
         }
+
         try (FileWriter file = new FileWriter(COURSE_FILE_NAME)) {
  
             file.write(jsonCourses.toJSONString());
@@ -77,7 +79,7 @@ public class DataWriter extends DataConstants{
         courseDetails.put(COURSE_LANGUAGE, course.getLanguage().toString());
         courseDetails.put(COURSE_DESCRIPTION, course.getDesciption());
         courseDetails.put(COURSE_SYLLABUS,course.getSyllabus());
-        courseDetails.put(COURSE_MODULES, course.getModule().toString());
+        courseDetails.put(COURSE_MODULES, course.getModule());
 
         ArrayList<Module> modules = course.getModule();
         JSONArray moduleArray = new JSONArray();
@@ -107,8 +109,22 @@ public class DataWriter extends DataConstants{
         ArrayList<Student> students = course.getStudent();
         JSONArray studentArray = new JSONArray();
 
-        for(int i = 0; i <students.size();i++){
-            studentArray.add(getStudentJSON(students.get(i)));
+        for(Student student: students){
+            JSONObject studentObject = new JSONObject();
+            studentObject.put(COURSE_STUDENTS_ID, student.getId().toString());
+            studentObject.put(COURSE_STUDENTS_GRADES, student.getGrades());
+    
+            ArrayList<Integer> grades = student.getGrades();
+            JSONArray gradeArray = new JSONArray();     
+            
+            for(Integer grade: grades){
+                JSONObject gradeObject = new JSONObject();
+                gradeObject.put(COURSE_STUDENTS_GRADES, grade);
+    
+                gradeArray.add(gradeObject);
+            }
+    
+            studentArray.add(studentObject);
         }
 
         courseDetails.put(COURSE_COMMENTS, course.getComment());
@@ -116,8 +132,24 @@ public class DataWriter extends DataConstants{
         ArrayList<Comment> comments = course.getComment();
         JSONArray commentArray = new JSONArray();
 
-        for(int i =0; i<comments.size(); i++){
-            commentArray.add(getCourseCommentJSON(comments.get(i)));
+        for(Comment comment: comments){
+            JSONObject commentDetails = new JSONObject();
+            commentDetails.put(COURSE_COMMENTS_USER, comment.getUser().toString());
+            commentDetails.put(COURSE_COMMENTS_COMMENT, comment.getComment().toString());
+            commentDetails.put(COURSE_COMMENTS_REPLIES, comment.getReply());
+
+            ArrayList<Reply> replies = comment.getReply();
+            JSONArray repliesArray = new JSONArray();
+
+            for(Reply reply: replies){
+                JSONObject replyObject = new JSONObject();
+                replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser().toString());
+                replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
+
+                repliesArray.add(replyObject);
+            }
+
+            commentArray.add(commentDetails);
         }
         
         return courseDetails;
@@ -154,69 +186,35 @@ public class DataWriter extends DataConstants{
 
         ArrayList<Quiz> quizzes = lesson.getQuiz();
         JSONArray quizArray = new JSONArray();
-        for(int i = 0; i<quizzes.size();i++){
-            quizArray.add(getQuizJSON(quizzes.get(i)));
+        for(Quiz quiz: quizzes){
+            JSONObject quizObject = new JSONObject();
+            quizObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, quiz.getQuestion());
+    
+            ArrayList<Question> questions = quiz.getQuestion();
+            JSONArray questionArray = new JSONArray();
+            for(Question question: questions){
+                JSONObject questionObject = new JSONObject();
+                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, question.getQuestion());
+                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, question.getAnswers());
+    
+                ArrayList<String> answers = question.getAnswers();
+                JSONArray answerArray = new JSONArray();
+                for(String answer: answers){
+                    JSONObject answerObject = new JSONObject();
+                    answerObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS,answer);
+    
+                    answerArray.add(answerObject);
+                }
+                
+                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
+    
+                questionArray.add(questionObject);
+            }    
+
+            quizArray.add(quizObject);
         }
 
         return lessonObject;
-    }
-
-    public static JSONObject getQuizJSON(Quiz quiz){
-        JSONObject quizObject = new JSONObject();
-        quizObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, quiz.getQuestion());
-
-        ArrayList<Question> questions = quiz.getQuestion();
-        JSONArray questionArray = new JSONArray();
-        for(int i = 0; i<questions.size();i++){
-            questionArray.add(getQuizQuestionJSON(questions.get(i)));
-        }
-        
-        return quizObject;
-    }
-
-    public static JSONObject getQuizQuestionJSON (Question question){
-        JSONObject questionObject = new JSONObject();
-        questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, question.getQuestion());
-        questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, question.getAnswers());
-
-        ArrayList<String> answers = question.getAnswers();
-        JSONArray answerArray = new JSONArray();
-        for(int i = 0; i<answers.size();i++){
-            answerArray.add(getQuizAnswerJSON(answers.get(i)));
-        }
-        
-        questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
-
-        return questionObject;                        
-    }
-
-    public static JSONObject getQuizAnswerJSON(String answer){
-        JSONObject answerObject = new JSONObject();
-        answerObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS,answer);
-
-        return answerObject;
-    }
-
-    public static JSONObject getStudentJSON (Student student){
-        JSONObject studentObject = new JSONObject();
-        studentObject.put(COURSE_STUDENTS_ID, student.getId().toString());
-        studentObject.put(COURSE_STUDENTS_GRADES, student.getGrades());
-
-        ArrayList<Integer> grades = student.getGrades();
-        JSONArray gradeArray = new JSONArray();     
-        
-        for(int i = 0; i<grades.size(); i++){
-            gradeArray.add(getGradeJSON(grades.get(i)));
-        }
-
-        return studentObject;
-    }
-
-    public static JSONObject getGradeJSON(int grade){
-        JSONObject gradeObject = new JSONObject();
-        gradeObject.put(COURSE_STUDENTS_GRADES, grade);
-
-        return gradeObject;
     }
 
     public static JSONObject getModuleCommentJSON(Comment comment){
@@ -227,43 +225,15 @@ public class DataWriter extends DataConstants{
 
         ArrayList<Reply> replies = comment.getReply();
         JSONArray repliesArray = new JSONArray();
-        for(int i = 0;i<replies.size();i++){
-            repliesArray.add(getModuleReplyJSON(replies.get(i)));
+        for(Reply reply: replies){
+            JSONObject replyObject = new JSONObject();
+            replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_USER, reply.getUser());
+            replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_COMMENT, reply.getComment());
+
+            repliesArray.add(replyObject);
         }
 
         return commentObject;
-    }
-
-    public static JSONObject getCourseCommentJSON(Comment comment){
-        JSONObject commentDetails = new JSONObject();
-        commentDetails.put(COURSE_COMMENTS_USER, comment.getUser().toString());
-        commentDetails.put(COURSE_COMMENTS_COMMENT, comment.getComment().toString());
-        commentDetails.put(COURSE_COMMENTS_REPLIES, comment.getReply());
-
-        ArrayList<Reply> replies = comment.getReply();
-        JSONArray repliesArray = new JSONArray();
-
-        for(int i = 0;i<replies.size();i++){
-            repliesArray.add(getCourseReplyJSON(replies.get(i)));
-        }
-        
-        return commentDetails;
-    }
-
-    public static JSONObject getModuleReplyJSON(Reply reply){
-        JSONObject replyObject = new JSONObject();
-        replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_USER, reply.getUser());
-        replyObject.put(COURSE_MODULES_COMMENTS_REPLIES_COMMENT, reply.getComment());
-
-        return replyObject;
-    }
-
-    public static JSONObject getCourseReplyJSON(Reply reply){
-        JSONObject replyObject = new JSONObject();
-        replyObject.put(COURSE_COMMENTS_REPLIES_USER, reply.getUser().toString());
-        replyObject.put(COURSE_COMMENTS_REPLIES_COMMENT, reply.getComment());
-
-        return replyObject;
     }
 
     public static void saveFAQs() {
@@ -293,6 +263,7 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
     public static void main(String[] args){
-        saveCourses();
+        saveUsers();
+        //saveCourses();
     }
 }
