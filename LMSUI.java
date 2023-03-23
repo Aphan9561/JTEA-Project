@@ -210,10 +210,43 @@ public class LMSUI {
     {
         System.out.println("Name:");
         String name = keyboard.nextLine();
-        System.out.println("Difficulty:");
+        System.out.println("Difficulty (Options: Easy, Medium, or Hard): ");
         String difficulty = keyboard.nextLine();
-        String language = keyboard.nextLine();
-        Course course = new Course(name, language, null, null);
+        Difficulty difficulty2;
+        if(difficulty.equalsIgnoreCase("easy")){
+            difficulty2 = diffStatus.EASY;
+        } else if (difficulty.equalsIgnoreCase("medium")){
+            difficulty2 = diffStatus.MEDIUM;
+        } else if(difficulty.equalsIgnoreCase("hard")){
+            difficulty2 = diffStatus.HARD;
+        } else {
+            System.out.println("Incorrect input. Course has been set to EASY.");
+            difficulty2 = diffStatus.EASY;
+        }
+        Language language2 = lang.PYTHON;
+        boolean validLanguage = false;
+        while(validLanguage){
+            System.out.println("Language (Options: Python, Javascript, or GitHub): ");
+            String language = keyboard.nextLine(); 
+            if(language.equalsIgnoreCase("Python")){
+                language2 = lang.PYTHON;
+                validLanguage = true;
+            } else if(language.equalsIgnoreCase("JavaScript")){
+                language2 = lang.JAVASCRIPT;
+                validLanguage = true;
+            } else if(language.equalsIgnoreCase("GitHub")){
+                language2 = lang.GITHUB;
+                validLanguage = true;
+            } else {
+                System.out.println("Incorrect input. Try again.");
+                validLanguage = false;
+            }
+        }
+        System.out.println("Decription: ");
+        String decription = keyboard.nextLine();
+        System.out.println("Syllabus: ");
+        String syallbus = keyboard.nextLine();
+        Course course = new Course(name, decription, syallbus, difficulty2, language2);
     }
 
     private void editCourse()
