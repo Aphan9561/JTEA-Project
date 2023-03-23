@@ -61,13 +61,21 @@ public class LMSApplication {
         return this.user;
     }
 
-    public ArrayList<Course> findCourse(String keyword){
+    public Course findCourse(String keyword){
         ArrayList<Course> resultList = new ArrayList<>();
-        for(courseList.)
+        for(int i = 0; i < resultList.size(); i++)
         {
-            this.courseList.getCourse(keyword);
+            if(resultList.get(i).getTitle() == keyword){
+                return resultList.get(i);
+            } else if (resultList.get(i).getDesciption() == keyword){
+                return resultList.get(i);
+            } else if (resultList.get(i).getSyllabus() == keyword){
+                return resultList.get(i);
+            } 
+           // this.courseList.getCourse(keyword);
         }
-        return resultList;
+        System.out.println("Sorry, we could not find what you were looking for.");
+        return null;
     }
 
     public ArrayList<Course> findCourse() {
@@ -80,7 +88,7 @@ public class LMSApplication {
     }
 
     public ArrayList<EnrolledCourse> getCurrentCourse() {
-        return this.user.getEnrolledCourse;
+        return this.user.enrolledCourse;
     }
 
     public boolean addCourse(String name, String description, Difficulty difficulty, Language language) {
