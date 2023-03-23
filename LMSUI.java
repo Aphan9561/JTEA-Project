@@ -15,6 +15,7 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
+    private Course course;
     private Difficulty diffStatus;
     private Language lang; 
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","Quit"};
@@ -42,8 +43,8 @@ public class LMSUI {
                 System.out.println("What would would like to search for? Suggested terms to get the best result:/nFor lanuages: Python, Java/nDiffeculty: Easy, Medium, Hard");
                 String keyword = keyboard.nextLine();
                 keyword.toUpperCase();
-                ArrayList<Course> resultList = application.findCourse(keyword);
-                printCourses(resultList);
+                //ArrayList<Course> resultList = application.findCourse(keyword);
+                //printCourses(resultList);
                 break;
             case 2:
                 System.out.println("Printing all courses:");
@@ -100,7 +101,10 @@ public class LMSUI {
                     }
                     break;
                 case 3:
-                    loginIn();
+                    if(loginIn() != null)
+                    {
+                        return true;
+                    }
                     break;
                 case 4: 
                     loop = false;
@@ -127,7 +131,7 @@ public class LMSUI {
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
-        this. user = application.createAccount(firstName, lastName, email, date, username, password, accountType);
+        this.user = application.createAccount(firstName, lastName, email, date, username, password, accountType);
         return this.user;
     }
 
@@ -202,7 +206,7 @@ public class LMSUI {
         }
     }
 
-    private void createCourse()
+    private Course createCourse()
     {
         System.out.println("Name:");
         String name = keyboard.nextLine();
@@ -242,7 +246,8 @@ public class LMSUI {
         String decription = keyboard.nextLine();
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
-        Course course = new Course(name, decription, syallbus, difficulty2, language2);
+        this.course = application.createCourse(name, decription, syallbus, difficulty2, language2);
+        return this.course;
     }
 
     private void editCourse()

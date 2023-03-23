@@ -17,8 +17,8 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(String name, Author author, String description, Difficulty difficulty, Language language){
-        courses.add(new Course(name, description, difficulty, language));
+    public void addCourse(String name, Author author, String description, String syllabus, Difficulty difficulty, Language language){
+        courses.add(new Course(name, description, syllabus, difficulty, language));
     }
 
     public ArrayList<Course> getCourse(String keyword){

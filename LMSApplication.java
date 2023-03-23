@@ -103,8 +103,14 @@ public class LMSApplication {
         //Put review onto course
     }
 
-    public void enterCourse(String name, String description, String syllabus, Difficulty difficulty, Language language){
-        Course course = new Course(name, description, syllabus, difficulty, language);
+    public Course createCourse(String name, String description, String syllabus, Difficulty difficulty, Language language){
+        Course course1 = new Course(name, description, syllabus, difficulty, language);
+        if(course1!= null)
+        {
+            this.course = course1;
+            courseList.addCourse(name, description, syllabus, difficulty, language);
+        }
+        return course1;
     } 
 
     public void nextLesson(){
