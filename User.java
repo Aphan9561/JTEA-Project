@@ -10,7 +10,7 @@ public class User {
     protected Date birthday;
     protected String username;
     protected String password;
-    //protected ArrayList<EnrolledCourse> enrolledCourse;
+    protected ArrayList<EnrolledCourse> enrolledCourse;
     protected AccountType type;
 
     public User(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
@@ -22,6 +22,7 @@ public class User {
         this.password = password;
         this.username = username;
         this.type = type;
+        enrolledCourse = new ArrayList();
     }
 
     public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
@@ -93,14 +94,24 @@ public class User {
      * }
      */
 
-     public void giveStars() {
+    //  public void giveStars() {
         
-     }
+    //  }
 
      // update grade method
-     public void updateGrade(Course course, int moduleNum, double grade){
+     //public void updateGrade(EnrolledCourse course, int moduleNum, double grade){
         //this.course = course;
-     }
+
+        //loop through enrolled courses
+        // for(int i = 0; i< enrolledCourse.size(); i++){
+        //     if (enrolledCourse.get(i) == course){
+        //         //getModule(enrolledCourse.get(i).getCurrentModule());
+        //     }
+        // }
+        //find the course
+        // if course exists update it to include the grade for the given module
+        //otherwise make a new course and update the grade in the module
+     //}
 
      /*public static void main(String[] args){
         User user = new User("Anne", "Smith", "ASmith@gmail.com", new Date(), "ASmith", AccountType.STUDENT);

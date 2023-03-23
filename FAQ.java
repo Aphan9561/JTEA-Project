@@ -23,7 +23,7 @@ public class FAQ {
     }
 
     public void answerQuestion(String answer) {
-        
+        answers.add(answer);
     }
 
     public String getQuestion(){

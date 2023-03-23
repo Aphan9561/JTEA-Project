@@ -7,6 +7,7 @@ public class Quiz {
     private ArrayList<Question> tempQuestions = new ArrayList<Question>();
     //private int[] grades = new int[quizSize];
     //private String[] answers = new String[maxAnswers];
+    private int stars;
 
     public Quiz(ArrayList<Question> question) {
         questions.addAll(question);
@@ -34,6 +35,17 @@ public class Quiz {
             }
         }
         return (counter/quizSize)*100;
+    }
+
+    public String giveStars(double score) {
+        if(score >= 90){
+            stars = stars +3;
+        } else if (score < 90 && score >= 80){
+            stars = stars +2;
+        } else if (score < 80 && score >= 70){
+            stars = stars +1;
+        } 
+        return "You have "+ stars + "star(s)";
     }
 
 
