@@ -97,29 +97,25 @@ public class LMSApplication {
         Course course = new Course(name, description, difficulty, language);
     } 
 
-    //
     public void nextLesson(){
-
+        
 
     }
 
-    //
     public void answerQuestion(){
 
     }
 
-    //
     public Quiz getQuiz(Quiz quiz){
-        courseList.getCourse(quiz);
         return quiz;
     }
 
-    //
-    public void addModule(Module Module){
-
+    public void addModule(String title, ArrayList<Lesson> lessons){
+        Module module = new Module(title, lessons);
+        
     }
 
-    public void addLesson(Lesson lesson){
-        
+    public void addLesson(String content, String title, Quiz quiz){
+        Lesson lesson2 = new Lesson(content, title, quiz);
     }
 }
