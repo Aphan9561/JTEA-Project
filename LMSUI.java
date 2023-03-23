@@ -131,19 +131,15 @@ public class LMSUI {
         return this.user;
     }
 
-    private void loginIn()
+    private User loginIn()
     {
         System.out.println("Please enter your username below."); 
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
-        if(application.login(username, password)){
-            User currentUser = application.getCurrentUser();
-            System.out.println("Welcome " + currentUser.getFirstName() + " " + currentUser.getLastName() + "!");
-        } else {
-            System.out.println("Invalid Username");
-        }
-
+        this.user = application.login(username, password);
+        System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName());
+        return this.user;
     }
 
     private Date convertDate(String birthdayDate) 

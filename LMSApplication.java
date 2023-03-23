@@ -37,21 +37,16 @@ public class LMSApplication {
         return user1;
     }
 
-    public boolean login(String username, String password){
+    public User login(String username, String password){
         /*int i = 0;
         this.user = null;
         while (userList.getUser() != null) {
             if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
-            {
-                    if(userList.getUser().get(i).getPassword().equalsIgnoreCase(password)) 
-                    {
-                        this.user = userList.getUser().get(i);
-                    }
+                public User login(String usernmame, String password){
             }
             i++;
         }
-        return this.user;
-        
+        return this.user;*/
         this.user = null;
         for(int i=0; i < userList.size(); i++) {
             if(userList.getUser().get(i).getUsername().equals(username)) {
@@ -60,14 +55,7 @@ public class LMSApplication {
                 }
             }
         }
-        return this.user;*/
-
-        if(!userList.haveUser(username)){
-            return false;
-        }
-
-        currentUser = userList.getUser(username, password);
-        return true;
+        return this.user;
     }
 
     public User getCurrentUser() {
