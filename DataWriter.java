@@ -183,37 +183,31 @@ public class DataWriter extends DataConstants{
         lessonObject.put(COURSE_MODULES_LESSON_TITLE, lesson.getTitle());
         lessonObject.put(COURSE_MODULES_LESSON_CONTENT, lesson.getContent());
 
-        ArrayList<Quiz> quizzes = lesson.getQuiz();
-        JSONArray quizArray = new JSONArray();
-        for(Quiz quiz: quizzes){
-            JSONObject quizObject = new JSONObject();
+        lessonObject.put(COURSE_MODULES_LESSON_QUIZ, lesson.getQuiz());
 
-            ArrayList<Question> questions = quiz.getQuestion();
-            JSONArray questionArray = new JSONArray();
-            for(Question question: questions){
-                JSONObject questionObject = new JSONObject();
-                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, question.getQuestion());
+        ArrayList<Question> questions = lesson.getQuiz().getQuestion();
+        JSONArray questionArray = new JSONArray();
+        for(Question question: questions){
+            JSONObject questionObject = new JSONObject();
+            questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, question.getQuestion());
+
+            ArrayList<String> answers = question.getAnswers();
+            JSONArray answerArray = new JSONArray();
+            for(String answer: answers){
+                JSONObject answerObject = new JSONObject();
+                answerObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS,answer);
+
+                answerArray.add(answerObject);
+            }
+
+            questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, answerArray);
+            questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
+
+            questionArray.add(questionObject);
+        }  
+
+        lessonObject.put(COURSE_MODULES_LESSON_QUIZ_QUIZQUESTIONS, questionArray);
     
-                ArrayList<String> answers = question.getAnswers();
-                JSONArray answerArray = new JSONArray();
-                for(String answer: answers){
-                    JSONObject answerObject = new JSONObject();
-                    answerObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS,answer);
-    
-                    answerArray.add(answerObject);
-                }
-
-                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, answerArray);
-                questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_CORRECTANS, question.getCorrectAnswer());
-    
-                questionArray.add(questionObject);
-            }    
-
-            quizObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_QUESTION, questionArray);
-            quizArray.add(quizObject);
-        }
-        lessonObject.put(COURSE_MODULES_LESSON_QUIZ, quizArray);
-
         return lessonObject;
     }
 

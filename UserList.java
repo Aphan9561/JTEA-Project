@@ -17,10 +17,23 @@ public class UserList {
         return userList;
     }
 
-    public void addUser(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type)
+    public boolean haveUser(String userName) {
+		for(User user : users) {
+			if(user.getUsername().equals(userName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+    public boolean addUser(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type)
     {
+        if(haveUser(username))
+            return false;
+    
         users.add(new User(firstName, lastName,email, birthday, username, password, type));
         DataWriter.saveUsers();
+        return true;
     }
 
     public User getUser(UUID id) {
@@ -29,7 +42,6 @@ public class UserList {
 				return user;
 			}
 		}
-		
 		return null;
 	}
 

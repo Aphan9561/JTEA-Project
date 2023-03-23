@@ -15,8 +15,8 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
-    final private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Go to author menu","5: Quit"};
-    private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","4: Go to user menu","5: Quit"}; 
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","Quit"};
+    private String[] authorMenu = {"Create course","Enter course  to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
     {
@@ -76,7 +76,7 @@ public class LMSUI {
         boolean loop = true;
         while(loop == true)
         {
-            System.out.println("To create an user account please type 1. To create an author account please type 2. \nTo login please type 3");
+            System.out.println("To create an user account please type 1. \nTo create an author account please type 2. \nTo login please type 3");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
 
@@ -157,7 +157,7 @@ public class LMSUI {
         System.out.println("Hello! Welcome to J Tea's system. Please press the number one the side to do that");
         for(int i = 0; i < menu.length; i++)
         {
-            System.out.println(menu[i]);
+            System.out.println(i+1+": "+menu[i]);
         }
     }
     private void displayAuthorMenu()
@@ -165,7 +165,7 @@ public class LMSUI {
         System.out.println("Hello to the author side. Only use this side to make and edit course. Not able to do course in this mode");
         for(int i = 0; i < authorMenu.length; i++)
         {
-            System.out.println(authorMenu[i]);
+            System.out.println(i+1+": "+authorMenu[i]);
         }
     }
 
@@ -214,8 +214,8 @@ public class LMSUI {
     private void editCourse()
     {
         System.out.println();
-        switch(choice)
-        case
+        // switch(choice)
+        // case
     }
 
     private void printCourses(ArrayList<Course> courses)
