@@ -279,7 +279,7 @@ public class LMSUI {
                 }
             break;
             case 3:
-                run =false;
+                run = false;
             break;
             default:
             break;
@@ -287,15 +287,28 @@ public class LMSUI {
         }
     }
 
-    private void addModule()
+    private Module addModule()
     {
-        System.out.println();
-
+        System.out.println("What is the title?");
+        String title = keyboard.nextLine();
+        System.out.println("How many lessons?");
+        ArrayList<Lesson> lessons = new ArrayList<>();
+        int lessonNumber = keyboard.nextInt();
+        for(int i = 0; i < lessonNumber; i++)
+        {
+            Lesson lesson = addLesson();
+            lessons.add(lesson);
+        }
+        Module module = application.CreateModule(String title, ArrayList<Lesson> lessons);
     }
 
-    private void addLesson()
+    private Lesson addLesson()
     {
-        
+        String title;
+        String content;
+        Quiz  quiz;
+        Lesson lesson = new application.createLesson(String title, String content, Quiz quiz);
+        return lesson;
     }
 
     private void printCourses(ArrayList<Course> courses)
