@@ -31,9 +31,7 @@ public class Lesson {
     public String toString() {
         String result =  "Title: "+ this.title +
                         "\nContent: " + this.content;
-        for(Quiz quiz : quizzes) {
-            result += quiz;
-        }
+                        result += "\nQuiz: " + quiz + "\n";
         result += "\n";
         return result;
     }
