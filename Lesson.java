@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class Lesson {
     private String content;
     private String title;
-    private ArrayList<Quiz> quiz = new ArrayList<Quiz>();
+    private ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
 
     public Lesson(String content, String title, ArrayList<Quiz> quizzes) {
         this.content = content;
         this.title = title;
-        quiz.addAll(quizzes);
+        quizzes.addAll(quizzes);
     }
 
     public String getTitle(){
@@ -25,10 +25,17 @@ public class Lesson {
     }
 
     public ArrayList<Quiz> getQuiz(){
-        return quiz;
+        return quizzes;
     }
 
     public String toString() {
-        return this.title+"\n "+this.content;
+        String result =  "Title: "+ this.title +
+                        "\n***********\n" + this.content +
+                        "\n***********\n";
+        for(Quiz quiz : quizzes) {
+            result += quiz;
+        }
+        result += "\n";
+        return result;
     }
 }

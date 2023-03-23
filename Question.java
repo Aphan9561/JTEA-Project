@@ -26,4 +26,16 @@ public class Question {
     public int getCorrectAnswer(){
         return correctAnswer;
     }
+
+    public String toString() {
+        String result = "\n" + question;
+        for(int i=0; i < answers.size(); i++) {
+            result += (i+1);
+            result += ". ";
+            result += answers.get(i);
+            result += "\n";
+        }
+        result += "\n";
+        return result;
+    }
 }

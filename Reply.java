@@ -16,4 +16,9 @@ public class Reply {
     public UUID getUser(){
         return user;
     }
+
+    public String toString() {
+        String result = "\n --> " + user + ": " + comment + "\n";
+        return result;
+    }
 }

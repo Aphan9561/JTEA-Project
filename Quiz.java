@@ -40,5 +40,14 @@ public class Quiz {
     public ArrayList<Question> getQuestion(){
         return questions;
     }
+
+    public String toString() {
+        String result = "~Quiz~ \n";
+        for(Question question : questions) {
+            result+=question;
+        }
+        result += "\n";
+        return result;
+    }
     
 }

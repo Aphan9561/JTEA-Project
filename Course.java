@@ -114,11 +114,24 @@ public class Course {
     }
 
     public String toString(){
-        String result = "Course ID: " + id + "\nDifficulty: " + difficulty + "\nName: " + name + "\nDescription: " + description + "\nSyllabus: " + syllabus + "\nAuthor ID: " + author + "\nModules: " + modules + 
-                "\nLanguage: "+language+
-                "\nRating: "+rating+
-                "\nReviews: "+reviews+
-                "\nComments: "+comments;
+        String result = "Course ID: " + id + "\nDifficulty: " + difficulty + "\nName: " + name + "\nDescription: " + description + "\nSyllabus: " + syllabus + "\nAuthor ID: " + author;
+                result += "\nModules: ";
+        for(Module module : modules) {
+            result += module;
+        }
+                result += "\nLanguage: "+language+"\nActive Students:\n";
+        for(Student student : students) {
+            result += student;
+        }
+                result += "\nRating: "+rating;
+                result += "\nReviews:";
+        for(Review review : reviews) {
+            result += review;
+        }
+                result += "\nComments: ";
+        for(Comment comment : comments) {
+            result += comment;
+        }
         return result;
     }
 

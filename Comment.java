@@ -25,9 +25,13 @@ public class Comment {
     }
 
     public String toString(){
-        return "Comment: "+comment+ " "+
-                "\nUser: "+user+
-                "\nReplies: "+replies;
+        String result = user + ": " + comment + "\n";
+        result += "Replies: \n";
+        for(Reply reply : replies) {
+            result += reply;
+        }
+        result += "\n";
+        return result;
     }
 
 }

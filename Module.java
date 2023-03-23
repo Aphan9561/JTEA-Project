@@ -39,4 +39,18 @@ import java.util.ArrayList;
     public ArrayList<Comment> getComment(){
         return comments;
     }
+
+    public String toString() {
+        String result = "Title: " + title + "\n";
+        result += "Lessons:\n";
+        for(Lesson lesson : lessons) {
+            result += lesson;
+        }
+        result += "Comments: \n";
+        for(Comment comment : comments) {
+            result += comment;
+        }
+        result += "\n";
+        return result;
+    }
  }

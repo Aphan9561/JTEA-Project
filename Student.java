@@ -24,7 +24,12 @@ public class Student {
     }
 
     public String toString(){
-        return "Student id: "+id+
-            "Student grades: "+grades;
+        String result = "Student ID: " + id + "\tGrades: ";
+        for(Integer grade : grades) {
+            result += grade + ", ";
+        }
+        result += "\n";
+        return result;
+
     }
 }

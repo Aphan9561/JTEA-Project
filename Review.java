@@ -29,8 +29,7 @@ public class Review {
     }
 
     public String toString(){
-        return "User: "+user+
-            "Rating: "+rating+
-            "Comment: "+comment;
+        String result = rating+" stars\t"+user+ ": \n"+comment+"\n";
+        return result;
     }
 }
