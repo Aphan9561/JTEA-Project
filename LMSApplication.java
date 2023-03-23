@@ -48,7 +48,8 @@ public class LMSApplication {
             }
             i++;
         }
-        return this.user;
+        return this.user;*/
+
         this.user = null;
         for(int i=0; i < userList.size(); i++) {
             if(userList.getUser().get(i).getUsername().equals(username)) {
@@ -56,8 +57,8 @@ public class LMSApplication {
                     this.user = userList.getUser().get(i);
                 }
             }
-        }*/
-        return user;
+        }
+        return this.user;
     }
 
     public ArrayList<Course> findCourse(String keyword){
