@@ -44,7 +44,8 @@ public class Quiz {
     public String toString() {
         String result = "~Quiz~ \n";
         for(Question question : questions) {
-            result+=question;
+            result += question;
+            System.out.println("Added question");
         }
         result += "\n";
         return result;

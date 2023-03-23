@@ -31,6 +31,7 @@ public class Question {
         String result = "\n" + question;
         for(String answer: answers) {
             result += answer;
+            System.out.println("Added answer");
         }
         result += "\n";
         return result;

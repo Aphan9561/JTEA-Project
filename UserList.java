@@ -40,4 +40,8 @@ public class UserList {
     public void saveUsers(){
         DataWriter.saveUsers();
     }
+
+    public int size() {
+        return users.size();
+    }
 }
