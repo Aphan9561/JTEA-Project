@@ -15,6 +15,8 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
+    private Difficulty diffStatus;
+    private Language lang; 
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","Quit"};
     private String[] authorMenu = {"Create course","Enter course  to edit course ","Go to user menu","Quit"}; 
 
@@ -98,10 +100,7 @@ public class LMSUI {
                     }
                     break;
                 case 3:
-                     if(loginIn() != null)
-                     {
-                        return true;
-                     }   
+                    loginIn();
                     break;
                 case 4: 
                     loop = false;
@@ -132,14 +131,19 @@ public class LMSUI {
         return this.user;
     }
 
-    private User loginIn()
+    private void loginIn()
     {
         System.out.println("Please enter your username below."); 
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
-        this.user = application.login(username, password);
-        return this.user;
+        if(application.login(username, password)){
+            User currentUser = application.getCurrentUser();
+            System.out.println("Welcome " + currentUser.getFirstName() + " " + currentUser.getLastName() + "!");
+        } else {
+            System.out.println("Invalid Username");
+        }
+
     }
 
     private Date convertDate(String birthdayDate) 
@@ -206,20 +210,10 @@ public class LMSUI {
     {
         System.out.println("Name:");
         String name = keyboard.nextLine();
-        System.out.println("Description:");
-        String description = keyboard.nextLine();
         System.out.println("Difficulty:");
-        String difficultyString = keyboard.nextLine();
-        Difficulty diffieculty = Difficulty.valueOf(difficultyString);
-        String languageString = keyboard.nextLine();
-        Language language = Language.valueOf(languageString);
-        Course course = new Course(name, description, diffieculty, language);
-        System.out.println("Add modules. How many");
-        int moduleNumber = keyboard.nextInt();
-        for(int i = 0; i < moduleNumber; i++)
-        {
-            addModule();
-        }
+        String difficulty = keyboard.nextLine();
+        String language = keyboard.nextLine();
+        Course course = new Course(name, language, null, null);
     }
 
     private void editCourse()

@@ -15,12 +15,13 @@ public class Course {
     private ArrayList<Review> reviews = new ArrayList<Review>();
     private ArrayList<Comment> comments = new ArrayList<Comment>();
 
-    public Course(String name, String description, Difficulty difficulty, Language language){
+    public Course(String name, String description, String syllabus, Difficulty difficulty, Language language){
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
         this.language =language;
+        this.syllabus = syllabus;
         /*reviews = new ArrayList<>();
         modules = new ArrayList<>();
         comments = new ArrayList<>();*/

@@ -9,6 +9,8 @@ import java.util.UUID;
  */
 public class LMSApplication {
     private User user; 
+    private Course course;
+    private User currentUser;
     private CourseList courseList;
     private static LMSApplication lmsApplication;
     private UserList userList;
@@ -35,7 +37,7 @@ public class LMSApplication {
         return user1;
     }
 
-    public User login(String username, String password){
+    public boolean login(String username, String password){
         /*int i = 0;
         this.user = null;
         while (userList.getUser() != null) {
@@ -48,8 +50,8 @@ public class LMSApplication {
             }
             i++;
         }
-        return this.user;*/
-
+        return this.user;
+        
         this.user = null;
         for(int i=0; i < userList.size(); i++) {
             if(userList.getUser().get(i).getUsername().equals(username)) {
@@ -58,9 +60,20 @@ public class LMSApplication {
                 }
             }
         }
-        return this.user;
+        return this.user;*/
+
+        if(!userList.haveUser(username)){
+            return false;
+        }
+
+        currentUser = userList.getUser(username, password);
+        return true;
     }
 
+    public User getCurrentUser() {
+		return currentUser;
+	}
+    
     public ArrayList<Course> findCourse(String keyword){
         ArrayList<Course> resultList = new ArrayList<>();
         for(courseList.)
@@ -83,19 +96,19 @@ public class LMSApplication {
         return this.user.getEnrolledCourse;
     }
 
-    public boolean addCourse(String name, String description, Difficulty difficulty, Language language) {
+    public boolean addCourse(String name, String description, String syllabus, Difficulty difficulty, Language language) {
         boolean created = true;
-        Course course = new Course(name, description, difficulty, language);
+        Course course = new Course(name, description, syllabus, difficulty, language);
         return created;
     }
 
-    public void courseReview(double rating, String comment, UUID id){
-        Review review = new Review(rating, comment, id);
+    public void courseReview(double rating, String comment, User userName){
+        course.addReview(userName, rating, comment);
         //Put review onto course
     }
 
-    public void enterCourse(String name, String description,  Difficulty difficulty, Language language){
-        Course course = new Course(name, description, difficulty, language);
+    public void enterCourse(String name, String description, String syllabus, Difficulty difficulty, Language language){
+        Course course = new Course(name, description, syllabus, difficulty, language);
     } 
 
     public void nextLesson(){
