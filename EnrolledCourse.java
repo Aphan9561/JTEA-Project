@@ -6,8 +6,8 @@ public class EnrolledCourse {
     private int progressPercentage;
     private int currentModule;
     private int currentLesson;
-    private Grade grade;
-    private ArrayList<Grade> gradePerModule;
+    // private Grade grade;
+    // private ArrayList<Grade> gradePerModule;
 
     public EnrolledCourse(Course course, boolean enrolled, Progress progress){
         this.enrolled = enrolled;

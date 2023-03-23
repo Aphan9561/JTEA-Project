@@ -85,13 +85,11 @@ public class Course {
         return reviews;
     }
 
-    /* 
-    public void addReview(User user, int rating, String comment){
-        Review review = new Review(rating, comment, user);
+    public void addReview(User user, double rating, String comment){
+        Review review = new Review(rating, comment, user.getId());
         reviews.add(review);
     }
-    */
-
+    
     public ArrayList<Student> getStudent(){
         return students;
     }
