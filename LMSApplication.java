@@ -62,7 +62,7 @@ public class LMSApplication {
 		return currentUser;
 	}
 
-    public ArrayList<Course> findCourse(String keyword){
+    public Course findCourse(String keyword){
         ArrayList<Course> resultList = new ArrayList<>();
         for(int i = 0; i < resultList.size(); i++)
         {
