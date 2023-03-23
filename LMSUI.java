@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.zip.DataFormatException;
@@ -9,11 +10,10 @@ import java.util.zip.DataFormatException;
  */
 
 public class LMSUI {
-    // more constants
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
-    private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Go to author menu","5: Quit"};
+    final private String[] menu = {"1: Find course by keyword","2: Find course","3: Get current courses ", "4: Go to author menu","5: Quit"};
     private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","4: Go to user menu","5: Quit"}; 
 
     public LMSUI() 
@@ -24,26 +24,30 @@ public class LMSUI {
 
     public void run()
     {
-        loginIn();
+        login();
         boolean running = true;
-       while(running == true)
-       {
-        displayMainMenu(); //Library example
-        int choice = keyboard.nextInt();
-        keyboard.nextLine();
-        switch (choice) 
+        while(running == true)
+        {
+            displayMainMenu(); //Library example
+            int choice = keyboard.nextInt();
+            keyboard.nextLine();
+            switch (choice) 
         {
             case 1:
                 System.out.println("What would would like to search for? Suggested terms to get the best result:/nFor lanuages: Python, Java/nDiffeculty: Easy, Medium, Hard");
                 String keyword = keyboard.nextLine();
                 keyword.toUpperCase();
-                application.findCourse(keyword);
+                ArrayList<Course> resultList = application.findCourse(keyword);
+                printCourses(resultList);
                 break;
             case 2:
-                application.findCourse(); 
+            System.out.println("Printing all courses:");
+                ArrayList<Course> allCourses = application.findCourse();
+                printCourses(allCourses);
                 break;
             case 3:
-                application.getCurrentCourse();
+                ArrayList<EnrolledCourse> enrolledCourse = application.getCurrentCourse();
+                printEnrolledCoures(enrolledCourse);
                 break;
             case 4:
                 runAuthor();
@@ -61,52 +65,45 @@ public class LMSUI {
 
     // return a user here instead of void
     // Why? Trying to understand why? How does this help? I have it set this.user equal to something valid every time. It is in a while until something valid happens- Eve
-    private void loginIn()
+    private boolean login()
     {
-        System.out.println("To create an user account please type 1. To create an author account please type 2. \nTo login please type 3");
-        int choice = keyboard.nextInt();
-        keyboard.nextLine();
-        boolean haveUser = false;
-        while(haveUser == false)
+        boolean loop = true;
+        while(loop == true)
         {
+            System.out.println("To create an user account please type 1. To create an author account please type 2. \nTo login please type 3");
+            int choice = keyboard.nextInt();
+            keyboard.nextLine();
+
             switch(choice)
             {
                 case 1:
                     //Sign up as user
-                    this.user = signUp(AccountType.STUDENT);
-                    if(this.user != null)
+                    if(signUp(AccountType.STUDENT) != null)
                     {
-                        haveUser = true;
+                        return true;
                     }
                     break;
                 case 2:
                     //Sign up as author
-                    this.user = signUp(AccountType.AUTHOR); 
-                    if(this.user != null)
+                    if(signUp(AccountType.AUTHOR) != null)
                     {
-                        haveUser = true;
+                        return true;
                     }
                     break;
                 case 3:
-                    boolean loginedIn = false;
-                    while(loginedIn == false)
+                     if(loginIn() != null)
                      {
-                        System.out.println("Please enter your username below.\n"); 
-                        String username = keyboard.nextLine();
-                        System.out.println("Please enter your password below.");
-                        String password = keyboard.nextLine();
-                        User user = application.login(username, password);
-                        if(user != null)
-                        {
-                            loginedIn = true;
-                            haveUser = true;
-                        }
-                    }
+                        return true;
+                     }   
+                    break;
+                case 4: 
+                    loop = false;
                     break;
                 default:
                     break;
             }
         }
+        return false; //The program should not reach here. This just make sure that the program know that it returns something.
     }
 
     private User signUp(AccountType accountType)
@@ -125,6 +122,16 @@ public class LMSUI {
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
         this. user = application.createAccount(firstName, lastName, email, date, username, password, accountType);
+        return this.user;
+    }
+
+    private User loginIn()
+    {
+        System.out.println("Please enter your username below."); 
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your password below.");
+        String password = keyboard.nextLine();
+        this.user = application.login(username, password);
         return this.user;
     }
 
@@ -182,9 +189,28 @@ public class LMSUI {
          break;
         }
     }
+
+    private void printCourses(ArrayList<Course> courses)
+    {
+        for(int i = 0; i < courses.size(); i++)
+        {
+            System.out.println(courses.get(i));
+        }
+    }
+    
+    private void printEnrolledCoures(ArrayList<EnrolledCourse> courses)
+    {
+        for(int i = 0; i < courses.size(); i++)
+        {
+            System.out.println(courses.get(i));
+        }
+    }
+
     public static void main(String[] args) 
     {
         LMSUI lmsui = new LMSUI();
         lmsui.run();
+        System.out.println("Exiting the system. Have a good day!");
+        System.exit(0);
     }
 }
