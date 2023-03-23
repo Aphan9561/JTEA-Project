@@ -9,6 +9,8 @@ import java.util.zip.DataFormatException;
  * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 
+import javax.management.loading.PrivateClassLoader;
+
 public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
@@ -165,7 +167,11 @@ public class LMSUI {
 
     private void runAuthor()
     {
-        while(true)
+        /*
+         *  private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","3: Go to user menu","5: Quit"}; 
+         */
+        boolean running = true;
+        while(running)
         {
          displayAuthorMenu(); 
          int choice = keyboard.nextInt();
@@ -173,15 +179,16 @@ public class LMSUI {
          switch (choice) 
          {
              case 1: 
+                createCourse();
                  break;
              case 2:
-                 break;
-             case 3:
+                editCourse();
                  break;
              case 4:
                  run();
                  break;
              case 5:
+                running = false;
                  break;
              default:
                  break;
@@ -189,6 +196,8 @@ public class LMSUI {
          break;
         }
     }
+
+    private void createCourse
 
     private void printCourses(ArrayList<Course> courses)
     {
