@@ -5,9 +5,9 @@ import java.util.UUID;
 public class Author extends User{
     private ArrayList<Course> myCourses;
 
-    public Author(UUID id,String firstName, String lastName, String email, Date birthday,String username, AccountType type)
+    public Author(UUID id,String firstName, String lastName, String email, Date birthday,String username, String password, AccountType type)
     {
-        super(id, firstName, lastName, email, birthday, username, type);
+        super(id, firstName, lastName, email, birthday, username,password, type);
     }
 
     public String toString()
