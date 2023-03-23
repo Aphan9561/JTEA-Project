@@ -203,12 +203,19 @@ public class LMSUI {
 
     private void createCourse()
     {
-
+        System.out.println("Name:");
+        String name = keyboard.nextLine();
+        System.out.println("Difficulty:");
+        String difficulty = keyboard.nextLine();
+        String language = keyboard.nextLine();
+        Course course = new Course(name, language, null, null);
     }
 
     private void editCourse()
     {
-
+        System.out.println();
+        switch(choice)
+        case
     }
 
     private void printCourses(ArrayList<Course> courses)
