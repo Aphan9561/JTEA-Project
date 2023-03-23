@@ -30,8 +30,7 @@ public class Lesson {
 
     public String toString() {
         String result =  "Title: "+ this.title +
-                        "\n***********\n" + this.content +
-                        "\n***********\n";
+                        "\nContent: " + this.content;
         for(Quiz quiz : quizzes) {
             result += quiz;
         }
