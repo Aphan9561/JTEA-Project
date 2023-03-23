@@ -26,7 +26,7 @@ public class LMSApplication {
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
-        User user1 = new User(firstName, lastName, email, birthday, username, password, Type); 
+        User user1 = new User(firstName, lastName, email, birthday, username, password, Type); //Add password
         if(user1!= null)
         {
             this.user = user1;
@@ -61,12 +61,20 @@ public class LMSApplication {
     }
 
     public ArrayList<Course> findCourse(String keyword){
-        ArrayList<Course> resultList = courseList.getCourse(keyword);
+        ArrayList<Course> resultList = new ArrayList<>();
+        for(courseList.)
+        {
+            this.courseList.getCourse(keyword);
+        }
         return resultList;
     }
 
-    public ArrayList<Course> findCourse() { //What does this do again?
-        ArrayList<Course> resultList = courseList.getAllCourses();
+    public ArrayList<Course> findCourse() {
+        ArrayList<Course> resultList = new ArrayList<>();
+        for(courseList.)
+        {
+            this.courseList.getCourse(keyword);
+        }
         return resultList;
     }
 
@@ -77,31 +85,36 @@ public class LMSApplication {
     public boolean addCourse(String name, String description, Difficulty difficulty, Language language) {
         boolean created = true;
         Course course = new Course(name, description, difficulty, language);
-        //Use author
         return created;
     }
 
-    public void courseReview(double rating, String comment, UUID user){
-        Review review = new Review(rating, comment, user);
+    public void courseReview(double rating, String comment, UUID id){
+        Review review = new Review(rating, comment, id);
         //Put review onto course
     }
 
-    public void enterCourse(String name){
-        
+    public void enterCourse(String name, String description,  Difficulty difficulty, Language language){
+        Course course = new Course(name, description, difficulty, language);
     } 
 
+    //
     public void nextLesson(){
+
 
     }
 
+    //
     public void answerQuestion(){
 
     }
 
-    public void getQuiz(Quiz quiz){
-        
+    //
+    public Quiz getQuiz(Quiz quiz){
+        courseList.getCourse(quiz);
+        return quiz;
     }
 
+    //
     public void addModule(Module Module){
 
     }
