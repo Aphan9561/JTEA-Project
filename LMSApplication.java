@@ -16,7 +16,7 @@ public class LMSApplication {
     private User author;
     private Student student;
     private CourseList courseList;
-    private ArrayList<Question> quiz;
+    private Quiz quiz;
     private static LMSApplication lmsApplication;
     private UserList userList;
     
@@ -33,7 +33,7 @@ public class LMSApplication {
     }
 
     public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
-        User user1 = new User(firstName, lastName, email, birthday, username, password, Type); //Add password
+        User user1 = new User(firstName, lastName, email, birthday, username, password, Type);
         if(user1!= null)
         {
             this.user = user1;
@@ -89,13 +89,7 @@ public class LMSApplication {
     public ArrayList<EnrolledCourse> getCurrentCourse() {
         return this.user.enrolledCourse;
     }
-    /* 
-    public boolean addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language) {
-        boolean created = true;
-        Course course = new Course(author, name, description, syllabus, difficulty, language);
-        return created;
-    }
-    */
+    
     public void courseReview(double rating, String comment, User userName){
         course.addReview(userName, rating, comment);
         //Put review onto course
@@ -116,6 +110,7 @@ public class LMSApplication {
         //Only called after a module is finished
         course.moveCurrentModule();
         System.out.println(course.resumeModule());
+        
     }
     public void nextLesson(EnrolledCourse course){
         //Only called after a module is finished
@@ -123,14 +118,11 @@ public class LMSApplication {
         System.out.println(course.resumeLesson());
     }
 
-    public ArrayList<Question> getQuiz(Quiz quiz){
-        return quiz.getQuestion();
-    }
-
-    public void getGrades(){
+    public Integer getGrades(){
         for(Integer grades: student.getGrades()){
-            System.out.println(grades);
+            return grades;
         }
+        return null;
     }
 
     public void getAllLanguages(){
@@ -143,7 +135,7 @@ public class LMSApplication {
         Module module1 = new Module(title, lessons);
         if(module1 != null){
             this.module = module1;
-            courseList.addModule(title, lessons);
+            course.addModule(title, lessons);
         }
         return this.module;
     }
@@ -152,23 +144,32 @@ public class LMSApplication {
         Lesson lesson1 = new Lesson(content, title, quiz);
         if(lesson1 != null){
             this.lesson = lesson1;
-            courseList.addLesson(content, title, quiz);
+            module.addLesson(content, title, quiz);
         }
         return this.lesson;
+    }
+
+    public Quiz addQuiz(ArrayList<Question> questions){
+        Quiz quiz = new Quiz(questions);
+        if(quiz != null){
+            this.quiz = quiz;
+            lesson.addQuiz(questions);
+        }
+        return this.quiz;
     }
 
     public Question addQuestion(String question, ArrayList<String> answers, int correctAnswer){
         Question question1 = new Question(question, answers, correctAnswer);
         if(question1 != null){
             this.question = question1;
-            courseList.addQuiz(question, answers, correctAnswer);
+            quiz.addQuestion(question, answers, correctAnswer);
         }
         return this.question;
     }
 
-    public ArrayList<Question> takeQuiz(){
+    public Quiz takeQuiz(){
         //IDK if this works but its something
-        this.quiz = getQuiz(q);
+        this.quiz = lesson.getQuiz();
         return this.quiz;
     }
 }

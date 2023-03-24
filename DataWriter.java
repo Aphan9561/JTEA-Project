@@ -118,9 +118,7 @@ public class DataWriter extends DataConstants{
             
             for(Integer grade: grades){
                 JSONObject gradeObject = new JSONObject();
-                gradeObject.put(COURSE_STUDENTS_GRADES, grade);
-    
-                gradeArray.add(gradeObject);
+                gradeArray.add(grade);
             }
             studentObject.put(COURSE_STUDENTS_GRADES, gradeArray);
             studentArray.add(studentObject);

@@ -40,6 +40,11 @@ import java.util.ArrayList;
         return lessons.get(index); 
     }
 
+    public void addLesson(String content, String title, Quiz quiz){
+        Lesson lesson = new Lesson(content, title, quiz);
+        lessons.add(lesson);
+    }
+
     public ArrayList<Comment> getComment(){
         return comments;
     }

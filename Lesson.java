@@ -28,6 +28,10 @@ public class Lesson {
         return quiz;
     }
 
+    public void addQuiz(ArrayList<Question> question){
+        quiz = new Quiz(question);
+    }
+
     public String toString() {
         String result =  "Title: "+ this.title +
                         "\nContent: " + this.content;
