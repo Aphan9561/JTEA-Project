@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-/*
+/**
  *  This is the facade that is used by the main menu
  * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
