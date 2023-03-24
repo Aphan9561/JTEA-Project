@@ -14,7 +14,9 @@ public class LMSApplication {
     private Lesson lesson;
     private Question question;
     private User author;
+    private Student student;
     private CourseList courseList;
+    private ArrayList<Question> quiz;
     private static LMSApplication lmsApplication;
     private UserList userList;
     
@@ -121,12 +123,20 @@ public class LMSApplication {
         System.out.println(course.resumeLesson());
     }
 
-    public void answerQuestion(){
-        //?? What is for? - Eve Blom
+    public ArrayList<Question> getQuiz(Quiz quiz){
+        return quiz.getQuestion();
     }
 
-    public Quiz getQuiz(Quiz quiz){
-        return quiz;
+    public void getGrades(){
+        for(Integer grades: student.getGrades()){
+            System.out.println(grades);
+        }
+    }
+
+    public void getAllLanguages(){
+        for(Language language: Language.values()){
+            System.out.println(language);
+        }
     }
 
     public Module addModule(String title, ArrayList<Lesson> lessons){
@@ -154,5 +164,11 @@ public class LMSApplication {
             courseList.addQuiz(question, answers, correctAnswer);
         }
         return this.question;
+    }
+
+    public ArrayList<Question> takeQuiz(){
+        //IDK if this works but its something
+        this.quiz = getQuiz(q);
+        return this.quiz;
     }
 }
