@@ -256,7 +256,14 @@ public class LMSUI {
         String decription = keyboard.nextLine();
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
-        this.course = application.createCourse(authorId, name, decription, syallbus, difficulty2, language2);
+        System.out.println("How many module?");
+        int numberOfModules = keyboard.nextInt();
+        ArrayList<Module> modules = new ArrayList<>();
+        for(int i = 0; i < numberOfModules; i++){
+            Module module = addModule();
+            modules.add(module);
+        }
+        this.course = application.createCourse(authorId, name, decription, syallbus, difficulty2, language2, modules);
         return this.course;
     }
 
@@ -360,7 +367,7 @@ public class LMSUI {
     }
 
     private void viewGrades(){
-        
+
     }
 
     private void printCourses(ArrayList<Course> courses)

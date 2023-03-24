@@ -21,8 +21,8 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language){
-        courses.add(new Course(author, name, description, syllabus, difficulty, language));
+    public void addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language,ArrayList<Module> modules){
+        courses.add(new Course(author, name, description, syllabus, difficulty, language,modules)); 
     }
 
     public void addModule(String title, ArrayList<Lesson> lessons){

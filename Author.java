@@ -20,8 +20,8 @@ public class Author extends User{
                 "\nUsername: "+username+
                 "\nAccount type: "+type;
     }
-    public void addCourse(String title, String decription, String syllabus, Difficulty difficult, Language language){
-        Course newCourse = new Course(id, title, decription, syllabus, difficult, language);
+    public void addCourse(String title, String decription, String syllabus, Difficulty difficult, Language language, ArrayList<Module> modules){
+        Course newCourse = new Course(id, title, decription, syllabus, difficult, language, modules);
     }
     
 }

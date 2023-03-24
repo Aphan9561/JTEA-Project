@@ -15,7 +15,7 @@ public class Course {
     private ArrayList<Review> reviews = new ArrayList<Review>();
     private ArrayList<Comment> comments = new ArrayList<Comment>();
 
-    public Course(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language){
+    public Course(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){
         this.id = UUID.randomUUID();
         this.author = author;
         this.name = name;
@@ -23,6 +23,7 @@ public class Course {
         this.difficulty = difficulty;
         this.language =language;
         this.syllabus = syllabus;
+        this.modules.addAll(modules);
         /*reviews = new ArrayList<>();
         modules = new ArrayList<>();
         comments = new ArrayList<>();*/
