@@ -10,6 +10,8 @@ import java.util.UUID;
 public class LMSApplication {
     private User user; 
     private Course course;
+    private Module module;
+    private Lesson lesson;
     private User author;
     private CourseList courseList;
     private static LMSApplication lmsApplication;
@@ -38,15 +40,6 @@ public class LMSApplication {
     }
 
     public User login(String username, String password){
-        /*int i = 0;
-        this.user = null;
-        while (userList.getUser() != null) {
-            if(userList.getUser().get(i).getUsername().equalsIgnoreCase(usernmame))
-                public User login(String usernmame, String password){
-            }
-            i++;
-        }
-        return this.user;*/
         this.user = null;
         for(int i=0; i < userList.size(); i++) {
             if(userList.getUser().get(i).getUsername().equals(username)) {
@@ -132,12 +125,21 @@ public class LMSApplication {
         return quiz;
     }
 
-    public void addModule(String title, ArrayList<Lesson> lessons){
-        Module module = new Module(title, lessons);
-        
+    public Module addModule(String title, ArrayList<Lesson> lessons){
+        Module module1 = new Module(title, lessons);
+        if(module1 != null){
+            this.module = module1;
+            courseList.addModule(title, lessons);
+        }
+        return this.module;
     }
 
-    public void addLesson(String content, String title, Quiz quiz){
-        Lesson lesson2 = new Lesson(content, title, quiz);
+    public Lesson addLesson(String content, String title, Quiz quiz){
+        Lesson lesson1 = new Lesson(content, title, quiz);
+        if(lesson1 != null){
+            this.lesson = lesson1;
+            courseList.addLesson(content, title, quiz);
+        }
+        return this.lesson;
     }
 }

@@ -17,6 +17,8 @@ public class LMSUI {
     private LMSApplication application;
     private User user;
     private Course course;
+    private Module module;
+    private Lesson lesson;
     private Difficulty diffStatus;
     private Language lang; 
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","Quit"};
@@ -211,7 +213,7 @@ public class LMSUI {
     {
         System.out.println("Author's username: ");
         String author = keyboard.nextLine();
-        UUID authorId = 0;
+        UUID authorId;
         if(application.findAuthorForCourse(author)){
             authorId = application.getAuthor();
         }
@@ -306,16 +308,34 @@ public class LMSUI {
             Lesson lesson = addLesson();
             lessons.add(lesson);
         }
-        Module module = application.CreateModule(String title, ArrayList<Lesson> lessons);
+        this.module = application.addModule(title, lessons);
+        return this.module;
     }
 
     private Lesson addLesson()
     {
-        String title;
-        String content;
-        Quiz  quiz;
-        Lesson lesson = new application.createLesson(String title, String content, Quiz quiz);
-        return lesson;
+        System.out.println("Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("Content: ");
+        String content = keyboard.nextLine();
+        System.out.println("How many questions in the quiz? ");
+        int numberOfQuestions = keyboard.nextInt();
+        
+        Quiz quiz;
+        this.lesson = application.addLesson(title, content, quiz);
+        return this.lesson;
+    }
+
+    private void addQuestion(){
+        System.out.println("Question: ");
+        String question = keyboard.nextLine();
+        System.out.println("Enter 4 answer options: ");
+        String[] answers = new String[4];
+        for(int i =0; i< 4;i++){
+            answers[i] = keyboard.nextLine();
+        }
+        
+        Question question = new Question(question, answers, 0)
     }
 
     private void printCourses(ArrayList<Course> courses)
