@@ -183,7 +183,7 @@ public class DataWriter extends DataConstants{
         lessonObject.put(COURSE_MODULES_LESSON_TITLE, lesson.getTitle());
         lessonObject.put(COURSE_MODULES_LESSON_CONTENT, lesson.getContent());
 
-        lessonObject.put(COURSE_MODULES_LESSON_QUIZ, lesson.getQuiz());
+        //lessonObject.put(COURSE_MODULES_LESSON_QUIZ, lesson.getQuiz());
 
         ArrayList<Question> questions = lesson.getQuiz().getQuestion();
         JSONArray questionArray = new JSONArray();
@@ -194,10 +194,7 @@ public class DataWriter extends DataConstants{
             ArrayList<String> answers = question.getAnswers();
             JSONArray answerArray = new JSONArray();
             for(String answer: answers){
-                JSONObject answerObject = new JSONObject();
-                answerObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS,answer);
-
-                answerArray.add(answerObject);
+                answerArray.add(answer);
             }
 
             questionObject.put(COURSE_MODULES_LESSON_QUIZQUESTIONS_ANSWERS, answerArray);
@@ -206,7 +203,7 @@ public class DataWriter extends DataConstants{
             questionArray.add(questionObject);
         }  
 
-        lessonObject.put(COURSE_MODULES_LESSON_QUIZ_QUIZQUESTIONS, questionArray);
+        lessonObject.put(COURSE_MODULES_LESSON_QUIZ, questionArray);
     
         return lessonObject;
     }
@@ -258,5 +255,6 @@ public class DataWriter extends DataConstants{
     }
     public static void main(String[] args){
         saveUsers();
+        saveCourses();
     }
 }

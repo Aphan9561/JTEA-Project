@@ -19,6 +19,7 @@ public class LMSUI {
     private Course course;
     private Module module;
     private Lesson lesson;
+    private UUID authorId;
     private Question question;
     private Difficulty diffStatus;
     private Language lang; 
@@ -33,7 +34,7 @@ public class LMSUI {
 
     public void run()
     {
-        System.out.println("Welcome to Our program. Please choose one of the following.\n");
+        System.out.println("Welcome to Our program. Please choose one of the following.");
         login();
         boolean running = true;
         while(running == true)
@@ -44,7 +45,7 @@ public class LMSUI {
             switch (choice) 
         {
             case 1:
-                System.out.println("What would would like to search for? Suggested terms to get the best result:/nFor lanuages: Python, Java/nDiffeculty: Easy, Medium, Hard");
+                System.out.println("What would would like to search for? Suggested terms to get the best result:\nFor lanuages: Python, Java\nDiffeculty: Easy, Medium, Hard");
                 String keyword = keyboard.nextLine();
                 keyword.toUpperCase();
                 //ArrayList<Course> resultList = application.findCourse(keyword);
@@ -180,9 +181,6 @@ public class LMSUI {
 
     private void runAuthor()
     {
-        /*
-         *  private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","3: Go to user menu","5: Quit"}; 
-         */
         boolean running = true;
         while(running)
         {
@@ -212,61 +210,72 @@ public class LMSUI {
 
     private Course createCourse()
     {
-        System.out.println("Author's username: ");
-        String author = keyboard.nextLine();
-        UUID authorId;
-        if(application.findAuthorForCourse(author)){
-            authorId = application.getAuthor();
-        }
+        this.user.getId();
         System.out.println("Name:");
         String name = keyboard.nextLine();
         System.out.println("Difficulty (Options: Easy, Medium, or Hard): ");
         String difficulty = keyboard.nextLine();
-        Difficulty difficulty2;
-        if(difficulty.equalsIgnoreCase("easy")){
-            difficulty2 = diffStatus.EASY;
-        } else if (difficulty.equalsIgnoreCase("medium")){
-            difficulty2 = diffStatus.MEDIUM;
-        } else if(difficulty.equalsIgnoreCase("hard")){
-            difficulty2 = diffStatus.HARD;
-        } else {
-            System.out.println("Incorrect input. Course has been set to EASY.");
-            difficulty2 = diffStatus.EASY;
-        }
+            Difficulty difficulty2;
+            if(difficulty.equalsIgnoreCase("easy")){
+                difficulty2 = diffStatus.EASY;
+            } else if (difficulty.equalsIgnoreCase("medium")){
+                difficulty2 = diffStatus.MEDIUM;
+            } else if(difficulty.equalsIgnoreCase("hard")){
+                difficulty2 = diffStatus.HARD;
+            } else {
+                System.out.println("Incorrect input. Course has been set to EASY.");
+                difficulty2 = diffStatus.EASY;
+            }
         Language language2 = lang.PYTHON;
         boolean validLanguage = false;
         while(validLanguage){
             System.out.println("Language (Options: Python, Javascript, or GitHub): ");
             String language = keyboard.nextLine(); 
-            if(language.equalsIgnoreCase("Python")){
-                language2 = lang.PYTHON;
-                validLanguage = true;
-            } else if(language.equalsIgnoreCase("JavaScript")){
-                language2 = lang.JAVASCRIPT;
-                validLanguage = true;
-            } else if(language.equalsIgnoreCase("GitHub")){
-                language2 = lang.GITHUB;
-                validLanguage = true;
-            } else {
-                System.out.println("Incorrect input. Try again.");
-                validLanguage = false;
-            }
+                if(language.equalsIgnoreCase("Python")){
+                    language2 = lang.PYTHON;
+                    validLanguage = true;
+                } else if(language.equalsIgnoreCase("JavaScript")){
+                    language2 = lang.JAVASCRIPT;
+                    validLanguage = true;
+                } else if(language.equalsIgnoreCase("GitHub")){
+                    language2 = lang.GITHUB;
+                    validLanguage = true;
+                } else {
+                    System.out.println("Incorrect input. Try again.");
+                    validLanguage = false;
+                }
         }
         System.out.println("Decription: ");
         String decription = keyboard.nextLine();
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
-        this.course = application.createCourse(authorId, name, decription, syallbus, difficulty2, language2);
+        System.out.println("How many module?");
+        int numberOfModules = keyboard.nextInt();
+        keyboard.nextLine();
+        ArrayList<Module> modules = new ArrayList<>();
+        for(int i = 0; i < numberOfModules; i++){
+            Module module = addModule();
+            modules.add(module);
+        }
+        this.course = application.createCourse(authorId, name, decription, syallbus, difficulty2, language2, modules);
         return this.course;
     }
 
     private void editCourse()
     {
         System.out.println("What course would you like to edit?");
-        //get the courses of the author and print them
+        ArrayList<Course> list =  application.findCourse(); 
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(list.get(i).getId().equals(this.user.getId());
+            {
+                System.out.print(i+": "+list.get(i).getTitle());
+            }
+        }
+
         int choice = keyboard.nextInt();
-        //Enter the course
-        //Ask whether you would like add modules or add lesson
+        Course editCourse = list.get(i);
+        System.out.println("1: Add module 2:Add Lessons 3: Go back to author menu");
         boolean run = true;
         while(run == true)
         {
@@ -304,6 +313,7 @@ public class LMSUI {
         System.out.println("How many lessons?");
         ArrayList<Lesson> lessons = new ArrayList<>();
         int lessonNumber = keyboard.nextInt();
+        keyboard.nextLine();
         for(int i = 0; i < lessonNumber; i++)
         {
             Lesson lesson = addLesson();
@@ -321,12 +331,14 @@ public class LMSUI {
         String content = keyboard.nextLine();
         System.out.println("How many questions in the quiz? ");
         int numberOfQuestions = keyboard.nextInt();
+        keyboard.nextLine();
         ArrayList<Question> questions = new ArrayList<>(); //A quiz is an list a questions 
+        Quiz quiz = new Quiz(questions);
         for(int i =0; i< numberOfQuestions; i++){
             Question question = addQuestion();
             questions.add(question);
         }
-        Quiz quiz = new Quiz(questions);
+        
         this.lesson = application.addLesson(title, content, quiz);
         return this.lesson;
     }
@@ -342,6 +354,7 @@ public class LMSUI {
         }
         System.out.println("Which answer is the correct one? Enter in the corresponding number.");
         int correctAnswer = keyboard.nextInt();
+        keyboard.nextLine();
         this.question = application.addQuestion(question, answers, correctAnswer);
         return this.question;
     }
@@ -355,12 +368,12 @@ public class LMSUI {
         }
     }
 
-    private void viewCourse(){
-
+    private void viewCourse(EnrolledCourse course){
+        System.out.println(course.toString());
     }
 
-    private void viewGrades(){
-        
+    private void viewGrades(EnrolledCourse course){
+        //???
     }
 
     private void printCourses(ArrayList<Course> courses)

@@ -80,46 +80,49 @@ public class LMSApplication {
     }
 
     public ArrayList<Course> findCourse() {
-        ArrayList<Course> resultList = new ArrayList<>();
-        for(courseList.)
-        {
-            this.courseList.getCourse(keyword);
-        }
+        ArrayList<Course> resultList = courseList.getAllCourses();
         return resultList;
     }
 
     public ArrayList<EnrolledCourse> getCurrentCourse() {
         return this.user.enrolledCourse;
     }
-
+    /* 
     public boolean addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language) {
         boolean created = true;
         Course course = new Course(author, name, description, syllabus, difficulty, language);
         return created;
     }
-
+    */
     public void courseReview(double rating, String comment, User userName){
         course.addReview(userName, rating, comment);
         //Put review onto course
     }
 
-    public Course createCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language){
-        Course course1 = new Course(author, name, description, syllabus, difficulty, language);
+    public Course createCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){
+        Course course1 = new Course(author, name, description, syllabus, difficulty, language, modules);
         if(course1!= null)
         {
             this.course = course1;
-            courseList.addCourse(author, name, description, syllabus, difficulty, language);
+            courseList.addCourse(author, name, description, syllabus, difficulty, language, modules);
         }
         return course1;
     } 
 
-    public void nextLesson(){
-        
-
+    public void nextModule(EnrolledCourse course)
+    {
+        //Only called after a module is finished
+        course.moveCurrentModule();
+        System.out.println(course.resumeModule());
+    }
+    public void nextLesson(EnrolledCourse course){
+        //Only called after a module is finished
+        course.moveCurrentLesson();
+        System.out.println(course.resumeLesson());
     }
 
     public void answerQuestion(){
-
+        //?? What is for? - Eve Blom
     }
 
     public Quiz getQuiz(Quiz quiz){
