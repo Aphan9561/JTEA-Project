@@ -19,6 +19,7 @@ public class LMSUI {
     private Course course;
     private Module module;
     private Lesson lesson;
+    private UUID authorId;
     private Question question;
     private Difficulty diffStatus;
     private Language lang; 
@@ -214,7 +215,6 @@ public class LMSUI {
     {
         System.out.println("Author's username: ");
         String author = keyboard.nextLine();
-        UUID authorId;
         if(application.findAuthorForCourse(author)){
             authorId = application.getAuthor();
         }
@@ -258,6 +258,7 @@ public class LMSUI {
         String syallbus = keyboard.nextLine();
         System.out.println("How many module?");
         int numberOfModules = keyboard.nextInt();
+        keyboard.nextLine();
         ArrayList<Module> modules = new ArrayList<>();
         for(int i = 0; i < numberOfModules; i++){
             Module module = addModule();
@@ -311,6 +312,7 @@ public class LMSUI {
         System.out.println("How many lessons?");
         ArrayList<Lesson> lessons = new ArrayList<>();
         int lessonNumber = keyboard.nextInt();
+        keyboard.nextLine();
         for(int i = 0; i < lessonNumber; i++)
         {
             Lesson lesson = addLesson();
@@ -328,6 +330,7 @@ public class LMSUI {
         String content = keyboard.nextLine();
         System.out.println("How many questions in the quiz? ");
         int numberOfQuestions = keyboard.nextInt();
+        keyboard.nextLine();
         ArrayList<Question> questions = new ArrayList<>(); //A quiz is an list a questions 
         for(int i =0; i< numberOfQuestions; i++){
             Question question = addQuestion();
@@ -349,6 +352,7 @@ public class LMSUI {
         }
         System.out.println("Which answer is the correct one? Enter in the corresponding number.");
         int correctAnswer = keyboard.nextInt();
+        keyboard.nextLine();
         this.question = application.addQuestion(question, answers, correctAnswer);
         return this.question;
     }
