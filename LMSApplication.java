@@ -122,7 +122,7 @@ public class LMSApplication {
     }
 
     public void answerQuestion(){
-        
+        //?? What is for? - Eve Blom
     }
 
     public Quiz getQuiz(Quiz quiz){

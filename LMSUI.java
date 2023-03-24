@@ -210,44 +210,40 @@ public class LMSUI {
 
     private Course createCourse()
     {
-        System.out.println("Author's username: ");
-        String author = keyboard.nextLine();
-        if(application.findAuthorForCourse(author)){
-            authorId = application.getAuthor();
-        }
+        this.user.getId();
         System.out.println("Name:");
         String name = keyboard.nextLine();
         System.out.println("Difficulty (Options: Easy, Medium, or Hard): ");
         String difficulty = keyboard.nextLine();
-        Difficulty difficulty2;
-        if(difficulty.equalsIgnoreCase("easy")){
-            difficulty2 = diffStatus.EASY;
-        } else if (difficulty.equalsIgnoreCase("medium")){
-            difficulty2 = diffStatus.MEDIUM;
-        } else if(difficulty.equalsIgnoreCase("hard")){
-            difficulty2 = diffStatus.HARD;
-        } else {
-            System.out.println("Incorrect input. Course has been set to EASY.");
-            difficulty2 = diffStatus.EASY;
-        }
+            Difficulty difficulty2;
+            if(difficulty.equalsIgnoreCase("easy")){
+                difficulty2 = diffStatus.EASY;
+            } else if (difficulty.equalsIgnoreCase("medium")){
+                difficulty2 = diffStatus.MEDIUM;
+            } else if(difficulty.equalsIgnoreCase("hard")){
+                difficulty2 = diffStatus.HARD;
+            } else {
+                System.out.println("Incorrect input. Course has been set to EASY.");
+                difficulty2 = diffStatus.EASY;
+            }
         Language language2 = lang.PYTHON;
         boolean validLanguage = false;
         while(validLanguage){
             System.out.println("Language (Options: Python, Javascript, or GitHub): ");
             String language = keyboard.nextLine(); 
-            if(language.equalsIgnoreCase("Python")){
-                language2 = lang.PYTHON;
-                validLanguage = true;
-            } else if(language.equalsIgnoreCase("JavaScript")){
-                language2 = lang.JAVASCRIPT;
-                validLanguage = true;
-            } else if(language.equalsIgnoreCase("GitHub")){
-                language2 = lang.GITHUB;
-                validLanguage = true;
-            } else {
-                System.out.println("Incorrect input. Try again.");
-                validLanguage = false;
-            }
+                if(language.equalsIgnoreCase("Python")){
+                    language2 = lang.PYTHON;
+                    validLanguage = true;
+                } else if(language.equalsIgnoreCase("JavaScript")){
+                    language2 = lang.JAVASCRIPT;
+                    validLanguage = true;
+                } else if(language.equalsIgnoreCase("GitHub")){
+                    language2 = lang.GITHUB;
+                    validLanguage = true;
+                } else {
+                    System.out.println("Incorrect input. Try again.");
+                    validLanguage = false;
+                }
         }
         System.out.println("Decription: ");
         String decription = keyboard.nextLine();
@@ -372,12 +368,12 @@ public class LMSUI {
         }
     }
 
-    private void viewCourse(){
-
+    private void viewCourse(EnrolledCourse course){
+        System.out.println(course.toString());
     }
 
-    private void viewGrades(){
-
+    private void viewGrades(EnrolledCourse course){
+        //???
     }
 
     private void printCourses(ArrayList<Course> courses)
