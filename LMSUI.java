@@ -25,7 +25,7 @@ public class LMSUI {
     private Difficulty diffStatus;
     private Language lang;
 
-    final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
+    final private String[] menu = {"Find course by title","Find all courses","Get current courses","View completed courses","Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     /*
@@ -65,6 +65,8 @@ public class LMSUI {
                 enterCourse(application.getCurrentCourse());
                 break;
             case 4:
+                viewCompletedCourses();
+            case 5:
                 if(this.user.getType().equals(AccountType.AUTHOR) )
                 {
                     runAuthor();
@@ -73,19 +75,19 @@ public class LMSUI {
                     System.out.println("Access denied. You are not an author!");
                 }
                 break;
-            case 5:
+            case 6:
                 viewGrades();
                 break;
-            case 6:
+            case 7:
                 viewFAQs();
                 break; 
-            case 7:
+            case 8:
                 System.out.println("Which Course would you like to view?");
                 String c = keyboard.nextLine();
                 Course course =  application.findCourseTitle(c);
                 viewCourse(course);
                 break;
-            case 8:
+            case 9:
                 logout();
                 keyboard.close();
                 return;
@@ -134,8 +136,12 @@ public class LMSUI {
         //int module = course.getCurrentModule();
         //int lesson = course.getCurrentLesson();
         Course currentCourse = application.findCourse(course.getCourse());
-        Module currentModule = currentCourse.getModule(course.getCurrentModule());
-        Lesson currentLesson = currentModule.getLesson(course.getCurrentLesson());
+        //Module currentModule = currentCourse.getModule(course.getCurrentModule());
+        Module currentModule = currentCourse.getModule(5);
+        Lesson currentLesson = currentModule.getLesson(0);
+        //int currentModuleIndex = course.getCurrentModule();
+        int currentModuleIndex = 5;
+        int currentLessonIndex = 0;
             if(course.getProgress().equals(Progress.COMPLETED)){
                 System.out.println("You have completed this course! Would you like to download the certification?");
                 String answer = keyboard.nextLine();
@@ -149,7 +155,8 @@ public class LMSUI {
                 /*module = course.getCurrentModule();
                 lesson = course.getCurrentLesson();
                 currentModule = currentCourse.getModule(module);
-                currentLesson = currentModule.getLesson(lesson);*/
+                currentLesson = currentModule.getLesson(lesson);
+                for(int j=0; j < )
                     for(int i = course.getCurrentLesson(); i < currentModule.getLesson().size(); i++) {
                         System.out.println(currentLesson.miniToString());
                         System.out.println("Enter 1 to take the quiz. Any other number will take you back to your current courses.");
@@ -167,32 +174,75 @@ public class LMSUI {
                 }
                 System.out.println(currentLesson.miniToString());
                 int grade = takeQuiz(currentLesson.getQuiz());
-                System.out.println("Grade from quiz: "+grade);
-                System.out.println("1)Next lesson, 2)See comments, 3)Take again, 4)Print module out");
+                System.out.println("Grade from quiz: "+grade);*/
+                
+                ArrayList<Integer> lessonGrades = new ArrayList<Integer>();
+                //ArrayList<Integer> moduleGrades = new ArrayList<Integer>();
+                /*
+                for(int i = currentModuleIndex; i < application.findCourse(course.getCourse()).getModule().size(); i++) {
+                    if(i == 0) {
+                        System.out.println("Starting "+currentModule.getTitle());
+                    }
+                    for(int j=currentLessonIndex; j < currentModule.getLesson().size(); j++) {
+                        System.out.println(currentLesson.miniToString());
+                        int grade = takeQuiz(currentLesson.getQuiz());
+                        lessonGrades.add(grade);
+                        if(j+1 < currentModule.getLesson().size()) {
+                            currentLesson = currentModule.getLesson(j+1);
+                        }
+                    }
+                    
+                    int sum = 0;
+                    for(int j=0; j < lessonGrades.size(); j++) {
+                        sum += lessonGrades.get(j);
+                    }
+
+                    int average = sum/lessonGrades.size();
+                    moduleGrades.add(average);
+
+                    if(i+1 < currentCourse.getModule().size()) {
+                        currentModule = currentCourse.getModule(i+1);
+                    }
+                }*/
+
+                for(int j=currentLessonIndex; j < 1; j++) {
+                    System.out.println(currentLesson.miniToString());
+                    int grade = takeQuiz(currentLesson.getQuiz());
+                    lessonGrades.add(grade);
+                    /*
+                    if(j+1 < currentModule.getLesson().size()) {
+                        currentLesson = currentModule.getLesson(j+1);
+                    }*/
+                }
+
+                int sumOverall = 0;
+                for(int j=0; j < lessonGrades.size(); j++) {
+                    sumOverall += lessonGrades.get(j);
+                }
+                int averageOverall = sumOverall/lessonGrades.size();
+                //System.out.println("Overall grade: "+averageOverall);
+
+                System.out.println("1)See course comments, 2)Print module out, 3)Go back to main menue");
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
                 switch(choice){
-                    case 1:
+                    /*case 1:
                         application.nextLesson(course); //Need more development
                         viewCourse(course);
+                        break;*/
+                    case 1: //Make method for this. 
+                        viewCourseComments();
                         break;
-                    case 2: //Make method for this. 
-                        ArrayList<Comment> comments = currentModule.getComment();
-                        String commentString = "";
-                        for(int i = 0; i < comments.size(); i++){
-                            commentString += comments.get(i).toString();
-                            commentString += "/n";
-                        }
-                        System.out.println(commentString);
+                    /*case 3:
+                        System.out.println(currentLesson.miniToString());
+                        //grade = takeQuiz(currentLesson.getQuiz());
+                        //System.out.println("Grade from quiz: "+grade);
+                        break;*/
+                    case 2:
+                        CreateCourseFile(currentModule);
                         break;
                     case 3:
-                        System.out.println(currentLesson.miniToString());
-                        grade = takeQuiz(currentLesson.getQuiz());
-                        System.out.println("Grade from quiz: "+grade);
-                        break;
-                    case 4:
-                    CreateCourseFile(currentModule);
-                    break;
+                        run();
                     case 5: 
                         return;
                     default:
@@ -200,6 +250,7 @@ public class LMSUI {
                         break;
                }   
             }}
+        }
         
         /*} else {
         System.out.println("You gave a wrong number. Going back to the main menu.\n");
@@ -355,7 +406,7 @@ public class LMSUI {
     /**
      * This displays the main menu and all the options the user has have as a student.
      */
-    public void displayMainMenu() 
+    private void displayMainMenu() 
     {
         System.out.println("********************* Main Menu *********************");
         for(int i = 0; i < menu.length; i++)
@@ -843,20 +894,43 @@ public class LMSUI {
             System.out.println("Please enter the number corresponding to your answer.");
             int answerChoice = keyboard.nextInt();
             keyboard.nextLine();
+            if(application.wasRight(quiz, i, answerChoice)) {
+                System.out.println("Your answer was correct!");
+            } else {
+                System.out.println("Sorry, that answer was incorrect.");
+            }
             finalQuizGrade = application.getQuestionGrade(quiz, i, answerChoice, finalQuizGrade);
         }
         return finalQuizGrade;
     }
 
     public void viewCompletedCourses() {
-        ArrayList<UUID> completedCourses = new ArrayList<UUID>();
-        for(int i=0; i < completedCourses.size(); i++) {
             System.out.println(application.completedCoursesToString(user.enrolledCourse));
+            System.out.println("Enter the number of the course you want more details about.");
+            int courseChoice = keyboard.nextInt();
+            keyboard.nextLine();
+            EnrolledCourse chosenCourse = user.enrolledCourse.get(courseChoice-1);
+            //System.out.println("Course: "+application.findCourse(chosenCourse.getCourse()).getTitle());
             System.out.println("Enter 1 to view your module grades for a course, enter 2 to print out a certificate for a course, and enter 0 to go back to the main menu.");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
-            
-        }
+            if(choice == 1) {
+                //System.out.println(application.check(chosenCourse));
+                System.out.println(application.modulesAndGradesString(chosenCourse));
+                viewCompletedCourses();
+            } else if(choice == 2) {
+                System.out.println("Printing certificate for this course...");
+                CreateCertificationFile(chosenCourse);
+                System.out.println("Going back to the completed courses menu.");
+                viewCompletedCourses();
+            } else if (choice == 0) {
+                System.out.println("Going back to the main menu.\n");
+                run();
+            } else {
+                System.out.println("Invalid input. Going back to the main menu.\n");
+                run();            
+            }
+        
     }
     
 }

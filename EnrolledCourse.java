@@ -35,13 +35,14 @@ public class EnrolledCourse {
         this.overallGrade = 100;
     }
 
-    public EnrolledCourse(UUID course, Progress progress, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule) {
+    public EnrolledCourse(UUID course, Progress progress, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule, ArrayList<Integer> gradesPerLesson) {
         this.course = course;
         this.progress = progress;
         this.currentModule = currentModule;
         this.currentLesson = currentLesson;
         this.overallGrade = overallGrade;
         this.gradesPerModule = gradesPerModule;
+        this.gradesPerLesson = gradesPerLesson;
     }
 
     
@@ -113,8 +114,10 @@ public class EnrolledCourse {
     public UUID getCourse(){
         return this.course;
     }
-    
 
+    public ArrayList<Integer> getGradesPerModule() {
+        return gradesPerModule;
+    }
     /**
      * Changes the index of the current module
      * @return the current module index
@@ -142,13 +145,30 @@ public class EnrolledCourse {
         progress = Progress.COMPLETED;
     }
 
-    //public String toString()
-    /*
-    public int calculateModuleQuizValue() {
-        return 
+    public String toString() {
+        String result = "Course" + course +
+                "\nProgress: " + progress +
+                "\nCurrent module: " + currentModule +
+                "\nCurrent lesson: " + currentLesson +
+                "\nOverall Grade: " + overallGrade +
+                "\nGrades per module: ";
+        for(Integer grade : gradesPerModule) {
+            result += grade;
+            result += ", ";
+        }
+        result += "\nGrades per lesson: ";
+        for(Integer grade : gradesPerLesson) {
+            result += grade;
+            result += ", ";
+        }
+        result += "\n";
+        return result;
     }
 
-    public int calculateOverallQuizValue() {
+    /*
+     *  public int calculateOverallQuizValue() {
 
-    }*/
+    } 
+     */
+   
 }

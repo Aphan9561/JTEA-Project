@@ -1,0 +1,2 @@
+Name: Scout Solace
+Course completed: Zero to Hero: Python Bootcamp

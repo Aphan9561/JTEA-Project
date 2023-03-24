@@ -36,7 +36,7 @@ public class DataLoader extends DataConstants{
                 String username = (String)personJSON.get(USER_USERNAME);
                 String password = (String)personJSON.get(USER_PASSWORD);
 
-                JSONArray enrolledCoursesJSON = (JSONArray)personJSON.get(USER_ENROLLEDCOURSES);
+                /*JSONArray enrolledCoursesJSON = (JSONArray)personJSON.get(USER_ENROLLEDCOURSES);
                 ArrayList<EnrolledCourse> enrolledCourses = new ArrayList<EnrolledCourse>();
                 for(int j=0; j < enrolledCoursesJSON.size(); j++) {
                     JSONObject enrolledCourseJSON = (JSONObject)enrolledCoursesJSON.get(j);
@@ -52,12 +52,18 @@ public class DataLoader extends DataConstants{
                         gradesPerModule.add(((Long)gradesPerModuleJSON.get(k)).intValue());
                     }
 
-                    enrolledCourses.add(new EnrolledCourse(course, progress, currentModule, currentLesson, overallGrade, gradesPerModule));
-                }
+                    JSONArray gradesPerLessonJSON = (JSONArray)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_GRADESPERLESSON);
+                    ArrayList<Integer> gradesPerLesson = new ArrayList<Integer>();
+                    for(int k=0; k < gradesPerLessonJSON.size(); k++) {
+                        gradesPerLesson.add(((Long)gradesPerLessonJSON.get(k)).intValue());
+                    }
+
+                    enrolledCourses.add(new EnrolledCourse(course, progress, currentModule, currentLesson, overallGrade, gradesPerModule, gradesPerLesson));
+                }*/
 
                 AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));
 
-                users.add(new User(id, firstName, lastName, email, birthday, username, password, type, enrolledCourses));
+                users.add(new User(id, firstName, lastName, email, birthday, username, password, type));
             }
 
             return users;
@@ -310,13 +316,13 @@ public class DataLoader extends DataConstants{
         for(FAQ faq : testFAQs) {
             System.out.println(faq);
         }
-
+        
         System.out.println("\n************************\n");
 
         ArrayList<Course> testCourses = getCourses();
         for(Course course : testCourses) {
             System.out.println(course);
-        }        
+        }
     }
 }
 

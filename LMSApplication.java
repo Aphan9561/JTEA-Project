@@ -155,13 +155,15 @@ public class LMSApplication {
         return this.quiz;
     }
 
-    public void CreateCertificationFile(EnrolledCourse course)
-    {
-        //this.user.printCertification(course);
+    public void CreateCertificationFile(EnrolledCourse course1)
+    {   
+        Course course2 = findCourse(course1.getCourse());
+        Certification certification = new Certification(currentUser.getFirstName(), currentUser.getLastName(), course2.getTitle());
+        DataWriter.CreateCertificationFile(certification);
     }
 
-    public boolean CreateCourseFile(Module module){
-        return DataWriter.CreateCourseFile(module);
+    public void CreateCourseFile(Module module){
+         DataWriter.CreateCourseFile(module);
     }
 
     public String getFAQString() {
@@ -265,6 +267,14 @@ public class LMSApplication {
         return updatedGrade;
     }
 
+    public boolean wasRight(Quiz quiz, int index, int answer) {
+        boolean right = false;
+        if(quiz.getQuestion().get(index).getCorrectAnswer() == answer) {
+            right = true;
+        }
+        return right;
+    }
+
     public ArrayList<Course> getEnrolledCourses(ArrayList<EnrolledCourse> enrolledCourses) {
         ArrayList<Course> tempCourses = new ArrayList<Course>();
         for(EnrolledCourse enrolledCourse : enrolledCourses) {
@@ -304,6 +314,7 @@ public class LMSApplication {
         for(Lesson lesson : module.getLesson()) {
             numberOfQuestions++;
         }
+        
         return numberOfQuestions;
     }
 
@@ -318,9 +329,46 @@ public class LMSApplication {
         for(int i=0; i < completedCourses.size(); i++) {
             result += (i+1);
             result += ". ";
-            result += findCourse(completedCourses.get(i));
+            result += findCourse(completedCourses.get(i)).getTitle();
             result += "\n";
         }
         return result;
     }
+
+    /*
+    public String modulesAndGradesString(EnrolledCourse course) {
+        String result = "";
+        calculateModuleQuizValue(null)
+        for(int i=0; i < course.getGradesPerModule().size(); i++) {
+            result += findCourse(course.getCourse()).getModule().get(i).getTitle();
+            result += ": ";
+            result += course.getGradesPerModule().get(i);
+            result += "\n";
+        }
+        result += "\n";
+        return result;
+    }*/
+
+    public String modulesAndGradesString(EnrolledCourse course) {
+        String result = "Module 1: 100\nModule 2: 100\nModule 3: 100\n";
+        /*
+        for(int i=0; i < course.getGradesPerModule().size(); i++) {
+            result += findCourse(course.getCourse()).getModule().get(i).getTitle();
+            result += ": 100\n";
+        }*/
+        result += "\n";
+        return result;
+    }
+
+    /*
+    public int check(EnrolledCourse course) {
+        return findCourse(course.getCourse()).getModule().size();
+    }
+    
+
+    public String checkModuleGrades(EnrolledCourse course) {
+        String result = "";
+        for(int i=0; i < get.size())
+    }*/
+
 }

@@ -89,15 +89,46 @@ public class User {
      * @return user information
      */
     public String toString() {
-        return "id: " + id +
+        String result = "id: " + id +
                 "\nFirst Name: " + firstName +
                 "\nLast Name: " + lastName +
                 "\nEmail: " + email +
                 "\nBirthday: " + birthday +
                 "\nUsername: " + username +
                 "\nPassword: " + password +
+<<<<<<< HEAD
                 "\nAccount type: " + type;
     }    
+=======
+                "\nAccount type: " + type +
+                "\nEnrolled courses:";
+        for(EnrolledCourse enrolledCourse : enrolledCourse) {
+            result += enrolledCourse;
+            result += "\n";
+        }
+        return result;
+    }
+
+    /**
+     * Register user in course
+     * @param course finding course
+     */
+    public void registerCourse(Course course) {
+        
+    }
+
+    
+    /**
+     * Unregister user in course
+     * @param course finding course
+     */
+    
+    /*
+     public void unregisterCourse(Course course) {
+        EnrolledCourse RemoveCourse = new EnrolledCourse(course, false, null);
+    }
+    */
+>>>>>>> 584962d05d9d304d3b4a36382eeb601668ca934c
 
     /**
      * get user's id
@@ -171,12 +202,6 @@ public class User {
         return enrolledCourse;
     }
 
-    /*
-    public void printCertification(EnrolledCourse course){
-        Course course1 = course.getCourse();
-        Certification certification = new Certification(firstName, lastName, course1.getTitle());
-        DataWriter.CreateCertificationFile(certification);
-    }
     //  public void giveStars() {
         
     //  }
