@@ -26,7 +26,7 @@ public class LMSUI {
     private Language lang; 
     private Student student;
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz","Quit"};
-    private String[] authorMenu = {"Create course","Enter course  to edit course ","Go to user menu","Quit"}; 
+    private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
     {
@@ -229,20 +229,78 @@ public class LMSUI {
         application.getAllLanguages();
         String language = keyboard.nextLine(); 
         Language language2 = getLanguage(language);
-        System.out.println("Decription: ");
-        String decription = keyboard.nextLine();
+        System.out.println("Description: ");
+        String description = keyboard.nextLine();
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
         System.out.println("How many module?");
         int numberOfModules = keyboard.nextInt();
-        ArrayList<Module> modules = new ArrayList<>();
+        ArrayList<Module> modules = new ArrayList<Module>();
         keyboard.nextLine();
-        this.course = application.createCourse(user.id, name, decription, syallbus, difficulty2, language2, modules);
+        this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
         for(int i = 0; i < numberOfModules; i++){
             Module module = addModule();
             modules.add(module);
         }
         return this.course;
+    }
+
+    private Module addModule()
+    {
+        System.out.println("What is the title?");
+        String title = keyboard.nextLine();
+        System.out.println("How many lessons?");
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        int lessonNumber = keyboard.nextInt();
+        keyboard.nextLine();
+        this.module = application.addModule(title, lessons);
+        for(int i = 0; i < lessonNumber; i++)
+        {
+            Lesson lesson = addLesson();
+            lessons.add(lesson);
+        }
+        return this.module;
+    }
+
+    private Lesson addLesson()
+    {
+        System.out.println("Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("Content: ");
+        String content = keyboard.nextLine();
+        this.lesson = application.addLesson(title, content, quiz);
+        addQuiz();
+        return this.lesson;
+    }
+
+    private Quiz addQuiz(){
+        System.out.println("How many questions in the quiz? ");
+        ArrayList<Question> questions = new ArrayList<Question>();
+        int numberOfQuestions = keyboard.nextInt();
+        keyboard.nextLine();
+        this.quiz = application.addQuiz(questions);
+        for(int i =0; i< numberOfQuestions; i++){
+            Question question = addQuestion();
+            questions.add(question);
+        }
+        return this.quiz;
+
+    }
+
+    private Question addQuestion(){
+        System.out.println("Question: ");
+        String question = keyboard.nextLine();
+        System.out.println("Enter 4 answer options: ");
+        ArrayList<String> answers = new ArrayList<String>();
+        for(int i =0; i< 4;i++){
+            String input = keyboard.nextLine();
+            answers.add(input);
+        }
+        System.out.println("Which answer is the correct one? Enter in the corresponding number.");
+        int correctAnswer = keyboard.nextInt();
+        keyboard.nextLine();
+        this.question = application.addQuestion(question, answers, correctAnswer);
+        return this.question;
     }
     
     private Difficulty getDifficlty(String difficulty){
@@ -316,63 +374,7 @@ public class LMSUI {
         }
     }
 
-    private Module addModule()
-    {
-        System.out.println("What is the title?");
-        String title = keyboard.nextLine();
-        System.out.println("How many lessons?");
-        ArrayList<Lesson> lessons = new ArrayList<>();
-        int lessonNumber = keyboard.nextInt();
-        keyboard.nextLine();
-        this.module = application.addModule(title, lessons);
-        for(int i = 0; i < lessonNumber; i++)
-        {
-            Lesson lesson = addLesson();
-            lessons.add(lesson);
-        }
-        return this.module;
-    }
-
-    private Lesson addLesson()
-    {
-        System.out.println("Title: ");
-        String title = keyboard.nextLine();
-        System.out.println("Content: ");
-        String content = keyboard.nextLine();
-        this.lesson = application.addLesson(title, content, quiz);
-        addQuiz();
-        return this.lesson;
-    }
-
-    private Quiz addQuiz(){
-        System.out.println("How many questions in the quiz? ");
-        ArrayList<Question> questions = new ArrayList<>();
-        int numberOfQuestions = keyboard.nextInt();
-        keyboard.nextLine();
-        this.quiz = application.addQuiz(questions);
-        for(int i =0; i< numberOfQuestions; i++){
-            Question question = addQuestion();
-            questions.add(question);
-        }
-        return this.quiz;
-
-    }
-
-    private Question addQuestion(){
-        System.out.println("Question: ");
-        String question = keyboard.nextLine();
-        System.out.println("Enter 4 answer options: ");
-        ArrayList<String> answers = new ArrayList<>();
-        for(int i =0; i< 4;i++){
-            String input = keyboard.nextLine();
-            answers.add(input);
-        }
-        System.out.println("Which answer is the correct one? Enter in the corresponding number.");
-        int correctAnswer = keyboard.nextInt();
-        keyboard.nextLine();
-        this.question = application.addQuestion(question, answers, correctAnswer);
-        return this.question;
-    }
+    
 
     private void takeQuiz(){
         // might not work

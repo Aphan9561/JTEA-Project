@@ -105,6 +105,42 @@ public class LMSApplication {
         return course1;
     } 
 
+    public Module addModule(String title, ArrayList<Lesson> lessons){
+        Module module1 = new Module(title, lessons);
+        if(module1 != null){
+            this.module = module1;
+            course.addModule(title, lessons);
+        }
+        return module1;
+    }
+
+    public Lesson addLesson(String content, String title, Quiz quiz){
+        Lesson lesson1 = new Lesson(content, title, quiz);
+        if(lesson1 != null){
+            this.lesson = lesson1;
+            module.addLesson(content, title, quiz);
+        }
+        return lesson1;
+    }
+
+    public Quiz addQuiz(ArrayList<Question> questions){
+        Quiz quiz1 = new Quiz(questions);
+        if(quiz1 != null){
+            this.quiz = quiz1;
+            lesson.addQuiz(questions);
+        }
+        return quiz1;
+    }
+
+    public Question addQuestion(String question, ArrayList<String> answers, int correctAnswer){
+        Question question1 = new Question(question, answers, correctAnswer);
+        if(question1 != null){
+            this.question = question1;
+            quiz.addQuestion(question, answers, correctAnswer);
+        }
+        return question1;
+    }
+
     public void nextModule(EnrolledCourse course)
     {
         //Only called after a module is finished
@@ -129,42 +165,6 @@ public class LMSApplication {
         for(Language language: Language.values()){
             System.out.println(language);
         }
-    }
-
-    public Module addModule(String title, ArrayList<Lesson> lessons){
-        Module module1 = new Module(title, lessons);
-        if(module1 != null){
-            this.module = module1;
-            course.addModule(title, lessons);
-        }
-        return this.module;
-    }
-
-    public Lesson addLesson(String content, String title, Quiz quiz){
-        Lesson lesson1 = new Lesson(content, title, quiz);
-        if(lesson1 != null){
-            this.lesson = lesson1;
-            module.addLesson(content, title, quiz);
-        }
-        return this.lesson;
-    }
-
-    public Quiz addQuiz(ArrayList<Question> questions){
-        Quiz quiz = new Quiz(questions);
-        if(quiz != null){
-            this.quiz = quiz;
-            lesson.addQuiz(questions);
-        }
-        return this.quiz;
-    }
-
-    public Question addQuestion(String question, ArrayList<String> answers, int correctAnswer){
-        Question question1 = new Question(question, answers, correctAnswer);
-        if(question1 != null){
-            this.question = question1;
-            quiz.addQuestion(question, answers, correctAnswer);
-        }
-        return this.question;
     }
 
     public Quiz takeQuiz(){
