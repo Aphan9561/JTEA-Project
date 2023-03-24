@@ -21,7 +21,7 @@ public class Author extends User{
                 "\nAccount type: "+type;
     }
     public void addCourse(String title, String decription, String syllabus, Difficulty difficult, Language language){
-        Course newCourse = new Course(title, decription, difficult, language);
+        Course newCourse = new Course(id, title, decription, syllabus, difficult, language);
     }
     
 }

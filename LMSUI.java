@@ -321,11 +321,12 @@ public class LMSUI {
         String content = keyboard.nextLine();
         System.out.println("How many questions in the quiz? ");
         int numberOfQuestions = keyboard.nextInt();
-        ArrayList<Question> quiz = new ArrayList<>(); //A quiz is an list a questions 
+        ArrayList<Question> questions = new ArrayList<>(); //A quiz is an list a questions 
         for(int i =0; i< numberOfQuestions; i++){
             Question question = addQuestion();
-            quiz.add(question);
+            questions.add(question);
         }
+        Quiz quiz = new Quiz(questions);
         this.lesson = application.addLesson(title, content, quiz);
         return this.lesson;
     }
@@ -349,8 +350,17 @@ public class LMSUI {
         System.out.println("Starting quiz: \n");
         for(int i=0; i < questions.size();i++){
             System.out.println(questions.get(i));
-            
+            //print questions and answer
+            //ask user for answer and compare to correct answer
         }
+    }
+
+    private void viewCourse(){
+
+    }
+
+    private void viewGrades(){
+        
     }
 
     private void printCourses(ArrayList<Course> courses)
