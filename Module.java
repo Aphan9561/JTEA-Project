@@ -36,6 +36,10 @@ import java.util.ArrayList;
         return lessons; 
     }
 
+    public Lesson getLesson(int index) {
+        return lessons.get(index); 
+    }
+
     public ArrayList<Comment> getComment(){
         return comments;
     }

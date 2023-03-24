@@ -34,7 +34,7 @@ public class LMSUI {
 
     public void run()
     {
-        System.out.println("Welcome to Our program. Please choose one of the following.\n");
+        System.out.println("Welcome to Our program. Please choose one of the following.");
         login();
         boolean running = true;
         while(running == true)
@@ -45,7 +45,7 @@ public class LMSUI {
             switch (choice) 
         {
             case 1:
-                System.out.println("What would would like to search for? Suggested terms to get the best result:/nFor lanuages: Python, Java/nDiffeculty: Easy, Medium, Hard");
+                System.out.println("What would would like to search for? Suggested terms to get the best result:\nFor lanuages: Python, Java\nDiffeculty: Easy, Medium, Hard");
                 String keyword = keyboard.nextLine();
                 keyword.toUpperCase();
                 //ArrayList<Course> resultList = application.findCourse(keyword);
@@ -181,9 +181,6 @@ public class LMSUI {
 
     private void runAuthor()
     {
-        /*
-         *  private String[] authorMenu = {"1: Create course","2: Enter course  to edit course ","3: Go to user menu","5: Quit"}; 
-         */
         boolean running = true;
         while(running)
         {
@@ -271,10 +268,18 @@ public class LMSUI {
     private void editCourse()
     {
         System.out.println("What course would you like to edit?");
-        //get the courses of the author and print them
+        ArrayList<Course> list =  application.findCourse(); 
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(list.get(i).getId().equals(this.user.getId());
+            {
+                System.out.print(i+": "+list.get(i).getTitle());
+            }
+        }
+
         int choice = keyboard.nextInt();
-        //Enter the course
-        //Ask whether you would like add modules or add lesson
+        Course editCourse = list.get(i);
+        System.out.println("1: Add module 2:Add Lessons 3: Go back to author menu");
         boolean run = true;
         while(run == true)
         {

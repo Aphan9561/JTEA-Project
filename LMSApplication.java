@@ -80,11 +80,7 @@ public class LMSApplication {
     }
 
     public ArrayList<Course> findCourse() {
-        ArrayList<Course> resultList = new ArrayList<>();
-        for(courseList.)
-        {
-            this.courseList.getCourse(keyword);
-        }
+        ArrayList<Course> resultList = courseList.getAllCourses();
         return resultList;
     }
 
@@ -113,13 +109,20 @@ public class LMSApplication {
         return course1;
     } 
 
-    public void nextLesson(){
-        
-
+    public void nextModule(EnrolledCourse course)
+    {
+        //Only called after a module is finished
+        course.moveCurrentModule();
+        System.out.println(course.resumeModule());
+    }
+    public void nextLesson(EnrolledCourse course){
+        //Only called after a module is finished
+        course.moveCurrentLesson();
+        System.out.println(course.resumeLesson());
     }
 
     public void answerQuestion(){
-
+        
     }
 
     public Quiz getQuiz(Quiz quiz){
