@@ -321,7 +321,7 @@ public class LMSUI {
         String content = keyboard.nextLine();
         System.out.println("How many questions in the quiz? ");
         int numberOfQuestions = keyboard.nextInt();
-        ArrayList<Question> quiz = new ArrayList<>();
+        ArrayList<Question> quiz = new ArrayList<>(); //A quiz is an list a questions 
         for(int i =0; i< numberOfQuestions; i++){
             Question question = addQuestion();
             quiz.add(question);
@@ -345,6 +345,14 @@ public class LMSUI {
         return this.question;
     }
 
+    private void takeQuiz(ArrayList<Question> questions){
+        System.out.println("Starting quiz: \n");
+        for(int i=0; i < questions.size();i++){
+            System.out.println(questions.get(i));
+            
+        }
+    }
+
     private void printCourses(ArrayList<Course> courses)
     {
         for(int i = 0; i < courses.size(); i++)
@@ -360,6 +368,7 @@ public class LMSUI {
             System.out.println(courses.get(i));
         }
     }
+
 
     public static void main(String[] args) 
     {
