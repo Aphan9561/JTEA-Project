@@ -27,8 +27,7 @@ public class User {
      * @param password  user's password
      * @param type      type of account the user has
      */
-    public User(String firstName, String lastName, String email, Date birthday, String username, String password,
-            AccountType type) {
+    public User(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -61,8 +60,7 @@ public class User {
      * @param password  user's password
      * @param type      type of account the user has
      */
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username,
-            String password, AccountType type , ArrayList<EnrolledCourse> enrolledCourse ) {
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type , ArrayList<EnrolledCourse> enrolledCourse ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

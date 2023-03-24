@@ -12,6 +12,13 @@
    protected static final String USER_BIRTHDAY = "birthday";
    protected static final String USER_USERNAME = "username";
    protected static final String USER_PASSWORD = "password";
+   protected static final String USER_ENROLLEDCOURSES = "enrolledCourses";
+   protected static final String USER_ENROLLEDCOURSES_COURSE = "course";
+   protected static final String USER_ENROLLEDCOURSES_PROGRESS = "progress";
+   protected static final String USER_ENROLLEDCOURSES_CURRENTMODULE = "currentModule";
+   protected static final String USER_ENROLLEDCOURSES_CURRENTLESSON = "currentLesson";
+   protected static final String USER_ENROLLEDCOURSES_OVERALLGRADE = "overallGrade";
+   protected static final String USER_ENROLLEDCOURSES_GRADESPERMODULE = "gradesPerModule";
    protected static final String USER_TYPE = "type";
 
    protected static final String FAQ_FILE_NAME = "JSON/FAQ.json";
