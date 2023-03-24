@@ -332,11 +332,12 @@ public class LMSUI {
         int numberOfQuestions = keyboard.nextInt();
         keyboard.nextLine();
         ArrayList<Question> questions = new ArrayList<>(); //A quiz is an list a questions 
+        Quiz quiz = new Quiz(questions);
         for(int i =0; i< numberOfQuestions; i++){
             Question question = addQuestion();
             questions.add(question);
         }
-        Quiz quiz = new Quiz(questions);
+        
         this.lesson = application.addLesson(title, content, quiz);
         return this.lesson;
     }
