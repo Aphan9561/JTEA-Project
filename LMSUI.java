@@ -19,6 +19,7 @@ public class LMSUI {
     private Course course;
     private Module module;
     private Lesson lesson;
+    private Question question;
     private Difficulty diffStatus;
     private Language lang; 
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","Quit"};
@@ -320,22 +321,28 @@ public class LMSUI {
         String content = keyboard.nextLine();
         System.out.println("How many questions in the quiz? ");
         int numberOfQuestions = keyboard.nextInt();
-        
-        Quiz quiz;
+        ArrayList<Question> quiz = new ArrayList<>();
+        for(int i =0; i< numberOfQuestions; i++){
+            Question question = addQuestion();
+            quiz.add(question);
+        }
         this.lesson = application.addLesson(title, content, quiz);
         return this.lesson;
     }
 
-    private void addQuestion(){
+    private Question addQuestion(){
         System.out.println("Question: ");
         String question = keyboard.nextLine();
         System.out.println("Enter 4 answer options: ");
-        String[] answers = new String[4];
+        ArrayList<String> answers = new ArrayList<>();
         for(int i =0; i< 4;i++){
-            answers[i] = keyboard.nextLine();
+            String input = keyboard.nextLine();
+            answers.add(input);
         }
-        
-        Question question = new Question(question, answers, 0)
+        System.out.println("Which answer is the correct one? Enter in the corresponding number.");
+        int correctAnswer = keyboard.nextInt();
+        this.question = application.addQuestion(question, answers, correctAnswer);
+        return this.question;
     }
 
     private void printCourses(ArrayList<Course> courses)

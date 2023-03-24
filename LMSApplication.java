@@ -12,6 +12,7 @@ public class LMSApplication {
     private Course course;
     private Module module;
     private Lesson lesson;
+    private Question question;
     private User author;
     private CourseList courseList;
     private static LMSApplication lmsApplication;
@@ -141,5 +142,14 @@ public class LMSApplication {
             courseList.addLesson(content, title, quiz);
         }
         return this.lesson;
+    }
+
+    public Question addQuestion(String question, ArrayList<String> answers, int correctAnswer){
+        Question question1 = new Question(question, answers, correctAnswer);
+        if(question1 != null){
+            this.question = question1;
+            courseList.addQuiz(question, answers, correctAnswer);
+        }
+        return this.question;
     }
 }
