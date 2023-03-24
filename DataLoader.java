@@ -72,9 +72,7 @@ public class DataLoader extends DataConstants{
                         String title = (String)lessonJSON.get(COURSE_MODULES_LESSON_TITLE);
                         String content = (String)lessonJSON.get(COURSE_MODULES_LESSON_CONTENT);
 
-                        JSONObject quizJSON = (JSONObject)lessonJSON.get(COURSE_MODULES_LESSON_QUIZ);
-                        //ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
-                        JSONArray quizQuestionsJSON = (JSONArray)quizJSON.get(COURSE_MODULES_LESSON_QUIZ_QUIZQUESTIONS);
+                        JSONArray quizQuestionsJSON = (JSONArray)lessonJSON.get(COURSE_MODULES_LESSON_QUIZ);
                         ArrayList<Question> quizQuestions = new ArrayList<Question>();
                         for(int l=0; l < quizQuestionsJSON.size(); l++) {
                             JSONObject quizQuestion = (JSONObject)quizQuestionsJSON.get(l);
