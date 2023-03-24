@@ -370,10 +370,11 @@ public class LMSUI {
     }
 
     private void takeQuiz(){
-        //might not work
+        // might not work
         System.out.println("Starting quiz: \n");
         application.takeQuiz();
     }
+
 
     private void viewCourse(EnrolledCourse course){
         //IDK how to start
@@ -381,7 +382,6 @@ public class LMSUI {
     }
 
     private void viewGrades(){
-        //Might not work
         this.user.getId();
         System.out.println("Here are your grades "+user.firstName);
         application.getGrades();
