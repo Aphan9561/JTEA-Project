@@ -22,7 +22,10 @@ public class CourseList {
         courses.add(new Course(author, name, description, syllabus, difficulty, language));
     }
 
-    public void addModule(){
+    public void addModule(String title, ArrayList<Lesson> lessons){
+
+    }
+    public void addLesson(String content, String title, Quiz quiz){
 
     }
 
