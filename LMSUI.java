@@ -18,8 +18,10 @@ public class LMSUI {
     private User user;
     private Course course;
     private Module module;
+    private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+    private ArrayList<Module> modules = new ArrayList<Module>();
+    private ArrayList<Question> questions = new ArrayList<Question>();
     private Lesson lesson;
-    private UUID authorId;
     private Quiz quiz;
     private Question question;
     private Difficulty diffStatus;
@@ -235,13 +237,13 @@ public class LMSUI {
         String syallbus = keyboard.nextLine();
         System.out.println("How many module?");
         int numberOfModules = keyboard.nextInt();
-        ArrayList<Module> modules = new ArrayList<Module>();
         keyboard.nextLine();
         this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
         for(int i = 0; i < numberOfModules; i++){
             Module module = addModule();
             modules.add(module);
         }
+        System.out.println("this.course in CreateCourse\n"+this.course);
         return this.course;
     }
 
@@ -250,7 +252,7 @@ public class LMSUI {
         System.out.println("What is the title?");
         String title = keyboard.nextLine();
         System.out.println("How many lessons?");
-        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        //ArrayList<Lesson> lessons = new ArrayList<Lesson>();
         int lessonNumber = keyboard.nextInt();
         keyboard.nextLine();
         this.module = application.addModule(title, lessons);
@@ -259,6 +261,7 @@ public class LMSUI {
             Lesson lesson = addLesson();
             lessons.add(lesson);
         }
+        System.out.println("this.module in addModule\n"+this.module);
         return this.module;
     }
 
@@ -268,8 +271,10 @@ public class LMSUI {
         String title = keyboard.nextLine();
         System.out.println("Content: ");
         String content = keyboard.nextLine();
-        this.lesson = application.addLesson(title, content, quiz);
+        Lesson les = application.addLesson(content, title, quiz);
         addQuiz();
+        this.lesson = application.addLesson(content, title, quiz);
+        System.out.println("this.lesson in addLesson\n"+this.lesson);
         return this.lesson;
     }
 
@@ -283,6 +288,7 @@ public class LMSUI {
             Question question = addQuestion();
             questions.add(question);
         }
+        System.out.println("this.quiz in addQuiz\n"+this.quiz);
         return this.quiz;
 
     }
@@ -296,10 +302,11 @@ public class LMSUI {
             String input = keyboard.nextLine();
             answers.add(input);
         }
-        System.out.println("Which answer is the correct one? Enter in the corresponding number.");
+        System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
         int correctAnswer = keyboard.nextInt();
         keyboard.nextLine();
         this.question = application.addQuestion(question, answers, correctAnswer);
+        System.out.println("this.question in addQuestion\n"+this.question);
         return this.question;
     }
     

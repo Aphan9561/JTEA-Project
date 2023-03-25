@@ -15,13 +15,6 @@ import java.util.ArrayList;
         this.lessons.addAll(lessons);
     }
 
-    /*public Module(String name, ArrayList<Quiz> quizzes, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
-        title = name;
-        this.quiz = quiz;
-        this.lessons.addAll(lessons);
-        this.comments.addAll(comments);
-    }*/
-
     public Module(String name, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
         title = name;
         this.lessons.addAll(lessons);

@@ -17,19 +17,19 @@ public class Lesson {
     }
 
     public String getTitle(){
-        return title;
+        return this.title;
     }
 
     public String getContent(){
-        return content;
+        return this.content;
     }
 
     public Quiz getQuiz(){
-        return quiz;
+        return this.quiz;
     }
 
     public void addQuiz(ArrayList<Question> question){
-        quiz = new Quiz(question);
+        this.quiz = new Quiz(question);
     }
 
     public String toString() {
