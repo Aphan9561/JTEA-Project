@@ -24,7 +24,7 @@ public class LMSUI {
     private Difficulty diffStatus;
     private Language lang; 
     private Student student;
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz","Quit"};
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz","View a Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course  to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
@@ -77,7 +77,17 @@ public class LMSUI {
                 break;
             case 6:
                 takeQuiz();
+                break;
             case 7:
+                // for testing purposes it needs to be hard coded
+                UUID authorId = UUID.randomUUID();
+                Course course = new Course(authorId, keyword, keyword, keyword, diffStatus, lang, null);
+                EnrolledCourse enrolledCourse2 = new EnrolledCourse(course, false, null);
+                ArrayList<EnrolledCourse> test = new ArrayList<EnrolledCourse>();
+                test.add(enrolledCourse2);
+                viewCourse(test);
+                break;
+            case 8:
                 keyboard.close();
                 return;
             default:
@@ -376,13 +386,47 @@ public class LMSUI {
     }
 
 
-    private void viewCourse(EnrolledCourse course){
-        //IDK how to start
-        System.out.println(course.toString());
+    private void viewCourse(ArrayList<EnrolledCourse> enrolledCourse){
+        String answer;
+        int answer1, answer2;
+        System.out.println("Here are all your Enrolled Courses:");
+        for(int i = 0; i<enrolledCourse.size(); i++){
+            System.out.println((i+1)+".: "+ enrolledCourse.get(i).getCourse().getTitle());
+        }
+        System.out.println("Would you like to view a Course: (Y or N)");
+        answer = keyboard.nextLine();
+        if(answer.equalsIgnoreCase("Y")){
+            System.out.println("Which Course, choose 1-"+enrolledCourse.size());
+            answer1 = keyboard.nextInt();
+            System.out.println(enrolledCourse.get(answer1).getCourse().getTitle());
+            System.out.println("Would you like to view the Modules of this Course: (Y or N)");
+            answer = keyboard.nextLine();
+            if(answer.equalsIgnoreCase("Y")){
+                for(int i = 0; i<enrolledCourse.get(answer1).getCourse().getNumberOfModules(); i++){
+                    System.out.println((i+1)+".: "+ enrolledCourse.get(answer1).getCourse().getModule().get(i).getTitle());
+                }
+                System.out.println("Would you like to view a Module's content: (Y or N)");
+                answer = keyboard.nextLine();
+                if(answer.equalsIgnoreCase("Y")){
+                    System.out.println("Which Module, choose 1-"+enrolledCourse.get(answer1).getCourse().getNumberOfModules());
+                    answer2 = keyboard.nextInt();
+                    for(int i = 0; i<enrolledCourse.get(answer1).getCourse().getModule(answer2).getNumberOfLessons(); i++){
+                        System.out.println(enrolledCourse.get(answer1).getCourse().getModule(answer2).getLesson(i).getTitle());
+                    }
+                } else{
+                    System.out.println("Oh, ok then.");
+                }
+            }  else{
+                System.out.println("Oh, ok then.");
+            }
+        }  else{
+            System.out.println("Oh, ok then.");
+        }
     }
 
+
     private void viewGrades(){
-        this.user.getId();
+        //this.user.getId();
         System.out.println("Here are your grades "+user.firstName);
         application.getGrades();
     }

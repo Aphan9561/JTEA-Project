@@ -40,6 +40,10 @@ import java.util.ArrayList;
         return lessons.get(index); 
     }
 
+    public int getNumberOfLessons(){
+        return lessons.size();
+    }
+
     public ArrayList<Comment> getComment(){
         return comments;
     }

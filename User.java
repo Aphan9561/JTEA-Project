@@ -25,7 +25,7 @@ public class User {
         enrolledCourse = new ArrayList();
     }
 
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type/*, ArrayList<EnrolledCourse> enrolledCourse*/) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,7 +34,12 @@ public class User {
         this.username = username;
         this.password = password;
         this.type = type;
+        //setEnrolledCourse(enrolledCourse);
     }
+
+    // private void setEnrolledCourse(ArrayList<EnrolledCourse> enrolledCourse) {
+
+    // }
 
     public String toString() {
         return "id: " + id +
@@ -87,12 +92,10 @@ public class User {
         return type;
     }
 
-    /*
-     * public ArrayList<EnrolledCourse> getCourse()
-     * {
-     * return enrolledCourse;
-     * }
-     */
+    public ArrayList<EnrolledCourse> getEnrolledCourse(){
+        return enrolledCourse;
+    }
+
 
     //  public void giveStars() {
         
