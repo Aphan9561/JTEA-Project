@@ -97,7 +97,7 @@ public class LMSApplication {
 
     public Course createCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){
         Course course1 = new Course(author, name, description, syllabus, difficulty, language, modules);
-        if(course1!= null)
+        if(course1 != null)
         {
             this.course = course1;
             courseList.addCourse(author, name, description, syllabus, difficulty, language, modules);

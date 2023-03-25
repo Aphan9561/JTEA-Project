@@ -120,7 +120,7 @@ public class Course {
 
     public String toString(){
         String result = "Course ID: " + id + "\nDifficulty: " + difficulty + "\nName: " + name + "\nDescription: " + description + "\nSyllabus: " + syllabus + "\nAuthor ID: " + author;
-                result += "\nModules: ";
+                result += "\nModules: \n";
         for(Module module : modules) {
             result += module;
         }

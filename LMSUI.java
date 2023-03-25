@@ -19,6 +19,7 @@ public class LMSUI {
     private Course course;
     private Module module;
     private Lesson lesson;
+    private Lesson tempLesson;
     private Quiz quiz;
     private Question question;
     private Difficulty diffStatus;
@@ -224,8 +225,8 @@ public class LMSUI {
         System.out.println("Difficulty (Options: Easy, Medium, or Hard): ");
         String difficulty = keyboard.nextLine();
         Difficulty difficulty2 = getDifficlty(difficulty);
-        System.out.println("Language: options are: ");
-        application.getAllLanguages();
+        System.out.println("Language (Options: PYTHON, JAVASCRIPT, or GITHUB): ");
+        //application.getAllLanguages();
         String language = keyboard.nextLine(); 
         Language language2 = getLanguage(language);
         System.out.println("Description: ");
@@ -269,7 +270,7 @@ public class LMSUI {
         String title = keyboard.nextLine();
         System.out.println("Content: ");
         String content = keyboard.nextLine();
-        Lesson les = application.addLesson(content, title, quiz);
+        this.tempLesson = application.addLesson(content, title, quiz);
         addQuiz();
         this.lesson = application.addLesson(content, title, quiz);
         System.out.println("this.lesson in addLesson\n"+this.lesson);
