@@ -226,7 +226,6 @@ public class LMSUI {
         String difficulty = keyboard.nextLine();
         Difficulty difficulty2 = getDifficlty(difficulty);
         System.out.println("Language (Options: PYTHON, JAVASCRIPT, or GITHUB): ");
-        //application.getAllLanguages();
         String language = keyboard.nextLine(); 
         Language language2 = getLanguage(language);
         System.out.println("Description: ");

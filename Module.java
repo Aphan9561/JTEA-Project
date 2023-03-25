@@ -47,6 +47,7 @@ import java.util.ArrayList;
         result += "Lessons:\n";
         for(Lesson lesson : lessons) {
             result += lesson;
+            System.out.println("Added lesson");
         }
         result += "Comments: \n";
         for(Comment comment : comments) {

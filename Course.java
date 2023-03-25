@@ -123,6 +123,7 @@ public class Course {
                 result += "\nModules: \n";
         for(Module module : modules) {
             result += module;
+            System.out.println("Added module");
         }
                 result += "\nLanguage: "+language+"\nActive Students:\n";
         for(Student student : students) {
