@@ -18,9 +18,6 @@ public class LMSUI {
     private User user;
     private Course course;
     private Module module;
-    private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-    private ArrayList<Module> modules = new ArrayList<Module>();
-    private ArrayList<Question> questions = new ArrayList<Question>();
     private Lesson lesson;
     private Quiz quiz;
     private Question question;
@@ -236,6 +233,7 @@ public class LMSUI {
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
         System.out.println("How many module?");
+        ArrayList<Module> modules = new ArrayList<Module>();
         int numberOfModules = keyboard.nextInt();
         keyboard.nextLine();
         this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
@@ -252,7 +250,7 @@ public class LMSUI {
         System.out.println("What is the title?");
         String title = keyboard.nextLine();
         System.out.println("How many lessons?");
-        //ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
         int lessonNumber = keyboard.nextInt();
         keyboard.nextLine();
         this.module = application.addModule(title, lessons);
