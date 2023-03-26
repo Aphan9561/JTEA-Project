@@ -19,9 +19,9 @@ public class LMSUI {
     private Course course;
     private Module module;
     private Lesson lesson;
-    private Lesson tempLesson;
-    private Quiz quiz;
-    private Question question;
+    //private Lesson tempLesson;
+    // private Quiz quiz;
+    // private Question question;
     private Difficulty diffStatus;
     private Language lang; 
     private Student student;
@@ -226,11 +226,10 @@ public class LMSUI {
         }
     }
 
-    private Course createCourse()
-    {
-        System.out.println("Name:");
+    private Course createCourse(){
+        System.out.println("Course Title: ");
         String name = keyboard.nextLine();
-        System.out.println("Difficulty (Options: Easy, Medium, or Hard): ");
+        System.out.println("Difficulty (Options: EASY, MEDIUM, or HARD): ");
         String difficulty = keyboard.nextLine();
         Difficulty difficulty2 = getDifficlty(difficulty);
         System.out.println("Language (Options: PYTHON, JAVASCRIPT, or GITHUB): ");
@@ -244,9 +243,51 @@ public class LMSUI {
         ArrayList<Module> modules = new ArrayList<Module>();
         int numberOfModules = keyboard.nextInt();
         keyboard.nextLine();
-        //this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
         for(int i = 0; i < numberOfModules; i++){
-            Module module = addModule();
+            System.out.println("Module Title: ");
+            String Mtitle = keyboard.nextLine();
+            System.out.println("How many lessons?");
+            ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+            int lessonNumber = keyboard.nextInt();
+            keyboard.nextLine();
+            for(int j = 0; j < lessonNumber; j++)
+            {
+                System.out.println("Lesson Title: ");
+                String Ltitle = keyboard.nextLine();
+                System.out.println("Content: ");
+                String content = keyboard.nextLine();
+                System.out.println("How many questions in the quiz? ");
+                ArrayList<Question> questions = new ArrayList<Question>();
+                int numberOfQuestions = keyboard.nextInt();
+                keyboard.nextLine();
+                for(int l =0; l< numberOfQuestions; l++){
+                    System.out.println("Question: ");
+                    String ques = keyboard.nextLine();
+                    System.out.println("Enter 4 answer options: ");
+                    ArrayList<String> answers = new ArrayList<String>();
+                    for(int m =0; m< 4;m++){
+                        String input = keyboard.nextLine();
+                        answers.add(input);
+                    }
+                    System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
+                    int correctAnswer = keyboard.nextInt();
+                    keyboard.nextLine();
+
+                    Question question = new Question(ques, answers, correctAnswer);
+                    questions.add(question);
+                    
+                }
+
+                System.out.println(questions);
+
+                Quiz quiz = new Quiz(questions);
+                System.out.println(quiz);
+                Lesson lesson = new Lesson(content, Ltitle, quiz);
+
+                lessons.add(lesson);
+            }
+
+            Module module = new Module(Mtitle, lessons);
             modules.add(module);
         }
         this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
@@ -254,70 +295,6 @@ public class LMSUI {
         return this.course;
     }
 
-    private Module addModule()
-    {
-        System.out.println("What is the title?");
-        String title = keyboard.nextLine();
-        System.out.println("How many lessons?");
-        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-        int lessonNumber = keyboard.nextInt();
-        keyboard.nextLine();
-        for(int i = 0; i < lessonNumber; i++)
-        {
-            Lesson lesson = addLesson();
-            lessons.add(lesson);
-        }
-        this.module = application.addModule(title, lessons);
-        System.out.println("this.module in addModule\n"+this.module);
-        return this.module;
-    }
-
-    private Lesson addLesson()
-    {
-        System.out.println("Title: ");
-        String title = keyboard.nextLine();
-        System.out.println("Content: ");
-        String content = keyboard.nextLine();
-        //this.tempLesson = application.addLesson(content, title, quiz);
-        addQuiz();
-        this.lesson = application.addLesson(content, title, quiz);
-        System.out.println("this.lesson in addLesson\n"+this.lesson);
-        return this.lesson;
-    }
-
-    private Quiz addQuiz(){
-        System.out.println("How many questions in the quiz? ");
-        ArrayList<Question> questions = new ArrayList<Question>();
-        int numberOfQuestions = keyboard.nextInt();
-        keyboard.nextLine();
-        for(int i =0; i< numberOfQuestions; i++){
-            Question question = addQuestion();
-            questions.add(question);
-        }
-        this.quiz = application.addQuiz(questions);
-        System.out.println("this.quiz in addQuiz\n"+this.quiz);
-        return this.quiz;
-
-    }
-
-    private Question addQuestion(){
-        int correctAnswer  = 0;
-        System.out.println("Question: ");
-        String question = keyboard.nextLine();
-        System.out.println("Enter 4 answer options: ");
-        ArrayList<String> answers = new ArrayList<String>();
-        for(int i =0; i< 4;i++){
-            String input = keyboard.nextLine();
-            answers.add(input);
-        }
-        System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
-        correctAnswer = keyboard.nextInt();
-        keyboard.nextLine();
-        this.question = application.addQuestion(question, answers, correctAnswer);
-        System.out.println("this.question in addQuestion\n"+this.question);
-        return this.question;
-    }
-    
     private Difficulty getDifficlty(String difficulty){
         if(difficulty.equalsIgnoreCase("easy")){
             diffStatus = diffStatus.EASY;
@@ -369,7 +346,7 @@ public class LMSUI {
                 int moduleNumber = keyboard.nextInt();
                 for(int i = 0; i < moduleNumber; i++)
                 {
-                    addModule();
+                    //addModule();
                 }
             break;
             case 2:
@@ -377,7 +354,7 @@ public class LMSUI {
                 int lessonNumber = keyboard.nextInt();
                 for(int i = 0; i < lessonNumber; i++)
                 {
-                    addLesson();
+                    //addLesson();
                 }
             break;
             case 3:

@@ -11,12 +11,12 @@ public class LMSApplication {
     private User user; 
     private Course course;
     private Module module;
-    private Lesson lesson;
+    private Lesson lesson = new Lesson(null, null, null);
     private Question question;
     private User author;
     private Student student;
     private CourseList courseList;
-    private Quiz quiz;
+    private Quiz quiz = new Quiz(null);
     private static LMSApplication lmsApplication;
     private UserList userList;
     
@@ -110,7 +110,7 @@ public class LMSApplication {
             this.module = module1;
             course.addModule(title, lessons);
         }
-        return module1;
+        return this.module;
     }
 
     public Lesson addLesson(String content, String title, Quiz quiz){
@@ -119,7 +119,7 @@ public class LMSApplication {
             this.lesson = lesson1;
             module.addLesson(content, title, quiz);
         }
-        return lesson1;
+        return this.lesson;
     }
 
     public Quiz addQuiz(ArrayList<Question> questions){
@@ -128,7 +128,7 @@ public class LMSApplication {
             this.quiz = quiz1;
             lesson.addQuiz(questions);
         }
-        return quiz1;
+        return this.quiz;
     }
 
     public Question addQuestion(String question, ArrayList<String> answers, int correctAnswer){
@@ -137,8 +137,7 @@ public class LMSApplication {
             this.question = question1;
             quiz.addQuestion(question, answers, correctAnswer);
         }
-        
-        return question1;
+        return this.question;
     }
 
     public void nextModule(EnrolledCourse course)

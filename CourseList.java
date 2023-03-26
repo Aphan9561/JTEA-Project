@@ -21,9 +21,10 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){
+    public boolean addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){
         courses.add(new Course(author, name, description, syllabus, difficulty, language, modules)); 
         saveCourses();
+        return true;
     }
 
     public ArrayList<Course> getCourse(String keyword){

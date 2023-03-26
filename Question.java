@@ -9,7 +9,7 @@ public class Question {
 
     public Question(String question, ArrayList<String> answers, int correctAnswer) {
         this.question = question;
-        this.answers.addAll(answers);
+        this.answers = answers;
         this.correctAnswer = correctAnswer;
     }
 

@@ -10,12 +10,13 @@ public class Quiz {
     private int stars;
 
     public Quiz(ArrayList<Question> question) {
-        this.questions = questions;
+        this.questions = question;
     }
 
-    public void addQuestion(String prompt, ArrayList<String> answers, int correctAnswer) {
+    public boolean addQuestion(String prompt, ArrayList<String> answers, int correctAnswer) {
         Question question = new Question(prompt, answers, correctAnswer);
         questions.add(question);
+        return true;
     }
 
     public double calculateScore(Question[] userAnswers) {

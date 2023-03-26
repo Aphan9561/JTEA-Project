@@ -30,7 +30,8 @@ import java.util.ArrayList;
     }
 
     public void setLesson(ArrayList<Lesson> lessons){
-        this.lessons = lessons;
+        //this.lessons = lessons;
+        this.lessons.addAll(lessons);
     }
 
     public Lesson getLesson(int index) {
@@ -40,7 +41,7 @@ import java.util.ArrayList;
     public int getNumberOfLessons(){
         return lessons.size();
     }
-    
+
     public void addLesson(String content, String title, Quiz quiz){
         Lesson lesson = new Lesson(content, title, quiz);
         lessons.add(lesson);
