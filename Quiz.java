@@ -10,19 +10,11 @@ public class Quiz {
     private int stars;
 
     public Quiz(ArrayList<Question> question) {
-        questions.addAll(question);
+        this.questions = questions;
     }
 
-    public void addQuestion(Question question) {
-        // for(int i=0; i<quizSize; i++){
-        //     if(questions[i] == null){
-        //         questions[i] = question;
-        //         break;
-        //     } else{
-        //         System.out.print("Can't add question, Quiz full.");
-        //         break;
-        //     }
-        // }
+    public void addQuestion(String prompt, ArrayList<String> answers, int correctAnswer) {
+        Question question = new Question(prompt, answers, correctAnswer);
         questions.add(question);
     }
 

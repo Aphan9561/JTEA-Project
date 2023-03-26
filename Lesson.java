@@ -13,19 +13,23 @@ public class Lesson {
     public Lesson(String content, String title, Quiz quiz) {
         this.content = content;
         this.title = title;
-        this.quiz = quiz;;
+        this.quiz = quiz;
     }
 
     public String getTitle(){
-        return title;
+        return this.title;
     }
 
     public String getContent(){
-        return content;
+        return this.content;
     }
 
     public Quiz getQuiz(){
-        return quiz;
+        return this.quiz;
+    }
+
+    public void addQuiz(ArrayList<Question> question){
+        this.quiz = new Quiz(question);
     }
 
     public String toString() {

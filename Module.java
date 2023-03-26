@@ -12,15 +12,8 @@ import java.util.ArrayList;
 
     public Module(String title, ArrayList<Lesson> lessons) {
         this.title = title;
-        this.lessons.addAll(lessons);
+        setLesson(lessons);
     }
-
-    /*public Module(String name, ArrayList<Quiz> quizzes, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
-        title = name;
-        this.quiz = quiz;
-        this.lessons.addAll(lessons);
-        this.comments.addAll(comments);
-    }*/
 
     public Module(String name, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
         title = name;
@@ -36,12 +29,22 @@ import java.util.ArrayList;
         return lessons; 
     }
 
+    public void setLesson(ArrayList<Lesson> lessons){
+        this.lessons = lessons;
+    }
+
     public Lesson getLesson(int index) {
         return lessons.get(index); 
     }
 
+<<<<<<< HEAD
     public int getNumberOfLessons(){
         return lessons.size();
+=======
+    public void addLesson(String content, String title, Quiz quiz){
+        Lesson lesson = new Lesson(content, title, quiz);
+        lessons.add(lesson);
+>>>>>>> 41375d5ffedb9a1291c62ab8abdb25e14b90ce50
     }
 
     public ArrayList<Comment> getComment(){
@@ -53,6 +56,7 @@ import java.util.ArrayList;
         result += "Lessons:\n";
         for(Lesson lesson : lessons) {
             result += lesson;
+            System.out.println("Added lesson");
         }
         result += "Comments: \n";
         for(Comment comment : comments) {

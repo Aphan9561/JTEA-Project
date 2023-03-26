@@ -32,7 +32,7 @@ public class UserList {
             return false;
     
         users.add(new User(firstName, lastName,email, birthday, username, password, type));
-        DataWriter.saveUsers();
+        saveUsers();
         return true;
     }
 

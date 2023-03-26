@@ -21,19 +21,9 @@ public class CourseList {
         return courseList;
     }
 
-    public void addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language,ArrayList<Module> modules){
-        courses.add(new Course(author, name, description, syllabus, difficulty, language,modules)); 
-    }
-
-    public void addModule(String title, ArrayList<Lesson> lessons){
-        module.add(new Module(title, lessons));
-    }
-    public void addLesson(String content, String title, Quiz quiz){
-        lesson.add(new Lesson(content, title, quiz));
-    }
-
-    public void addQuiz(String question, ArrayList<String> answers, int correctAnswer){
-        quiz.add(new Question(question, answers, correctAnswer));
+    public void addCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){
+        courses.add(new Course(author, name, description, syllabus, difficulty, language, modules)); 
+        saveCourses();
     }
 
     public ArrayList<Course> getCourse(String keyword){
@@ -42,5 +32,8 @@ public class CourseList {
     
     public ArrayList<Course> getAllCourses(){
         return courses;
+    }
+    public void saveCourses(){
+        DataWriter.saveCourses();
     }
 }

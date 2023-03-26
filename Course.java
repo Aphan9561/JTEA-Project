@@ -23,7 +23,7 @@ public class Course {
         this.difficulty = difficulty;
         this.language =language;
         this.syllabus = syllabus;
-        this.modules.addAll(modules);
+        this.modules = modules;
         /*reviews = new ArrayList<>();
         modules = new ArrayList<>();
         comments = new ArrayList<>();*/
@@ -36,12 +36,12 @@ public class Course {
         this.description = description;
         this.syllabus = syllabus;
         this.author = author;
-        this.modules.addAll(modules);
+        this.modules = modules;
         this.language = language;
-        this.students.addAll(students);
+        this.students = students;
         this.rating = rating;
-        this.reviews.addAll(reviews);
-        this.comments.addAll(comments);
+        this.reviews = reviews;
+        this.comments = comments;
     }
 
     public UUID getId(){
@@ -120,9 +120,10 @@ public class Course {
 
     public String toString(){
         String result = "Course ID: " + id + "\nDifficulty: " + difficulty + "\nName: " + name + "\nDescription: " + description + "\nSyllabus: " + syllabus + "\nAuthor ID: " + author;
-                result += "\nModules: ";
+                result += "\nModules: \n";
         for(Module module : modules) {
             result += module;
+            System.out.println("Added module");
         }
                 result += "\nLanguage: "+language+"\nActive Students:\n";
         for(Student student : students) {
