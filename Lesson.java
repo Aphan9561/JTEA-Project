@@ -13,7 +13,7 @@ public class Lesson {
     public Lesson(String content, String title, Quiz quiz) {
         this.content = content;
         this.title = title;
-        this.quiz = quiz;;
+        this.quiz = quiz;
     }
 
     public String getTitle(){

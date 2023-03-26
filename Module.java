@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
     public Module(String title, ArrayList<Lesson> lessons) {
         this.title = title;
-        this.lessons.addAll(lessons);
+        setLesson(lessons);
     }
 
     public Module(String name, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
@@ -27,6 +27,10 @@ import java.util.ArrayList;
 
     public ArrayList<Lesson> getLesson() {
         return lessons; 
+    }
+
+    public void setLesson(ArrayList<Lesson> lessons){
+        this.lessons = lessons;
     }
 
     public Lesson getLesson(int index) {

@@ -236,11 +236,12 @@ public class LMSUI {
         ArrayList<Module> modules = new ArrayList<Module>();
         int numberOfModules = keyboard.nextInt();
         keyboard.nextLine();
-        this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
+        //this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
         for(int i = 0; i < numberOfModules; i++){
             Module module = addModule();
             modules.add(module);
         }
+        this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
         System.out.println("this.course in CreateCourse\n"+this.course);
         return this.course;
     }
@@ -253,12 +254,12 @@ public class LMSUI {
         ArrayList<Lesson> lessons = new ArrayList<Lesson>();
         int lessonNumber = keyboard.nextInt();
         keyboard.nextLine();
-        this.module = application.addModule(title, lessons);
         for(int i = 0; i < lessonNumber; i++)
         {
             Lesson lesson = addLesson();
             lessons.add(lesson);
         }
+        this.module = application.addModule(title, lessons);
         System.out.println("this.module in addModule\n"+this.module);
         return this.module;
     }
@@ -269,7 +270,7 @@ public class LMSUI {
         String title = keyboard.nextLine();
         System.out.println("Content: ");
         String content = keyboard.nextLine();
-        this.tempLesson = application.addLesson(content, title, quiz);
+        //this.tempLesson = application.addLesson(content, title, quiz);
         addQuiz();
         this.lesson = application.addLesson(content, title, quiz);
         System.out.println("this.lesson in addLesson\n"+this.lesson);
@@ -281,17 +282,18 @@ public class LMSUI {
         ArrayList<Question> questions = new ArrayList<Question>();
         int numberOfQuestions = keyboard.nextInt();
         keyboard.nextLine();
-        this.quiz = application.addQuiz(questions);
         for(int i =0; i< numberOfQuestions; i++){
             Question question = addQuestion();
             questions.add(question);
         }
+        this.quiz = application.addQuiz(questions);
         System.out.println("this.quiz in addQuiz\n"+this.quiz);
         return this.quiz;
 
     }
 
     private Question addQuestion(){
+        int correctAnswer  = 0;
         System.out.println("Question: ");
         String question = keyboard.nextLine();
         System.out.println("Enter 4 answer options: ");
@@ -301,7 +303,7 @@ public class LMSUI {
             answers.add(input);
         }
         System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
-        int correctAnswer = keyboard.nextInt();
+        correctAnswer = keyboard.nextInt();
         keyboard.nextLine();
         this.question = application.addQuestion(question, answers, correctAnswer);
         System.out.println("this.question in addQuestion\n"+this.question);

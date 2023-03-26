@@ -10,7 +10,7 @@ public class Quiz {
     private int stars;
 
     public Quiz(ArrayList<Question> question) {
-        questions.addAll(question);
+        this.questions = questions;
     }
 
     public void addQuestion(String prompt, ArrayList<String> answers, int correctAnswer) {
