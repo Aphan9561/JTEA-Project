@@ -92,7 +92,6 @@ public class LMSApplication {
     
     public void courseReview(double rating, String comment, User userName){
         course.addReview(userName, rating, comment);
-        //Put review onto course
     }
 
     public Course createCourse(UUID author, String name, String description, String syllabus, Difficulty difficulty, Language language, ArrayList<Module> modules){

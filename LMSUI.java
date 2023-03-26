@@ -40,7 +40,7 @@ public class LMSUI {
         login();
         while(true)
         {
-            displayMainMenu(); //Library example
+            displayMainMenu(); 
             int choice = keyboard.nextInt();
             keyboard.nextLine();
             switch (choice) 
@@ -396,7 +396,8 @@ public class LMSUI {
     private void viewGrades(){
         Student student = new Student(user.id);
         System.out.println("Here are your grades "+user.firstName);
-        application.getGrades();
+        int grades = application.getGrades();
+        System.out.println(grades);
     }
 
     private void printCourses(ArrayList<Course> courses)
