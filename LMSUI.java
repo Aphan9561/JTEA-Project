@@ -25,13 +25,8 @@ public class LMSUI {
     private Difficulty diffStatus;
     private Language lang; 
     private Student student;
-<<<<<<< HEAD
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz","View a Course","Quit"};
-    private String[] authorMenu = {"Create course","Enter course  to edit course ","Go to user menu","Quit"}; 
-=======
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz","Quit"};
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz", "View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
->>>>>>> 41375d5ffedb9a1291c62ab8abdb25e14b90ce50
 
     public LMSUI() 
     {
