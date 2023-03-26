@@ -439,11 +439,7 @@ public class LMSUI {
 
 
     private void viewGrades(){
-<<<<<<< HEAD
-        //this.user.getId();
-=======
         Student student = new Student(user.id);
->>>>>>> 41375d5ffedb9a1291c62ab8abdb25e14b90ce50
         System.out.println("Here are your grades "+user.firstName);
         int grades = application.getGrades();
         System.out.println(grades);

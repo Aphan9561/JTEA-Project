@@ -37,14 +37,13 @@ import java.util.ArrayList;
         return lessons.get(index); 
     }
 
-<<<<<<< HEAD
     public int getNumberOfLessons(){
         return lessons.size();
-=======
+    }
+    
     public void addLesson(String content, String title, Quiz quiz){
         Lesson lesson = new Lesson(content, title, quiz);
         lessons.add(lesson);
->>>>>>> 41375d5ffedb9a1291c62ab8abdb25e14b90ce50
     }
 
     public ArrayList<Comment> getComment(){
