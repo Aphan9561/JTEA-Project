@@ -81,9 +81,8 @@ public class LMSUI {
                 break;
             case 7:
                 // for testing purposes it needs to be hard coded
-                UUID authorId = UUID.randomUUID();
-                Course course = new Course(authorId, keyword, keyword, keyword, diffStatus, lang, null);
-                EnrolledCourse enrolledCourse2 = new EnrolledCourse(course, false, null);
+                Course course = createCourse();
+                EnrolledCourse enrolledCourse2 = new EnrolledCourse(course, true);
                 ArrayList<EnrolledCourse> test = new ArrayList<EnrolledCourse>();
                 test.add(enrolledCourse2);
                 viewCourse(test);
@@ -439,11 +438,7 @@ public class LMSUI {
 
 
     private void viewGrades(){
-<<<<<<< HEAD
-        //this.user.getId();
-=======
         Student student = new Student(user.id);
->>>>>>> 41375d5ffedb9a1291c62ab8abdb25e14b90ce50
         System.out.println("Here are your grades "+user.firstName);
         int grades = application.getGrades();
         System.out.println(grades);
