@@ -73,11 +73,13 @@ public class LMSUI {
                 break;
             case 7:
                 // for testing purposes it needs to be hard coded
-                Course course = createCourse();
-                EnrolledCourse enrolledCourse2 = new EnrolledCourse(course, true);
-                ArrayList<EnrolledCourse> test = new ArrayList<EnrolledCourse>();
-                test.add(enrolledCourse2);
-                viewCourse(test);
+                System.out.println("Which Course would you like to view?");
+                String c = keyboard.nextLine();
+                Course course =  application.findCourseTitle(c);
+                // EnrolledCourse enrolledCourse2 = new EnrolledCourse(course, true);
+                // ArrayList<EnrolledCourse> test = new ArrayList<EnrolledCourse>();
+                // test.add(enrolledCourse2);
+                viewCourse(course);
                 break;
             case 8:
                 keyboard.close();
@@ -394,45 +396,67 @@ public class LMSUI {
     }
 
 
-    private void viewCourse(ArrayList<EnrolledCourse> enrolledCourse){
-        String answer, answer3, answer4, answe;
-        int answer1, answer2;
-        System.out.println("Here are all your Enrolled Courses:");
-        for(int i = 0; i<enrolledCourse.size(); i++){
-            System.out.println((i+1)+".: "+ enrolledCourse.get(i).getCourse().getTitle());
+    private void viewCourse(Course course){
+        String answer;
+        int answer1;
+        System.out.println("Here is the Course you requested and its Modules:");
+        System.out.println(course.getTitle()+ ": ");
+        for(int i = 0; i<course.getNumberOfModules(); i++){
+            System.out.println((i+1)+".: "+course.getModule().get(i).getTitle());
         }
-        System.out.println("Would you like to view a Course: (Y or N)");
+        System.out.println("Would you like to view the Lessons of a Module: (Y or N)");
         answer = keyboard.nextLine();
         if(answer.equalsIgnoreCase("Y")){
-            System.out.println("Which Course, choose 1-"+enrolledCourse.size());
+            System.out.println("Which Module, choose 1-"+course.getNumberOfModules());
             answer1 = keyboard.nextInt();
             keyboard.nextLine();
-            System.out.println(enrolledCourse.get(answer1-1).getCourse().getTitle());
-            System.out.println("Would you like to view the Modules of this Course: (Y or N)");
-            answe = keyboard.nextLine();
-            if(answe.equalsIgnoreCase("Y")){
-                for(int i = 0; i<enrolledCourse.get(answer1-1).getCourse().getNumberOfModules(); i++){
-                    System.out.println((i+1)+".: "+ enrolledCourse.get(answer1-1).getCourse().getModule().get(i).getTitle());
-                }
-                System.out.println("Would you like to view a Module's content: (Y or N)");
-                answer4 = keyboard.nextLine();
-                if(answer4.equalsIgnoreCase("Y")){
-                    System.out.println("Which Module, choose 1-"+enrolledCourse.get(answer1-1).getCourse().getNumberOfModules());
-                    answer2 = keyboard.nextInt();
-                    for(int i = 0; i<enrolledCourse.get(answer1-1).getCourse().getModule(answer2-1).getNumberOfLessons(); i++){
-                        System.out.println(enrolledCourse.get(answer1-1).getCourse().getModule(answer2-1).getLesson(i).getTitle());
+            System.out.println("Here is the Module you requested and its Lessons:");
+            System.out.println(course.getModule().get(answer1-1).getTitle()+ ": ");
+            for(int i = 0; i<course.getModule().get(answer1-1).getNumberOfLessons(); i++){
+                System.out.println((i+1)+".: "+course.getModule().get(answer1-1).getLesson().get(i).getTitle());
+            }
+            System.out.println("Would you like to add or edit any Lesson to this Module? (Type \"add\" or \"edit\")");
+            answer = keyboard.nextLine();
+            if(answer.equalsIgnoreCase("add")){
+                System.out.println("Lesson Title: ");
+                String title = keyboard.nextLine();
+                System.out.println("Content: ");
+                String content = keyboard.nextLine();
+                System.out.println("How many questions in the quiz? ");
+                ArrayList<Question> questions = new ArrayList<Question>();
+                int numberOfQuestions = keyboard.nextInt();
+                keyboard.nextLine();
+                for(int i =0; i< numberOfQuestions; i++){
+                    System.out.println("Question: ");
+                    String ques = keyboard.nextLine();
+                    System.out.println("Enter 4 answer options: ");
+                    ArrayList<String> answers = new ArrayList<String>();
+                    for(int m =0; m< 4;m++){
+                        String input = keyboard.nextLine();
+                        answers.add(input);
                     }
-                } else{
-                    System.out.println("Oh, ok then. Now Exiting View Course.");
+                    System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
+                    int correctAnswer = keyboard.nextInt();
+                    keyboard.nextLine();
+
+                    Question question = new Question(ques, answers, correctAnswer);
+                    questions.add(question);
                 }
-            }  else{
-                System.out.println("Oh, ok then. Now Exiting View Course.");
+                Quiz quiz = new Quiz(questions);
+                course.getModule().get(answer1-1).addLesson(content, title, quiz);
+                System.out.println("Lesson Added.");
+                System.out.println("New List of Lessons for Module "+course.getModule().get(answer1-1).getTitle());
+                for(int i = 0; i<course.getModule().get(answer1-1).getNumberOfLessons(); i++){
+                    System.out.println((i+1)+".: "+course.getModule().get(answer1-1).getLesson().get(i).getTitle());
+                }                
+            } else{
+                System.out.println("Sorry we are not doing that right now.");
+                System.out.println("Now Exiting View Course.");
             }
         }  else{
             System.out.println("Oh, ok then. Now Exiting View Course.");
         }
     }
-
 
     private void viewGrades(){
         Student student = new Student(user.id);
