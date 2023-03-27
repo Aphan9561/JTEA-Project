@@ -387,6 +387,7 @@ public class LMSUI {
         if(answer.equalsIgnoreCase("Y")){
             System.out.println("Which Course, choose 1-"+enrolledCourse.size());
             answer1 = keyboard.nextInt();
+            keyboard.nextLine();
             System.out.println(enrolledCourse.get(answer1-1).getCourse().getTitle());
             System.out.println("Would you like to view the Modules of this Course: (Y or N)");
             answe = keyboard.nextLine();
