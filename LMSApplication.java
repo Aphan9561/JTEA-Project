@@ -10,13 +10,11 @@ import java.util.UUID;
 public class LMSApplication {
     private User user; 
     private Course course;
-    private Module module;
-    private Lesson lesson = new Lesson(null, null, null);
-    private Question question;
+    private Lesson lesson;
     private User author;
     private Student student;
     private CourseList courseList;
-    private Quiz quiz = new Quiz(null);
+    private Quiz quiz;
     private static LMSApplication lmsApplication;
     private UserList userList;
     private FAQList faqList;
@@ -93,42 +91,6 @@ public class LMSApplication {
         }
         return course1;
     } 
-
-    public Module addModule(String title, ArrayList<Lesson> lessons){
-        Module module1 = new Module(title, lessons);
-        if(module1 != null){
-            this.module = module1;
-            course.addModule(title, lessons);
-        }
-        return this.module;
-    }
-
-    public Lesson addLesson(String content, String title, Quiz quiz){
-        Lesson lesson1 = new Lesson(content, title, quiz);
-        if(lesson1 != null){
-            this.lesson = lesson1;
-            module.addLesson(content, title, quiz);
-        }
-        return this.lesson;
-    }
-
-    public Quiz addQuiz(ArrayList<Question> questions){
-        Quiz quiz1 = new Quiz(questions);
-        if(quiz1 != null){
-            this.quiz = quiz1;
-            lesson.addQuiz(questions);
-        }
-        return this.quiz;
-    }
-
-    public Question addQuestion(String question, ArrayList<String> answers, int correctAnswer){
-        Question question1 = new Question(question, answers, correctAnswer);
-        if(question1 != null){
-            this.question = question1;
-            quiz.addQuestion(question, answers, correctAnswer);
-        }
-        return this.question;
-    }
 
     public void nextModule(EnrolledCourse course)
     {

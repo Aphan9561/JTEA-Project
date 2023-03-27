@@ -17,14 +17,11 @@ public class LMSUI {
     private LMSApplication application;
     private User user;
     private Course course;
-    private Module module;
-    private Lesson lesson;
-    //private Lesson tempLesson;
-    // private Quiz quiz;
-    // private Question question;
+    private ArrayList<Module> modules = new ArrayList<Module>();;
+    private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+    //private ArrayList<Question> questions = new ArrayList<Question>();
     private Difficulty diffStatus;
     private Language lang; 
-    private Student student;
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs", "View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
@@ -223,27 +220,27 @@ public class LMSUI {
         boolean running = true;
         while(running)
         {
-         displayAuthorMenu(); 
-         int choice = keyboard.nextInt();
-         keyboard.nextLine();
-         switch (choice) 
-         {
-             case 1: 
-                createCourse();
-                 break;
-             case 2:
-                editCourse();
-                 break;
-             case 4:
-                 run();
-                 break;
-             case 5:
-                running = false;
-                 break;
-             default:
-                 break;
-         }
-         break;
+            displayAuthorMenu(); 
+            int choice = keyboard.nextInt();
+            keyboard.nextLine();
+            switch (choice) 
+            {
+                case 1: 
+                    createCourse();
+                    break;
+                case 2:
+                    editCourse();
+                    break;
+                case 4:
+                    run();
+                    break;
+                case 5:
+                    running = false;
+                    break;
+                default:
+                    break;
+            }
+            break;
         }
     }
 
@@ -261,59 +258,61 @@ public class LMSUI {
         System.out.println("Syllabus: ");
         String syallbus = keyboard.nextLine();
         System.out.println("How many module?");
-        ArrayList<Module> modules = new ArrayList<Module>();
         int numberOfModules = keyboard.nextInt();
         keyboard.nextLine();
         for(int i = 0; i < numberOfModules; i++){
-            System.out.println("Module Title: ");
-            String Mtitle = keyboard.nextLine();
-            System.out.println("How many lessons?");
-            ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-            int lessonNumber = keyboard.nextInt();
-            keyboard.nextLine();
-            for(int j = 0; j < lessonNumber; j++)
-            {
-                System.out.println("Lesson Title: ");
-                String Ltitle = keyboard.nextLine();
-                System.out.println("Content: ");
-                String content = keyboard.nextLine();
-                System.out.println("How many questions in the quiz? ");
-                ArrayList<Question> questions = new ArrayList<Question>();
-                int numberOfQuestions = keyboard.nextInt();
-                keyboard.nextLine();
-                for(int l =0; l< numberOfQuestions; l++){
-                    System.out.println("Question: ");
-                    String ques = keyboard.nextLine();
-                    System.out.println("Enter 4 answer options: ");
-                    ArrayList<String> answers = new ArrayList<String>();
-                    for(int m =0; m< 4;m++){
-                        String input = keyboard.nextLine();
-                        answers.add(input);
-                    }
-                    System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
-                    int correctAnswer = keyboard.nextInt();
-                    keyboard.nextLine();
-
-                    Question question = new Question(ques, answers, correctAnswer);
-                    questions.add(question);
-                    
-                }
-
-                System.out.println(questions);
-
-                Quiz quiz = new Quiz(questions);
-                System.out.println(quiz);
-                Lesson lesson = new Lesson(content, Ltitle, quiz);
-
-                lessons.add(lesson);
-            }
-
-            Module module = new Module(Mtitle, lessons);
-            modules.add(module);
+            addModule();
         }
         this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
-        System.out.println("this.course in CreateCourse\n"+this.course);
         return this.course;
+    }
+
+    private void addModule(){
+        System.out.println("Module Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("How many lessons?");
+        int lessonNumber = keyboard.nextInt();
+        keyboard.nextLine();
+        for(int j = 0; j < lessonNumber; j++)
+        {
+            addLesson();
+        }
+
+        Module module = new Module(title, lessons);
+        modules.add(module);
+    }
+
+    private void addLesson(){
+        System.out.println("Lesson Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("Content: ");
+        String content = keyboard.nextLine();
+        System.out.println("How many questions in the quiz? ");
+        ArrayList<Question> questions = new ArrayList<Question>();
+        int numberOfQuestions = keyboard.nextInt();
+        keyboard.nextLine();
+        for(int l =0; l< numberOfQuestions; l++){
+            System.out.println("Question: ");
+            String ques = keyboard.nextLine();
+            System.out.println("Enter 4 answer options: ");
+            ArrayList<String> answers = new ArrayList<String>();
+            for(int m =0; m< 4;m++){
+                String input = keyboard.nextLine();
+                answers.add(input);
+            }
+            System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
+            int correctAnswer = keyboard.nextInt();
+            keyboard.nextLine();
+
+            Question question = new Question(ques, answers, correctAnswer);
+            questions.add(question);
+            
+        }
+
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(content, title, quiz);
+
+        lessons.add(lesson);
     }
 
     private Difficulty getDifficlty(String difficulty){
@@ -350,32 +349,36 @@ public class LMSUI {
         {
             if(list.get(i).getId().equals(this.user.getId()));
             {
-                System.out.print(i+": "+list.get(i).getTitle());
+                System.out.print(i+": "+list.get(i).getTitle() +"\n");
             }
         }
 
         int choice = keyboard.nextInt();
+        keyboard.nextLine();
         //Course editCourse = list.get(i);
-        System.out.println("1: Add module \n2:Add Lessons \n3: Go back to author menu");
+        System.out.println("1: Add module \n2: Add Lessons \n3: Go back to author menu");
         boolean run = true;
         while(run == true)
         {
             choice = keyboard.nextInt();
+            keyboard.nextLine();
             switch(choice){
                 case 1:
                 System.out.println("Add modules. How many");
                 int moduleNumber = keyboard.nextInt();
+                keyboard.nextLine();
                 for(int i = 0; i < moduleNumber; i++)
                 {
-                    //addModule();
+                    addModule();
                 }
             break;
             case 2:
                 System.out.println("Add lesson. How many");
                 int lessonNumber = keyboard.nextInt();
+                keyboard.nextLine();
                 for(int i = 0; i < lessonNumber; i++)
                 {
-                    //addLesson();
+                    addLesson();
                 }
             break;
             case 3:
