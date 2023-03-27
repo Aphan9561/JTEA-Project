@@ -22,8 +22,8 @@ public class LMSUI {
     //private ArrayList<Question> questions = new ArrayList<Question>();
     private Difficulty diffStatus;
     private Language lang; 
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs", "View Course","Quit"};
-    private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","Quit"};
+    private String[] authorMenu = {"Create course","Enter course to edit course ","View Course","Go to user menu","Quit"}; 
 
     public LMSUI() 
     {
@@ -67,18 +67,8 @@ public class LMSUI {
                 break;
             case 6:
                 takeQuiz();
-                break;
+                break;                
             case 7:
-                // for testing purposes it needs to be hard coded
-                System.out.println("Which Course would you like to view?");
-                String c = keyboard.nextLine();
-                Course course =  application.findCourseTitle(c);
-                // EnrolledCourse enrolledCourse2 = new EnrolledCourse(course, true);
-                // ArrayList<EnrolledCourse> test = new ArrayList<EnrolledCourse>();
-                // test.add(enrolledCourse2);
-                viewCourse(course);
-                break;
-            case 8:
                 keyboard.close();
                 return;
             default:
@@ -230,6 +220,12 @@ public class LMSUI {
                     break;
                 case 2:
                     editCourse();
+                    break;
+                case 3:
+                    System.out.println("Which Course would you like to view?");
+                    String c = keyboard.nextLine();
+                    Course course =  application.findCourseTitle(c);
+                    viewCourse(course);
                     break;
                 case 4:
                     run();
