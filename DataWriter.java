@@ -251,6 +251,23 @@ public class DataWriter extends DataConstants{
 
         return FAQDetails;
     }
+
+    public boolean CreateCertificationFile(Certification certification, Course course)
+    {
+        boolean worked = false;
+            FileWriter Certification;
+            try {
+                Certification = new FileWriter("Certification.txt");
+                Certification.write(certification.toString());
+                Certification.close();
+                worked = true;
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return worked;
+    }
+
     public static void main(String[] args){
         saveUsers();
         saveCourses();
