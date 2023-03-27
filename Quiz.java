@@ -62,7 +62,7 @@ public class Quiz {
     }
 
     public Question getNextQuestion(int questionNumber) {
-
+        return null;
     }
     
 }

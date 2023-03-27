@@ -21,6 +21,15 @@ public class FAQ {
             answers.add(new String(answer[i]));
         }
     }
+    
+    public FAQ(Question faq) {
+        this.question = faq.getQuestion();
+        this.answers = faq.getAnswers();
+    }
+
+    public FAQ(String question) {
+        this.question = question;
+    }
 
     public void answerQuestion(String answer) {
         answers.add(answer);

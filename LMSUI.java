@@ -25,7 +25,7 @@ public class LMSUI {
     private Difficulty diffStatus;
     private Language lang; 
     private Student student;
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz", "View Course","Quit"};
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs", "View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
@@ -463,5 +463,9 @@ public class LMSUI {
         lmsui.run();
         System.out.println("Exiting the system. Have a good day!");
         System.exit(0);
+    }
+
+    private void viewFAQs() {
+        //FAQList.getFAQ();
     }
 }

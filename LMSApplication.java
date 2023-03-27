@@ -19,10 +19,12 @@ public class LMSApplication {
     private Quiz quiz = new Quiz(null);
     private static LMSApplication lmsApplication;
     private UserList userList;
+    private FAQList faqList;
     
     private LMSApplication(){
         this.courseList = CourseList.getInstance();
         this.userList = UserList.getInstance();
+        this.faqList = FAQList.getInstance();
     }
 
     public static LMSApplication getInstance() {
