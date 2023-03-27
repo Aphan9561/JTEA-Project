@@ -26,12 +26,14 @@ public class Question {
     }
 
     public String toString() {
-        String result = "\n" + question+ "\n";
-        for(String answer: answers) {
-            result += answer + "\n";
-            System.out.println("Added answer");
+        String result = "\n" + question + "\n";
+        for(int i=1; i <= answers.size(); i++) {
+            result += i;
+            result += "- ";
+            result += answers.get(i-1);
+            result += "\n";
         }
-        result += "\n";
+        //result += "\n";
         return result;
     }
 }

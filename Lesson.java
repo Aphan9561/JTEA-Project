@@ -45,4 +45,13 @@ public class Lesson {
         result += "\n";
         return result;
     }
+
+    public void takeQuiz() {
+        double questionValue = quiz.getQuestionValue();
+        for(int i=1; i <= quiz.getQuestions().size(); i++) {
+            System.out.print(i+". ");
+            System.out.println(quiz.getQuestions().get(i-1));
+            keyboard 
+        }
+    }
 }

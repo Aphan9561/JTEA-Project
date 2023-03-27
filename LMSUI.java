@@ -138,6 +138,8 @@ public class LMSUI {
                     }
                     break;
                 case 4: 
+                    logout();
+                case 5:
                     loop = false;
                     break;
                 default:
@@ -175,6 +177,15 @@ public class LMSUI {
         this.user = application.login(username, password);
         System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName());
         return this.user;
+    }
+
+    private void logout() {
+        DataWriter.saveUsers();
+        DataWriter.saveCourses();
+        DataWriter.saveFAQs();
+        System.out.println("You have sucessfully logged out!");
+        user = null;
+        login();//goes back to the login screen once logged out
     }
 
     private Date convertDate(String birthdayDate) 

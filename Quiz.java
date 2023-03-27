@@ -4,10 +4,11 @@ public class Quiz {
     public static final int quizSize = 10;
     public static final int maxAnswers = 4;
     private ArrayList<Question> questions = new ArrayList<Question>();
-    private ArrayList<Question> tempQuestions = new ArrayList<Question>();
-    //private int[] grades = new int[quizSize];
+    //private ArrayList<Question> tempQuestions = new ArrayList<Question>();
+    private int[] grades = new int[questions.size()];
     //private String[] answers = new String[maxAnswers];
     private int stars;
+    private double score;
 
     public Quiz(ArrayList<Question> question) {
         this.questions = question;
@@ -54,6 +55,14 @@ public class Quiz {
         }
         result += "\n";
         return result;
+    }
+
+    public double getQuestionValue() {
+        return (100)/questions.size();
+    }
+
+    public Question getNextQuestion(int questionNumber) {
+
     }
     
 }
