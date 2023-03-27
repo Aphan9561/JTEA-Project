@@ -22,8 +22,8 @@ public class LMSUI {
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
     private Language lang; 
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","Quit"};
-    private String[] authorMenu = {"Create course","Enter course to edit course ","View Course","Go to user menu","Quit"}; 
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
+    private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
     {
@@ -67,8 +67,14 @@ public class LMSUI {
                 break;
             case 6:
                 takeQuiz();
-                break;                
+                break; 
             case 7:
+                System.out.println("Which Course would you like to view?");
+                String c = keyboard.nextLine();
+                Course course =  application.findCourseTitle(c);
+                viewCourse(course);
+                break;
+            case 8:
                 keyboard.close();
                 return;
             default:
@@ -220,12 +226,6 @@ public class LMSUI {
                     break;
                 case 2:
                     editCourse();
-                    break;
-                case 3:
-                    System.out.println("Which Course would you like to view?");
-                    String c = keyboard.nextLine();
-                    Course course =  application.findCourseTitle(c);
-                    viewCourse(course);
                     break;
                 case 4:
                     run();
@@ -439,44 +439,7 @@ public class LMSUI {
             for(int i = 0; i<course.getModule().get(answer1-1).getNumberOfLessons(); i++){
                 System.out.println((i+1)+".: "+course.getModule().get(answer1-1).getLesson().get(i).getTitle());
             }
-            System.out.println("Would you like to add or edit any Lesson to this Module? (Type \"add\" or \"edit\")");
-            answer = keyboard.nextLine();
-            if(answer.equalsIgnoreCase("add")){
-                System.out.println("Lesson Title: ");
-                String title = keyboard.nextLine();
-                System.out.println("Content: ");
-                String content = keyboard.nextLine();
-                System.out.println("How many questions in the quiz? ");
-                ArrayList<Question> questions = new ArrayList<Question>();
-                int numberOfQuestions = keyboard.nextInt();
-                keyboard.nextLine();
-                for(int i =0; i< numberOfQuestions; i++){
-                    System.out.println("Question: ");
-                    String ques = keyboard.nextLine();
-                    System.out.println("Enter 4 answer options: ");
-                    ArrayList<String> answers = new ArrayList<String>();
-                    for(int m =0; m< 4;m++){
-                        String input = keyboard.nextLine();
-                        answers.add(input);
-                    }
-                    System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
-                    int correctAnswer = keyboard.nextInt();
-                    keyboard.nextLine();
-
-                    Question question = new Question(ques, answers, correctAnswer);
-                    questions.add(question);
-                }
-                Quiz quiz = new Quiz(questions);
-                course.getModule().get(answer1-1).addLesson(content, title, quiz);
-                System.out.println("Lesson Added.");
-                System.out.println("New List of Lessons for Module "+course.getModule().get(answer1-1).getTitle());
-                for(int i = 0; i<course.getModule().get(answer1-1).getNumberOfLessons(); i++){
-                    System.out.println((i+1)+".: "+course.getModule().get(answer1-1).getLesson().get(i).getTitle());
-                }                
-            } else{
-                System.out.println("Sorry we are not doing that right now.");
-                System.out.println("Now Exiting View Course.");
-            }
+            System.out.println("Now Exiting View Course.");
         }  else{
             System.out.println("Oh, ok then. Now Exiting View Course.");
         }
