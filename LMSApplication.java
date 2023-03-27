@@ -123,4 +123,13 @@ public class LMSApplication {
         this.quiz = lesson.getQuiz();
         return this.quiz;
     }
+
+    public boolean CreateCertificationFile(Certification certification, Course course)
+    {
+        return DataWriter.CreateCertificationFile(certification, course);
+    }
+
+    public boolean CreateCourseFile(Course course){
+        return DataWriter.CreateCourseFile(course);
+    }
 }

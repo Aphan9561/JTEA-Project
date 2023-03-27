@@ -488,6 +488,13 @@ public class LMSUI {
         }
     }
 
+    private boolean CreateCertificationFile(Certification certification, Course course){ //Where should this be called?
+        return this.application.CreateCertificationFile(certification, course);
+    }
+
+    private boolean CreateCourseFile(Course course){ //Where should this be called?
+        return this.application.CreateCourseFile(course);
+    }
 
     public static void main(String[] args) 
     {
