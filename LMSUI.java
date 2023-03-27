@@ -371,7 +371,7 @@ public class LMSUI {
                 {
                     addModule();
                 }
-            break;
+                break;
             case 2:
                 System.out.println("Add lesson. How many");
                 int lessonNumber = keyboard.nextInt();
@@ -380,10 +380,10 @@ public class LMSUI {
                 {
                     addLesson();
                 }
-            break;
+                break;
             case 3:
                 run = false;
-            break;
+                break;
             default:
             break;
             } 
