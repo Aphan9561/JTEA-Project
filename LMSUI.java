@@ -376,7 +376,7 @@ public class LMSUI {
 
 
     private void viewCourse(ArrayList<EnrolledCourse> enrolledCourse){
-        String answer;
+        String answer, answer3, answer4, answe;
         int answer1, answer2;
         System.out.println("Here are all your Enrolled Courses:");
         for(int i = 0; i<enrolledCourse.size(); i++){
@@ -387,29 +387,29 @@ public class LMSUI {
         if(answer.equalsIgnoreCase("Y")){
             System.out.println("Which Course, choose 1-"+enrolledCourse.size());
             answer1 = keyboard.nextInt();
-            System.out.println(enrolledCourse.get(answer1).getCourse().getTitle());
+            System.out.println(enrolledCourse.get(answer1-1).getCourse().getTitle());
             System.out.println("Would you like to view the Modules of this Course: (Y or N)");
-            answer = keyboard.nextLine();
-            if(answer.equalsIgnoreCase("Y")){
-                for(int i = 0; i<enrolledCourse.get(answer1).getCourse().getNumberOfModules(); i++){
-                    System.out.println((i+1)+".: "+ enrolledCourse.get(answer1).getCourse().getModule().get(i).getTitle());
+            answe = keyboard.nextLine();
+            if(answe.equalsIgnoreCase("Y")){
+                for(int i = 0; i<enrolledCourse.get(answer1-1).getCourse().getNumberOfModules(); i++){
+                    System.out.println((i+1)+".: "+ enrolledCourse.get(answer1-1).getCourse().getModule().get(i).getTitle());
                 }
                 System.out.println("Would you like to view a Module's content: (Y or N)");
-                answer = keyboard.nextLine();
-                if(answer.equalsIgnoreCase("Y")){
-                    System.out.println("Which Module, choose 1-"+enrolledCourse.get(answer1).getCourse().getNumberOfModules());
+                answer4 = keyboard.nextLine();
+                if(answer4.equalsIgnoreCase("Y")){
+                    System.out.println("Which Module, choose 1-"+enrolledCourse.get(answer1-1).getCourse().getNumberOfModules());
                     answer2 = keyboard.nextInt();
-                    for(int i = 0; i<enrolledCourse.get(answer1).getCourse().getModule(answer2).getNumberOfLessons(); i++){
-                        System.out.println(enrolledCourse.get(answer1).getCourse().getModule(answer2).getLesson(i).getTitle());
+                    for(int i = 0; i<enrolledCourse.get(answer1-1).getCourse().getModule(answer2-1).getNumberOfLessons(); i++){
+                        System.out.println(enrolledCourse.get(answer1-1).getCourse().getModule(answer2-1).getLesson(i).getTitle());
                     }
                 } else{
-                    System.out.println("Oh, ok then.");
+                    System.out.println("Oh, ok then. Now Exiting View Course.");
                 }
             }  else{
-                System.out.println("Oh, ok then.");
+                System.out.println("Oh, ok then. Now Exiting View Course.");
             }
         }  else{
-            System.out.println("Oh, ok then.");
+            System.out.println("Oh, ok then. Now Exiting View Course.");
         }
     }
 
