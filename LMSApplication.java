@@ -64,7 +64,7 @@ public class LMSApplication {
 		return author.getId();
 	}
 
-    public Course findCourse(String keyword){
+    public ArrayList<Course> findCourse(String keyword){
         ArrayList<Course> resultList = new ArrayList<>();
         for(int i = 0; i < resultList.size(); i++)
         {
@@ -79,6 +79,11 @@ public class LMSApplication {
         }
         System.out.println("Sorry, we could not find what you were looking for.");
         return null;
+    }
+
+    public Course findCourseTitle(String title)
+    {
+        return this.courseList.hasCourse(title);
     }
 
     public ArrayList<Course> findCourse() {

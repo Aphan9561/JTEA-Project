@@ -46,18 +46,10 @@ public class LMSUI {
             switch (choice) 
             {   
             case 1:
-                //This can be a method
-                System.out.println("What would would like to search for? Suggested terms to get the best result:\nFor lanuages: Python, Java\nDiffeculty: Easy, Medium, Hard");
-                String keyword = keyboard.nextLine();
-                keyword.toUpperCase();
-                //ArrayList<Course> resultList = application.findCourse(keyword);
-                //printCourses(resultList);
+                course = search();
                 break;
             case 2:
-                //This can be a method
-                System.out.println("Printing all courses:");
-                ArrayList<Course> allCourses = application.findCourse();
-                printCourses(allCourses);
+                printAllCourses();
                 break;
             case 3:
                 //This can be a method
@@ -96,6 +88,22 @@ public class LMSUI {
         break;
        }
        keyboard.close();
+    }
+
+    private Course search()
+    {
+        System.out.println("What would course would you like to search for? ");
+        String title = keyboard.nextLine();
+        title.toUpperCase();
+        return this.application.findCourseTitle(title);
+    }
+
+    private boolean printAllCourses()
+    {
+        System.out.println("Printing all courses:");
+        ArrayList<Course> allCourses = application.findCourse();
+        printCourses(allCourses);
+        return true;
     }
 
     private boolean login()
