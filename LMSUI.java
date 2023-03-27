@@ -80,9 +80,7 @@ public class LMSUI {
             default:
                 break;
             }
-        break;
-       }
-       keyboard.close();
+        }
     }
 
     private Course search()
@@ -236,7 +234,6 @@ public class LMSUI {
                 default:
                     break;
             }
-            break;
         }
     }
 
@@ -357,10 +354,10 @@ public class LMSUI {
             }
         }
 
-        System.out.println("Would you like to add(1) or view(2) a module?");
         boolean run = true;
         while(run == true)
         {
+            System.out.println("Would you like to add(1) a module, view(2) a module, or leave(3)?");
             choice = keyboard.nextInt();
             keyboard.nextLine();
             switch(choice){
@@ -397,10 +394,10 @@ public class LMSUI {
             System.out.print(i+": "+editCourse.getModule().get(i).getTitle());
         }
 
-        System.out.println("Would you like to add(1) or view(2) a lesson?");
         boolean run = true;
         while(run == true)
         {
+            System.out.println("Would you like to add(1) a lesson, view(2) a lesson, or leave(3)?");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
             switch(choice){
