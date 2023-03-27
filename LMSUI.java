@@ -18,6 +18,7 @@ public class LMSUI {
     private User user;
     private Course course;
     private Course editCourse;
+    private Module editModule;
     private ArrayList<Module> modules = new ArrayList<Module>();;
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
@@ -211,8 +212,8 @@ public class LMSUI {
 
     private void runAuthor()
     {
-        boolean running = true;
-        while(running)
+        boolean run = true;
+        while(run == true)
         {
             displayAuthorMenu(); 
             int choice = keyboard.nextInt();
@@ -225,11 +226,11 @@ public class LMSUI {
                 case 2:
                     editCourse();
                     break;
-                case 4:
+                case 3:
                     run();
                     break;
-                case 5:
-                    running = false;
+                case 4:
+                    run = false;
                     break;
                 default:
                     break;
@@ -354,6 +355,11 @@ public class LMSUI {
             }
         }
 
+        System.out.println("\nList of Modules in "+editCourse.getTitle());
+        for(int i = 0; i<editCourse.getNumberOfModules();i++){
+            System.out.print(i+": "+editCourse.getModule().get(i).getTitle()+"\n");
+        }
+
         boolean run = true;
         while(run == true)
         {
@@ -387,32 +393,30 @@ public class LMSUI {
     }
 
     private void viewModule(){
-        System.out.println("What module would to like to see?");
+        System.out.println("What module would to like to view?");
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
 
-        System.out.println("List of Modules in "+editCourse);
         for(int i = 0; i<editCourse.getNumberOfModules();i++){
-            System.out.print(i+": "+editCourse.getModule().get(i).getTitle());
+            if(i == choice){
+                editModule = editCourse.getModule().get(i);
+             }
+        }
+        System.out.println("\nLessons in "+editModule.getTitle()+": ");
+        for(int i = 0; i<editModule.getNumberOfLessons(); i++){
+            System.out.println(i+": "+editModule.getLesson().get(i).getTitle());
         }
 
-        boolean run = true;
-        while(run == true)
-        {
-            System.out.println("Would you like to add(1) a lesson, view(2) a lesson, or leave(3)?");
-            int choice = keyboard.nextInt();
-            keyboard.nextLine();
-            switch(choice){
-            case 1:
-                addNewLesson();
-                break;
-            case 2:
-                viewModule();
-                break;
-            case 3:
-                run = false;
-                break;
-            default:
-            break;
-            } 
+        System.out.println("Would you like to add(1) or view(2) a lesson?");
+        choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+        if(choice == 1){
+            addNewLesson();
+        } else if(choice == 2){
+            viewLesson();
+        } else {
+            System.out.println("Invalid choice");
         }
     }
 
@@ -423,6 +427,18 @@ public class LMSUI {
         }
         else {
             System.out.println("Something went wrong.");
+        }
+    }
+
+    private void viewLesson(){
+        System.out.println("What lesson would to like to view?");
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+        for(int i = 0; i<editModule.getNumberOfLessons(); i++){
+            if(choice == i){
+                System.out.println(editModule.getLesson().get(i));
+            }
         }
     }
 

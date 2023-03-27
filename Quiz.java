@@ -51,7 +51,6 @@ public class Quiz {
         String result = "~Quiz~ \n";
         for(Question question : questions) {
             result += question;
-            System.out.println("Added question");
         }
         result += "\n";
         return result;
