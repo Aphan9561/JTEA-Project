@@ -263,7 +263,7 @@ public class LMSUI {
         return this.course;
     }
 
-    private void addModule(){
+    private boolean addModule(){
         System.out.println("Module Title: ");
         String title = keyboard.nextLine();
         System.out.println("How many lessons?");
@@ -275,10 +275,10 @@ public class LMSUI {
         }
 
         Module module = new Module(title, lessons);
-        modules.add(module);
+        return modules.add(module);
     }
 
-    private void addLesson(){
+    private boolean addLesson(){
         System.out.println("Lesson Title: ");
         String title = keyboard.nextLine();
         System.out.println("Content: ");
@@ -308,7 +308,7 @@ public class LMSUI {
         Quiz quiz = new Quiz(questions);
         Lesson lesson = new Lesson(content, title, quiz);
 
-        lessons.add(lesson);
+        return lessons.add(lesson);
     }
 
     private Difficulty getDifficlty(String difficulty){
@@ -351,7 +351,6 @@ public class LMSUI {
 
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-        //Course editCourse = list.get(i);
         System.out.println("1: Add module \n2: Add Lessons \n3: Go back to author menu");
         boolean run = true;
         while(run == true)
@@ -365,7 +364,12 @@ public class LMSUI {
                 keyboard.nextLine();
                 for(int i = 0; i < moduleNumber; i++)
                 {
-                    addModule();
+                    if(addModule()){
+                        System.out.println("Module added!");
+                    }
+                    else {
+                        System.out.println("Something went wrong.");
+                    }
                 }
                 break;
             case 2:
@@ -374,7 +378,11 @@ public class LMSUI {
                 keyboard.nextLine();
                 for(int i = 0; i < lessonNumber; i++)
                 {
-                    addLesson();
+                    if(addLesson()){
+                        System.out.println("Lesson added!");
+                    } else {
+                        System.out.println("Something went wrong.");
+                    }
                 }
                 break;
             case 3:
