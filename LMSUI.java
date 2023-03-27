@@ -25,7 +25,7 @@ public class LMSUI {
     private Difficulty diffStatus;
     private Language lang; 
     private Student student;
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","Take Quiz", "View Course","Quit"};
+    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs", "View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
@@ -46,18 +46,10 @@ public class LMSUI {
             switch (choice) 
             {   
             case 1:
-                //This can be a method
-                System.out.println("What would would like to search for? Suggested terms to get the best result:\nFor lanuages: Python, Java\nDiffeculty: Easy, Medium, Hard");
-                String keyword = keyboard.nextLine();
-                keyword.toUpperCase();
-                //ArrayList<Course> resultList = application.findCourse(keyword);
-                //printCourses(resultList);
+                course = search();
                 break;
             case 2:
-                //This can be a method
-                System.out.println("Printing all courses:");
-                ArrayList<Course> allCourses = application.findCourse();
-                printCourses(allCourses);
+                printAllCourses();
                 break;
             case 3:
                 //This can be a method
@@ -98,6 +90,22 @@ public class LMSUI {
        keyboard.close();
     }
 
+    private Course search()
+    {
+        System.out.println("What would course would you like to search for? ");
+        String title = keyboard.nextLine();
+        title.toUpperCase();
+        return this.application.findCourseTitle(title);
+    }
+
+    private boolean printAllCourses()
+    {
+        System.out.println("Printing all courses:");
+        ArrayList<Course> allCourses = application.findCourse();
+        printCourses(allCourses);
+        return true;
+    }
+
     private boolean login()
     {
         boolean loop = true;
@@ -130,6 +138,8 @@ public class LMSUI {
                     }
                     break;
                 case 4: 
+                    logout();
+                case 5:
                     loop = false;
                     break;
                 default:
@@ -167,6 +177,15 @@ public class LMSUI {
         this.user = application.login(username, password);
         System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName());
         return this.user;
+    }
+
+    private void logout() {
+        DataWriter.saveUsers();
+        DataWriter.saveCourses();
+        DataWriter.saveFAQs();
+        System.out.println("You have sucessfully logged out!");
+        user = null;
+        login();//goes back to the login screen once logged out
     }
 
     private Date convertDate(String birthdayDate) 
@@ -445,5 +464,9 @@ public class LMSUI {
         lmsui.run();
         System.out.println("Exiting the system. Have a good day!");
         System.exit(0);
+    }
+
+    private void viewFAQs() {
+        //FAQList.getFAQ();
     }
 }

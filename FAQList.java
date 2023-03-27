@@ -17,11 +17,11 @@ public class FAQList {
     }
 
     public void addFAQ(Question question) {
-
+        FAQs.add(new FAQ(question));
     }
 
     public void addFAQ(String question) {
-
+        FAQs.add(new FAQ(question));
     }
 
     public ArrayList<FAQ> getFAQ(){
