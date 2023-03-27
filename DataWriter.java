@@ -273,7 +273,7 @@ public class DataWriter extends DataConstants{
             FileWriter Course;
             try {
                 Course = new FileWriter("Course.txt");
-                Course.write(course.toString()); //This is not right here.
+                Course.write(course.fileInfo()); 
                 Course.close();
                 worked = true;
             } catch (IOException e) {
