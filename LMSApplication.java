@@ -66,23 +66,6 @@ public class LMSApplication {
 		return author.getId();
 	}
 
-    public ArrayList<Course> findCourse(String keyword){
-        ArrayList<Course> resultList = new ArrayList<>();
-        for(int i = 0; i < resultList.size(); i++)
-        {
-            if(resultList.get(i).getTitle() == keyword){
-                return resultList.get(i);
-            } else if (resultList.get(i).getDesciption() == keyword){
-                return resultList.get(i);
-            } else if (resultList.get(i).getSyllabus() == keyword){
-                return resultList.get(i);
-            } 
-           // this.courseList.getCourse(keyword);
-        }
-        System.out.println("Sorry, we could not find what you were looking for.");
-        return null;
-    }
-
     public Course findCourseTitle(String title)
     {
         return this.courseList.hasCourse(title);
