@@ -351,56 +351,24 @@ public class LMSUI {
         }
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-        //Course editCourse;
         for(int i = 0; i < list.size(); i++){
             if(i == choice){
                editCourse = list.get(i);
             }
         }
 
-        System.out.println("List of Modules in "+editCourse);
-        for(int i = 0; i<editCourse.getNumberOfModules();i++){
-            System.out.print(i+": "+editCourse.getModule().get(i).getTitle());
-        }
-
         System.out.println("Would you like to add(1) or view(2) a module?");
-        choice = keyboard.nextInt();
-        keyboard.nextLine();
-        
-        
-        System.out.println("1: Add module \n2: Add Lessons \n3: Go back to author menu");
         boolean run = true;
         while(run == true)
         {
             choice = keyboard.nextInt();
             keyboard.nextLine();
             switch(choice){
-                case 1:
-                System.out.println("Add modules. How many");
-                int moduleNumber = keyboard.nextInt();
-                keyboard.nextLine();
-                for(int i = 0; i < moduleNumber; i++)
-                {
-                    if(addModule()){
-                        System.out.println("Module added!");
-                    }
-                    else {
-                        System.out.println("Something went wrong.");
-                    }
-                }
+            case 1:
+                addNewModule();
                 break;
             case 2:
-                System.out.println("Add lesson. How many");
-                int lessonNumber = keyboard.nextInt();
-                keyboard.nextLine();
-                for(int i = 0; i < lessonNumber; i++)
-                {
-                    if(addLesson()){
-                        System.out.println("Lesson added!");
-                    } else {
-                        System.out.println("Something went wrong.");
-                    }
-                }
+                viewModule();
                 break;
             case 3:
                 run = false;
@@ -411,7 +379,55 @@ public class LMSUI {
         }
     }
 
-    
+    private void addNewModule(){
+        System.out.println("Adding Module\n");
+        if(addModule()){
+            System.out.println("Module added!");
+        }
+        else {
+            System.out.println("Something went wrong.");
+        }
+    }
+
+    private void viewModule(){
+        System.out.println("What module would to like to see?");
+
+        System.out.println("List of Modules in "+editCourse);
+        for(int i = 0; i<editCourse.getNumberOfModules();i++){
+            System.out.print(i+": "+editCourse.getModule().get(i).getTitle());
+        }
+
+        System.out.println("Would you like to add(1) or view(2) a lesson?");
+        boolean run = true;
+        while(run == true)
+        {
+            int choice = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(choice){
+            case 1:
+                addNewLesson();
+                break;
+            case 2:
+                viewModule();
+                break;
+            case 3:
+                run = false;
+                break;
+            default:
+            break;
+            } 
+        }
+    }
+
+    private void addNewLesson(){
+        System.out.println("Adding Lesson: ");
+        if(addLesson()){
+            System.out.println("Lesson added!");
+        }
+        else {
+            System.out.println("Something went wrong.");
+        }
+    }
 
     private void takeQuiz(){
         // might not work
