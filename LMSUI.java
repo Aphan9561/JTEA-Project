@@ -17,9 +17,9 @@ public class LMSUI {
     private LMSApplication application;
     private User user;
     private Course course;
+    private Course editCourse;
     private ArrayList<Module> modules = new ArrayList<Module>();;
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-    //private ArrayList<Question> questions = new ArrayList<Question>();
     private Difficulty diffStatus;
     private Language lang; 
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","Quit"};
@@ -341,6 +341,7 @@ public class LMSUI {
     {
         System.out.println("What course would you like to edit?");
         ArrayList<Course> list =  application.findCourse(); 
+        
         for(int i = 0; i < list.size(); i++)
         {
             if(list.get(i).getId().equals(this.user.getId()));
@@ -348,9 +349,25 @@ public class LMSUI {
                 System.out.print(i+": "+list.get(i).getTitle() +"\n");
             }
         }
-
         int choice = keyboard.nextInt();
         keyboard.nextLine();
+        //Course editCourse;
+        for(int i = 0; i < list.size(); i++){
+            if(i == choice){
+               editCourse = list.get(i);
+            }
+        }
+
+        System.out.println("List of Modules in "+editCourse);
+        for(int i = 0; i<editCourse.getNumberOfModules();i++){
+            System.out.print(i+": "+editCourse.getModule().get(i).getTitle());
+        }
+
+        System.out.println("Would you like to add(1) or view(2) a module?");
+        choice = keyboard.nextInt();
+        keyboard.nextLine();
+        
+        
         System.out.println("1: Add module \n2: Add Lessons \n3: Go back to author menu");
         boolean run = true;
         while(run == true)
