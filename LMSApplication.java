@@ -118,6 +118,10 @@ public class LMSApplication {
         }
     }
 
+    public ArrayList<FAQ> getFAQs() {
+        return faqList.getFAQs();
+    }
+
     public Quiz takeQuiz(){
         //IDK if this works but its something
         this.quiz = lesson.getQuiz();

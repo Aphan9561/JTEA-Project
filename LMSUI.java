@@ -23,6 +23,7 @@ public class LMSUI {
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
     private Language lang; 
+    private ArrayList<FAQ> faqs = new ArrayList<FAQ>();
     final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
@@ -76,6 +77,7 @@ public class LMSUI {
                 viewCourse(course);
                 break;
             case 8:
+                logout();
                 keyboard.close();
                 return;
             default:
@@ -179,7 +181,7 @@ public class LMSUI {
         DataWriter.saveFAQs();
         System.out.println("You have sucessfully logged out!");
         user = null;
-        login();//goes back to the login screen once logged out
+        //login();//goes back to the login screen once logged out
     }
 
     private Date convertDate(String birthdayDate) 
@@ -514,6 +516,12 @@ public class LMSUI {
     }
 
     private void viewFAQs() {
-        //FAQList.getFAQ();
+        System.out.println("Please view the FAQs below.\n You can answer an FAQ by entering 1 or to go bakc to the main menu, enter 0.");
+        
+        faqs = application.getFAQs();
+        for(FAQ faq : faqs) {
+            System.out.println(faq);
+        }
+
     }
 }

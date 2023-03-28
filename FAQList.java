@@ -24,7 +24,7 @@ public class FAQList {
         FAQs.add(new FAQ(question));
     }
 
-    public ArrayList<FAQ> getFAQ(){
+    public ArrayList<FAQ> getFAQs(){
         return FAQs;
     } 
 }
