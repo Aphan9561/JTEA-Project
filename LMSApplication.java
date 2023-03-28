@@ -118,6 +118,10 @@ public class LMSApplication {
         }
     }
 
+    public ArrayList<FAQ> getFAQs() {
+        return faqList.getFAQ();
+    }
+
     public Quiz takeQuiz(){
         //IDK if this works but its something
         this.quiz = lesson.getQuiz();
@@ -131,5 +135,20 @@ public class LMSApplication {
 
     public boolean CreateCourseFile(Course course){
         return DataWriter.CreateCourseFile(course);
+    }
+
+    public String getFAQString() {
+        return faqList.FAQstoString();
+    }
+
+    public String getFAQQuestionsString() {
+        String result = "";
+        for(int i=0; i < faqList.getFAQ().size(); i++) {
+            result += i;
+            result += ". ";
+            result += faqList.getFAQ().get(i).getQuestion();
+            result += "\n";
+        }
+        return result;
     }
 }

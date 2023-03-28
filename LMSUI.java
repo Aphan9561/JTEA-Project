@@ -23,7 +23,8 @@ public class LMSUI {
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
     private Language lang; 
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
+
+    final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
@@ -34,8 +35,10 @@ public class LMSUI {
 
     public void run()
     {
+        if(user == null){
         System.out.println("Welcome to Our program. Please choose one of the following.");
         login();
+        }
         while(true)
         {
             displayMainMenu(); 
@@ -53,6 +56,7 @@ public class LMSUI {
                 //This can be a method
                 ArrayList<EnrolledCourse> enrolledCourse = application.getCurrentCourse();
                 printEnrolledCoures(enrolledCourse);
+                enterCourse(enrolledCourse);
                 break;
             case 4:
                 if(this.user.getType().equals(AccountType.AUTHOR) )
@@ -76,6 +80,7 @@ public class LMSUI {
                 viewCourse(course);
                 break;
             case 8:
+                logout();
                 keyboard.close();
                 return;
             default:
@@ -98,6 +103,76 @@ public class LMSUI {
         ArrayList<Course> allCourses = application.findCourse();
         printCourses(allCourses);
         return true;
+    }
+
+    private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
+        System.out.println("Which course would you like to continue?");
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        if(choice <= enrolledCourse.size()){
+            EnrolledCourse course = enrolledCourse.get(choice);
+            int module = course.getCurrentModule();
+            int lesson = course.getCurrentLesson();
+            Course currentCourse = course.getCourse();
+            Module currentModule = currentCourse.getModule(module);
+            Lesson currentLesson = currentModule.getLesson(lesson);
+            
+            if(course.getProgress().equals(Progress.COMPLETED)){
+                System.out.println("You have compelted this course! Would you like to download the certicicafe?");
+                String answer = keyboard.nextLine();
+                if(answer.equalsIgnoreCase("Yes")){
+                    CreateCertificationFile(, course); //Figuring that out
+                    System.out.println("Created Certification Text File called certification.txt for this course");
+                }
+            }
+            }
+            else{
+            while()
+            {
+                EnrolledCourse course = enrolledCourse.get(choice);
+                int module = course.getCurrentModule();
+                int lesson = course.getCurrentLesson();
+                Course currentCourse = course.getCourse();
+                 Module currentModule = currentCourse.getModule(module);
+                Lesson currentLesson = currentModule.getLesson(lesson);
+                System.out.println(currentLesson.miniToString());
+            takeQuiz();
+            System.out.println("Grade from quiz: ");
+            System.out.println("Next lesson, see comments, take again, print module out");
+            choice = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(choice){
+                case 1:
+                application.nextLesson(course); //Need more development
+                break;
+                case 2:
+                ArrayList<Comment> comments = currentModule.getComment();
+                String commentString = "";
+                for(int i = 0; i < comments.size(); i++){
+                    commentString += comments.get(i).toString();
+                    commentString += "/n";
+                }
+                System.out.println(commentString);
+                break;
+                case 3:
+                System.out.println(currentLesson.miniToString());
+                takeQuiz();
+                System.out.println("Grade from quiz: ");
+                System.out.println("Next lesson, see comments, take again, print module out");
+                choice = keyboard.nextInt();
+                break;
+                case 4:
+                CreateCourseFile(currentCourse);
+                break;
+                default:
+                break;
+            }
+            }
+            }    
+        else
+        {
+            System.out.println("You gave a wrong number. Try again");
+        }
     }
 
     private boolean login()
@@ -179,7 +254,7 @@ public class LMSUI {
         DataWriter.saveFAQs();
         System.out.println("You have sucessfully logged out!");
         user = null;
-        login();//goes back to the login screen once logged out
+        //login();//goes back to the login screen once logged out
     }
 
     private Date convertDate(String birthdayDate) 
@@ -267,11 +342,9 @@ public class LMSUI {
         System.out.println("How many lessons?");
         int lessonNumber = keyboard.nextInt();
         keyboard.nextLine();
-        for(int j = 0; j < lessonNumber; j++)
-        {
+        for(int i = 0; i < lessonNumber; i++) {
             addLesson();
         }
-
         Module module = new Module(title, lessons);
         return modules.add(module);
     }
@@ -285,12 +358,12 @@ public class LMSUI {
         ArrayList<Question> questions = new ArrayList<Question>();
         int numberOfQuestions = keyboard.nextInt();
         keyboard.nextLine();
-        for(int l =0; l< numberOfQuestions; l++){
+        for(int i =0; i< numberOfQuestions; i++){
             System.out.println("Question: ");
             String ques = keyboard.nextLine();
             System.out.println("Enter 4 answer options: ");
             ArrayList<String> answers = new ArrayList<String>();
-            for(int m =0; m< 4;m++){
+            for(int j =0; j< 4;j++){
                 String input = keyboard.nextLine();
                 answers.add(input);
             }
@@ -384,12 +457,16 @@ public class LMSUI {
 
     private void addNewModule(){
         System.out.println("Adding Module\n");
-        if(addModule()){
-            System.out.println("Module added!");
+        System.out.println("Module Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("How many lessons?");
+        int lessonNumber = keyboard.nextInt();
+        keyboard.nextLine();
+        for(int i = 0; i < lessonNumber; i++) {
+            addLesson();
         }
-        else {
-            System.out.println("Something went wrong.");
-        }
+        editCourse.addModule(title, lessons);
+        System.out.println("Module added!");
     }
 
     private void viewModule(){
@@ -421,13 +498,35 @@ public class LMSUI {
     }
 
     private void addNewLesson(){
-        System.out.println("Adding Lesson: ");
-        if(addLesson()){
-            System.out.println("Lesson added!");
+        System.out.println("Lesson Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("Content: ");
+        String content = keyboard.nextLine();
+        System.out.println("How many questions in the quiz? ");
+        ArrayList<Question> questions = new ArrayList<Question>();
+        int numberOfQuestions = keyboard.nextInt();
+        keyboard.nextLine();
+        for(int i =0; i< numberOfQuestions; i++){
+            System.out.println("Question: ");
+            String ques = keyboard.nextLine();
+            System.out.println("Enter 4 answer options: ");
+            ArrayList<String> answers = new ArrayList<String>();
+            for(int j =0; j< 4;j++){
+                String input = keyboard.nextLine();
+                answers.add(input);
+            }
+            System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
+            int correctAnswer = keyboard.nextInt();
+            keyboard.nextLine();
+
+            Question question = new Question(ques, answers, correctAnswer);
+            questions.add(question);
+            
         }
-        else {
-            System.out.println("Something went wrong.");
-        }
+
+        Quiz quiz = new Quiz(questions);
+        editModule.addLesson(content, title, quiz);
+        System.out.println("Lesson added!");
     }
 
     private void viewLesson(){
@@ -512,8 +611,23 @@ public class LMSUI {
         System.out.println("Exiting the system. Have a good day!");
         System.exit(0);
     }
-
+    /* 
     private void viewFAQs() {
-        //FAQList.getFAQ();
+        System.out.println("Please view the FAQs below.\n You can answer an FAQ by entering 1 or to go back to the main menu, enter 0.");
+        System.out.println(application.getFAQString());
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        if(choice == 0) {
+            run();
+        } else if(choice == 1) {
+            System.out.println(application.getFAQQuestionsString());
+            System.out.println("Please enter the number associated with the question you want to answer");
+            int questionChoice = keyboard.nextInt();
+            keyboard.nextLine();
+            
+        } else {
+
+        }
     }
+    */
 }
