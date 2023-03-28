@@ -56,7 +56,7 @@ public class LMSUI {
                 //This can be a method
                 ArrayList<EnrolledCourse> enrolledCourse = application.getCurrentCourse();
                 printEnrolledCoures(enrolledCourse);
-                enterCourse(enrolledCourse);
+                //1enterCourse(enrolledCourse);
                 break;
             case 4:
                 if(this.user.getType().equals(AccountType.AUTHOR) )
@@ -174,7 +174,7 @@ public class LMSUI {
             System.out.println("You gave a wrong number. Try again");
         }
     }
-
+    
     private boolean login()
     {
         boolean loop = true;
@@ -611,15 +611,21 @@ public class LMSUI {
         System.out.println("Exiting the system. Have a good day!");
         System.exit(0);
     }
-    /* 
+    
     private void viewFAQs() {
-        System.out.println("Please view the FAQs below.\n You can answer an FAQ by entering 1 or to go back to the main menu, enter 0.");
+        System.out.println("Please view the FAQs below.\nYou can ask a question by entering 1, answer an FAQ by entering 2 or to go back to the main menu enter 0.");
         System.out.println(application.getFAQString());
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         if(choice == 0) {
-            run();
+            run();//need to double check if this is the right way to go to the main menu
         } else if(choice == 1) {
+            System.out.println("Enter the question you would like to ask.");
+            String newQuestion = keyboard.nextLine();
+            application.askQuestion(newQuestion);
+            System.out.println("Your question has been added!");
+            viewFAQs();//need to double check if this is the right way to go back to the FAQ menu
+        } else if(choice == 2) {
             System.out.println(application.getFAQQuestionsString());
             System.out.println("Please enter the number associated with the question you want to answer");
             int questionChoice = keyboard.nextInt();
@@ -630,14 +636,15 @@ public class LMSUI {
                 String newAnswer = keyboard.nextLine();
                 application.addAnswertoFAQ(questionChoice, newAnswer);
                 System.out.println("Your answer has been added!");
-                viewFAQs();
+                viewFAQs();//need to double check if this is the right way to go back to the FAQ menu
             } else {
                 System.out.println("Invalid input.");
-                viewFAQs();
+                viewFAQs();//need to double check if this is the right way to go back to the FAQ menu
             }
         } else {
-
+            System.out.println("Invalid input.");
+            run();//need to double check if this is the right way to go to the main menu
         }
     }
-    */
+    
 }

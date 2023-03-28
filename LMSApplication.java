@@ -167,4 +167,8 @@ public class LMSApplication {
             return true;
         }
     }
+
+    public void askQuestion(String question) {
+        faqList.addFAQ(question);
+    }
 }
