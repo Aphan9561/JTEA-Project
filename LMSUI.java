@@ -23,6 +23,7 @@ public class LMSUI {
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
     private Language lang; 
+    
     final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
