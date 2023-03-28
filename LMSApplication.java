@@ -119,7 +119,7 @@ public class LMSApplication {
     }
 
     public ArrayList<FAQ> getFAQs() {
-        return faqList.getFAQs();
+        return faqList.getFAQ();
     }
 
     public Quiz takeQuiz(){
@@ -135,5 +135,20 @@ public class LMSApplication {
 
     public boolean CreateCourseFile(Course course){
         return DataWriter.CreateCourseFile(course);
+    }
+
+    public String getFAQString() {
+        return faqList.FAQstoString();
+    }
+
+    public String getFAQQuestionsString() {
+        String result = "";
+        for(int i=0; i < faqList.getFAQ().size(); i++) {
+            result += i;
+            result += ". ";
+            result += faqList.getFAQ().get(i).getQuestion();
+            result += "\n";
+        }
+        return result;
     }
 }

@@ -23,7 +23,7 @@ public class LMSUI {
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
     private Language lang; 
-    
+
     final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
@@ -535,12 +535,20 @@ public class LMSUI {
     }
 
     private void viewFAQs() {
-        System.out.println("Please view the FAQs below.\n You can answer an FAQ by entering 1 or to go bakc to the main menu, enter 0.");
-        
-        faqs = application.getFAQs();
-        for(FAQ faq : faqs) {
-            System.out.println(faq);
-        }
+        System.out.println("Please view the FAQs below.\n You can answer an FAQ by entering 1 or to go back to the main menu, enter 0.");
+        System.out.println(application.getFAQString());
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        if(choice == 0) {
+            run();
+        } else if(choice == 1) {
+            System.out.println(application.getFAQQuestionsString());
+            System.out.println("Please enter the number associated with the question you want to answer");
+            int questionChoice = keyboard.nextInt();
+            keyboard.nextLine();
+            
+        } else {
 
+        }
     }
 }

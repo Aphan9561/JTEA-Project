@@ -26,5 +26,13 @@ public class FAQList {
 
     public ArrayList<FAQ> getFAQ(){
         return FAQs;
-    } 
+    }
+
+    public String FAQstoString() {
+        String result = "";
+        for(FAQ faq : FAQs) {
+            result += faq.toString();
+        }
+        return result;
+    }
 }
