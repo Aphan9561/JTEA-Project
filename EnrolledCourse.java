@@ -34,16 +34,15 @@ public class EnrolledCourse {
         return currentLesson;
     }
 
-    public Module resumeModule()
-    {
+    public Module resumeModule(){
         return course.getModule(currentModule);
     }
 
-    public Lesson resumeLesson()
-    {
+    public Lesson resumeLesson(){
         Module module = course.getModule(currentModule);
         return module.getLesson(currentLesson);
     }
+
     public int getCurrentModule() {
         return currentModule;
     }
@@ -52,14 +51,12 @@ public class EnrolledCourse {
         return this.course;
     }
 
-    public int moveCurrentModule()
-    {
+    public int moveCurrentModule(){
         currentModule++;
         return currentModule;
     }
 
-    public int moveCurrentLesson()
-    {
+    public int moveCurrentLesson(){
         currentLesson++;
         return currentLesson;
     }

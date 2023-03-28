@@ -252,8 +252,7 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
 
-    public static boolean CreateCertificationFile(Certification certification, Course course)
-    {
+    public static boolean CreateCertificationFile(Certification certification, Course course){
         boolean worked = false;
             FileWriter Certification;
             try {
@@ -267,8 +266,7 @@ public class DataWriter extends DataConstants{
         return worked;
     }
 
-    public static boolean CreateCourseFile( Course course)
-    {
+    public static boolean CreateCourseFile( Course course){
         boolean worked = false;
             FileWriter Course;
             try {

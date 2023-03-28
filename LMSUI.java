@@ -342,11 +342,9 @@ public class LMSUI {
         System.out.println("How many lessons?");
         int lessonNumber = keyboard.nextInt();
         keyboard.nextLine();
-        for(int j = 0; j < lessonNumber; j++)
-        {
+        for(int i = 0; i < lessonNumber; i++) {
             addLesson();
         }
-
         Module module = new Module(title, lessons);
         return modules.add(module);
     }
@@ -360,12 +358,12 @@ public class LMSUI {
         ArrayList<Question> questions = new ArrayList<Question>();
         int numberOfQuestions = keyboard.nextInt();
         keyboard.nextLine();
-        for(int l =0; l< numberOfQuestions; l++){
+        for(int i =0; i< numberOfQuestions; i++){
             System.out.println("Question: ");
             String ques = keyboard.nextLine();
             System.out.println("Enter 4 answer options: ");
             ArrayList<String> answers = new ArrayList<String>();
-            for(int m =0; m< 4;m++){
+            for(int j =0; j< 4;j++){
                 String input = keyboard.nextLine();
                 answers.add(input);
             }
@@ -459,12 +457,16 @@ public class LMSUI {
 
     private void addNewModule(){
         System.out.println("Adding Module\n");
-        if(addModule()){
-            System.out.println("Module added!");
+        System.out.println("Module Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("How many lessons?");
+        int lessonNumber = keyboard.nextInt();
+        keyboard.nextLine();
+        for(int i = 0; i < lessonNumber; i++) {
+            addLesson();
         }
-        else {
-            System.out.println("Something went wrong.");
-        }
+        editCourse.addModule(title, lessons);
+        System.out.println("Module added!");
     }
 
     private void viewModule(){
@@ -496,13 +498,35 @@ public class LMSUI {
     }
 
     private void addNewLesson(){
-        System.out.println("Adding Lesson: ");
-        if(addLesson()){
-            System.out.println("Lesson added!");
+        System.out.println("Lesson Title: ");
+        String title = keyboard.nextLine();
+        System.out.println("Content: ");
+        String content = keyboard.nextLine();
+        System.out.println("How many questions in the quiz? ");
+        ArrayList<Question> questions = new ArrayList<Question>();
+        int numberOfQuestions = keyboard.nextInt();
+        keyboard.nextLine();
+        for(int i =0; i< numberOfQuestions; i++){
+            System.out.println("Question: ");
+            String ques = keyboard.nextLine();
+            System.out.println("Enter 4 answer options: ");
+            ArrayList<String> answers = new ArrayList<String>();
+            for(int j =0; j< 4;j++){
+                String input = keyboard.nextLine();
+                answers.add(input);
+            }
+            System.out.println("Which answer is the correct one? Enter in the corresponding number. Starting at 0 to 3");
+            int correctAnswer = keyboard.nextInt();
+            keyboard.nextLine();
+
+            Question question = new Question(ques, answers, correctAnswer);
+            questions.add(question);
+            
         }
-        else {
-            System.out.println("Something went wrong.");
-        }
+
+        Quiz quiz = new Quiz(questions);
+        editModule.addLesson(content, title, quiz);
+        System.out.println("Lesson added!");
     }
 
     private void viewLesson(){
@@ -587,7 +611,7 @@ public class LMSUI {
         System.out.println("Exiting the system. Have a good day!");
         System.exit(0);
     }
-
+    /* 
     private void viewFAQs() {
         System.out.println("Please view the FAQs below.\n You can answer an FAQ by entering 1 or to go back to the main menu, enter 0.");
         System.out.println(application.getFAQString());
@@ -615,4 +639,5 @@ public class LMSUI {
 
         }
     }
+    */
 }
