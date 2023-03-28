@@ -104,7 +104,9 @@ public class LMSUI {
     }
 
     private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
-        System.out.println("Which course would you like to continue?");
+        boolean run = true;
+        while(run = true){
+        System.out.println("Which course would you like to continue? This will pull the lesson you are on.");
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         if(choice <= enrolledCourse.size())
@@ -112,14 +114,47 @@ public class LMSUI {
             EnrolledCourse course = enrolledCourse.get(choice);
             int module = course.getCurrentModule();
             int lesson = course.getCurrentLesson();
-            course.
+            Course currentCourse = course.getCourse();
+            Module currentModule = currentCourse.getModule(module);
+            Lesson currentLesson = currentModule.getLesson(lesson);
+            System.out.println(currentLesson.miniToString());
+            takeQuiz();
+            System.out.println("Grade from quiz: ");
+            System.out.println("Next lesson, see comments, take again, print module out");
+            choice = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(choice){
+                case 1:
+                application.nextLesson(course); //Need more development
+                break;
+                case 2:
+                ArrayList<Comment> comments = currentModule.getComment();
+                String commentString = "";
+                for(int i = 0; i < comments.size(); i++){
+                    commentString += comments.get(i).toString();
+                    commentString += "/n";
+                }
+                System.out.println(commentString);
+                break;
+                case 3:
+                System.out.println(currentLesson.miniToString());
+                takeQuiz();
+                System.out.println("Grade from quiz: ");
+                System.out.println("Next lesson, see comments, take again, print module out");
+                choice = keyboard.nextInt();
+                break;
+                case 4:
+                CreateCourseFile(currentCourse);
+                break;
+                default:
+                break;
+            }
         } 
-        }
         else
         {
-            System.out.println("");
+            System.out.println("You gave a wrong number. Try again");
         }
-        
+    }
     }
     private boolean login()
     {
