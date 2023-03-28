@@ -163,7 +163,7 @@ public class LMSApplication {
             return false;
         }
         else {
-            
+            getFAQs().get(index).addAnswer(answer);
             return true;
         }
     }

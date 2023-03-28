@@ -43,6 +43,10 @@ public class FAQ {
         return answers;
     }
 
+    public void addAnswer(String answer) {
+        answers.add(answer);
+    }
+
     public String toString() {
         String result = "Question: " + question + "\nAnswers: \n";
         for(String answer: answers) {
