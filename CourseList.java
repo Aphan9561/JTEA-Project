@@ -31,8 +31,7 @@ public class CourseList {
         return courses;
     }
     
-    public Course hasCourse(String title)
-    {
+    public Course hasCourse(String title){
         for(int i = 0; i < courses.size(); i++) 
         {
             if(courses.get(i).getTitle() == title)

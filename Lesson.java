@@ -39,12 +39,6 @@ public class Lesson {
         result += "\n";
         return result;
     }
-    public String miniToString() {
-        String result =  "Title: "+ this.title +
-                        "\nContent: " + this.content;
-        result += "\n";
-        return result;
-    }
 
     public void takeQuiz() {
         double questionValue = quiz.getQuestionValue();
