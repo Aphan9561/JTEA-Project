@@ -35,8 +35,10 @@ public class LMSUI {
 
     public void run()
     {
+        if(user == null){
         System.out.println("Welcome to Our program. Please choose one of the following.");
         login();
+        }
         while(true)
         {
             displayMainMenu(); 
@@ -106,12 +108,20 @@ public class LMSUI {
     private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
         boolean run = true;
         while(run = true){
-        System.out.println("Which course would you like to continue? This will pull the lesson you are on.");
+        System.out.println("Which course would you like to continue?");
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         if(choice <= enrolledCourse.size())
         {
             EnrolledCourse course = enrolledCourse.get(choice);
+            if(course.getProgress().equals(Progress.COMPLETED)){
+                System.out.println("You have compelted this course! Would you like to download the certicicafe?");
+                String answer = keyboard.nextLine();
+                
+            }
+            else{
+
+            }
             int module = course.getCurrentModule();
             int lesson = course.getCurrentLesson();
             Course currentCourse = course.getCourse();
