@@ -647,5 +647,11 @@ public class LMSUI {
             run();//need to double check if this is the right way to go to the main menu
         }
     }
+
+    public void viewCourseComments(){
+        System.out.println("Please view the comments for the course below.\nYou can ask add a comment by entering 1, reply to a comment by entering 2 or to go back to the main menu enter 0.");
+        application.setCourse(course);
+        System.out.println();
+    }
     
 }

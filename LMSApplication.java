@@ -171,4 +171,12 @@ public class LMSApplication {
     public void askQuestion(String question) {
         faqList.addFAQ(question);
     }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public void courseCommnetsToString() {
+        
+    }
 }
