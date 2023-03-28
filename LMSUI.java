@@ -630,6 +630,7 @@ public class LMSUI {
             System.out.println("Please enter the number associated with the question you want to answer");
             int questionChoice = keyboard.nextInt();
             keyboard.nextLine();
+            questionChoice--;
             if(questionChoice >= 0 && questionChoice < application.getFAQs().size()) {
                 System.out.println(application.getFAQat(questionChoice));
                 System.out.println("Please enter the answer you would like to add.");

@@ -144,7 +144,7 @@ public class LMSApplication {
     public String getFAQQuestionsString() {
         String result = "";
         for(int i=0; i < faqList.getFAQ().size(); i++) {
-            result += i;
+            result += (i+1);
             result += ". ";
             result += faqList.getFAQ().get(i).getQuestion();
             result += "\n";
