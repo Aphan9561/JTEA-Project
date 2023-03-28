@@ -106,28 +106,36 @@ public class LMSUI {
     }
 
     private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
-        boolean run = true;
-        while(run = true){
         System.out.println("Which course would you like to continue?");
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-        if(choice <= enrolledCourse.size())
-        {
+        if(choice <= enrolledCourse.size()){
             EnrolledCourse course = enrolledCourse.get(choice);
-            if(course.getProgress().equals(Progress.COMPLETED)){
-                System.out.println("You have compelted this course! Would you like to download the certicicafe?");
-                String answer = keyboard.nextLine();
-                
-            }
-            else{
-
-            }
             int module = course.getCurrentModule();
             int lesson = course.getCurrentLesson();
             Course currentCourse = course.getCourse();
             Module currentModule = currentCourse.getModule(module);
             Lesson currentLesson = currentModule.getLesson(lesson);
-            System.out.println(currentLesson.miniToString());
+            
+            if(course.getProgress().equals(Progress.COMPLETED)){
+                System.out.println("You have compelted this course! Would you like to download the certicicafe?");
+                String answer = keyboard.nextLine();
+                if(answer.equalsIgnoreCase("Yes")){
+                    CreateCertificationFile(, course); //Figuring that out
+                    System.out.println("Created Certification Text File called certification.txt for this course");
+                }
+            }
+            }
+            else{
+            while()
+            {
+                EnrolledCourse course = enrolledCourse.get(choice);
+                int module = course.getCurrentModule();
+                int lesson = course.getCurrentLesson();
+                Course currentCourse = course.getCourse();
+                 Module currentModule = currentCourse.getModule(module);
+                Lesson currentLesson = currentModule.getLesson(lesson);
+                System.out.println(currentLesson.miniToString());
             takeQuiz();
             System.out.println("Grade from quiz: ");
             System.out.println("Next lesson, see comments, take again, print module out");
@@ -159,13 +167,14 @@ public class LMSUI {
                 default:
                 break;
             }
-        } 
+            }
+            }    
         else
         {
             System.out.println("You gave a wrong number. Try again");
         }
     }
-    }
+
     private boolean login()
     {
         boolean loop = true;
