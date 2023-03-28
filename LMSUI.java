@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.zip.DataFormatException;
-/*
+/**
  * This is a UI that allows the user to give input
- * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
+ * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 
 import javax.management.loading.PrivateClassLoader;

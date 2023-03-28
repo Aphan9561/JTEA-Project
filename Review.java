@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-/*
+/**
  * This is the review class to the allow user to review a course
  * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */

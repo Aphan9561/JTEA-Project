@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/*
+/**
  * This is a module that holds lessons
  * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
