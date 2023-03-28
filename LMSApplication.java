@@ -151,4 +151,20 @@ public class LMSApplication {
         }
         return result;
     }
+
+    public String getFAQat(int index) {
+        String result = "Question: ";
+        result += getFAQs().get(index).getQuestion();
+        return result;
+    }
+
+    public boolean addAnswertoFAQ(int index, String answer) {
+        if(answer == null) {
+            return false;
+        }
+        else {
+            
+            return true;
+        }
+    }
 }
