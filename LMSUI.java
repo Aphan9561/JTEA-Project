@@ -23,7 +23,7 @@ public class LMSUI {
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
     private Language lang; 
-    final private String[] menu = {"Find course by keyword","Find course","Get current courses ", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
+    final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     public LMSUI() 
@@ -53,6 +53,7 @@ public class LMSUI {
                 //This can be a method
                 ArrayList<EnrolledCourse> enrolledCourse = application.getCurrentCourse();
                 printEnrolledCoures(enrolledCourse);
+                enterCourse(enrolledCourse);
                 break;
             case 4:
                 if(this.user.getType().equals(AccountType.AUTHOR) )
@@ -100,6 +101,24 @@ public class LMSUI {
         return true;
     }
 
+    private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
+        System.out.println("Which course would you like to continue?");
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        if(choice <= enrolledCourse.size())
+        {
+            EnrolledCourse course = enrolledCourse.get(choice);
+            int module = course.getCurrentModule();
+            int lesson = course.getCurrentLesson();
+            course.
+        } 
+        }
+        else
+        {
+            System.out.println("");
+        }
+        
+    }
     private boolean login()
     {
         boolean loop = true;
