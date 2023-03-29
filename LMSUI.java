@@ -105,74 +105,84 @@ public class LMSUI {
         return true;
     }
 
+
     private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
         System.out.println("Which course would you like to continue?");
         int choice = keyboard.nextInt();
         keyboard.nextLine();
+        
         if(choice <= enrolledCourse.size()){
-            EnrolledCourse course = enrolledCourse.get(choice);
-            int module = course.getCurrentModule();
-            int lesson = course.getCurrentLesson();
-            Course currentCourse = course.getCourse();
-            Module currentModule = currentCourse.getModule(module);
-            Lesson currentLesson = currentModule.getLesson(lesson);
-            
+        EnrolledCourse course = enrolledCourse.get(choice);
+        int module = course.getCurrentModule();
+        int lesson = course.getCurrentLesson();
+        Course currentCourse = course.getCourse();
+        Module currentModule = currentCourse.getModule(module);
+        Lesson currentLesson = currentModule.getLesson(lesson);
             if(course.getProgress().equals(Progress.COMPLETED)){
-                System.out.println("You have compelted this course! Would you like to download the certicicafe?");
+                System.out.println("You have compelted this course! Would you like to download the certification?");
                 String answer = keyboard.nextLine();
                 if(answer.equalsIgnoreCase("Yes")){
-                    CreateCertificationFile(, course); //Figuring that out
+                    CreateCertificationFile(, course); //Figuring that out certification. Where is it storied? 
                     System.out.println("Created Certification Text File called certification.txt for this course");
+                    //Print the certificate out here too.
                 }
-            }
             }
             else{
-            while()
-            {
-                EnrolledCourse course = enrolledCourse.get(choice);
-                int module = course.getCurrentModule();
-                int lesson = course.getCurrentLesson();
-                Course currentCourse = course.getCourse();
-                 Module currentModule = currentCourse.getModule(module);
-                Lesson currentLesson = currentModule.getLesson(lesson);
-                System.out.println(currentLesson.miniToString());
-            takeQuiz();
-            System.out.println("Grade from quiz: ");
-            System.out.println("Next lesson, see comments, take again, print module out");
-            choice = keyboard.nextInt();
-            keyboard.nextLine();
-            switch(choice){
-                case 1:
-                application.nextLesson(course); //Need more development
-                break;
-                case 2:
-                ArrayList<Comment> comments = currentModule.getComment();
-                String commentString = "";
-                for(int i = 0; i < comments.size(); i++){
-                    commentString += comments.get(i).toString();
-                    commentString += "/n";
-                }
-                System.out.println(commentString);
-                break;
-                case 3:
+                boolean run = true;
+                while(run == true){
+                module = course.getCurrentModule();
+                lesson = course.getCurrentLesson();
+                currentModule = currentCourse.getModule(module);
+                currentLesson = currentModule.getLesson(lesson);
                 System.out.println(currentLesson.miniToString());
                 takeQuiz();
                 System.out.println("Grade from quiz: ");
                 System.out.println("Next lesson, see comments, take again, print module out");
                 choice = keyboard.nextInt();
-                break;
-                case 4:
-                CreateCourseFile(currentCourse);
-                break;
-                default:
-                break;
+                keyboard.nextLine();
+                switch(choice){
+                    case 1:
+                    application.nextLesson(course); //Need more development
+                    viewCourse(course);
+                    break;
+                    case 2:
+                    ArrayList<Comment> comments = currentModule.getComment();
+                    String commentString = "";
+                    for(int i = 0; i < comments.size(); i++){
+                        commentString += comments.get(i).toString();
+                        commentString += "/n";
+                    }
+                    System.out.println(commentString);
+                    break;
+                    case 3:
+                    System.out.println(currentLesson.miniToString());
+                    takeQuiz();
+                    System.out.println("Grade from quiz: ");
+                    break;
+                    case 4:
+                    CreateCourseFile(currentCourse);
+                    break;
+                    case 5: 
+                    run = false;
+                    default:
+                    break;
+               }   
             }
-            }
-            }    
-        else
-        {
-            System.out.println("You gave a wrong number. Try again");
         }
+    }    
+        else{
+        System.out.println("You gave a wrong number. Try again");
+        }
+}
+
+    private void viewCourse(EnrolledCourse course)
+    {
+        int module = course.getCurrentModule();
+        int lesson = course.getCurrentLesson();
+        Course currentCourse = course.getCourse();
+        Module currentModule = currentCourse.getModule(module);
+        Lesson currentLesson = currentModule.getLesson(lesson);
+        System.out.println(currentLesson.miniToString());
     }
     
     private boolean login()
