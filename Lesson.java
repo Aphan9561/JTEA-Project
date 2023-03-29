@@ -40,6 +40,12 @@ public class Lesson {
         return result;
     }
 
+    public String miniToString(){
+        String result =  "Title: "+ this.title +
+                        "\nContent: " + this.content+"\n";
+        return result;
+    }
+
     public void takeQuiz() {
         double questionValue = quiz.getQuestionValue();
         for(int i=1; i <= quiz.getQuestion().size(); i++) {
