@@ -26,6 +26,15 @@ public class UserList {
 		return false;
 	}
 
+    public boolean haveUser(String userName, String password) {
+		for(User user : users) {
+			if(user.getUsername().equals(userName) && user.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
     public boolean addUser(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type)
     {
         if(haveUser(username))
