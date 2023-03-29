@@ -168,15 +168,57 @@ public class LMSApplication {
         }
     }
 
-    public void askQuestion(String question) {
-        faqList.addFAQ(question);
+    public boolean askQuestion(String question) {
+        boolean added = false;
+        if(question != null) {
+            faqList.addFAQ(question);
+            added = true;
+        }
+        return added;
     }
 
     public void setCourse(Course course) {
         this.course = course;
     }
 
-    public void courseCommnetsToString() {
-        
+    public String courseCommnetsToString() {
+        return course.commentsToString();
+    }
+
+    public boolean addComment(String comment, UUID user) {
+        boolean added = false;;
+        if(comment != null) {
+            course.addComment(new Comment(comment, user));
+            added = true;
+        }
+        return added;
+    }
+
+    public String getCourseCommentsString() {
+        String result = "";
+        for(int i=0; i < course.getComment().size(); i++) {
+            result += (i+1);
+            result += ". ";
+            result += course.getComment().get(i).getComment();
+            result += "\n";
+        }
+        return result;
+    }
+
+    public Comment getCommentAt(int index) {
+        return course.getComment().get(index);
+    }
+
+    public String getCommentUsername(UUID id) {
+        return userList.findUsername(id);
+    }
+
+    public boolean addReply(int index, String reply, UUID id) {
+        boolean added = false;
+        if(reply != null) {
+            course.getComment().get(index).addReply(new Reply(reply, id));
+            added = true;
+        }
+        return added;
     }
 }

@@ -22,7 +22,7 @@ public class LMSUI {
     private ArrayList<Module> modules = new ArrayList<Module>();;
     private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     private Difficulty diffStatus;
-    private Language lang; 
+    private Language lang;
 
     final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
@@ -622,8 +622,11 @@ public class LMSUI {
         } else if(choice == 1) {
             System.out.println("Enter the question you would like to ask.");
             String newQuestion = keyboard.nextLine();
-            application.askQuestion(newQuestion);
-            System.out.println("Your question has been added!");
+            if(application.askQuestion(newQuestion)) {
+                System.out.println("Your question has been added!");
+            } else {
+                System.out.println("Invalid input.");
+            }
             viewFAQs();//need to double check if this is the right way to go back to the FAQ menu
         } else if(choice == 2) {
             System.out.println(application.getFAQQuestionsString());
@@ -635,6 +638,12 @@ public class LMSUI {
                 System.out.println(application.getFAQat(questionChoice));
                 System.out.println("Please enter the answer you would like to add.");
                 String newAnswer = keyboard.nextLine();
+                if(newAnswer != null) {
+                    application.addAnswertoFAQ(questionChoice, newAnswer);
+                    System.out.println("Your answer has been added!");
+                } else {
+                    System.out.println("Invalid input");
+                }
                 application.addAnswertoFAQ(questionChoice, newAnswer);
                 System.out.println("Your answer has been added!");
                 viewFAQs();//need to double check if this is the right way to go back to the FAQ menu
@@ -649,9 +658,48 @@ public class LMSUI {
     }
 
     public void viewCourseComments(){
-        System.out.println("Please view the comments for the course below.\nYou can ask add a comment by entering 1, reply to a comment by entering 2 or to go back to the main menu enter 0.");
+        System.out.println("Please view the comments for the course below.\nYou can add a comment by entering 1, reply to a comment by entering 2 or to go back to the main menu enter 0.");
         application.setCourse(course);
-        System.out.println();
+        System.out.println(application.courseCommnetsToString());
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        if(choice == 0) {
+            run();//need to double check if this is the right way to go to the main menu
+        } else if(choice == 1) {
+            System.out.println("Please enter the comment you'd like to add.");
+            String newComment = keyboard.nextLine();
+            if(application.addComment(newComment, user.getId())) {
+                System.out.println("Your comment has been added!");
+            } else {
+                System.out.println("Invalid input.");
+            }
+            viewCourseComments();//need to double check if this is the right way to go to the comments menu
+        } else if(choice == 2) {
+            System.out.println(application.getCourseCommentsString());
+            System.out.println("Please enter the number associated with the comment you want to reply to.");
+            int commentChoice = keyboard.nextInt();
+            keyboard.nextLine();
+            commentChoice--;
+            if(commentChoice >= 0 && commentChoice < course.getComment().size()) {
+                System.out.print(application.getCommentUsername(application.getCommentAt(commentChoice).getUser()));
+                System.out.print(": ");
+                System.out.println(application.getCommentAt(commentChoice).getComment());
+                System.out.println("Please enter your reply.");
+                String newReply = keyboard.nextLine();
+                if(application.addReply(commentChoice, newReply, user.getId())) {
+                    System.out.println("Added your reply!");
+                } else {
+                    System.out.println("Invalid input.");
+                }
+                viewCourseComments();//need to double check if this is the right way to go to the comments menu
+            } else {
+                System.out.println("Invalid input.");
+                viewCourseComments();//need to double check if this is the right way to go to the comments menu
+            }
+        } else {
+            System.out.println("Invalid input.");
+            run();//need to double check if this is the right way to go to the main menu
+        }
     }
     
 }

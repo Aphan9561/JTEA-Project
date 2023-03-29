@@ -66,4 +66,14 @@ public class UserList {
     public int size() {
         return users.size();
     }
+
+    public String findUsername(UUID id) {
+        User temp = null;
+        for(User user : users) {
+            if(user.getId().equals(id)) {
+                temp = user;
+            }
+        }
+        return temp.username;
+    }
 }

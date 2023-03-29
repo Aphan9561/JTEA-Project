@@ -12,6 +12,11 @@ public class Comment {
         this.replies.addAll(replies);
     }
 
+    public Comment(String comment, UUID user) {
+        this.comment = comment;
+        this.user = user;
+    }
+
     public String getComment(){
         return comment;
     }
@@ -32,6 +37,10 @@ public class Comment {
         }
         result += "\n";
         return result;
+    }
+
+    public void addReply(Reply reply) {
+        replies.add(reply);
     }
 
 }

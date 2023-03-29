@@ -154,4 +154,16 @@ for(Module module : modules) {
     return result;
     }
 
+    public String commentsToString() {
+        String result = "";
+        for(Comment comment : comments) {
+            result += comment;
+        }
+        return result;
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
 }
