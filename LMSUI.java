@@ -711,5 +711,17 @@ public class LMSUI {
             run();//need to double check if this is the right way to go to the main menu
         }
     }
+
+    public void takeQuiz(Quiz quiz) {
+        
+        for(int i=0; i < quiz.getQuestion().size(); i++) {
+            System.out.println(application.getQuizQuestion(quiz, i));
+            //print out answers
+            System.out.println("Please enter the number corresponding to your answer.");
+            //verify if answer is right
+            //update grade
+        }
+        //return grade
+    }
     
 }

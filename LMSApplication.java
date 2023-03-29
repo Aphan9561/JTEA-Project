@@ -221,4 +221,8 @@ public class LMSApplication {
         }
         return added;
     }
+
+    public String getQuizQuestion(Quiz quiz, int index) {
+        return quiz.getQuestion().get(index).getQuestion();
+    }
 }
