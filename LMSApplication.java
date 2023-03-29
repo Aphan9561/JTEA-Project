@@ -128,7 +128,7 @@ public class LMSApplication {
         return this.quiz;
     }
 
-    public boolean CreateCertificationFile(EnrolledCourse course)
+    public void CreateCertificationFile(EnrolledCourse course)
     {
         this.user.printCertification(course);
     }

@@ -96,7 +96,7 @@ public class User {
         return enrolledCourse;
     }
 
-    public printCertification(EnrolledCourse course){
+    public void printCertification(EnrolledCourse course){
         Course course1 = course.getCourse();
         Certification certification = new Certification(firstName, lastName, course1.getTitle(), birthday);
         DataWriter.CreateCertificationFile(certification);

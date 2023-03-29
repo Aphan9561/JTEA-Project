@@ -158,7 +158,7 @@ public class LMSUI {
                     System.out.println("Grade from quiz: ");
                     break;
                     case 4:
-                    CreateCourseFile(currentCourse);
+                    CreateCourseFile(currentModule);
                     break;
                     case 5: 
                     run = false;
@@ -604,12 +604,12 @@ public class LMSUI {
         }
     }
 
-    private boolean CreateCertificationFile(Certification certification, Course course){ //Where should this be called?
-        return this.application.CreateCertificationFile(certification, course);
+    private void CreateCertificationFile(EnrolledCourse course){ //Where should this be called?
+        this.application.CreateCertificationFile(course);
     } //UI calls facade. Current print cerifice for course. In user class would call enrolled courses has a getGrades then class datawriter IN user of course. Which would get get grades then call data writer
 
-    private boolean CreateCourseFile(Course course){ //Where should this be called?
-        return this.application.CreateCourseFile(course);
+    private void CreateCourseFile(Module module){ 
+         this.application.CreateCourseFile(module);
     }
 
     public static void main(String[] args) 
