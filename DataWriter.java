@@ -252,7 +252,7 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
 
-    public static boolean CreateCertificationFile(Certification certification, Course course){
+    public static boolean CreateCertificationFile(Certification certification){
         boolean worked = false;
             FileWriter Certification;
             try {
@@ -266,12 +266,12 @@ public class DataWriter extends DataConstants{
         return worked;
     }
 
-    public static boolean CreateCourseFile( Course course){
+    public static boolean CreateCourseFile(Module module){
         boolean worked = false;
             FileWriter Course;
             try {
-                Course = new FileWriter("Course.txt");
-                Course.write(course.fileInfo()); 
+                Course = new FileWriter("Module.txt");
+                Course.write(module.fileInfo()); 
                 Course.close();
                 worked = true;
             } catch (IOException e) {

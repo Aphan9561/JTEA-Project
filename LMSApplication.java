@@ -51,7 +51,7 @@ public class LMSApplication {
                 }
             }
         }
-        return this.user; //Make a user that password and username.
+        return this.user; //Make a user that has password and username.
     }
 
     public boolean findAuthorForCourse(String username){
@@ -128,13 +128,13 @@ public class LMSApplication {
         return this.quiz;
     }
 
-    public boolean CreateCertificationFile(Certification certification, Course course)
+    public boolean CreateCertificationFile(EnrolledCourse course)
     {
-        return DataWriter.CreateCertificationFile(certification, course);
+        this.user.printCertification(course);
     }
 
-    public boolean CreateCourseFile(Course course){
-        return DataWriter.CreateCourseFile(course);
+    public boolean CreateCourseFile(Module module){
+        return DataWriter.CreateCourseFile(module);
     }
 
     public String getFAQString() {

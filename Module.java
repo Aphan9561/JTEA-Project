@@ -65,4 +65,13 @@ import java.util.ArrayList;
         result += "\n";
         return result;
     }
+
+    public String fileInfo(){   
+    String result = "Title: " + title + "\n";
+    result += "Lessons:\n";
+    for(int i = 0; i < lessons.size(); i++) {
+        result += lessons.get(i).miniToString();
+    }
+    return result;
+    }
  }

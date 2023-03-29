@@ -54,7 +54,7 @@ public class LMSUI {
                 break;
             case 3:
                 printEnrolledCoures(application.getCurrentCourse());
-                //1enterCourse(enrolledCourse);
+                enterCourse(application.getCurrentCourse());
                 break;
             case 4:
                 if(this.user.getType().equals(AccountType.AUTHOR) )
@@ -120,7 +120,7 @@ public class LMSUI {
                 System.out.println("You have compelted this course! Would you like to download the certification?");
                 String answer = keyboard.nextLine();
                 if(answer.equalsIgnoreCase("Yes")){
-                    CreateCertificationFile(, course); //Figuring that out certification. Where is it storied? 
+                    this.application.CreateCertificationFile(course);
                     System.out.println("Created Certification Text File called certification.txt for this course");
                     //Print the certificate out here too.
                 }

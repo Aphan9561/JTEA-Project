@@ -141,19 +141,6 @@ public class Course {
         return result;
     }
 
-    public String fileInfo(){
-        String result = "Course ID: " + id + "\nDifficulty: " + difficulty + "\nName: " + name + "\nDescription: " + description + "\nSyllabus: " + syllabus + "\nAuthor ID: " + author+"\nLanguage: "+language;
-        result += "\nModules: \n";
-for(Module module : modules) {
-    result += module.getTitle();
-    for(int i = 0; i < module.getNumberOfLessons();i++){
-        result+=module.getLesson(i).getTitle()+"/n"+module.getLesson(i).getContent();
-    }
-    System.out.println("Added module");
-}
-    return result;
-    }
-
     public String commentsToString() {
         String result = "";
         for(Comment comment : comments) {
