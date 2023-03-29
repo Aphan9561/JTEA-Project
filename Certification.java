@@ -5,17 +5,18 @@ public class Certification {
     private String lastName;
     private String courseName;
     private Date dateCompleted;
+    private Integer grade;
     
-    public Certification(String firstName, String lastName, String courseName, Date dateCompleted){
+    public Certification(String firstName, String lastName, String courseName, Date dateCompleted, Integer grade){
         this.firstName = firstName;
         this.lastName = lastName;
         this.courseName = courseName;
-        this.dateCompleted = dateCompleted;
+        this.grade = grade;
     }
 
     public String toString(){
         return "Name: "+firstName+ " "+lastName+
                 "\nCourse taken: "+courseName+
-                "\nDate Completed: "+dateCompleted;
+                "\nGrades: "+grade;
     }
 }
