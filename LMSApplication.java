@@ -39,7 +39,7 @@ public class LMSApplication {
             this.user = user1;
             userList.addUser(firstName, lastName, email, birthday, username, password, Type);
         }
-        return user1;
+        return user1; //Only return user or boolean. Can be on line
     }
 
     public User login(String username, String password){
@@ -51,7 +51,7 @@ public class LMSApplication {
                 }
             }
         }
-        return this.user;
+        return this.user; //Make a user that password and username.
     }
 
     public boolean findAuthorForCourse(String username){
@@ -62,7 +62,7 @@ public class LMSApplication {
 
     public UUID getAuthor() {
 		return author.getId();
-	}
+	} 
 
     public Course findCourseTitle(String title)
     {
@@ -96,7 +96,7 @@ public class LMSApplication {
     {
         //Only called after a module is finished
         course.moveCurrentModule();
-        System.out.println(course.resumeModule());
+        System.out.println(course.resumeModule()); //Return module. Maybe just do in UI.
         
     }
     public void nextLesson(EnrolledCourse course){
@@ -107,9 +107,9 @@ public class LMSApplication {
 
     public Integer getGrades(){
         for(Integer grades: student.getGrades()){
-            return grades;
+            return grades; //Only returns first. Need to decide what to do here
         }
-        return null;
+        return null; 
     }
 
     public void getAllLanguages(){
@@ -141,7 +141,7 @@ public class LMSApplication {
         return faqList.FAQstoString();
     }
 
-    public String getFAQQuestionsString() {
+    public String getFAQQuestionsString() {//Be in UI or put toString in GRQ
         String result = "";
         for(int i=0; i < faqList.getFAQ().size(); i++) {
             result += (i+1);

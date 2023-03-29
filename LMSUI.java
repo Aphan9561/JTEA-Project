@@ -53,9 +53,7 @@ public class LMSUI {
                 printAllCourses();
                 break;
             case 3:
-                //This can be a method
-                ArrayList<EnrolledCourse> enrolledCourse = application.getCurrentCourse();
-                printEnrolledCoures(enrolledCourse);
+                printEnrolledCoures(application.getCurrentCourse());
                 //1enterCourse(enrolledCourse);
                 break;
             case 4:
@@ -128,7 +126,7 @@ public class LMSUI {
                 }
             }
             else{
-                boolean run = true;
+                boolean run = true; //Get rid of flag varable and just return as needed. 
                 while(run == true){
                 module = course.getCurrentModule();
                 lesson = course.getCurrentLesson();
@@ -145,7 +143,7 @@ public class LMSUI {
                     application.nextLesson(course); //Need more development
                     viewCourse(course);
                     break;
-                    case 2:
+                    case 2: //Make method for this. 
                     ArrayList<Comment> comments = currentModule.getComment();
                     String commentString = "";
                     for(int i = 0; i < comments.size(); i++){
@@ -608,7 +606,7 @@ public class LMSUI {
 
     private boolean CreateCertificationFile(Certification certification, Course course){ //Where should this be called?
         return this.application.CreateCertificationFile(certification, course);
-    }
+    } //UI calls facade. Current print cerifice for course. In user class would call enrolled courses has a getGrades then class datawriter IN user of course. Which would get get grades then call data writer
 
     private boolean CreateCourseFile(Course course){ //Where should this be called?
         return this.application.CreateCourseFile(course);
