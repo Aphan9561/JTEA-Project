@@ -12,6 +12,7 @@ public class LMSApplication {
     private Course course;
     private Lesson lesson;
     private User author;
+    private User currentUser;
     private Student student;
     private CourseList courseList;
     private Quiz quiz;
@@ -32,26 +33,20 @@ public class LMSApplication {
     return lmsApplication;
     }
 
-    public User createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
-        User user1 = new User(firstName, lastName, email, birthday, username, password, Type);
-        if(user1!= null)
-        {
-            this.user = user1;
-            userList.addUser(firstName, lastName, email, birthday, username, password, Type);
-        }
-        return user1; //Only return user or boolean. Can be on line
+    public boolean createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
+        return userList.addUser(firstName, lastName, email, birthday, username, password, Type);
     }
 
-    public User login(String username, String password){
-        this.user = null;
-        for(int i=0; i < userList.size(); i++) {
-            if(userList.getUser().get(i).getUsername().equals(username)) {
-                if(userList.getUser().get(i).getPassword().equals(password)) {
-                    this.user = userList.getUser().get(i);
-                }
-            }
-        }
-        return this.user; //Make a user that has password and username.
+    public boolean login(String username, String password){
+        if(!userList.haveUser(username, password)) 
+            return false;
+
+        currentUser = userList.getUser(username);
+        return true;
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
     }
 
     public boolean findAuthorForCourse(String username){

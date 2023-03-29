@@ -36,7 +36,7 @@ public class LMSUI {
     public void run()
     {
         if(user == null){
-        System.out.println("Welcome to Our program. Please choose one of the following.");
+        System.out.println("Hello! Welcome to J Tea's Learning Management System.");
         login();
         }
         while(true)
@@ -82,6 +82,7 @@ public class LMSUI {
                 keyboard.close();
                 return;
             default:
+                System.out.println("Invalid number. Try again");
                 break;
             }
         }
@@ -125,9 +126,8 @@ public class LMSUI {
                     //Print the certificate out here too.
                 }
             }
-            else{
-                boolean run = true; //Get rid of flag varable and just return as needed. 
-                while(run == true){
+            else{ 
+                while(true){
                 module = course.getCurrentModule();
                 lesson = course.getCurrentLesson();
                 currentModule = currentCourse.getModule(module);
@@ -140,30 +140,31 @@ public class LMSUI {
                 keyboard.nextLine();
                 switch(choice){
                     case 1:
-                    application.nextLesson(course); //Need more development
-                    viewCourse(course);
-                    break;
+                        application.nextLesson(course); //Need more development
+                        viewCourse(course);
+                        break;
                     case 2: //Make method for this. 
-                    ArrayList<Comment> comments = currentModule.getComment();
-                    String commentString = "";
-                    for(int i = 0; i < comments.size(); i++){
-                        commentString += comments.get(i).toString();
-                        commentString += "/n";
-                    }
-                    System.out.println(commentString);
-                    break;
+                        ArrayList<Comment> comments = currentModule.getComment();
+                        String commentString = "";
+                        for(int i = 0; i < comments.size(); i++){
+                            commentString += comments.get(i).toString();
+                            commentString += "/n";
+                        }
+                        System.out.println(commentString);
+                        break;
                     case 3:
-                    System.out.println(currentLesson.miniToString());
-                    takeQuiz();
-                    System.out.println("Grade from quiz: ");
-                    break;
+                        System.out.println(currentLesson.miniToString());
+                        takeQuiz();
+                        System.out.println("Grade from quiz: ");
+                        break;
                     case 4:
-                    CreateCourseFile(currentModule);
+                    CreateCourseFile(currentCourse);
                     break;
                     case 5: 
-                    run = false;
+                        return;
                     default:
-                    break;
+                        System.out.println("Invalid number. Try again");
+                        break;
                }   
             }
         }
@@ -188,6 +189,7 @@ public class LMSUI {
         boolean loop = true;
         while(loop == true)
         {
+            System.out.println("********************* Login Menu *********************");
             System.out.println("To create an user account please type 1. \nTo create an author account please type 2. \nTo login please type 3");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
@@ -220,6 +222,7 @@ public class LMSUI {
                     loop = false;
                     break;
                 default:
+                    System.out.println("Invalid number. Try again");
                     break;
             }
         }
@@ -241,7 +244,13 @@ public class LMSUI {
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
-        this.user = application.createAccount(firstName, lastName, email, date, username, password, accountType);
+        if(application.createAccount(firstName, lastName, email, date, username, password, accountType)){
+            System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName());
+            this.user = application.getCurrentUser();
+        } else {
+            System.out.println("Sorry an account with that username already exists");
+            this.user = null;
+        }
         return this.user;
     }
 
@@ -251,8 +260,14 @@ public class LMSUI {
         String username = keyboard.nextLine();
         System.out.println("Please enter your password below.");
         String password = keyboard.nextLine();
-        this.user = application.login(username, password);
-        System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName());
+        if(application.login(username, password)){
+            this.user = application.getCurrentUser();
+            System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName());
+        }
+        else{
+            System.out.println("Invalid username or password");
+            this.user = null;
+        }
         return this.user;
     }
 
@@ -278,7 +293,7 @@ public class LMSUI {
 
     public void displayMainMenu() 
     {
-        System.out.println("Hello! Welcome to J Tea's system. Please press the number one the side to do that");
+        System.out.println("********************* Main Menu *********************");
         for(int i = 0; i < menu.length; i++)
         {
             System.out.println(i+1+": "+menu[i]);
@@ -286,7 +301,7 @@ public class LMSUI {
     }
     private void displayAuthorMenu()
     {
-        System.out.println("Hello to the author side. Only use this side to make and edit course. Not able to do course in this mode");
+        System.out.println("********************* Author Menu *********************");
         for(int i = 0; i < authorMenu.length; i++)
         {
             System.out.println(i+1+": "+authorMenu[i]);
@@ -295,8 +310,7 @@ public class LMSUI {
 
     private void runAuthor()
     {
-        boolean run = true;
-        while(run == true)
+        while(true)
         {
             displayAuthorMenu(); 
             int choice = keyboard.nextInt();
@@ -311,11 +325,11 @@ public class LMSUI {
                     break;
                 case 3:
                     run();
-                    break;
+                    return;
                 case 4:
-                    run = false;
-                    break;
+                    return;
                 default:
+                    System.out.println("Invalid number. Try again");
                     break;
             }
         }
@@ -340,7 +354,7 @@ public class LMSUI {
         for(int i = 0; i < numberOfModules; i++){
             addModule();
         }
-        this.course = application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
+        application.createCourse(user.id, name, description, syallbus, difficulty2, language2, modules);
         return this.course;
     }
 
@@ -441,8 +455,8 @@ public class LMSUI {
             System.out.print(i+": "+editCourse.getModule().get(i).getTitle()+"\n");
         }
 
-        boolean run = true;
-        while(run == true)
+        
+        while(true)
         {
             System.out.println("Would you like to add(1) a module, view(2) a module, or leave(3)?");
             choice = keyboard.nextInt();
@@ -455,10 +469,10 @@ public class LMSUI {
                 viewModule();
                 break;
             case 3:
-                run = false;
-                break;
+                return;
             default:
-            break;
+                System.out.println("Invalid number. Try again");
+                break;
             } 
         }
     }
