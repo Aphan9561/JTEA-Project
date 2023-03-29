@@ -118,8 +118,7 @@ public class LMSUI {
         Module currentModule = currentCourse.getModule(module);
         Lesson currentLesson = currentModule.getLesson(lesson);
             if(course.getProgress().equals(Progress.COMPLETED)){
-                System.out.println("You have compelted this course! Would you like to download the certification?"); 
-                //UI calls facade. Current print cerifice for course. In user class would call enrolled courses has a getGrades then class datawriter IN user of course. Which would get get grades then call data writer
+                System.out.println("You have compelted this course! Would you like to download the certification?");
                 String answer = keyboard.nextLine();
                 if(answer.equalsIgnoreCase("Yes")){
                     this.application.CreateCertificationFile(course);
@@ -159,7 +158,7 @@ public class LMSUI {
                         System.out.println("Grade from quiz: ");
                         break;
                     case 4:
-                    CreateModuleFile(currentModule);
+                    CreateCourseFile(currentCourse);
                     break;
                     case 5: 
                         return;
@@ -619,7 +618,11 @@ public class LMSUI {
         }
     }
 
-    private void CreateModuleFile(Module module){ 
+    private void CreateCertificationFile(EnrolledCourse course){ //Where should this be called?
+        this.application.CreateCertificationFile(course);
+    } //UI calls facade. Current print cerifice for course. In user class would call enrolled courses has a getGrades then class datawriter IN user of course. Which would get get grades then call data writer
+
+    private void CreateCourseFile(Module module){ 
          this.application.CreateCourseFile(module);
     }
 
