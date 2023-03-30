@@ -711,6 +711,7 @@ public class LMSUI {
     {
         for(int i = 0; i < courses.size(); i++)
         {
+            System.out.print((i+1)+". ");
             System.out.println(courses.get(i));
         }
     }
