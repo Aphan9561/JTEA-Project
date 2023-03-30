@@ -1,31 +1,56 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * this is the student
+ * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
+ */
 public class Student {
     UUID id;
     private ArrayList<Integer> grades = new ArrayList<Integer>();
 
-    public Student(UUID id){
+    /**
+     * Creates student with id
+     * @param id user's id
+     */
+    public Student(UUID id) {
         this.id = id;
         grades = new ArrayList<>();
     }
 
-    public Student(UUID id, ArrayList<Integer> grade){
+    /**
+     * creates student with id and grades
+     * @param id    user's id
+     * @param grade user's grades
+     */
+    public Student(UUID id, ArrayList<Integer> grade) {
         this.id = id;
         this.grades.addAll(grade);
     }
 
-    public UUID getId(){
+    /**
+     * get student's id
+     * @return student's id
+     */
+    public UUID getId() {
         return id;
     }
 
-    public ArrayList<Integer> getGrades(){
+    /**
+     * get student's grades
+     * @return student's grades
+     */
+    public ArrayList<Integer> getGrades() {
         return grades;
     }
 
-    public String toString(){
+    /**
+     * Creates a String representation of student
+     * @return student information
+     */
+    public String toString() {
         String result = "Student ID: " + id + "\nGrades: ";
-        for(Integer grade : grades) {
+        for (Integer grade : grades) {
             result += grade + ", ";
         }
         result += "\n";

@@ -186,11 +186,11 @@ public class LMSUI {
                }   
             }
         }
-    }    
-        else{
+        } else {
         System.out.println("You gave a wrong number. Try again");
         }
-}
+    }
+    
     /**
      * This allows a user to take a course
      * @param Course: The course they want to take
@@ -664,8 +664,8 @@ public class LMSUI {
     }
 
     /**
-     * 
-     * @param course
+     * This allows the user to view a course
+     * @param course The course they want to view
      */
     private void viewCourse(Course course){
         String answer;
@@ -715,9 +715,9 @@ public class LMSUI {
         }
     }
 
-    private void CreateCertificationFile(EnrolledCourse course){ //Where should this be called?
+    private void CreateCertificationFile(EnrolledCourse course){ 
         this.application.CreateCertificationFile(course);
-    } //UI calls facade. Current print cerifice for course. In user class would call enrolled courses has a getGrades then class datawriter IN user of course. Which would get get grades then call data writer
+    } 
 
     private void CreateCourseFile(Module module){ 
          this.application.CreateCourseFile(module);
