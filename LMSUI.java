@@ -413,7 +413,7 @@ public class LMSUI {
     }
 
     /**
-     * This allows the author to add a module to their course
+     * This allows the author to add a module to their course they are making
      * @return True if it worked, false if it did not
      */
     private boolean addModule(){
@@ -430,7 +430,7 @@ public class LMSUI {
     }
 
     /**
-     * This allows the user to add a lesson to their module in their course
+     * This allows the user to add a lesson to their module in their course they are making
      * @return True if it worked, false if it did not
      */
     private boolean addLesson(){
@@ -467,9 +467,9 @@ public class LMSUI {
     }
 
     /**
-     * 
-     * @param difficulty
-     * @return
+     * This converts a String into a enum called Difficulty
+     * @param difficulty (Sting)
+     * @return emun Difficulty
      */
     private Difficulty getDifficlty(String difficulty){
         if(difficulty.equalsIgnoreCase("easy")){
@@ -484,6 +484,11 @@ public class LMSUI {
         return diffStatus;
     }
 
+     /**
+     * This converts a String into a enum called Language
+     * @param language (Sting)
+     * @return emun Language
+     */
     private Language getLanguage(String language){ 
         if(language.equalsIgnoreCase("Python")){
             lang = lang.PYTHON;
@@ -497,6 +502,9 @@ public class LMSUI {
         return lang;
     }
 
+    /**
+     * This allows the author to edit a course
+     */ 
     private void editCourse()
     {
         System.out.println("What course would you like to edit?");
@@ -544,6 +552,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * This allows an author to add a new module to existing course.
+     */
     private void addNewModule(){
         System.out.println("Adding Module\n");
         System.out.println("Module Title: ");
@@ -558,6 +569,9 @@ public class LMSUI {
         System.out.println("Module added!");
     }
 
+    /**
+     * This method allows the user to view a module in a course they are making
+     */
     private void viewModule(){
         System.out.println("What module would to like to view?");
         int choice = keyboard.nextInt();
@@ -586,6 +600,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * This allows an author to add a new lesson to a module in a existing course.
+     */
     private void addNewLesson(){
         System.out.println("Lesson Title: ");
         String title = keyboard.nextLine();
@@ -618,6 +635,9 @@ public class LMSUI {
         System.out.println("Lesson added!");
     }
 
+    /**
+     * This method allows the user to view a lesson in a course they are making
+     */
     private void viewLesson(){
         System.out.println("What lesson would to like to view?");
         int choice = keyboard.nextInt();
@@ -629,14 +649,18 @@ public class LMSUI {
             }
         }
     }
-
+    /**
+     * This allows the user to take a course.
+     */
     private void takeQuiz(){
-        // might not work
         System.out.println("Starting quiz: \n");
         application.takeQuiz();
     }
 
-
+    /**
+     * 
+     * @param course
+     */
     private void viewCourse(Course course){
         String answer;
         int answer1;
