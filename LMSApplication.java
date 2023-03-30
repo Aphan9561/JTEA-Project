@@ -20,12 +20,18 @@ public class LMSApplication {
     private UserList userList;
     private FAQList faqList;
     
+    /**
+     * This creates the application and all the lists that are needed
+     */
     private LMSApplication(){
         this.courseList = CourseList.getInstance();
         this.userList = UserList.getInstance();
         this.faqList = FAQList.getInstance();
     }
 
+    /**
+     * This gets the only LMSApplication and creates one if one is not created
+     */
     public static LMSApplication getInstance() {
     if(lmsApplication == null){
         lmsApplication = new LMSApplication();
@@ -33,10 +39,27 @@ public class LMSApplication {
     return lmsApplication;
     }
 
+    /**
+     * This is how an account is created on this side
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param birthday
+     * @param username
+     * @param password
+     * @param Type
+     * @return Whether it worked
+     */
     public boolean createAccount(String firstName, String lastName, String email, Date birthday, String username, String password, AccountType Type){
         return userList.addUser(firstName, lastName, email, birthday, username, password, Type);
     }
 
+    /**
+     * This is how an user logs in on this side. 
+     * @param username
+     * @param password
+     * @return Whether it worked
+     */
     public boolean login(String username, String password){
         if(!userList.haveUser(username, password)) 
             return false;
@@ -45,10 +68,19 @@ public class LMSApplication {
         return true;
     }
 
+    /**
+     * Gets the current user
+     * @return current user
+     */
     public User getCurrentUser(){
         return currentUser;
     }
 
+    /**
+     * This checks whether 
+     * @param username
+     * @return
+     */
     public boolean findAuthorForCourse(String username){
         if(!userList.haveUser(username)) return false;
         author = userList.getUser(username);
