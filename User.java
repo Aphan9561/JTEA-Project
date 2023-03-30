@@ -98,9 +98,7 @@ public class User {
 
     public void printCertification(EnrolledCourse course){
         Course course1 = course.getCourse();
-        //Figure out how to get grades here. 
-        Integer grade = ;
-        Certification certification = new Certification(firstName, lastName, course1.getTitle(), grade);
+        Certification certification = new Certification(firstName, lastName, course1.getTitle());
         DataWriter.CreateCertificationFile(certification);
     }
     //  public void giveStars() {
