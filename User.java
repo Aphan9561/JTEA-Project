@@ -14,7 +14,7 @@ public class User {
     protected Date birthday;
     protected String username;
     protected String password;
-    protected ArrayList<EnrolledCourse> enrolledCourse;
+    protected ArrayList<EnrolledCourse> enrolledCourse = new ArrayList<EnrolledCourse>();
     protected AccountType type;
 
     /**
@@ -37,7 +37,17 @@ public class User {
         this.password = password;
         this.username = username;
         this.type = type;
-        enrolledCourse = new ArrayList();
+    }
+
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthday = birthday;
+        this.username = username;
+        this.password = password;
+        this.type = type;
     }
 
     /**
@@ -52,7 +62,7 @@ public class User {
      * @param type      type of account the user has
      */
     public User(UUID id, String firstName, String lastName, String email, Date birthday, String username,
-            String password, AccountType type/* , ArrayList<EnrolledCourse> enrolledCourse */) {
+            String password, AccountType type , ArrayList<EnrolledCourse> enrolledCourse ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -61,7 +71,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.type = type;
-        // setEnrolledCourse(enrolledCourse);
+        this.enrolledCourse.addAll(enrolledCourse);
     }
 
     /**
@@ -84,16 +94,20 @@ public class User {
      * @param course finding course
      */
     public void registerCourse(Course course) {
-        EnrolledCourse NewCourse = new EnrolledCourse(course, true, null);
+        
     }
 
+    
     /**
      * Unregister user in course
      * @param course finding course
      */
-    public void unregisterCourse(Course course) {
+    
+    /*
+     public void unregisterCourse(Course course) {
         EnrolledCourse RemoveCourse = new EnrolledCourse(course, false, null);
     }
+    */
 
     /**
      * get user's id
@@ -167,18 +181,15 @@ public class User {
         return enrolledCourse;
     }
 
-    /**
-     * prints completed course certification
-     * @param course the course the user wants printed out
-     */
-    public void printCertification(EnrolledCourse course) {
+    /*
+    public void printCertification(EnrolledCourse course){
         Course course1 = course.getCourse();
         Certification certification = new Certification(firstName, lastName, course1.getTitle());
         DataWriter.CreateCertificationFile(certification);
     }
-    // public void giveStars() {
-
-    // }
+    //  public void giveStars() {
+        
+    //  }
 
     // update grade method
     // public void updateGrade(EnrolledCourse course, int moduleNum, double grade){

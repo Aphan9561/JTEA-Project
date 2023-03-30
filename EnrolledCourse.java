@@ -5,7 +5,6 @@ import java.util.ArrayList;
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class EnrolledCourse {
-    private Course course;
     private boolean enrolled;
     private Progress progress;
     private int progressPercentage;
@@ -22,16 +21,10 @@ public class EnrolledCourse {
      */
     public EnrolledCourse(Course course, boolean enrolled, Progress progress){
         
-        this.course = course;
         this.enrolled = enrolled;
         this.progress = progress;
     }
 
-    /**
-     * Creates an Enrolled Course
-     * @param course a course
-     * @param enrolled if user is enrolled in the course or not
-     */
     public EnrolledCourse(Course course, boolean enrolled){
         this.course = course;
         this.enrolled = enrolled;
