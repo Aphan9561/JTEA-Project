@@ -25,10 +25,6 @@ public class EnrolledCourse {
         this.progress = progress;
     }
 
-    public EnrolledCourse(Course course, boolean enrolled){
-        this.course = course;
-        this.enrolled = enrolled;
-    }
 
     /**
      * Returns the progress percentage
