@@ -1,17 +1,20 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * An Enrolled Course
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class EnrolledCourse {
-    private boolean enrolled;
+    private UUID course;
+    //private boolean enrolled;
     private Progress progress;
-    private int progressPercentage;
+    //private int progressPercentage;
     private int currentModule;
     private int currentLesson;
     // private Grade grade;
-    // private ArrayList<Grade> gradePerModule;
+    private int overallGrade;
+    private ArrayList<Integer> gradesPerModule = new ArrayList<Integer>();
 
     /**
      * Creates an Enrolled Course
@@ -19,10 +22,21 @@ public class EnrolledCourse {
      * @param enrolled if user is enrolled in the course or not
      * @param progress the course progress
      */
-    public EnrolledCourse(Course course, boolean enrolled, Progress progress){
-        
-        this.enrolled = enrolled;
+    public EnrolledCourse(UUID course){
+        this.course = course;
+        //this.progress = NOT_STATRED;
+        this.currentModule = 0;
+        this.currentLesson = 0;
+        this.overallGrade = 100;
+    }
+
+    public EnrolledCourse(UUID course, Progress progress, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule) {
+        this.course = course;
         this.progress = progress;
+        this.currentModule = currentModule;
+        this.currentLesson = currentLesson;
+        this.overallGrade = overallGrade;
+        this.gradesPerModule = gradesPerModule;
     }
 
 
@@ -30,9 +44,10 @@ public class EnrolledCourse {
      * Returns the progress percentage
      * @return the progress percentage
      */
+    /*
     public int getProgressPercentage(){
         return progressPercentage;
-    }
+    }*/
 
     /**
      * Returns progress of the Course
@@ -54,18 +69,20 @@ public class EnrolledCourse {
      * Returns the Module last worked on
      * @return a course
      */
+    /*
     public Module resumeModule(){
         return course.getModule(currentModule);
-    }
+    }*/
 
     /**
      * Returns the Lesson last worked on
      * @return a lesson
      */
+    /*
     public Lesson resumeLesson(){
         Module module = course.getModule(currentModule);
         return module.getLesson(currentLesson);
-    }
+    }*/
 
     /**
      * Returns the current module
@@ -79,7 +96,7 @@ public class EnrolledCourse {
      * Returns a course
      * @return a course
      */
-    public Course getCourse(){
+    public UUID getCourse(){
         return this.course;
     }
 
@@ -99,5 +116,9 @@ public class EnrolledCourse {
     public int moveCurrentLesson(){
         currentLesson++;
         return currentLesson;
+    }
+
+    public void startCourse() {
+        
     }
 }
