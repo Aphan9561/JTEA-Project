@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 /**
- * This is a UI that allows the user to give input
+ * This is the data load that load data from json and extends dataconstant.
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class DataLoader extends DataConstants{
@@ -218,7 +218,7 @@ public class DataLoader extends DataConstants{
     }
 
     /**
-     * This method allows the other classes to get the list of FRQs for the application
+     * This method allows the other classes to get the list of FAQs for the application
      * @return list of FRQs for the application
      */
     public static ArrayList<FAQ> getFAQs() {
@@ -295,7 +295,7 @@ public class DataLoader extends DataConstants{
     }
 
     /*
-     * This is the main method for this. This calls all the data and loads into the classes as need be. Also a way to test that it is working correctly.
+     * This is the main method for this class. This calls all the data and loads into the classes as need be. Also a way to test that it is working correctly.
      */
     public static void main(String[] args) {
         ArrayList<User> testUsers = getUsers();

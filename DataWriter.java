@@ -9,8 +9,14 @@ import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ *  This is the data writer that writes data to json and text files and extends dataconstant.
+ * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
+ */
 public class DataWriter extends DataConstants{
-    
+    /**
+     * This method saves the list of users. 
+     */
     public static void saveUsers() {
         UserList user = UserList.getInstance();
         ArrayList<User> users = user.getUser();
@@ -31,6 +37,11 @@ public class DataWriter extends DataConstants{
         }
     }
 
+    /**
+     * This method converts a user into a JSONOBJECT
+     * @param user
+     * @return JSONOBJECT
+     */
     public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
         userDetails.put(USER_ID, user.getId().toString());
@@ -45,12 +56,20 @@ public class DataWriter extends DataConstants{
         return userDetails;
     }
     
+    /**
+     * This takes a Date and turns it into a String
+     * @param input (Data)
+     * @return String
+     */
     public static String formattingDate(Date input){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String date = formatter.format(input);;
         return date;
     }
-
+    
+    /**
+     * This saves the list of courses
+     */
     public static void saveCourses() {
         CourseList course = CourseList.getInstance();
         ArrayList<Course> courses = course.getAllCourses();
@@ -70,6 +89,11 @@ public class DataWriter extends DataConstants{
         }
     }
 
+    /**
+     * This method converts a course into a JSONOBJECT
+     * @param user
+     * @return JSONOBJECT
+     */
     public static JSONObject getCourseJSON(Course course) {
 		JSONObject courseDetails = new JSONObject();
         courseDetails.put(COURSE_ID, course.getId().toString());
@@ -152,6 +176,11 @@ public class DataWriter extends DataConstants{
         return courseDetails;
     }
 
+    /**
+     * This turns a module into a JSONObject
+     * @param module
+     * @return JSONObject
+     */
     public static JSONObject getModuleJSON (Module module){
         JSONObject moduleObject = new JSONObject();
 
@@ -176,6 +205,11 @@ public class DataWriter extends DataConstants{
         return moduleObject;
     }
 
+    /**
+     * This turns lesson into a JSONObject
+     * @param lesson
+     * @return JSONObject
+     */
     public static JSONObject getLessonJSON (Lesson lesson){
         JSONObject lessonObject = new JSONObject();
         lessonObject.put(COURSE_MODULES_LESSON_TITLE, lesson.getTitle());
@@ -225,6 +259,9 @@ public class DataWriter extends DataConstants{
         return commentObject;
     }
 
+    /**
+     * This saves the list of FAQs
+     */
     public static void saveFAQs() {
         FAQList faq = FAQList.getInstance();
         ArrayList<FAQ> FAQs = faq.getFAQ();
@@ -243,7 +280,12 @@ public class DataWriter extends DataConstants{
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * This turns a FAQ into a JSONObject
+     * @param faq
+     * @return JSONObject
+     */
     public static JSONObject getFAQJSON(FAQ faq) {
 		JSONObject FAQDetails = new JSONObject();
         FAQDetails.put(FAQ_QUESTION, faq.getQuestion());
@@ -252,6 +294,11 @@ public class DataWriter extends DataConstants{
         return FAQDetails;
     }
 
+    /**
+     * This prints a certification into a text file
+     * @param certification
+     * @return Whether or not it worked (True if did or false if not)
+     */
     public static boolean CreateCertificationFile(Certification certification){
         boolean worked = false;
             FileWriter Certification;
@@ -266,6 +313,11 @@ public class DataWriter extends DataConstants{
         return worked;
     }
 
+    /**
+     * This prints a module of a course into a text file
+     * @param module
+     * @return Whether or not it worked (True if did or false if not)
+     */
     public static boolean CreateCourseFile(Module module){
         boolean worked = false;
             FileWriter Course;
@@ -280,6 +332,10 @@ public class DataWriter extends DataConstants{
         return worked;
     }
 
+    
+    /*
+     * This is the main method for this class. This saves all data that may have changed. Also a way to test that it is working correctly.
+     */
     public static void main(String[] args){
         saveUsers();
         saveCourses();
