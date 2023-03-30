@@ -722,6 +722,11 @@ public class LMSUI {
         }
     }
 
+    /**
+     * 
+     * @param quiz
+     * @return
+     */
     public int takeQuiz(Quiz quiz) {
         int finalQuizGrade = 100;
         for(int i=0; i < quiz.getQuestion().size(); i++) {
