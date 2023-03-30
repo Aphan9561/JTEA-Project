@@ -2,11 +2,12 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * An Enrolled Course
- * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
+ * An Author User
+ * @authors: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class EnrolledCourse {
     private UUID course;
+    //private boolean enrolled;
     //private boolean enrolled;
     private Progress progress;
     //private int progressPercentage;
@@ -17,10 +18,13 @@ public class EnrolledCourse {
     private ArrayList<Integer> gradesPerModule = new ArrayList<Integer>();
 
     /**
-     * Creates an Enrolled Course
-     * @param course a course
-     * @param enrolled if user is enrolled in the course or not
-     * @param progress the course progress
+     * Creates a Enrolled Course
+     * @param course
+     * @param progress
+     * @param currentModule
+     * @param currentLesson
+     * @param overallGrade
+     * @param gradesPerModule
      */
     public EnrolledCourse(UUID course){
         this.course = course;
@@ -39,10 +43,11 @@ public class EnrolledCourse {
         this.gradesPerModule = gradesPerModule;
     }
 
+    
 
     /**
-     * Returns the progress percentage
-     * @return the progress percentage
+     * Returns course id
+     * @return course id
      */
     /*
     public int getProgressPercentage(){
@@ -93,12 +98,21 @@ public class EnrolledCourse {
     }
 
     /**
-     * Returns a course
-     * @return a course
+     * Returns the over all grade
+     * @return the over all grade
+     */
+    public int getOverallGrade() {
+        return overallGrade;
+    }
+
+    /**
+     * Returns an Array List of grades per module
+     * @return an Array List of grades per module
      */
     public UUID getCourse(){
         return this.course;
     }
+    
 
     /**
      * Changes the index of the current module
@@ -114,6 +128,7 @@ public class EnrolledCourse {
      * @return the current lesson index
      */
     public int moveCurrentLesson(){
+        //if()
         currentLesson++;
         return currentLesson;
     }
