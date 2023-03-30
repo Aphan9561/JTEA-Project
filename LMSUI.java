@@ -152,7 +152,7 @@ public class LMSUI {
                         break;
                     case 3:
                         System.out.println(currentLesson.miniToString());
-                        takeQuiz();
+                        takeQuiz(currentLesson.getQuiz());
                         System.out.println("Grade from quiz: ");
                         break;
                     case 4:
@@ -722,18 +722,17 @@ public class LMSUI {
         }
     }
 
-    public void takeQuiz(Quiz quiz) {
-        
+    public int takeQuiz(Quiz quiz) {
+        int finalQuizGrade = 100;
         for(int i=0; i < quiz.getQuestion().size(); i++) {
             System.out.println(application.getQuizQuestion(quiz, i));
             System.out.println(application.getQuizAnswers(quiz, i));
             System.out.println("Please enter the number corresponding to your answer.");
             int answerChoice = keyboard.nextInt();
             keyboard.nextLine();
-            //verify if answer is right
-            //update grade
+            finalQuizGrade = application.getQuestionGrade(quiz, i, answerChoice, finalQuizGrade);
         }
-        //return grade
+        return finalQuizGrade;
     }
     
 }
