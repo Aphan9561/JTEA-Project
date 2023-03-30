@@ -48,8 +48,7 @@ public class Author extends User {
      * @param language course language
      * @param modules course modules
      */
-    public void addCourse(String title, String description, String syllabus, Difficulty difficult, Language language,
-            ArrayList<Module> modules) {
+    public void addCourse(String title, String description, String syllabus, Difficulty difficult, Language language, ArrayList<Module> modules) {
         Course newCourse = new Course(id, title, description, syllabus, difficult, language, modules);
     }
 
