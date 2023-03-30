@@ -11,7 +11,7 @@ public class EnrolledCourse {
     private int overallGrade;
     private ArrayList<Integer> gradesPerModule = new ArrayList<Integer>();
 
-    public EnrolledCourse(UUID course, Progress progress, int progressPercentage, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule){
+    public EnrolledCourse(UUID course, Progress progress, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule){
         
         this.course = course;
         this.progress = progress;

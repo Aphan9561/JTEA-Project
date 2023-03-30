@@ -28,9 +28,29 @@ public class DataLoader extends DataConstants{
                 Date birthday = formatter.parse((String)personJSON.get(USER_BIRTHDAY));
                 String username = (String)personJSON.get(USER_USERNAME);
                 String password = (String)personJSON.get(USER_PASSWORD);
+
+                JSONArray enrolledCoursesJSON = (JSONArray)personJSON.get(USER_ENROLLEDCOURSES);
+                ArrayList<EnrolledCourse> enrolledCourses = new ArrayList<EnrolledCourse>();
+                for(int j=0; j < enrolledCoursesJSON.size(); j++) {
+                    JSONObject enrolledCourseJSON = (JSONObject)enrolledCoursesJSON.get(j);
+                    UUID course = UUID.fromString((String)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_COURSE));
+                    Progress progress = makeProgressEnum((String)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_PROGRESS));
+                    int currentModule = ((Long)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_CURRENTMODULE)).intValue();
+                    int currentLesson = ((Long)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_CURRENTLESSON)).intValue();
+                    int overallGrade = ((Long)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_OVERALLGRADE)).intValue();
+
+                    JSONArray gradesPerModuleJSON = (JSONArray)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_GRADESPERMODULE);
+                    ArrayList<Integer> gradesPerModule = new ArrayList<Integer>();
+                    for(int k=0; k < gradesPerModuleJSON.size(); k++) {
+                        gradesPerModule.add(((Long)gradesPerModuleJSON.get(k)).intValue());
+                    }
+
+                    enrolledCourses.add(new EnrolledCourse(course, progress, currentModule, currentLesson, overallGrade, gradesPerModule));
+                }
+
                 AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));
 
-                users.add(new User(id, firstName, lastName, email, birthday, username, password, type));
+                users.add(new User(id, firstName, lastName, email, birthday, username, password, type, enrolledCourses));
             }
 
             return users;
@@ -232,6 +252,11 @@ public class DataLoader extends DataConstants{
         accountType = accountType.toUpperCase();
         AccountType enumAccountType = AccountType.valueOf(accountType);
         return enumAccountType;
+    }
+
+    public static Progress makeProgressEnum(String progress) {
+        Progress enumProgress = Progress.valueOf(progress);
+        return enumProgress;
     }
 
     public static void main(String[] args) {
