@@ -220,4 +220,13 @@ public class LMSApplication {
     public String getQuizQuestion(Quiz quiz, int index) {
         return quiz.getQuestion().get(index).getQuestion();
     }
+
+    public String getQuizAnswers(Quiz quiz, int index) {
+        return quiz.getQuestion().get(index).answersToString();
+    }
+
+    public int getQuestionGrade(Quiz quiz, int index, int grade) {
+        int updatedGrade = grade;
+        
+    }
 }

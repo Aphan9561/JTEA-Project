@@ -36,4 +36,16 @@ public class Question {
         //result += "\n";
         return result;
     }
+
+    public String answersToString() {
+        String result = "";
+        for(int i=0; i < answers.size(); i++) {
+            result += "(";
+            result += (i+1);
+            result += ") ";
+            result += answers.get(i);
+            result += "\n";
+        }
+        return result;
+    }
 }

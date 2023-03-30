@@ -144,13 +144,7 @@ public class LMSUI {
                         viewCourse(course);
                         break;
                     case 2: //Make method for this. 
-                        ArrayList<Comment> comments = currentModule.getComment();
-                        String commentString = "";
-                        for(int i = 0; i < comments.size(); i++){
-                            commentString += comments.get(i).toString();
-                            commentString += "/n";
-                        }
-                        System.out.println(commentString);
+                        viewCourseComments();
                         break;
                     case 3:
                         System.out.println(currentLesson.miniToString());
@@ -728,8 +722,10 @@ public class LMSUI {
         
         for(int i=0; i < quiz.getQuestion().size(); i++) {
             System.out.println(application.getQuizQuestion(quiz, i));
-            //print out answers
+            System.out.println(application.getQuizAnswers(quiz, i));
             System.out.println("Please enter the number corresponding to your answer.");
+            int answerChoice = keyboard.nextInt();
+            keyboard.nextLine();
             //verify if answer is right
             //update grade
         }
