@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.zip.DataFormatException;
 /**
- * This is a UI that allows the user to give input to use the LMS.
+ * This is a UI that allows the user to give input
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 
@@ -27,10 +27,6 @@ public class LMSUI {
     final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
-    /*
-     * 
-     * @ret
-     */
     public LMSUI() 
     {
         keyboard = new Scanner(System.in);
@@ -148,7 +144,13 @@ public class LMSUI {
                         viewCourse(course);
                         break;
                     case 2: //Make method for this. 
-                        viewCourseComments();
+                        ArrayList<Comment> comments = currentModule.getComment();
+                        String commentString = "";
+                        for(int i = 0; i < comments.size(); i++){
+                            commentString += comments.get(i).toString();
+                            commentString += "/n";
+                        }
+                        System.out.println(commentString);
                         break;
                     case 3:
                         System.out.println(currentLesson.miniToString());
@@ -156,7 +158,7 @@ public class LMSUI {
                         System.out.println("Grade from quiz: "+grade);
                         break;
                     case 4:
-                    CreateCourseFile(currentModule);
+                    CreateCourseFile(currentCourse);
                     break;
                     case 5: 
                         return;
@@ -731,7 +733,7 @@ public class LMSUI {
         int finalQuizGrade = 100;
         for(int i=0; i < quiz.getQuestion().size(); i++) {
             System.out.println(application.getQuizQuestion(quiz, i));
-            System.out.println(application.getQuizAnswers(quiz, i));
+            //print out answers
             System.out.println("Please enter the number corresponding to your answer.");
             int answerChoice = keyboard.nextInt();
             keyboard.nextLine();
