@@ -175,7 +175,7 @@ public class LMSUI {
                         System.out.println("Grade from quiz: "+grade);
                         break;
                     case 4:
-                    CreateCourseFile(currentCourse);
+                    CreateCourseFile(currentModule);
                     break;
                     case 5: 
                         return;
