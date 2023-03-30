@@ -137,8 +137,8 @@ public class LMSUI {
                 currentModule = currentCourse.getModule(module);
                 currentLesson = currentModule.getLesson(lesson);
                 System.out.println(currentLesson.miniToString());
-                takeQuiz();
-                System.out.println("Grade from quiz: ");
+                int grade = takeQuiz(currentLesson.getQuiz());
+                System.out.println("Grade from quiz: "+grade);
                 System.out.println("Next lesson, see comments, take again, print module out");
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
@@ -152,8 +152,8 @@ public class LMSUI {
                         break;
                     case 3:
                         System.out.println(currentLesson.miniToString());
-                        takeQuiz(currentLesson.getQuiz());
-                        System.out.println("Grade from quiz: ");
+                        grade = takeQuiz(currentLesson.getQuiz());
+                        System.out.println("Grade from quiz: "+grade);
                         break;
                     case 4:
                     CreateCourseFile(currentModule);
