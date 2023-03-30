@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.zip.DataFormatException;
 /**
- * This is a UI that allows the user to give input
+ * This is a UI that allows the user to give input to use the LMS.
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 
@@ -27,6 +27,10 @@ public class LMSUI {
     final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
+    /*
+     * 
+     * @ret
+     */
     public LMSUI() 
     {
         keyboard = new Scanner(System.in);
@@ -158,7 +162,7 @@ public class LMSUI {
                         System.out.println("Grade from quiz: ");
                         break;
                     case 4:
-                    CreateCourseFile(currentCourse);
+                    CreateCourseFile(currentModule);
                     break;
                     case 5: 
                         return;
