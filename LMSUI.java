@@ -185,11 +185,11 @@ public class LMSUI {
                }   
             }
         }
-    }    
-        else{
+        } else {
         System.out.println("You gave a wrong number. Try again");
         }
-}
+    }
+    
     /**
      * This alows a user to take a course
      * @param Course: The course they want to take
