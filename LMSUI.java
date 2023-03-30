@@ -27,12 +27,18 @@ public class LMSUI {
     final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
+    /*
+     * This method creates the application/facade to use the backend
+     */
     public LMSUI() 
     {
         keyboard = new Scanner(System.in);
         application = LMSApplication.getInstance();
     }
 
+    /*
+     * This method runs the user side of the LMS.
+     */
     public void run()
     {
         if(user == null){
@@ -87,7 +93,11 @@ public class LMSUI {
             }
         }
     }
-
+    
+    /**
+     * This method searchs for a course using a keyword 
+     * @return: Course found by a keyword
+     */
     private Course search()
     {
         System.out.println("What would course would you like to search for? ");
@@ -95,7 +105,11 @@ public class LMSUI {
         title.toUpperCase();
         return this.application.findCourseTitle(title);
     }
-
+    
+    /**
+     * Prints all courses on console for user to see.
+     * @return True that it has printed all courses out
+     */
     private boolean printAllCourses()
     {
         System.out.println("Printing all courses:");
@@ -104,7 +118,10 @@ public class LMSUI {
         return true;
     }
 
-
+    /**
+     * This lets a user view a course and interact with a course. If the course is finished, they can print a certificate out. If it is not completed, they take the course
+     * @param EnrolledCourse to interact with
+     */
     private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
         System.out.println("Which course would you like to continue?");
         int choice = keyboard.nextInt();
@@ -158,7 +175,7 @@ public class LMSUI {
                         System.out.println("Grade from quiz: "+grade);
                         break;
                     case 4:
-                    CreateCourseFile(currentCourse);
+                    CreateCourseFile(currentModule);
                     break;
                     case 5: 
                         return;
@@ -173,7 +190,10 @@ public class LMSUI {
         System.out.println("You gave a wrong number. Try again");
         }
 }
-
+    /**
+     * This alows a user to take a course
+     * @param Course: The course they want to take
+     */
     private void viewCourse(EnrolledCourse course)
     {
         int module = course.getCurrentModule();
@@ -184,6 +204,10 @@ public class LMSUI {
         System.out.println(currentLesson.miniToString());
     }
     
+    /**
+     * This is the how the user logins in or make an account
+     * @return true when they have finished and have a valued account
+     */
     private boolean login()
     {
         boolean loop = true;
@@ -228,7 +252,11 @@ public class LMSUI {
         }
         return false; //The program should not reach here. This just make sure that the program know that it returns something.
     }
-
+    /**
+     * This is how the user creates an account
+     * @param accountType: What type of account are they making
+     * @return The User that just been created
+     */
     private User signUp(AccountType accountType)
     {
         System.out.println("Please give your first name below."); 
@@ -254,6 +282,10 @@ public class LMSUI {
         return this.user;
     }
 
+    /**
+     * This is how the user logins in
+     * @return The User that just been created
+     */
     private User loginIn()
     {
         System.out.println("Please enter your username below."); 
@@ -271,6 +303,9 @@ public class LMSUI {
         return this.user;
     }
 
+    /**
+     * This is how the user logs out.
+     */
     private void logout() {
         DataWriter.saveUsers();
         DataWriter.saveCourses();
@@ -280,6 +315,11 @@ public class LMSUI {
         //login();//goes back to the login screen once logged out
     }
 
+    /**
+     * This takes a string from the user and turns it into a data
+     * @param birthdayDate: String from user
+     * @return Date: Date equal to the string
+     */
     private Date convertDate(String birthdayDate) 
     {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
@@ -291,6 +331,9 @@ public class LMSUI {
             return date;
     }
 
+    /**
+     * This displays the main menu and all the options the user has have as a student.
+     */
     public void displayMainMenu() 
     {
         System.out.println("********************* Main Menu *********************");
@@ -299,6 +342,10 @@ public class LMSUI {
             System.out.println(i+1+": "+menu[i]);
         }
     }
+
+    /**
+     * This displays the main menu and all the options the user has have as a author.
+     */
     private void displayAuthorMenu()
     {
         System.out.println("********************* Author Menu *********************");
@@ -308,6 +355,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * This method lets the user use the LMS as an author. Create course and edit course.
+     */
     private void runAuthor()
     {
         while(true)
@@ -334,7 +384,11 @@ public class LMSUI {
             }
         }
     }
-
+    
+    /**
+     * This creates a course
+     * @return Course created by this method
+     */
     private Course createCourse(){
         System.out.println("Course Title: ");
         String name = keyboard.nextLine();
@@ -358,6 +412,10 @@ public class LMSUI {
         return this.course;
     }
 
+    /**
+     * This allows the author to add a module to their course they are making
+     * @return True if it worked, false if it did not
+     */
     private boolean addModule(){
         System.out.println("Module Title: ");
         String title = keyboard.nextLine();
@@ -371,6 +429,10 @@ public class LMSUI {
         return modules.add(module);
     }
 
+    /**
+     * This allows the user to add a lesson to their module in their course they are making
+     * @return True if it worked, false if it did not
+     */
     private boolean addLesson(){
         System.out.println("Lesson Title: ");
         String title = keyboard.nextLine();
@@ -404,6 +466,11 @@ public class LMSUI {
         return lessons.add(lesson);
     }
 
+    /**
+     * This converts a String into a enum called Difficulty
+     * @param difficulty (Sting)
+     * @return emun Difficulty
+     */
     private Difficulty getDifficlty(String difficulty){
         if(difficulty.equalsIgnoreCase("easy")){
             diffStatus = diffStatus.EASY;
@@ -417,6 +484,11 @@ public class LMSUI {
         return diffStatus;
     }
 
+     /**
+     * This converts a String into a enum called Language
+     * @param language (Sting)
+     * @return emun Language
+     */
     private Language getLanguage(String language){ 
         if(language.equalsIgnoreCase("Python")){
             lang = lang.PYTHON;
@@ -430,6 +502,9 @@ public class LMSUI {
         return lang;
     }
 
+    /**
+     * This allows the author to edit a course
+     */ 
     private void editCourse()
     {
         System.out.println("What course would you like to edit?");
@@ -477,6 +552,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * This allows an author to add a new module to existing course.
+     */
     private void addNewModule(){
         System.out.println("Adding Module\n");
         System.out.println("Module Title: ");
@@ -491,6 +569,9 @@ public class LMSUI {
         System.out.println("Module added!");
     }
 
+    /**
+     * This method allows the user to view a module in a course they are making
+     */
     private void viewModule(){
         System.out.println("What module would to like to view?");
         int choice = keyboard.nextInt();
@@ -519,6 +600,9 @@ public class LMSUI {
         }
     }
 
+    /**
+     * This allows an author to add a new lesson to a module in a existing course.
+     */
     private void addNewLesson(){
         System.out.println("Lesson Title: ");
         String title = keyboard.nextLine();
@@ -551,6 +635,9 @@ public class LMSUI {
         System.out.println("Lesson added!");
     }
 
+    /**
+     * This method allows the user to view a lesson in a course they are making
+     */
     private void viewLesson(){
         System.out.println("What lesson would to like to view?");
         int choice = keyboard.nextInt();
@@ -562,14 +649,18 @@ public class LMSUI {
             }
         }
     }
-
+    /**
+     * This allows the user to take a course.
+     */
     private void takeQuiz(){
-        // might not work
         System.out.println("Starting quiz: \n");
         application.takeQuiz();
     }
 
-
+    /**
+     * 
+     * @param course
+     */
     private void viewCourse(Course course){
         String answer;
         int answer1;
