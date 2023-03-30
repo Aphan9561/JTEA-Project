@@ -91,13 +91,13 @@ public class LMSApplication {
     {
         //Only called after a module is finished
         course.moveCurrentModule();
-        System.out.println(course.resumeModule()); //Return module. Maybe just do in UI.
+        //System.out.println(course.resumeModule()); //Return module. Maybe just do in UI.
         
     }
     public void nextLesson(EnrolledCourse course){
-        //Only called after a module is finished
+        //Only called after a lesson is finished
         course.moveCurrentLesson();
-        System.out.println(course.resumeLesson());
+        //System.out.println(course.resumeLesson());
     }
 
     public Integer getGrades(){
@@ -125,7 +125,7 @@ public class LMSApplication {
 
     public void CreateCertificationFile(EnrolledCourse course)
     {
-        this.user.printCertification(course);
+        //this.user.printCertification(course);
     }
 
     public boolean CreateCourseFile(Module module){
@@ -231,5 +231,29 @@ public class LMSApplication {
             updatedGrade -= (100/quiz.getQuestion().size());
         }
         return updatedGrade;
+    }
+
+    public ArrayList<Course> getEnrolledCourses(ArrayList<EnrolledCourse> enrolledCourses) {
+        ArrayList<Course> tempCourses = new ArrayList<Course>();
+        for(EnrolledCourse enrolledCourse : enrolledCourses) {
+            for(Course course : courseList.getAllCourses()) {
+                if(course.getId().equals(enrolledCourse.getCourse())) {
+                    tempCourses.add(course);
+                    break;
+                }
+            }
+        }
+        return tempCourses;
+    }
+
+    public Course findCourse(UUID courseID) {
+        Course foundCourse = null;
+        for(Course course : courseList.getAllCourses()) {
+            if(course.getId().equals(courseID)) {
+                foundCourse = course;
+                break;
+            }
+        }
+        return foundCourse;
     }
 }

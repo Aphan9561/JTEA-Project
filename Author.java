@@ -7,7 +7,7 @@ public class Author extends User{
 
     public Author(UUID id,String firstName, String lastName, String email, Date birthday,String username, String password, AccountType type)
     {
-        super(id, firstName, lastName, email, birthday, username,password, type);
+        super(id, firstName, lastName, email, birthday, username, password, type);
     }
 
     public String toString()

@@ -16,6 +16,7 @@ public class LMSUI {
     private Scanner keyboard;
     private LMSApplication application;
     private User user;
+    private ArrayList<Course> courses = new ArrayList<Course>();
     private Course course;
     private Course editCourse;
     private Module editModule;
@@ -131,7 +132,7 @@ public class LMSUI {
         EnrolledCourse course = enrolledCourse.get(choice);
         int module = course.getCurrentModule();
         int lesson = course.getCurrentLesson();
-        Course currentCourse = course.getCourse();
+        Course currentCourse = application.findCourse(course.getCourse());
         Module currentModule = currentCourse.getModule(module);
         Lesson currentLesson = currentModule.getLesson(lesson);
             if(course.getProgress().equals(Progress.COMPLETED)){
@@ -191,14 +192,14 @@ public class LMSUI {
         }
 }
     /**
-     * This alows a user to take a course
+     * This allows a user to take a course
      * @param Course: The course they want to take
      */
     private void viewCourse(EnrolledCourse course)
     {
         int module = course.getCurrentModule();
         int lesson = course.getCurrentLesson();
-        Course currentCourse = course.getCourse();
+        Course currentCourse = application.findCourse(course.getCourse());
         Module currentModule = currentCourse.getModule(module);
         Lesson currentLesson = currentModule.getLesson(lesson);
         System.out.println(currentLesson.miniToString());
@@ -235,8 +236,13 @@ public class LMSUI {
                     }
                     break;
                 case 3:
-                    if(loginIn() != null)
+                    User temp = loginIn();
+                    if(temp != null)
                     {
+                        user = temp;
+                        for(int i=0; i < user.getEnrolledCourse().size(); i++) {
+
+                        }
                         return true;
                     }
                     break;
@@ -832,7 +838,5 @@ public class LMSUI {
         }
         return finalQuizGrade;
     }
-
-    view
     
 }
