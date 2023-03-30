@@ -70,7 +70,7 @@ public class LMSApplication {
     }
 
     public ArrayList<EnrolledCourse> getCurrentCourse() {
-        return this.user.enrolledCourse;
+        return this.currentUser.enrolledCourse;
     }
     
     public void courseReview(double rating, String comment, User userName){
