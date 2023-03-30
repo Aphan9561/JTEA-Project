@@ -741,5 +741,7 @@ public class LMSUI {
         }
         return finalQuizGrade;
     }
+
+    view
     
 }
