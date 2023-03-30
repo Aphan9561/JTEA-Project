@@ -225,8 +225,11 @@ public class LMSApplication {
         return quiz.getQuestion().get(index).answersToString();
     }
 
-    public int getQuestionGrade(Quiz quiz, int index, int grade) {
+    public int getQuestionGrade(Quiz quiz, int index, int answer, int grade) {
         int updatedGrade = grade;
-        
+        if(quiz.getQuestion().get(index).getCorrectAnswer() != (answer -1)) {
+            updatedGrade -= (100/quiz.getQuestion().size());
+        }
+        return updatedGrade;
     }
 }

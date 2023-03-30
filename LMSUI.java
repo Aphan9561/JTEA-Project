@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.zip.DataFormatException;
 /**
- * This is a UI that allows the user to give input to use the LMS.
+ * This is a UI that allows the user to give input
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 
@@ -150,8 +150,8 @@ public class LMSUI {
                 currentModule = currentCourse.getModule(module);
                 currentLesson = currentModule.getLesson(lesson);
                 System.out.println(currentLesson.miniToString());
-                takeQuiz();
-                System.out.println("Grade from quiz: ");
+                int grade = takeQuiz(currentLesson.getQuiz());
+                System.out.println("Grade from quiz: "+grade);
                 System.out.println("Next lesson, see comments, take again, print module out");
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
@@ -161,15 +161,21 @@ public class LMSUI {
                         viewCourse(course);
                         break;
                     case 2: //Make method for this. 
-                        viewCourseComments();
+                        ArrayList<Comment> comments = currentModule.getComment();
+                        String commentString = "";
+                        for(int i = 0; i < comments.size(); i++){
+                            commentString += comments.get(i).toString();
+                            commentString += "/n";
+                        }
+                        System.out.println(commentString);
                         break;
                     case 3:
                         System.out.println(currentLesson.miniToString());
-                        takeQuiz();
-                        System.out.println("Grade from quiz: ");
+                        grade = takeQuiz(currentLesson.getQuiz());
+                        System.out.println("Grade from quiz: "+grade);
                         break;
                     case 4:
-                    CreateCourseFile(currentModule);
+                    CreateCourseFile(currentCourse);
                     break;
                     case 5: 
                         return;
@@ -785,18 +791,22 @@ public class LMSUI {
         }
     }
 
-    public void takeQuiz(Quiz quiz) {
-        
+    /**
+     * 
+     * @param quiz
+     * @return
+     */
+    public int takeQuiz(Quiz quiz) {
+        int finalQuizGrade = 100;
         for(int i=0; i < quiz.getQuestion().size(); i++) {
             System.out.println(application.getQuizQuestion(quiz, i));
-            System.out.println(application.getQuizAnswers(quiz, i));
+            //print out answers
             System.out.println("Please enter the number corresponding to your answer.");
             int answerChoice = keyboard.nextInt();
             keyboard.nextLine();
-            //verify if answer is right
-            //update grade
+            finalQuizGrade = application.getQuestionGrade(quiz, i, answerChoice, finalQuizGrade);
         }
-        //return grade
+        return finalQuizGrade;
     }
     
 }
