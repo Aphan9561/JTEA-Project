@@ -848,14 +848,27 @@ public class LMSUI {
         return finalQuizGrade;
     }
 
-    public void viewCompletedCourses() {
+    public void viewCompletedCourses(EnrolledCourse course) {
         ArrayList<UUID> completedCourses = new ArrayList<UUID>();
         for(int i=0; i < completedCourses.size(); i++) {
             System.out.println(application.completedCoursesToString(user.enrolledCourse));
             System.out.println("Enter 1 to view your module grades for a course, enter 2 to print out a certificate for a course, and enter 0 to go back to the main menu.");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
-            
+            if(choice == 1) {
+                System.out.println(application.modulesAndGradesString(course));
+                viewCompletedCourses(course);
+            } else if(choice == 2) {
+                System.out.println("Printing certificate for this course...");
+                CreateCertificationFile(course);
+                viewCompletedCourses(course);
+            } else if (choice == 0) {
+                System.out.println("Going back to the main menu.\n");
+                run();
+            } else {
+                System.out.println("Invalid input. Going back to the main menu.\n");
+                run();            
+            }
         }
     }
     

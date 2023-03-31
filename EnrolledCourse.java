@@ -114,6 +114,9 @@ public class EnrolledCourse {
         return this.course;
     }
     
+    public ArrayList<Integer> getGradesPerModule() {
+        return gradesPerModule;
+    }
 
     /**
      * Changes the index of the current module
