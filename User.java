@@ -77,14 +77,20 @@ public class User {
      * @return user information
      */
     public String toString() {
-        return "id: " + id +
+        String result = "id: " + id +
                 "\nFirst Name: " + firstName +
                 "\nLast Name: " + lastName +
                 "\nEmail: " + email +
                 "\nBirthday: " + birthday +
                 "\nUsername: " + username +
                 "\nPassword: " + password +
-                "\nAccount type: " + type;
+                "\nAccount type: " + type +
+                "\nEnrolled courses:";
+        for(EnrolledCourse enrolledCourse : enrolledCourse) {
+            result += enrolledCourse;
+            result += "\n";
+        }
+        return result;
     }
 
     /**

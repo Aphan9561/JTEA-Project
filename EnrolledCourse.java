@@ -146,7 +146,26 @@ public class EnrolledCourse {
         progress = Progress.COMPLETED;
     }
 
-    //public String toString()
+    public String toString() {
+        String result = "Course" + course +
+                "\nProgress: " + progress +
+                "\nCurrent module: " + currentModule +
+                "\nCurrent lesson: " + currentLesson +
+                "\nOverall Grade: " + overallGrade +
+                "\nGrades per module: ";
+        for(Integer grade : gradesPerModule) {
+            result += grade;
+            result += ", ";
+        }
+        result += "\nGrades per lesson: ";
+        for(Integer grade : gradesPerLesson) {
+            result += grade;
+            result += ", ";
+        }
+        result += "\n";
+        return result;
+    }
+
     /*
     public int calculateModuleQuizValue() {
         return 

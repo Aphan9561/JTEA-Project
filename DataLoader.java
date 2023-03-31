@@ -310,6 +310,7 @@ public class DataLoader extends DataConstants{
             System.out.println();
         }
 
+        /*
         System.out.println("\n************************\n");
 
         ArrayList<FAQ> testFAQs = getFAQs();
@@ -322,7 +323,7 @@ public class DataLoader extends DataConstants{
         ArrayList<Course> testCourses = getCourses();
         for(Course course : testCourses) {
             System.out.println(course);
-        }        
+        }*/  
     }
 }
 
