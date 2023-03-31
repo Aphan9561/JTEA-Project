@@ -113,7 +113,6 @@ public class EnrolledCourse {
     public UUID getCourse(){
         return this.course;
     }
-    
 
     /**
      * Changes the index of the current module

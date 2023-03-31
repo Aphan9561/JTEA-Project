@@ -179,9 +179,10 @@ public class User {
         return enrolledCourse;
     }
 
-    /*
-    public void printCertification(EnrolledCourse course){
-        Course course1 = course.getCourse();
+    
+    public void printCertification(){
+        
+        
         Certification certification = new Certification(firstName, lastName, course1.getTitle());
         DataWriter.CreateCertificationFile(certification);
     }
