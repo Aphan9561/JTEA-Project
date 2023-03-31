@@ -16,6 +16,7 @@ public class EnrolledCourse {
     // private Grade grade;
     private int overallGrade;
     private ArrayList<Integer> gradesPerModule = new ArrayList<Integer>();
+    private ArrayList<Integer> gradesPerLesson = new ArrayList<Integer>();
 
     /**
      * Creates a Enrolled Course
@@ -28,7 +29,7 @@ public class EnrolledCourse {
      */
     public EnrolledCourse(UUID course){
         this.course = course;
-        //this.progress = NOT_STATRED;
+        this.progress = Progress.NOT_STARTED;
         this.currentModule = 0;
         this.currentLesson = 0;
         this.overallGrade = 100;
@@ -134,6 +135,20 @@ public class EnrolledCourse {
     }
 
     public void startCourse() {
-        
+        progress = Progress.IN_PROGRESS;
     }
+
+    public void completeCourse() {
+        progress = Progress.COMPLETED;
+    }
+
+    //public String toString()
+    /*
+    public int calculateModuleQuizValue() {
+        return 
+    }
+
+    public int calculateOverallQuizValue() {
+
+    }*/
 }

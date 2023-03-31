@@ -60,6 +60,7 @@ public class LMSUI {
                 printAllCourses();
                 break;
             case 3:
+                System.out.println();
                 printEnrolledCoures(application.getCurrentCourse());
                 enterCourse(application.getCurrentCourse());
                 break;
@@ -124,19 +125,19 @@ public class LMSUI {
      * @param EnrolledCourse to interact with
      */
     private void enterCourse(ArrayList<EnrolledCourse> enrolledCourse) {
-        System.out.println("Which course would you like to continue?");
+        System.out.println("Which course would you like to continue? Enter the number associated with it.");
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         
         if(choice <= enrolledCourse.size()){
-        EnrolledCourse course = enrolledCourse.get(choice);
-        int module = course.getCurrentModule();
-        int lesson = course.getCurrentLesson();
+        EnrolledCourse course = enrolledCourse.get(choice-1);
+        //int module = course.getCurrentModule();
+        //int lesson = course.getCurrentLesson();
         Course currentCourse = application.findCourse(course.getCourse());
-        Module currentModule = currentCourse.getModule(module);
-        Lesson currentLesson = currentModule.getLesson(lesson);
+        Module currentModule = currentCourse.getModule(course.getCurrentModule());
+        Lesson currentLesson = currentModule.getLesson(course.getCurrentLesson());
             if(course.getProgress().equals(Progress.COMPLETED)){
-                System.out.println("You have compelted this course! Would you like to download the certification?");
+                System.out.println("You have completed this course! Would you like to download the certification?");
                 String answer = keyboard.nextLine();
                 if(answer.equalsIgnoreCase("Yes")){
                     this.application.CreateCertificationFile(course);
@@ -145,15 +146,29 @@ public class LMSUI {
                 }
             }
             else{ 
-                while(true){
-                module = course.getCurrentModule();
+                /*module = course.getCurrentModule();
                 lesson = course.getCurrentLesson();
                 currentModule = currentCourse.getModule(module);
-                currentLesson = currentModule.getLesson(lesson);
+                currentLesson = currentModule.getLesson(lesson);*/
+                    for(int i = course.getCurrentLesson(); i < currentModule.getLesson().size(); i++) {
+                        System.out.println(currentLesson.miniToString());
+                        System.out.println("Enter 1 to take the quiz. Any other number will take you back to your current courses.");
+                        int readyChoice = keyboard.nextInt();
+                        if(readyChoice == 1) {
+                            int lessonGrade = takeQuiz(currentLesson.getQuiz());
+                            double tempGrade = lessonGrade/100;
+                            //int lessonToTempModuleGrade = 
+                            //need to finish adding grades
+                        } else {
+                            System.out.println("Invalid input. Going back to your current courses.");
+                            enterCourse(enrolledCourse);
+                        }
+                    } 
+                }
                 System.out.println(currentLesson.miniToString());
                 int grade = takeQuiz(currentLesson.getQuiz());
                 System.out.println("Grade from quiz: "+grade);
-                System.out.println("Next lesson, see comments, take again, print module out");
+                System.out.println("1)Next lesson, 2)See comments, 3)Take again, 4)Print module out");
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
                 switch(choice){
@@ -184,12 +199,12 @@ public class LMSUI {
                         System.out.println("Invalid number. Try again");
                         break;
                }   
-            }
-        }
-        } else {
-        System.out.println("You gave a wrong number. Try again");
-        }
-    }
+            }}
+        
+        /*} else {
+        System.out.println("You gave a wrong number. Going back to the main menu.\n");
+        }*/
+    
     
     /**
      * This allows a user to take a course
@@ -655,13 +670,6 @@ public class LMSUI {
             }
         }
     }
-    /**
-     * This allows the user to take a course.
-     */
-    private void takeQuiz(){
-        System.out.println("Starting quiz: \n");
-        application.takeQuiz();
-    }
 
     /**
      * This allows the user to view a course
@@ -712,7 +720,7 @@ public class LMSUI {
         for(int i = 0; i < courses.size(); i++)
         {
             System.out.print((i+1)+". ");
-            System.out.println(courses.get(i));
+            System.out.println((application.findCourse(courses.get(i).getCourse())).getTitle());
         }
     }
 
@@ -831,7 +839,7 @@ public class LMSUI {
         int finalQuizGrade = 100;
         for(int i=0; i < quiz.getQuestion().size(); i++) {
             System.out.println(application.getQuizQuestion(quiz, i));
-            //print out answers
+            System.out.println(application.getQuizAnswers(quiz, i));
             System.out.println("Please enter the number corresponding to your answer.");
             int answerChoice = keyboard.nextInt();
             keyboard.nextLine();

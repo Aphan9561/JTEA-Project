@@ -288,4 +288,32 @@ public class LMSApplication {
         }
         return foundCourse;
     }
+
+    public int calculateOverallQuizValue(Course course) {
+        int numberOfQuestions = 0;
+        for(Module module : course.getModule()) {
+            for(Lesson lesson : module.getLesson()) {
+                numberOfQuestions++;
+            }
+        }
+        return numberOfQuestions;
+    }
+
+    public int calculateModuleQuizValue(Module module) {
+        int numberOfQuestions = 0;
+        for(Lesson lesson : module.getLesson()) {
+            numberOfQuestions++;
+        }
+        return numberOfQuestions;
+    }
+
+    public ArrayList<UUID> viewCompletedCourses(ArrayList<EnrolledCourse> enrolledCourses) {
+        ArrayList<UUID> completedCourses = new ArrayList<UUID>();
+        for(EnrolledCourse enrolledCourse : enrolledCourses) {
+            if(enrolledCourse.getProgress() == Progress.COMPLETED) {
+                completedCourses.add(enrolledCourse.getCourse());
+            }
+        }
+        return completedCourses;
+    }
 }
