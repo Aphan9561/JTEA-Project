@@ -8,9 +8,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-
+/**
+ * This is the data load that load data from json and extends dataconstant.
+ * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
+ */
 public class DataLoader extends DataConstants{
-    
+    /**
+     * This method allows the other classes to get the list of users for the application
+     * @return list of users for the application
+     */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
 
@@ -62,7 +68,11 @@ public class DataLoader extends DataConstants{
         
         return null;
     }
-
+    
+    /**
+     * This method allows the other classes to get the list of courses for the application
+     * @return list of courses for the application
+     */
     public static ArrayList<Course> getCourses() {
         ArrayList<Course> courses = new ArrayList<Course>();
 
@@ -207,6 +217,10 @@ public class DataLoader extends DataConstants{
         return null;
     }
 
+    /**
+     * This method allows the other classes to get the list of FAQs for the application
+     * @return list of FRQs for the application
+     */
     public static ArrayList<FAQ> getFAQs() {
         ArrayList<FAQ> FAQs = new ArrayList<FAQ>();
 
@@ -237,29 +251,52 @@ public class DataLoader extends DataConstants{
         return null;
     }
 
+    /**
+     * This converts a string into an enum called Difficulty
+     * @param String difficulty
+     * @return enum called Difficulty
+     */
     public static Difficulty makeDifficultyEnum(String difficulty) {
         difficulty = difficulty.toUpperCase();
         Difficulty enumDifficulty = Difficulty.valueOf(difficulty);
         return enumDifficulty;
     }
 
+    /**
+     * This converts a string into an enum called Language
+     * @param String language
+     * @return enum called Language
+     */
     public static Language makeLanguageEnum(String language) {
         language = language.toUpperCase();
         Language enumLanguage = Language.valueOf(language);
         return enumLanguage;
     }
-
+    
+    /**
+     * This converts a string into an enum called AccountType
+     * @param String accountType
+     * @return enum called AccountType
+     */
     public static AccountType makeAccountTypeEnum(String accountType) {
         accountType = accountType.toUpperCase();
         AccountType enumAccountType = AccountType.valueOf(accountType);
         return enumAccountType;
     }
-
+    
+    /**
+     * This converts a string into an enum called Progress
+     * @param String progress
+     * @return enum called Progress
+     */
     public static Progress makeProgressEnum(String progress) {
         Progress enumProgress = Progress.valueOf(progress);
         return enumProgress;
     }
 
+    /*
+     * This is the main method for this class. This calls all the data and loads into the classes as need be. Also a way to test that it is working correctly.
+     */
     public static void main(String[] args) {
         ArrayList<User> testUsers = getUsers();
         for(User user : testUsers) {
