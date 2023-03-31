@@ -157,9 +157,9 @@ public class LMSApplication {
 
     public void CreateCertificationFile(EnrolledCourse course)
     {   
-        for(int i = 0; i < courseList.size(); i++)
+        //for(int i = 0; i < courseList.size(); i++)
         {
-            if(courseL)
+            //if(courseL)
         }
 
         this.user.printCertification();
