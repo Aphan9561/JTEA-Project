@@ -307,13 +307,20 @@ public class LMSApplication {
         return numberOfQuestions;
     }
 
-    public ArrayList<UUID> viewCompletedCourses(ArrayList<EnrolledCourse> enrolledCourses) {
+    public String completedCoursesToString(ArrayList<EnrolledCourse> enrolledCourses) {
         ArrayList<UUID> completedCourses = new ArrayList<UUID>();
         for(EnrolledCourse enrolledCourse : enrolledCourses) {
             if(enrolledCourse.getProgress() == Progress.COMPLETED) {
                 completedCourses.add(enrolledCourse.getCourse());
             }
         }
-        return completedCourses;
+        String result = "";
+        for(int i=0; i < completedCourses.size(); i++) {
+            result += (i+1);
+            result += ". ";
+            result += findCourse(completedCourses.get(i));
+            result += "\n";
+        }
+        return result;
     }
 }

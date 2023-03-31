@@ -847,5 +847,16 @@ public class LMSUI {
         }
         return finalQuizGrade;
     }
+
+    public void viewCompletedCourses() {
+        ArrayList<UUID> completedCourses = new ArrayList<UUID>();
+        for(int i=0; i < completedCourses.size(); i++) {
+            System.out.println(application.completedCoursesToString(user.enrolledCourse));
+            System.out.println("Enter 1 to view your module grades for a course, enter 2 to print out a certificate for a course, and enter 0 to go back to the main menu.");
+            int choice = keyboard.nextInt();
+            keyboard.nextLine();
+            
+        }
+    }
     
 }
