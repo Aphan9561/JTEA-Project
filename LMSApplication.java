@@ -156,12 +156,17 @@ public class LMSApplication {
     }
 
     public void CreateCertificationFile(EnrolledCourse course)
-    {
-        //this.user.printCertification(course);
+    {   
+        //for(int i = 0; i < courseList.size(); i++)
+        {
+            //if(courseL)
+        }
+
+        this.user.printCertification();
     }
 
-    public boolean CreateCourseFile(Module module){
-        return DataWriter.CreateCourseFile(module);
+    public void CreateCourseFile(Module module){
+         DataWriter.CreateCourseFile(module);
     }
 
     public String getFAQString() {

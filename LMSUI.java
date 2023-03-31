@@ -357,7 +357,7 @@ public class LMSUI {
     /**
      * This displays the main menu and all the options the user has have as a student.
      */
-    public void displayMainMenu() 
+    private void displayMainMenu() 
     {
         System.out.println("********************* Main Menu *********************");
         for(int i = 0; i < menu.length; i++)

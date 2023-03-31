@@ -114,11 +114,10 @@ public class EnrolledCourse {
     public UUID getCourse(){
         return this.course;
     }
-    
+
     public ArrayList<Integer> getGradesPerModule() {
         return gradesPerModule;
     }
-
     /**
      * Changes the index of the current module
      * @return the current module index
