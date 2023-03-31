@@ -158,7 +158,7 @@ public class LMSApplication {
     public void CreateCertificationFile(EnrolledCourse course1)
     {   
         Course course2 = findCourse(course1.getCourse());
-        Certification certification = new Certification(user.getFirstName(), user.getLastName(), course2.getTitle());
+        Certification certification = new Certification(currentUser.getFirstName(), currentUser.getLastName(), course2.getTitle());
         DataWriter.CreateCertificationFile(certification);
     }
 
