@@ -856,7 +856,7 @@ public class LMSUI {
             int courseChoice = keyboard.nextInt();
             keyboard.nextLine();
             EnrolledCourse chosenCourse = user.enrolledCourse.get(courseChoice-1);
-            System.out.println("Course: "+application.findCourse(chosenCourse.getCourse()));
+            System.out.println("Course: "+application.findCourse(chosenCourse.getCourse()).getTitle());
             System.out.println("Enter 1 to view your module grades for a course, enter 2 to print out a certificate for a course, and enter 0 to go back to the main menu.");
             int choice = keyboard.nextInt();
             keyboard.nextLine();

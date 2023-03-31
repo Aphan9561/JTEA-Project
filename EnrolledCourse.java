@@ -35,13 +35,14 @@ public class EnrolledCourse {
         this.overallGrade = 100;
     }
 
-    public EnrolledCourse(UUID course, Progress progress, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule) {
+    public EnrolledCourse(UUID course, Progress progress, int currentModule, int currentLesson, int overallGrade, ArrayList<Integer> gradesPerModule, ArrayList<Integer> gradesPerLesson) {
         this.course = course;
         this.progress = progress;
         this.currentModule = currentModule;
         this.currentLesson = currentLesson;
         this.overallGrade = overallGrade;
         this.gradesPerModule = gradesPerModule;
+        this.gradesPerLesson = gradesPerLesson;
     }
 
     

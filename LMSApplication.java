@@ -318,7 +318,7 @@ public class LMSApplication {
         for(int i=0; i < completedCourses.size(); i++) {
             result += (i+1);
             result += ". ";
-            result += findCourse(completedCourses.get(i));
+            result += findCourse(completedCourses.get(i)).getTitle();
             result += "\n";
         }
         return result;
