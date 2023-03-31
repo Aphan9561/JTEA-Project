@@ -861,6 +861,7 @@ public class LMSUI {
             int choice = keyboard.nextInt();
             keyboard.nextLine();
             if(choice == 1) {
+                //System.out.println(application.check(chosenCourse));
                 System.out.println(application.modulesAndGradesString(chosenCourse));
                 viewCompletedCourses();
             } else if(choice == 2) {

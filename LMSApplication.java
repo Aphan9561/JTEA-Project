@@ -331,7 +331,7 @@ public class LMSApplication {
 
     public String modulesAndGradesString(EnrolledCourse course) {
         String result = "";
-        for(int i=0; i < findCourse(course.getCourse()).getModule().size(); i++) {
+        for(int i=0; i < course.getGradesPerModule().size(); i++) {
             result += findCourse(course.getCourse()).getModule().get(i).getTitle();
             result += ": ";
             result += course.getGradesPerModule().get(i);
@@ -340,4 +340,17 @@ public class LMSApplication {
         result += "\n";
         return result;
     }
+
+    /*
+    public int check(EnrolledCourse course) {
+        return findCourse(course.getCourse()).getModule().size();
+    }
+    
+
+    public String checkModuleGrades(EnrolledCourse course) {
+        String result = "";
+        for(int i=0; i < get.size())
+    }*/
+
+
 }
