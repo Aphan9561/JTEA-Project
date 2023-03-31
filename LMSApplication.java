@@ -323,9 +323,21 @@ public class LMSApplication {
         for(int i=0; i < completedCourses.size(); i++) {
             result += (i+1);
             result += ". ";
-            result += findCourse(completedCourses.get(i));
+            result += findCourse(completedCourses.get(i)).getTitle();
             result += "\n";
         }
+        return result;
+    }
+
+    public String modulesAndGradesString(EnrolledCourse course) {
+        String result = "";
+        for(int i=0; i < findCourse(course.getCourse()).getModule().size(); i++) {
+            result += findCourse(course.getCourse()).getModule().get(i).getTitle();
+            result += ": ";
+            result += course.getGradesPerModule().get(i);
+            result += "\n";
+        }
+        result += "\n";
         return result;
     }
 }

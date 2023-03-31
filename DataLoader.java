@@ -52,7 +52,13 @@ public class DataLoader extends DataConstants{
                         gradesPerModule.add(((Long)gradesPerModuleJSON.get(k)).intValue());
                     }
 
-                    enrolledCourses.add(new EnrolledCourse(course, progress, currentModule, currentLesson, overallGrade, gradesPerModule));
+                    JSONArray gradesPerLessonJSON = (JSONArray)enrolledCourseJSON.get(USER_ENROLLEDCOURSES_GRADESPERLESSON);
+                    ArrayList<Integer> gradesPerLesson = new ArrayList<Integer>();
+                    for(int k=0; k < gradesPerLessonJSON.size(); k++) {
+                        gradesPerLesson.add(((Long)gradesPerLessonJSON.get(k)).intValue());
+                    }
+
+                    enrolledCourses.add(new EnrolledCourse(course, progress, currentModule, currentLesson, overallGrade, gradesPerModule, gradesPerLesson));
                 }
 
                 AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));

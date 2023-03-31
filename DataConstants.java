@@ -19,6 +19,7 @@
    protected static final String USER_ENROLLEDCOURSES_CURRENTLESSON = "currentLesson";
    protected static final String USER_ENROLLEDCOURSES_OVERALLGRADE = "overallGrade";
    protected static final String USER_ENROLLEDCOURSES_GRADESPERMODULE = "gradesPerModule";
+   protected static final String USER_ENROLLEDCOURSES_GRADESPERLESSON = "gradesPerLesson";
    protected static final String USER_TYPE = "type";
 
    protected static final String FAQ_FILE_NAME = "JSON/FAQ.json";
