@@ -25,7 +25,7 @@ public class LMSUI {
     private Difficulty diffStatus;
     private Language lang;
 
-    final private String[] menu = {"Find course by title","Find all courses","Get current courses", "Go to author menu","View Grades","View FAQs","View Course","Quit"};
+    final private String[] menu = {"Find course by title","Find all courses","Get current courses","View completed courses","Go to author menu","View Grades","View FAQs","View Course","Quit"};
     private String[] authorMenu = {"Create course","Enter course to edit course ","Go to user menu","Quit"}; 
 
     /*
@@ -65,6 +65,8 @@ public class LMSUI {
                 enterCourse(application.getCurrentCourse());
                 break;
             case 4:
+                viewCompletedCourses();
+            case 5:
                 if(this.user.getType().equals(AccountType.AUTHOR) )
                 {
                     runAuthor();
@@ -73,19 +75,19 @@ public class LMSUI {
                     System.out.println("Access denied. You are not an author!");
                 }
                 break;
-            case 5:
+            case 6:
                 viewGrades();
                 break;
-            case 6:
+            case 7:
                 viewFAQs();
                 break; 
-            case 7:
+            case 8:
                 System.out.println("Which Course would you like to view?");
                 String c = keyboard.nextLine();
                 Course course =  application.findCourseTitle(c);
                 viewCourse(course);
                 break;
-            case 8:
+            case 9:
                 logout();
                 keyboard.close();
                 return;
@@ -848,20 +850,24 @@ public class LMSUI {
         return finalQuizGrade;
     }
 
-    public void viewCompletedCourses(EnrolledCourse course) {
-        ArrayList<UUID> completedCourses = new ArrayList<UUID>();
-        for(int i=0; i < completedCourses.size(); i++) {
+    public void viewCompletedCourses() {
             System.out.println(application.completedCoursesToString(user.enrolledCourse));
+            System.out.println("Enter the number of the course you want more details about.");
+            int courseChoice = keyboard.nextInt();
+            keyboard.nextLine();
+            EnrolledCourse chosenCourse = user.enrolledCourse.get(courseChoice-1);
+            System.out.println("Course: "+application.findCourse(chosenCourse.getCourse()));
             System.out.println("Enter 1 to view your module grades for a course, enter 2 to print out a certificate for a course, and enter 0 to go back to the main menu.");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
             if(choice == 1) {
-                System.out.println(application.modulesAndGradesString(course));
-                viewCompletedCourses(course);
+                System.out.println(application.modulesAndGradesString(chosenCourse));
+                viewCompletedCourses();
             } else if(choice == 2) {
                 System.out.println("Printing certificate for this course...");
-                CreateCertificationFile(course);
-                viewCompletedCourses(course);
+                CreateCertificationFile(chosenCourse);
+                System.out.println("Going back to the completed courses menu.");
+                viewCompletedCourses();
             } else if (choice == 0) {
                 System.out.println("Going back to the main menu.\n");
                 run();
@@ -869,7 +875,7 @@ public class LMSUI {
                 System.out.println("Invalid input. Going back to the main menu.\n");
                 run();            
             }
-        }
+        
     }
     
 }
