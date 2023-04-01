@@ -267,6 +267,14 @@ public class LMSApplication {
         return updatedGrade;
     }
 
+    public boolean wasRight(Quiz quiz, int index, int answer) {
+        boolean right = false;
+        if(quiz.getQuestion().get(index).getCorrectAnswer() == answer) {
+            right = true;
+        }
+        return right;
+    }
+
     public ArrayList<Course> getEnrolledCourses(ArrayList<EnrolledCourse> enrolledCourses) {
         ArrayList<Course> tempCourses = new ArrayList<Course>();
         for(EnrolledCourse enrolledCourse : enrolledCourses) {
@@ -350,6 +358,5 @@ public class LMSApplication {
         String result = "";
         for(int i=0; i < get.size())
     }*/
-
 
 }

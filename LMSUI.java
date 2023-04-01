@@ -136,8 +136,12 @@ public class LMSUI {
         //int module = course.getCurrentModule();
         //int lesson = course.getCurrentLesson();
         Course currentCourse = application.findCourse(course.getCourse());
-        Module currentModule = currentCourse.getModule(course.getCurrentModule());
-        Lesson currentLesson = currentModule.getLesson(course.getCurrentLesson());
+        //Module currentModule = currentCourse.getModule(course.getCurrentModule());
+        Module currentModule = currentCourse.getModule(5);
+        Lesson currentLesson = currentModule.getLesson(0);
+        //int currentModuleIndex = course.getCurrentModule();
+        int currentModuleIndex = 5;
+        int currentLessonIndex = 0;
             if(course.getProgress().equals(Progress.COMPLETED)){
                 System.out.println("You have completed this course! Would you like to download the certification?");
                 String answer = keyboard.nextLine();
@@ -151,7 +155,8 @@ public class LMSUI {
                 /*module = course.getCurrentModule();
                 lesson = course.getCurrentLesson();
                 currentModule = currentCourse.getModule(module);
-                currentLesson = currentModule.getLesson(lesson);*/
+                currentLesson = currentModule.getLesson(lesson);
+                for(int j=0; j < )
                     for(int i = course.getCurrentLesson(); i < currentModule.getLesson().size(); i++) {
                         System.out.println(currentLesson.miniToString());
                         System.out.println("Enter 1 to take the quiz. Any other number will take you back to your current courses.");
@@ -169,32 +174,75 @@ public class LMSUI {
                 }
                 System.out.println(currentLesson.miniToString());
                 int grade = takeQuiz(currentLesson.getQuiz());
-                System.out.println("Grade from quiz: "+grade);
-                System.out.println("1)Next lesson, 2)See comments, 3)Take again, 4)Print module out");
+                System.out.println("Grade from quiz: "+grade);*/
+                
+                ArrayList<Integer> lessonGrades = new ArrayList<Integer>();
+                //ArrayList<Integer> moduleGrades = new ArrayList<Integer>();
+                /*
+                for(int i = currentModuleIndex; i < application.findCourse(course.getCourse()).getModule().size(); i++) {
+                    if(i == 0) {
+                        System.out.println("Starting "+currentModule.getTitle());
+                    }
+                    for(int j=currentLessonIndex; j < currentModule.getLesson().size(); j++) {
+                        System.out.println(currentLesson.miniToString());
+                        int grade = takeQuiz(currentLesson.getQuiz());
+                        lessonGrades.add(grade);
+                        if(j+1 < currentModule.getLesson().size()) {
+                            currentLesson = currentModule.getLesson(j+1);
+                        }
+                    }
+                    
+                    int sum = 0;
+                    for(int j=0; j < lessonGrades.size(); j++) {
+                        sum += lessonGrades.get(j);
+                    }
+
+                    int average = sum/lessonGrades.size();
+                    moduleGrades.add(average);
+
+                    if(i+1 < currentCourse.getModule().size()) {
+                        currentModule = currentCourse.getModule(i+1);
+                    }
+                }*/
+
+                for(int j=currentLessonIndex; j < 4; j++) {
+                    System.out.println(currentLesson.miniToString());
+                    int grade = takeQuiz(currentLesson.getQuiz());
+                    lessonGrades.add(grade);
+                    /*
+                    if(j+1 < currentModule.getLesson().size()) {
+                        currentLesson = currentModule.getLesson(j+1);
+                    }*/
+                }
+
+                int sumOverall = 0;
+                for(int j=0; j < lessonGrades.size(); j++) {
+                    sumOverall += lessonGrades.get(j);
+                }
+                int averageOverall = sumOverall/lessonGrades.size();
+                System.out.println("Overall grade: "+averageOverall);
+
+                System.out.println("1)See course comments, 2)Print module out, 3)Go back to main menue");
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
                 switch(choice){
-                    case 1:
+                    /*case 1:
                         application.nextLesson(course); //Need more development
                         viewCourse(course);
+                        break;*/
+                    case 1: //Make method for this. 
+                        viewCourseComments();
                         break;
-                    case 2: //Make method for this. 
-                        ArrayList<Comment> comments = currentModule.getComment();
-                        String commentString = "";
-                        for(int i = 0; i < comments.size(); i++){
-                            commentString += comments.get(i).toString();
-                            commentString += "/n";
-                        }
-                        System.out.println(commentString);
+                    /*case 3:
+                        System.out.println(currentLesson.miniToString());
+                        //grade = takeQuiz(currentLesson.getQuiz());
+                        //System.out.println("Grade from quiz: "+grade);
+                        break;*/
+                    case 2:
+                        CreateCourseFile(currentModule);
                         break;
                     case 3:
-                        System.out.println(currentLesson.miniToString());
-                        grade = takeQuiz(currentLesson.getQuiz());
-                        System.out.println("Grade from quiz: "+grade);
-                        break;
-                    case 4:
-                    CreateCourseFile(currentModule);
-                    break;
+                        run();
                     case 5: 
                         return;
                     default:
@@ -202,6 +250,7 @@ public class LMSUI {
                         break;
                }   
             }}
+        }
         
         /*} else {
         System.out.println("You gave a wrong number. Going back to the main menu.\n");
@@ -845,7 +894,13 @@ public class LMSUI {
             System.out.println("Please enter the number corresponding to your answer.");
             int answerChoice = keyboard.nextInt();
             keyboard.nextLine();
+            if(application.wasRight(quiz, i, answerChoice)) {
+                System.out.println("Your answer was correct!");
+            } else {
+                System.out.println("Sorry, that answer was incorrect.");
+            }
             finalQuizGrade = application.getQuestionGrade(quiz, i, answerChoice, finalQuizGrade);
+
         }
         return finalQuizGrade;
     }
