@@ -155,14 +155,11 @@ public class LMSApplication {
         return this.quiz;
     }
 
-    public void CreateCertificationFile(EnrolledCourse course)
+    public void CreateCertificationFile(EnrolledCourse course1)
     {   
-        //for(int i = 0; i < courseList.size(); i++)
-        {
-            //if(courseL)
-        }
-
-        this.user.printCertification();
+        Course course2 = findCourse(course1.getCourse());
+        Certification certification = new Certification(currentUser.getFirstName(), currentUser.getLastName(), course2.getTitle());
+        DataWriter.CreateCertificationFile(certification);
     }
 
     public void CreateCourseFile(Module module){

@@ -185,13 +185,6 @@ public class User {
         return enrolledCourse;
     }
 
-    
-    public void printCertification(){
-        
-        
-        //Certification certification = new Certification(firstName, lastName, course1.getTitle());
-        //DataWriter.CreateCertificationFile(certification);
-    }
     //  public void giveStars() {
         
     //  }
