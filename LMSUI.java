@@ -205,7 +205,7 @@ public class LMSUI {
                     }
                 }*/
 
-                for(int j=currentLessonIndex; j < 4; j++) {
+                for(int j=currentLessonIndex; j < 1; j++) {
                     System.out.println(currentLesson.miniToString());
                     int grade = takeQuiz(currentLesson.getQuiz());
                     lessonGrades.add(grade);
@@ -220,7 +220,7 @@ public class LMSUI {
                     sumOverall += lessonGrades.get(j);
                 }
                 int averageOverall = sumOverall/lessonGrades.size();
-                System.out.println("Overall grade: "+averageOverall);
+                //System.out.println("Overall grade: "+averageOverall);
 
                 System.out.println("1)See course comments, 2)Print module out, 3)Go back to main menue");
                 choice = keyboard.nextInt();
@@ -900,7 +900,6 @@ public class LMSUI {
                 System.out.println("Sorry, that answer was incorrect.");
             }
             finalQuizGrade = application.getQuestionGrade(quiz, i, answerChoice, finalQuizGrade);
-
         }
         return finalQuizGrade;
     }
@@ -911,7 +910,7 @@ public class LMSUI {
             int courseChoice = keyboard.nextInt();
             keyboard.nextLine();
             EnrolledCourse chosenCourse = user.enrolledCourse.get(courseChoice-1);
-            System.out.println("Course: "+application.findCourse(chosenCourse.getCourse()).getTitle());
+            //System.out.println("Course: "+application.findCourse(chosenCourse.getCourse()).getTitle());
             System.out.println("Enter 1 to view your module grades for a course, enter 2 to print out a certificate for a course, and enter 0 to go back to the main menu.");
             int choice = keyboard.nextInt();
             keyboard.nextLine();

@@ -1,0 +1,6 @@
+Title: Loops
+Lessons:
+Title: For Loops
+Content: We use loops in programming because they are transversals, iterations and can be used to avoid repeating code. There are two types of loops in python: for loops and while loops. This lesson will talk about a for loop. In Python a for loop is used to run a block of code for a certain number of times. It is used to iterate over any sequences such as list, tuple, string, etc. The syntax of the for loop would be this: for val in sequence: #statement. Val will be your variable that you want. The sequence is the list of things that you want to go through. Statement will be in the body of the for loop and will do what you want to do with the list.
+Title: While Loops
+Content: Python while loop is used to run a block code until a certain condition is met. The syntax of a while loop is: while condition: # body. The while loop evaluates the condition. If the condition is true, the code inside the while loop is executed. The condition is evaluated again till the condition is false, then the loop stops. An example would be i = 1, n =5. while i <= n: print(i)  i=i+1. The output of this would be 1 2 3 4 5. The loop is terminated when i got to be bigger than 5.
