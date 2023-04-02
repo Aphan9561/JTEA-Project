@@ -314,6 +314,7 @@ public class LMSApplication {
         for(Lesson lesson : module.getLesson()) {
             numberOfQuestions++;
         }
+        
         return numberOfQuestions;
     }
 
@@ -337,6 +338,7 @@ public class LMSApplication {
     /*
     public String modulesAndGradesString(EnrolledCourse course) {
         String result = "";
+        calculateModuleQuizValue(null)
         for(int i=0; i < course.getGradesPerModule().size(); i++) {
             result += findCourse(course.getCourse()).getModule().get(i).getTitle();
             result += ": ";

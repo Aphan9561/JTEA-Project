@@ -165,12 +165,14 @@ public class EnrolledCourse {
         return result;
     }
 
-    /*
+    
     public int calculateModuleQuizValue() {
-        return 
+        
     }
+    /*
+     *  public int calculateOverallQuizValue() {
 
-    public int calculateOverallQuizValue() {
-
-    }*/
+    } 
+     */
+   
 }
