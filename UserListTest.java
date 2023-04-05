@@ -48,4 +48,29 @@ class UserListTest {
         boolean hasKim = user.haveUser("kNguyen","foodieForLife");
         assertTrue(hasKim);
     }
+
+    @Test
+    void testHaveUserInValidWithUsername(){
+        boolean hasMatt = user.haveUser("mSmith");
+        assertFalse(hasMatt);
+    }
+
+    @Test
+    void testHaveUserInValidWithUsernameAndPassword(){
+        boolean hasMatt = user.haveUser("mSmith","alsdkf386jhhk$j");
+        assertFalse(hasMatt);
+    }
+
+    @Test
+    void testAddUserValid(){
+        boolean addBill = user.addUser("Bill", "Dennis", "bdennis@gmail.com", new Date(01/12/2000), "bdennis", "DogLover3498", AccountType.AUTHOR);
+        assertTrue(addBill);
+    }
+
+    @Test
+    void testAddUserInValid(){
+        boolean addAndrew = user.addUser("Andrew", "Dennis", "aDennis@gmail.com", new Date(01/12/1923), "adennis2", "catsForLife", AccountType.STUDENT);
+        assertFalse(addAndrew);
+    }
+
 }
