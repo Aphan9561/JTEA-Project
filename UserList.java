@@ -103,7 +103,7 @@ public class UserList {
      * list of users
      * @return users
      */
-    public ArrayList<User> getUser() {
+    public ArrayList<User> getUsers() {
         return users;
     }
     /**
