@@ -9,7 +9,9 @@ import org.junit.jupiter.api.Test;
 
 class DataWriterTest {
     private UserList user = UserList.getInstance();
+    private CourseList course = CourseList.getInstance();
     private ArrayList<User> users = user.getUsers();
+    private ArrayList<Course> courses = course.getAllCourses();
 
     @BeforeEach
     public void setup(){

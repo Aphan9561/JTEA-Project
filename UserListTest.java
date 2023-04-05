@@ -13,7 +13,7 @@ class UserListTest {
 
     @BeforeEach
     public void setup() {
-        users.clear();
+        //users.clear();
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
         users.add(new User("Kim","Nguyen","kNguyen@email.com",new Date(10/03/1960), "kNguyen", "foodieForLife",AccountType.AUTHOR));
         DataWriter.saveUsers();
@@ -26,15 +26,26 @@ class UserListTest {
     }
 
     @Test
-    void testHaveUserValidFirstItem() {
+    void testHaveUserValidFirstItemWithUsername() {
         boolean hasAnne = user.haveUser("adennis2");
         assertTrue(hasAnne);
     }
 
     @Test
-    void testHaveUserValidLastItem(){
+    void testHaveUserValidLastItemWithUsername(){
         boolean hasKim = user.haveUser("kNguyen");
         assertTrue(hasKim);
     }
     
+    @Test
+    void testHaveUserValidFirstItemWithUsernameAndPassword() {
+        boolean hasAnne = user.haveUser("adennis2","catsForLife");
+        assertTrue(hasAnne);
+    }
+
+    @Test
+    void testHaveUserValidLastItemWithUsernameAndPassword(){
+        boolean hasKim = user.haveUser("kNguyen","foodieForLife");
+        assertTrue(hasKim);
+    }
 }

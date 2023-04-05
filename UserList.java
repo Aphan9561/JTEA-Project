@@ -7,7 +7,7 @@ import java.util.UUID;
  * @author: J TEA: Tessa Neal, Eve Blom, Anna Phan, and Jacqueline Askey
  */
 public class UserList {
-    private static ArrayList<User> users;
+    private ArrayList<User> users;
     private static UserList userList;
     /**
      * Gets the users from the JSON
