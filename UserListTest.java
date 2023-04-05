@@ -13,7 +13,7 @@ class UserListTest {
 
     @BeforeEach
     public void setup() {
-        //users.clear();
+        users.clear();
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
         users.add(new User("Kim","Nguyen","kNguyen@email.com",new Date(10/03/1960), "kNguyen", "foodieForLife",AccountType.AUTHOR));
         DataWriter.saveUsers();

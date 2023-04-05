@@ -36,7 +36,7 @@ public class DataLoader extends DataConstants{
                 String username = (String)personJSON.get(USER_USERNAME);
                 String password = (String)personJSON.get(USER_PASSWORD);
 
-                JSONArray enrolledCoursesJSON = (JSONArray)personJSON.get(USER_ENROLLEDCOURSES);
+                /*JSONArray enrolledCoursesJSON = (JSONArray)personJSON.get(USER_ENROLLEDCOURSES);
                 ArrayList<EnrolledCourse> enrolledCourses = new ArrayList<EnrolledCourse>();
                 for(int j=0; j < enrolledCoursesJSON.size(); j++) {
                     JSONObject enrolledCourseJSON = (JSONObject)enrolledCoursesJSON.get(j);
@@ -59,11 +59,11 @@ public class DataLoader extends DataConstants{
                     }
 
                     enrolledCourses.add(new EnrolledCourse(course, progress, currentModule, currentLesson, overallGrade, gradesPerModule, gradesPerLesson));
-                }
+                }*/
 
                 AccountType type = makeAccountTypeEnum((String)personJSON.get(USER_TYPE));
 
-                users.add(new User(id, firstName, lastName, email, birthday, username, password, type, enrolledCourses));
+                users.add(new User(id, firstName, lastName, email, birthday, username, password, type));
             }
 
             return users;
@@ -310,20 +310,19 @@ public class DataLoader extends DataConstants{
             System.out.println();
         }
 
-        /*
         System.out.println("\n************************\n");
 
         ArrayList<FAQ> testFAQs = getFAQs();
         for(FAQ faq : testFAQs) {
             System.out.println(faq);
         }
-
+        
         System.out.println("\n************************\n");
 
         ArrayList<Course> testCourses = getCourses();
         for(Course course : testCourses) {
             System.out.println(course);
-        }*/  
+        }
     }
 }
 
