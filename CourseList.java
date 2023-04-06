@@ -66,6 +66,12 @@ public class CourseList {
         return null;
     }
 
+    /**
+     * Checks if the Course exists by the title and returns true or 
+     * false based on the outcome
+     * @param title title of the course
+     * @return true or false based on if found
+     */
     public boolean haveCourse(String title){
         for(Course course: courses) 
         {

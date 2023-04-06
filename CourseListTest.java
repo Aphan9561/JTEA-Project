@@ -55,36 +55,35 @@ public class CourseListTest {
 		DataWriter.saveUsers();
 	}
 	
-	
 	@Test
-	void testHaveUserValidFirstItem() {
-		boolean hasAmy = course.haveCourse("Test1");
-		assertTrue(hasAmy);
+	void testHaveCourseValidFirstItem() {
+		boolean hasTest = course.haveCourse("Test1");
+		assertTrue(hasTest);
 	}
 	
 	@Test
-	void testHaveUserValidLastItem() {
-		boolean hasBob = course.hasCourse("bwhite");
-		assertTrue(hasBob);
+	void testHaveCourseValidLastItem() {
+		boolean hasTest = course.haveCourse("Test2");
+		assertTrue(hasTest);
 	}
 	
-// 	@Test
-// 	void testHaveUserInValid() {
-// 		boolean hasJoe = course.hasCourse("jsmith");
-// 		assertFalse(hasJoe);
-// 	}
+	@Test
+	void testHaveCourseInValid() {
+		boolean hasTest = course.haveCourse("Test4");
+		assertFalse(hasTest);
+	}
 	
-// 	@Test
-// 	void testHaveUserEmpty() {
-// 		boolean hasEmpty = course.hasCourse("");
-// 		assertFalse(hasEmpty);
-// 	}
+	@Test
+	void testHaveCourseEmpty() {
+		boolean hasEmpty = course.haveCourse("");
+		assertFalse(hasEmpty);
+	}
 	
-// 	@Test
-// 	void testHaveUserNull() {
-// 		boolean hasNull = course.hasCourse(null);
-// 		assertFalse(hasNull);
-// 	}
+	@Test
+	void testHaveCourse() {
+		boolean hasNull = course.haveCourse(null);
+		assertFalse(hasNull);
+	}
 
 
 }
