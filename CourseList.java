@@ -67,6 +67,23 @@ public class CourseList {
     }
 
     /**
+     * Checks if the Course exists by the title and returns true or 
+     * false based on the outcome
+     * @param title title of the course
+     * @return true or false based on if found
+     */
+    public boolean haveCourse(String title){
+        for(Course course: courses) 
+        {
+            if(course.getTitle().equals(title))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns a ArrayList of courses
      * @return a ArrayList of courses
      */
@@ -79,5 +96,13 @@ public class CourseList {
      */
     public void saveCourses(){
         DataWriter.saveCourses();
+    }
+
+    /**
+     * get the size of the course list
+     * @return size of course list
+     */
+    public int size() {
+        return courses.size();
     }
 }

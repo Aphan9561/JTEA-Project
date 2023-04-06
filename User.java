@@ -38,6 +38,17 @@ public class User {
         this.type = type;
     }
 
+    /**
+     * Logining as an existing user
+     * @param id        user's id
+     * @param firstName user's first name
+     * @param lastName  user's last name
+     * @param email     users' email
+     * @param birthday  user's birthday
+     * @param username  user's username
+     * @param password  user's password
+     * @param type      type of account the user has
+     */
     public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type) {
         this.id = id;
         this.firstName = firstName;
@@ -59,8 +70,9 @@ public class User {
      * @param username  user's username
      * @param password  user's password
      * @param type      type of account the user has
+     * @param enrolledCourse user's enrolled Courses
      */
-    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type , ArrayList<EnrolledCourse> enrolledCourse ) {
+    public User(UUID id, String firstName, String lastName, String email, Date birthday, String username, String password, AccountType type , ArrayList<EnrolledCourse> enrolledCourse) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
