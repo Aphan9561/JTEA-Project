@@ -66,6 +66,17 @@ public class CourseList {
         return null;
     }
 
+    public boolean haveCourse(String title){
+        for(Course course: courses) 
+        {
+            if(course.getTitle().equals(title))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns a ArrayList of courses
      * @return a ArrayList of courses
@@ -79,5 +90,13 @@ public class CourseList {
      */
     public void saveCourses(){
         DataWriter.saveCourses();
+    }
+
+    /**
+     * get the size of the course list
+     * @return size of course list
+     */
+    public int size() {
+        return courses.size();
     }
 }
