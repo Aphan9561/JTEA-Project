@@ -63,4 +63,8 @@ public class FAQList {
         }
         return result;
     }
+
+    public int size() {
+        return FAQs.size();
+    }
 }
