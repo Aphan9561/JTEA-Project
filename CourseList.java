@@ -91,4 +91,12 @@ public class CourseList {
     public void saveCourses(){
         DataWriter.saveCourses();
     }
+
+    /**
+     * get the size of the course list
+     * @return size of course list
+     */
+    public int size() {
+        return courses.size();
+    }
 }
