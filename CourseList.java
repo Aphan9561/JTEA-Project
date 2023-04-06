@@ -66,6 +66,17 @@ public class CourseList {
         return null;
     }
 
+    public boolean haveCourse(String title){
+        for(Course course: courses) 
+        {
+            if(course.getTitle().equals(title))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns a ArrayList of courses
      * @return a ArrayList of courses
