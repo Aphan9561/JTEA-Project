@@ -39,7 +39,7 @@ public class CourseListTest {
         modules2.add(module2);
         UUID author = UUID.randomUUID();
 		courseList.add(new Course(author,"Test1", "The first test", "First syllabus", Difficulty.EASY, Language.PYTHON, modules));
-        courseList.add(new Course(author,"Test2", "The second test", "Second syllabus", Difficulty.EASY, Language.PYTHON, modules2));
+        courseList.add(new Course(author,"Test2", "The second test", "Second syllabus", Difficulty.MEDIUM, Language.JAVASCRIPT, modules2));
 		DataWriter.saveUsers();
 	}
 	
