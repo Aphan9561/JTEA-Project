@@ -12,6 +12,7 @@ public class Quiz {
     //private String[] answers = new String[maxAnswers];
     private int stars;
     private double score;
+    
     /**
      * Creates a new quiz
      * @param question array of questions
@@ -19,6 +20,7 @@ public class Quiz {
     public Quiz(ArrayList<Question> question) {
         this.questions = question;
     }
+
     /**
      * adding the question into the quiz
      * @param prompt the question 
@@ -31,6 +33,7 @@ public class Quiz {
         questions.add(question);
         return true;
     }
+
     /**
      * calculate the score of the quiz
      * @param userAnswers array of user answers
@@ -46,6 +49,7 @@ public class Quiz {
         }
         return (counter/quizSize)*100;
     }
+
     /**
      * give the student stars
      * @param score grade of the quiz
@@ -63,14 +67,15 @@ public class Quiz {
     }
 
     /**
-     * gets questions in wuiz
+     * gets questions in quiz
      * @return
      */
     public ArrayList<Question> getQuestion() {
         return questions;
     }
+
     /**
-     * Creates a string representation of teh quiz
+     * Creates a string representation of the quiz
      * @return
      */
     public String toString() {
