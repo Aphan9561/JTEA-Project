@@ -96,10 +96,6 @@ public class User {
                 "\nBirthday: " + birthday +
                 "\nUsername: " + username +
                 "\nPassword: " + password +
-<<<<<<< HEAD
-                "\nAccount type: " + type;
-    }    
-=======
                 "\nAccount type: " + type +
                 "\nEnrolled courses:";
         for(EnrolledCourse enrolledCourse : enrolledCourse) {
@@ -128,7 +124,6 @@ public class User {
         EnrolledCourse RemoveCourse = new EnrolledCourse(course, false, null);
     }
     */
->>>>>>> 584962d05d9d304d3b4a36382eeb601668ca934c
 
     /**
      * get user's id
