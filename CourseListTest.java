@@ -1,18 +1,12 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.UUID;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CourseListTest {
     private CourseList course = CourseList.getInstance();
-    private static ArrayList<Module> module;
-    private static ArrayList<Lesson> lesson;
-    private static ArrayList<Question> quiz;
-    //private static CourseList courseList;
     private ArrayList<Course> courseList = course.getAllCourses();
 
     @BeforeEach
