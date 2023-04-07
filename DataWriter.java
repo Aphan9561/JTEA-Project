@@ -49,7 +49,7 @@ public class DataWriter extends DataConstants{
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
         userDetails.put(USER_BIRTHDAY, formattingDate(user.getBirthday()));
-        userDetails.put(USER_USERNAME, user.getUsername().toString());
+        userDetails.put(USER_USERNAME, user.getUsername());
         userDetails.put(USER_TYPE, user.getType().toString());
         userDetails.put(USER_PASSWORD, user.getPassword());
 
