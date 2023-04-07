@@ -14,7 +14,6 @@ class DataWriterTest {
     private FAQList faqList = FAQList.getInstance();
     private ArrayList<User> users = userList.getUsers();
     private ArrayList<Course> courses = courseList.getAllCourses();
-    //private ArrayList<Module> modules = course.getModule();
     private ArrayList<FAQ> faqs = faqList.getFAQ();
 
     @BeforeEach
@@ -91,7 +90,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("10/02/2023", DataLoader.getUsers().get(0).getBirthday());
     }
-    //Adding six users, get 3rd user's username
+    //Adding six users, get 4th user's username
     @Test
     public void testWritingSixUsersAndGetUsername(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -103,7 +102,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("kSmith", DataLoader.getUsers().get(3).getUsername());
     }
-    //Adding six users, get 3rd user's password
+    //Adding six users, get 4th user's password
     @Test
     public void testWritingSixUsersAndGetPassword(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -115,7 +114,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("KyleSmith28304", DataLoader.getUsers().get(3).getPassword());
     }
-    //Adding six users, get 3rd user's first name
+    //Adding six users, get 4th user's first name
     @Test
     public void testWritingSixUsersAndGetFirstName(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -127,7 +126,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("Kyle", DataLoader.getUsers().get(3).getFirstName());
     }
-    //Adding six users, get 3rd user's last name
+    //Adding six users, get 4th user's last name
     @Test
     public void testWritingSixUsersAndGetLastName(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -139,7 +138,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("Smith", DataLoader.getUsers().get(3).getLastName());
     }
-    //Adding six users, get 3rd user's email
+    //Adding six users, get 4th user's email
     @Test
     public void testWritingSixUsersAndGetEmail(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -151,7 +150,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("kSmith@email.com", DataLoader.getUsers().get(3).getEmail());
     }
-    //Adding six users, get 3rd user's birthday
+    //Adding six users, get 4th user's birthday
     @Test
     public void testWritingSixUsersAndGetBirthday(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -163,7 +162,7 @@ class DataWriterTest {
         DataWriter.saveUsers();
         assertEquals("02/03/2000", DataLoader.getUsers().get(3).getBirthday());
     }
-    //Adding six users, get 3rd user's account type
+    //Adding six users, get 4th user's account type
     @Test
     public void testWritingSixUsersAndGetAccountType(){
         users.add(new User("Anne","Dennis","ADen@email.com",new Date(10/02/2023), "adennis2", "catsForLife",AccountType.STUDENT));
@@ -215,7 +214,7 @@ class DataWriterTest {
     public void testWritingEmptyUserAndGetBirthday(){
         users.add(new User("", "", "", new Date(), "", "", AccountType.AUTHOR));
         DataWriter.saveUsers();
-        assertEquals(null, DataLoader.getUsers().get(0).getBirthday());
+        assertEquals("", DataLoader.getUsers().get(0).getBirthday());
     }
     //Add empty user, get account type
     @Test
@@ -232,11 +231,47 @@ class DataWriterTest {
         assertEquals(null, DataLoader.getUsers().get(0).getUsername());
     }
     //add null user, get password
+    @Test
+    public void testWritingNullUserAndGetPassword(){
+        users.add(new User(null, null, null, new Date(), null, null, AccountType.AUTHOR));
+        DataWriter.saveUsers();
+        assertEquals(null, DataLoader.getUsers().get(0).getPassword());
+    }
     //add null user, get first name
+    @Test
+    public void testWritingNullUserAndGetFirstName(){
+        users.add(new User(null, null, null, new Date(), null, null, AccountType.AUTHOR));
+        DataWriter.saveUsers();
+        assertEquals(null, DataLoader.getUsers().get(0).getFirstName());
+    }
     //add null user, get last name
+    @Test
+    public void testWritingNullUserAndGetLastName(){
+        users.add(new User(null, null, null, new Date(), null, null, AccountType.AUTHOR));
+        DataWriter.saveUsers();
+        assertEquals(null, DataLoader.getUsers().get(0).getLastName());
+    }
     //add null user, get email
+    @Test
+    public void testWritingNullUserAndGetEmail(){
+        users.add(new User(null, null, null, new Date(), null, null, AccountType.AUTHOR));
+        DataWriter.saveUsers();
+        assertEquals(null, DataLoader.getUsers().get(0).getEmail());
+    }
     //add null user, get birthday
+    @Test
+    public void testWritingNullUserAndGetBirthday(){
+        users.add(new User(null, null, null, new Date(), null, null, AccountType.AUTHOR));
+        DataWriter.saveUsers();
+        assertEquals(null, DataLoader.getUsers().get(0).getBirthday());
+    }
     //add null user, get account type
+    @Test
+    public void testWritingNullUserAndGetAccountType(){
+        users.add(new User(null, null, null, new Date(), null, null, AccountType.AUTHOR));
+        DataWriter.saveUsers();
+        assertEquals(AccountType.AUTHOR, DataLoader.getUsers().get(0).getType());
+    }
     //Getting course json size
     @Test
     public void testWritingZeroCourses(){
@@ -245,7 +280,7 @@ class DataWriterTest {
     }
     //Adding one course, get title
     @Test
-    public void testWritingOneCourse(){
+    public void testWritingOneCourseAndGetTitle(){
         ArrayList<String> answers = new ArrayList<String>();
         answers.add("name");
         answers.add("street");
@@ -255,7 +290,7 @@ class DataWriterTest {
         ArrayList<Question> questions = new ArrayList<Question>();
         questions.add(question);
         Quiz quiz = new Quiz(questions);
-        Lesson lesson = new Lesson("When to Use Classes: Variables", "A class is used when you have an object that has several traits.", quiz);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
         ArrayList<Lesson> lessons = new ArrayList<Lesson>();
         lessons.add(lesson);
         Module module = new Module("Variables", lessons);
@@ -267,28 +302,896 @@ class DataWriterTest {
         assertEquals("Classes for Beginners",DataLoader.getCourses().get(0).getTitle());
     }
     //Adding one course, get description
+    @Test
+    public void testWritingOneCourseAndGetDescription(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("Teaches how to create a class with variables and methods, then describes when to use a class.",DataLoader.getCourses().get(0).getDesciption());
+    }
     //Adding one course, get syllabus
+    @Test
+    public void testWritingOneCourseAndGetSyllabus(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("Module 1: Variables, Module 2: Methods, Module: When to Use Classes",DataLoader.getCourses().get(0).getSyllabus());
+    }
     //Adding one course, get difficulty
+    @Test
+    public void testWritingOneCourseAndGetDifficulty(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(Difficulty.MEDIUM,DataLoader.getCourses().get(0).getDifficulty());
+    }
     //Adding one course, get language
-    //Adding one course, get module
-    //Adding six course, get 3rd course title
-    //Adding six course, get 3rd course description
-    //Adding six course, get 3rd course syllabus
-    //Adding six course, get 3rd course difficulty
-    //Adding six course, get 3rd course language
-    //Adding six course, get 3rd course module
+    @Test
+    public void testWritingOneCourseAndGetLanguage(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(Language.PYTHON,DataLoader.getCourses().get(0).getLanguage());
+    }
+    //Adding one course, get module title
+    @Test
+    public void testWritingOneCourseAndGetModuleTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("Variables",DataLoader.getCourses().get(0).getModule().get(0).getTitle());
+    }
+    //Adding one course, get lesson title
+    @Test
+    public void testWritingOneCourseAndGetLessonTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("When to Use Classes: Variables",DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getTitle());
+    }
+    //Adding one course, get lesson content
+    @Test
+    public void testWritingOneCourseAndGetLessonContent(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("A class is used when you have an object that has several traits.",DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getContent());
+    }
+    //Adding one course, get quiz question
+    @Test
+    public void testWritingOneCourseAndGetQuizQuestion(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("What would be a variable for a Cat class?",DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getQuestion());
+    }
+    //Adding one course, get quiz correct answer
+    @Test
+    public void testWritingOneCourseAndGetQuizCorrectAnswer(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("Variables", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        UUID author = UUID.randomUUID();
+        courses.add(new Course(author, "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(0,DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getCorrectAnswer());
+    }
+    //Adding two course, get 2nd course title
+    @Test
+    public void testWritingTwoCourseAndGetTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("Zero to Hero: Python Bootcamp",DataLoader.getCourses().get(1).getTitle());
+    }
+    //Adding two course, get 2nd course description
+    @Test
+    public void testWritingTwoCourseAndGetDescription(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!",DataLoader.getCourses().get(1).getDesciption());
+    }
+    //Adding two course, get 2nd course syllabus
+    @Test
+    public void testWritingTwoCourseAndGetSyllabus(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("Module 1: Python Basic.",DataLoader.getCourses().get(1).getSyllabus());
+    }
+    //Adding two course, get 2nd course difficulty
+    @Test
+    public void testWritingTwoCourseAndGetDifficulty(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals(Difficulty.EASY,DataLoader.getCourses().get(1).getDifficulty());
+    }
+    //Adding two course, get 2nd course language
+    @Test
+    public void testWritingTwoCourseAndGetLanguage(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals(Language.PYTHON,DataLoader.getCourses().get(1).getLanguage());
+    }
+    //Adding two course, get 2nd module title
+    @Test
+    public void testWritingTwoCourseAndGetModuleTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("Python Basic",DataLoader.getCourses().get(1).getModule().get(0).getTitle());
+    }
+    //Adding two course, get 2nd lesson title
+    @Test
+    public void testWritingTwoCourseAndGetLessonTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("Printing",DataLoader.getCourses().get(1).getModule().get(0).getLesson().get(0).getTitle());
+    }
+    //Adding two course, get 2nd lesson content
+    @Test
+    public void testWritingTwoCourseAndGetLessonContent(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python? ",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().",DataLoader.getCourses().get(1).getModule().get(0).getLesson().get(0).getContent());
+    }
+    //Adding two course, get 2nd quiz question
+    @Test
+    public void testWritingTwoCourseAndGetQuizQuestion(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python?",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals("How do you print “Hello World”in python?",DataLoader.getCourses().get(1).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getQuestion());
+    }
+    //Adding two course, get 2nd quiz correct answer
+    @Test
+    public void testWritingTwoCourseAndGetQuizCorrectAnswer(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("name");
+        answers.add("street");
+        answers.add("price");
+        answers.add("build time");
+        ArrayList<String> answers2 = new ArrayList<String>();
+        answers2.add("print(“Hello World”)");
+        answers2.add("System.out.println(“Hello World”);");
+        answers2.add("cout << “Hello World”");
+        answers2.add("print(“Hello World);");
+        Question question = new Question("What would be a variable for a Cat class?",answers,0);
+        Question question2 = new Question("How do you print “Hello World”in python?",answers2,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        ArrayList<Question> questions2 = new ArrayList<Question>();
+        questions2.add(question2);
+        Quiz quiz = new Quiz(questions);
+        Quiz quiz2 = new Quiz(questions2);
+        Lesson lesson = new Lesson("A class is used when you have an object that has several traits.","When to Use Classes: Variables", quiz);
+        Lesson lesson2 = new Lesson("Printing in python is when you print to the terminal or console so the user can see. You would use the command print().","Printing", quiz2);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        ArrayList<Lesson> lessons2 = new ArrayList<Lesson>();
+        lessons2.add(lesson2);
+        Module module = new Module("Variables", lessons);
+        Module module2 = new Module("Python Basic", lessons2);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        ArrayList<Module> modules2 = new ArrayList<Module>();
+        modules2.add(module2);
+        courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
+        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        DataWriter.saveCourses();
+        assertEquals(0,DataLoader.getCourses().get(1).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getCorrectAnswer());
+    }
     //Add empty course, get title
+    @Test
+    public void testWritingEmptyCourseAndGetTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getTitle());
+    }
     //Add empty course, get description
+    @Test
+    public void testWritingEmptyCourseAndGetDescription(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getDesciption());
+    }
     //Add empty course, get syllabus
-    //Add empty course, get difficulty
-    //Add empty course, get language
-    //Add empty course, get module
+    @Test
+    public void testWritingEmptyCourseAndGetSyllabus(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getSyllabus());
+    }
+    //Add empty course, get module title
+    @Test
+    public void testWritingEmptyCourseAndGetModuleTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getModule().get(0).getTitle());
+    }
+    //Add empty course, get lesson title
+    @Test
+    public void testWritingEmptyCourseAndGetLessonTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getTitle());
+    }
+    //Add empty course, get lesson content
+    @Test
+    public void testWritingEmptyCourseAndGetLessonContent(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getContent());
+    }
+    //Add empty course, get quiz question
+    @Test
+    public void testWritingEmptyCourseAndGetQuizQuesiton(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals("",DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getQuestion());
+    }
+    //Add empty course, get quiz correct answer
+    @Test
+    public void testWritingEmptyCourseAndGetQuizCorrectAnswer(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add("");
+        Question question = new Question("",answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson("","", quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(0,DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getCorrectAnswer());
+    }
     //add null course, get title
+    @Test
+    public void testWritingNullCourseAndGetTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getTitle());
+    }
     //add null course, get description
+    @Test
+    public void testWritingNullCourseAndGetDescription(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getDesciption());
+    }
     //add null course, get syllabus
-    //add null course, get difficulty
-    //add null course, get language
-    //add null course, get module
+    @Test
+    public void testWritingNullCourseAndGetSyllabus(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getSyllabus());
+    }
+    //add null course, get module title
+    @Test
+    public void testWritingNullCourseAndGetModuleTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module(null, lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getModule().get(0).getTitle());
+    }
+    //add null course, get lesson title
+    @Test
+    public void testWritingNullCourseAndGetLessonTitle(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getTitle());
+    }
+    //add null course, get lesson content
+    @Test
+    public void testWritingNullCourseAndGetLessonContent(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getContent());
+    }
+    //add null course, get quiz question
+    @Test
+    public void testWritingNullCourseAndGetQuizQuestion(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(null, DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getQuestion());
+    }
+    //add null course, get quiz correct answer
+    @Test
+    public void testWritingNullCourseAndGetQuizCorrectAnswer(){
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(null);
+        Question question = new Question(null,answers,0);
+        ArrayList<Question> questions = new ArrayList<Question>();
+        questions.add(question);
+        Quiz quiz = new Quiz(questions);
+        Lesson lesson = new Lesson(null,null, quiz);
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+        lessons.add(lesson);
+        Module module = new Module("", lessons);
+        ArrayList<Module> modules = new ArrayList<Module>();
+        modules.add(module);
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.PYTHON, modules));
+        DataWriter.saveCourses();
+        assertEquals(0, DataLoader.getCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getCorrectAnswer());
+    }
     //Getting FAQ json size
     @Test
     public void testWritingZeroFAQs() {
@@ -297,16 +1200,63 @@ class DataWriterTest {
 	}
     //Adding one faq, get question
     @Test
-    public void testWritingOneFAQ(){
+    public void testWritingOneFAQAndGetQuestion(){
         faqs.add(new FAQ("Would this course be helpful when interviewing with Google?", "Yes, Google likes to see that you understand object-oriented programming."));
         DataWriter.saveFAQs();
         assertEquals("Would this course be helpful when interviewing with Google?", DataLoader.getFAQs().get(0).getQuestion());
     }
     //Adding one faq, get answers
-    //Adding six FAQ, get 3rd faq question
-    //Adding six FAQ, get 3rd faq answer
+    @Test
+    public void testWritingOneFAQAndGetAnswer(){
+        faqs.add(new FAQ("Would this course be helpful when interviewing with Google?", "Yes, Google likes to see that you understand object-oriented programming."));
+        DataWriter.saveFAQs();
+        assertEquals("Yes, Google likes to see that you understand object-oriented programming.", DataLoader.getFAQs().get(0).getAnswers().get(0));
+    }
+    //Adding three FAQ, get 3rd faq question
+    @Test
+    public void testWritingThreeFAQAndGetQuestion(){
+        faqs.add(new FAQ("Would this course be helpful when interviewing with Google?", "Yes, Google likes to see that you understand object-oriented programming."));
+        faqs.add(new FAQ("How do I create a course on this platform?", "You would need to make an account as a author in order to create courses."));
+        faqs.add(new FAQ("What languages does this system offer for courses", "We offer python, javaScript, and git."));
+        DataWriter.saveFAQs();
+        assertEquals("What languages does this system offer for courses",DataLoader.getFAQs().get(2).getQuestion());
+    }
+    //Adding three FAQ, get 3rd faq answer
+    @Test
+    public void testWritingThreeFAQAndGetAnswer(){
+        faqs.add(new FAQ("Would this course be helpful when interviewing with Google?", "Yes, Google likes to see that you understand object-oriented programming."));
+        faqs.add(new FAQ("How do I create a course on this platform?", "You would need to make an account as a author in order to create courses."));
+        faqs.add(new FAQ("What languages does this system offer for courses", "We offer python, javaScript, and git."));
+        DataWriter.saveFAQs();
+        assertEquals("We offer python, javaScript, and git.",DataLoader.getFAQs().get(2).getAnswers().get(0));
+    }
     //Add empty faq, get question
+    @Test
+    public void testWritingEmptyFAQAndGetQuestion(){
+        faqs.add(new FAQ("",""));
+        DataWriter.saveFAQs();
+        assertEquals("",DataLoader.getFAQs().get(0).getQuestion());
+    }
     //Add empty faq, get answer
+    @Test
+    public void testWritingEmptyFAQAndGetAnswer(){
+        faqs.add(new FAQ("",""));
+        DataWriter.saveFAQs();
+        assertEquals("",DataLoader.getFAQs().get(0).getAnswers());
+    }
     //add null faq, get question
+    @Test
+    public void testWritingNullFAQAndGetQuestion(){
+        faqs.add(new FAQ(null,""));
+        DataWriter.saveFAQs();
+        assertEquals(null,DataLoader.getFAQs().get(0).getQuestion());
+    }
     //add null faq, get answer
+    @Test
+    public void testWritingNullFAQAndGetAnswer(){
+        String answer = null;
+        faqs.add(new FAQ("", answer));
+        DataWriter.saveFAQs();
+        assertEquals(null,DataLoader.getFAQs().get(0).getAnswers().get(0));
+    }
 }
