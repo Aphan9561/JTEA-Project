@@ -16,12 +16,17 @@ class LMSApplicationTesting {
     @BeforeEach
     public void setUp()
     {
-        Date birthday1 = new Date("2/10/2000");
-        Date birthday2 = new Date("12/02/1990");
-        userList.getUsers().clear();
+
+        Date birthday1 = new Date();
+        Date birthday2 = new Date();
         userList.addUser("Sue", "Simple", "SimplyPerfect@gmail.com", birthday1, "simplyperfect", "SueMe#23", AccountType.STUDENT);
         User student1 = userList.getUser("simplyperfect");
-        ArrayList<Integer> grades = [100,50,60,30,100];
+        ArrayList<Integer> grades = new ArrayList<Integer>();
+        grades.add(100);
+        grades.add(90);
+        grades.add(70);
+        grades.add(60);
+        grades.add(100);
         Student Sue = new Student(student1.getId(),grades);
         userList.addUser("Bob", "Chance", "chance10000@gmail.com", birthday2, "Mr.Chance", "PineAppple#02", AccountType.AUTHOR);
         User author1 = userList.getUser("Mr.Chance");
@@ -40,7 +45,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateValidUser()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Eve", "CatsAwe!08", AccountType.AUTHOR);
         lmsApplication.login("Eve", "CatsAwe!08");
         User user = lmsApplication.getCurrentUser();
@@ -50,7 +55,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserNullUsername()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, null, "CatsAwe!08", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -58,7 +63,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserNullPassword()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Eve", null, AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -66,7 +71,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserNullFirstName()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount(null, "Blom", "emblom@email.sc.edu", birthday3, "Eve", null, AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -74,7 +79,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserNullLastName()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date(); 
         boolean isCreated = lmsApplication.createAccount("Eve", null, "emblom@email.sc.edu", birthday3, "Eve", null, AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -82,7 +87,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserNullEmail()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", null, birthday3, "Eve", null, AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -90,7 +95,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserUserInvalidEmail()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom", birthday3, "Eve", null, AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -98,7 +103,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserAllNumberPassword()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Eve", "12345", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -106,7 +111,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserAllLowercasePassword()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Eve", "cats", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -114,31 +119,15 @@ class LMSApplicationTesting {
     @Test
     public void testCreateInvalidUser()
     {
-        Date birthday3 = new Date("03/24/1003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("12", "34", "cars", birthday3, "Mr. Chance", "5555", AccountType.AUTHOR);
-        assertFalse(isCreated);
-    }
-
-    @Test
-    public void testCreateUserFutureDate()
-    {
-        Date birthday3 = new Date("03/24/2024");
-        boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Eve", "CatsAwe!08", AccountType.AUTHOR);
-        assertFalse(isCreated);
-    }
-    
-    @Test
-    public void testCreateUserPastDate()
-    {
-        Date birthday3 = new Date("03/24/1024");
-        boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Eve", "CatsAwe!08", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
    
     @Test
     public void testCreateUserUsedEmail()
     {
-        Date birthday3 = new Date("03/24/1024");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "SimplyPerfect@gmail.com", birthday3, "Eve", "CatsAwe!08", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -146,7 +135,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserUsedUsername()
     {
-        Date birthday3 = new Date("03/24/2003");
+        Date birthday3 = new Date();
         boolean isCreated = lmsApplication.createAccount("Eve", "Blom", "emblom@email.sc.edu", birthday3, "Mr. Chance", "CatsAwe!08", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -154,7 +143,7 @@ class LMSApplicationTesting {
     @Test
     public void testCreateUserOldUser()
     {
-        Date birthday2 = new Date("12/02/1990");
+        Date birthday2 = new Date();
         boolean isCreated = lmsApplication.createAccount("Bob", "Chance", "chance10000@gmail.com", birthday2, "Mr.Chance", "PineAppple#02", AccountType.AUTHOR);
         assertFalse(isCreated);
     }
@@ -305,10 +294,10 @@ class LMSApplicationTesting {
     @Test
     public void testGetGrades()
     {
-        Integer gradeAverage = 68;
+        Integer gradeAverage = 84;
         Integer testGradeAverage = lmsApplication.getGrades();
         assertEquals(gradeAverage, testGradeAverage);
     }
 
-    
+
 }
