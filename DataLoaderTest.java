@@ -13,6 +13,8 @@ class DataLoaderTest {
     private ArrayList<User> users = userList.getUsers();
     private CourseList courseList = CourseList.getInstance();
     private ArrayList<Course> courses = courseList.getAllCourses();
+    private FAQList faqList = FAQList.getInstance();
+    private ArrayList<FAQ> faqs = faqList.getFAQ();
 
     @BeforeEach
     public void setup() {
@@ -69,7 +71,11 @@ class DataLoaderTest {
         modulesNull.add(moduleNull);
         courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modulesNull));
         DataWriter.saveCourses();
-
+        faqs.add(new FAQ("Would this course be helpful when interviewing with Google?", "Yes, Google likes to see that you understand object-oriented programming."));
+        faqs.add(new FAQ("How do I create a course on this platform?", "You would need to make an account as a author in order to create courses."));
+        faqs.add(new FAQ("What languages does this system offer for courses", "We offer python, javaScript, and git."));
+        faqs.add(new FAQ("",""));
+        DataWriter.saveFAQs();
     }
 
     @AfterEach
@@ -403,10 +409,43 @@ class DataLoaderTest {
     }
 
     //test get FAQs size
-
+    @Test
+    void testGetFAQsSize() {
+        faqs = DataLoader.getFAQs();
+        assertEquals(4, faqList.size());
+    }
 
     //test get FAQs size 0
 
+    @Test
+    void testGetFAQsSizeZero() {
+        FAQList.getInstance().getFAQ().clear();
+        DataWriter.saveUsers();
+        assertEquals(0, faqList.size());
+    }
 
+    @Test
+    void testGetFAQQuestion() {
+        faqs = DataLoader.getFAQs();
+        assertEquals("Would this course be helpful when interviewing with Google?", faqs.get(0).getQuestion());
+    }
+
+    @Test
+    void testGetFAQQuestionNull() {
+        faqs = DataLoader.getFAQs();
+        assertEquals("", faqs.get(3).getQuestion());
+    }
+
+    @Test
+    void testGetFAQAnswer() {
+        faqs = DataLoader.getFAQs();
+        assertEquals("Yes, Google likes to see that you understand object-oriented programming.", faqs.get(0).getAnswers().get(0));
+    }
+
+    @Test
+    void testGetFAQAnswerNull() {
+        faqs = DataLoader.getFAQs();
+        assertEquals("", faqs.get(3).getAnswers().get(0));
+    }
     
 }
