@@ -53,7 +53,21 @@ class DataLoaderTest {
         ArrayList<Module> modules2 = new ArrayList<Module>();
         modules2.add(module2);
         courses.add(new Course(UUID.randomUUID(), "Classes for Beginners", "Teaches how to create a class with variables and methods, then describes when to use a class.", "Module 1: Variables, Module 2: Methods, Module: When to Use Classes", Difficulty.MEDIUM, Language.PYTHON, modules));
-        courses.add(new Course(UUID.randomUUID(), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        courses.add(new Course(UUID.fromString("5a118dcd-901e-43c3-b153-c67b2a2448d9"), "Zero to Hero: Python Bootcamp", "Learning Python like a Professional Start from the basics and go all the way to creating your own applications and games!", "Module 1: Python Basic.", Difficulty.EASY, Language.PYTHON, modules2));
+        courses.add(new Course(UUID.randomUUID(), null, null, null, Difficulty.EASY, Language.GITHUB, new ArrayList<Module>()));
+        ArrayList<String> answersNull = new ArrayList<String>();
+        answersNull.add("");
+        Question questionNull = new Question("",answersNull,0);
+        ArrayList<Question> questionsNull = new ArrayList<Question>();
+        questionsNull.add(questionNull);
+        Quiz quizNull = new Quiz(questionsNull);
+        Lesson lessonNull = new Lesson("","", quizNull);
+        ArrayList<Lesson> lessonsNull = new ArrayList<Lesson>();
+        lessonsNull.add(lessonNull);
+        Module moduleNull = new Module("", lessonsNull);
+        ArrayList<Module> modulesNull = new ArrayList<Module>();
+        modulesNull.add(moduleNull);
+        courses.add(new Course(UUID.randomUUID(), "", "", "", Difficulty.EASY, Language.PYTHON, modulesNull));
         DataWriter.saveCourses();
 
     }
@@ -209,11 +223,99 @@ class DataLoaderTest {
     }
 
     //test get courses size
-    
+    @Test
+    void testGetCoursesSize() {
+        courses = DataLoader.getCourses();
+        assertEquals(2, courseList.size());
+    }
 
     //test get courses size 0
+    @Test
+    void testGetCoursesSizeZero() {
+        CourseList.getInstance().getAllCourses().clear();
+        DataWriter.saveCourses();
+        assertEquals(0, courseList.size());
+    }
+
+    @Test
+    void testGetCourseID() {
+        courses = DataLoader.getCourses();
+        assertEquals(UUID.fromString("5a118dcd-901e-43c3-b153-c67b2a2448d9"), courses.get(1).getId());
+    }
+
+    /*
+    @Test
+    void testGetCourseIDNull() {
+        users = DataLoader.getUsers();
+        assertEquals(null, users.get(2).getId());
+    }*/
+
+    @Test
+    void testGetCourseDifficulty() {
+        courses = DataLoader.getCourses();
+        assertEquals(Difficulty.MEDIUM, courses.get(0).getDifficulty());
+    }
+
+    @Test
+    void testGetCourseDifficultyUnknown() {
+        courses = DataLoader.getCourses();
+        courses.add(new Course(null, null, null, null, Difficulty.valueOf("unknown"), Language.valueOf("unknown"), null));
+        assertEquals(Difficulty.EASY, courses.get(3).getDifficulty());
+    }
+
+    @Test
+    void testGetCourseLanguage() {
+        courses = DataLoader.getCourses();
+        assertEquals(Language.PYTHON, courses.get(0).getLanguage());
+    }
+
+    @Test
+    void testGetCourseLanguageUnknown() {
+        courses = DataLoader.getCourses();
+        courses.add(new Course(null, null, null, null, Difficulty.valueOf("unknown"), Language.valueOf("unknown"), null));
+        assertEquals(Language.GITHUB, courses.get(3).getDifficulty());
+    }
+
+    @Test
+    void testGetCourseName() {
+        courses = DataLoader.getCourses();
+        assertEquals("Classes for Beginners", courses.get(0).getTitle());
+    }
+
+    @Test
+    void testGetCourseNameNull() {
+        courses = DataLoader.getCourses();
+        assertEquals(null, courses.get(2).getTitle());
+    }
+
+    @Test
+    void testGetCourseDescription() {
+        courses = DataLoader.getCourses();
+        assertEquals("Teaches how to create a class with variables and methods, then describes when to use a class.", courses.get(0).getDesciption());
+    }
+
+    @Test
+    void testGetCourseDescriptionNull() {
+        courses = DataLoader.getCourses();
+        assertEquals(null, courses.get(2).getDesciption());
+    }
+
+    @Test
+    void testGetCourseSyllabus() {
+        courses = DataLoader.getCourses();
+        assertEquals("Module 1: Variables, Module 2: Methods, Module: When to Use Classes", courses.get(0).getSyllabus());
+    }
+
+    @Test
+    void testGetCourseSyllabusNull() {
+        courses = DataLoader.getCourses();
+        assertEquals(null, courses.get(2).getSyllabus());
+    }
+
+    
 
     //test get FAQs size
+
 
     //test get FAQs size 0
 
