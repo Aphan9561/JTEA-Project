@@ -258,7 +258,7 @@ class LMSApplicationTesting {
     {   
         boolean isAuthor = lmsApplication.findAuthorForCourse("Mr.Chance");
         assertTrue(isAuthor);
-    }
+    }   
 
     @Test
     public void testFindAuthorForCourseManyCourses()
