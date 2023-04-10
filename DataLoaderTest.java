@@ -226,7 +226,7 @@ class DataLoaderTest {
     @Test
     void testGetCoursesSize() {
         courses = DataLoader.getCourses();
-        assertEquals(2, courseList.size());
+        assertEquals(4, courseList.size());
     }
 
     //test get courses size 0
@@ -312,7 +312,95 @@ class DataLoaderTest {
         assertEquals(null, courses.get(2).getSyllabus());
     }
 
-    
+    @Test
+    void testGetCourseModuletitle() {
+        courses = DataLoader.getCourses();
+        assertEquals("Variables", courses.get(0).getModule().get(0).getTitle());
+    }
+
+    @Test
+    void testGetCourseModuleTitleNull() {
+        courses = DataLoader.getCourses();
+        assertEquals("", courses.get(3).getModule().get(0).getTitle());
+    }
+
+    @Test
+    void testGetCourseModuleLessontitle() {
+        courses = DataLoader.getCourses();
+        assertEquals("When to Use Classes: Variables", courses.get(0).getModule().get(0).getLesson().get(0).getTitle());
+    }
+
+    @Test
+    void testGetCourseModuleLessonTitleNull() {
+        courses = DataLoader.getCourses();
+        assertEquals("", courses.get(3).getModule().get(0).getLesson().get(0).getTitle());
+    }
+
+    @Test
+    void testGetCourseModuleLessonContent() {
+        courses = DataLoader.getCourses();
+        assertEquals("A class is used when you have an object that has several traits.", courses.get(0).getModule().get(0).getLesson().get(0).getContent());
+    }
+
+    @Test
+    void testGetCourseModuleLessonContentNull() {
+        courses = DataLoader.getCourses();
+        assertEquals("", courses.get(3).getModule().get(0).getLesson().get(0).getContent());
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionQuestion() {
+        courses = DataLoader.getCourses();
+        assertEquals("What would be a variable for a Cat class?", courses.get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getQuestion());
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionQuestionNull() {
+        courses = DataLoader.getCourses();
+        assertEquals("", courses.get(3).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getQuestion());
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionCorrectAns() {
+        courses = DataLoader.getCourses();
+        assertEquals(0, courses.get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getCorrectAnswer());
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionAnswer() {
+        courses = DataLoader.getCourses();
+        assertEquals("street", courses.get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getAnswers().get(1));
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionAnswerNull() {
+        courses = DataLoader.getCourses();
+        assertEquals("", courses.get(3).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getAnswers().get(0));
+    }
+
+    @Test
+    void testGetCourseModulesSize() {
+        courses = DataLoader.getCourses();
+        assertEquals(1, courseList.getAllCourses().get(0).getModule().size());
+    }
+
+    @Test
+    void testGetCourseModuleLessonsSize() {
+        courses = DataLoader.getCourses();
+        assertEquals(1, courseList.getAllCourses().get(0).getModule().get(0).getLesson().size());
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionsSize() {
+        courses = DataLoader.getCourses();
+        assertEquals(1, courseList.getAllCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().size());
+    }
+
+    @Test
+    void testGetCourseModuleLessonQuizQuestionAnswersSize() {
+        courses = DataLoader.getCourses();
+        assertEquals(4, courseList.getAllCourses().get(0).getModule().get(0).getLesson().get(0).getQuiz().getQuestion().get(0).getAnswers().size());
+    }
 
     //test get FAQs size
 
